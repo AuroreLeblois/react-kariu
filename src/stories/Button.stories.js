@@ -6,7 +6,8 @@ export default {
   title: 'Example/Button',
   component: Button,
   argTypes: {
-    backgroundColor: { control: 'color' },
+	backgroundColor: { control: 'color' },
+	colorLabel: { control : 'color' }
   },
 };
 
