@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from './../elements/Button.js';
+import { Button } from './../elements/button/Button.js';
 
 export default {
   title: 'Example/Button',
@@ -14,13 +14,9 @@ const Template = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  primary: true,
   label: 'Button',
-};
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'Button',
+  backgroundColor: 'tomato',
+  colorLabel: 'white'
 };
 
 export const Large = Template.bind({});
