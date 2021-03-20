@@ -1,0 +1,36 @@
+{
+  "name": "react_kariu",
+  "version": "1.0.0",
+  "description": "react library for react",
+  "main": "index.js",
+  "scripts": {
+    "start": "start-storybook --quiet --ci --port 9009",
+    "build": "npm run build:svg && style-dictionary build && rollup -c",
+    "build:svg": "svgr --title-prop --icon --svg-props direction={props.direction} --svg-props color={props.color} --replace-attr-values currentColor={props.color} --svg-props animation={props.animation}  src/elements/icon/svg -d src/elements/icon/components --ignore-existing",
+    "build-storybook": "build-storybook -o build --quiet",
+    "build-docs": "build-storybook -o build_docs --quiet --docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "react_kariu"
+  },
+  "keywords": [
+    "library",
+    "component",
+    "react"
+  ],
+  "author": "Aurore Leblois",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^17.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@storybook/addon-actions": "^6.1.21",
+    "@storybook/addon-essentials": "^6.1.21",
+    "@storybook/addon-links": "^6.1.21",
+    "@storybook/react": "^6.1.21",
+    "@svgr/cli": "^5.5.0",
+    "babel-loader": "^8.2.2"
+  }
+}
