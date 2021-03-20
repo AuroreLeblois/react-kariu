@@ -4,7 +4,7 @@ import './../reset.css'
 import './button.css';
 
 
-export class Button extends React.Component {
+export default class Button extends React.Component {
 	// Constructor ----------------------------------------------------------------
 	constructor(props) {
 		super(props)
