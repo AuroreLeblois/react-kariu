@@ -42,7 +42,7 @@ Button.propTypes = {
 	label: PropTypes.string.isRequired,
 	colorLabel: PropTypes.string,
 	onClick: PropTypes.func,
-	tabIndex: PropTypes.oneOf([0,-1]),
+	tabIndex: PropTypes.number,
 	loading: PropTypes.bool
 };
 
@@ -50,4 +50,5 @@ Button.defaultProps = {
 	backgroundColor: null,
 	size: 'medium',
 	onClick: undefined,
+	tabIndex: 0
 };
