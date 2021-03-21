@@ -13,10 +13,9 @@ export default class Icon extends React.Component {
 
 	}
 
-
 	render() {
 		switch(this.props.icon) {
-			case 'eye': return <SvgIconEye color={this.props.color} {...this.props} />
+			case 'eye': return <SvgIconEye {...this.props} />
 			case 'soundOff': return <SvgSoundOff {...this.props} />
 			case 'soundOn': return <SvgSoundOn {...this.props} />
 			default: return <div />
