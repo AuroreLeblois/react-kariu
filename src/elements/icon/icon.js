@@ -10,7 +10,6 @@ export default class Icon extends React.Component {
 
 	constructor(props) {
 		super(props)
-
 	}
 
 	render() {
