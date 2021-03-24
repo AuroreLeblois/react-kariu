@@ -2,6 +2,8 @@
   "name": "react_kariu",
   "version": "1.0.0",
   "description": "react library for react",
+  "author": "Aurore Leblois",
+  "copyright": "Copyright © year ${author}",
   "main": "index.js",
   "scripts": {
     "start": "start-storybook --quiet --ci --port 9009",
