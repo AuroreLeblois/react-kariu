@@ -1,6 +1,6 @@
 export { default as SvgEyeOpen } from './EyeOpen'
+export { default as SvgEyeSlashed } from './EyeSlashed'
 export { default as SvgHamburger } from './Hamburger'
 export { default as SvgLoading } from './Loading'
-export { default as SvgLoadingDots } from './LoadingDots'
 export { default as SvgSoundOff } from './SoundOff'
 export { default as SvgSoundOn } from './SoundOn'

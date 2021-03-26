@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from 'prop-types'
 import {
 	SvgEyeOpen,
+	SvgEyeSlashed,
 	SvgSoundOn,
 	SvgSoundOff,
 	SvgHamburger
@@ -16,6 +17,7 @@ export default class Icon extends React.Component {
 	render() {
 		switch(this.props.icon) {
 			case 'eyeOpen': return <SvgEyeOpen {...this.props} />
+			case 'eyeSlashed' : return <SvgEyeSlashed {...this.props}/>
 			case 'soundOff': return <SvgSoundOff {...this.props} />
 			case 'soundOn': return <SvgSoundOn {...this.props} />
 			case 'hamburgerMenu': return <SvgHamburger {...this.props} />
@@ -27,6 +29,7 @@ export default class Icon extends React.Component {
 Icon.propTypes = {
 	icon: PropTypes.oneOf([
 		'eyeOpen',
+		'eyeSlashed',
 		'soundOff',
 		'soundOn',
 		'hamburgerMenu'

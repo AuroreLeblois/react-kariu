@@ -3,7 +3,7 @@ import React from 'react';
 import { Avatar } from './../index.js'
 
 export default {
-  title: 'Components/Atoms/Avatar',
+  title: 'Components/Molecules/Avatar',
   component: Avatar,
   argTypes: {
 	name : {
@@ -18,15 +18,27 @@ export default {
 		type: {name: 'string', required: false},
 	},
 	backgroundColor: {
-		description: "Only required if you don't provide an url to the component",
+		description: "Only required if you don't provide an url or an icon to the component",
 		control: 'color' },
 	textColor: {
-		description: "Only required if you don't provide an url to the component",
+		description: "Only required if you don't provide an url or an icon to the component",
 		control: 'color' },
 	size: {
 		description: "Only knows:" },
 	shape: {
 		description: "Only knows:" },
+	customIcon: {
+		control: {
+			type: 'select',
+			options: [
+				'eyeOpen',
+				'eyeSlashed',
+				'soundOff',
+				'soundOn',
+				'hamburgerMenu'
+			]
+		}
+	}
   },
 }
 
@@ -55,6 +67,16 @@ export const NoImageAvatar = (args) => <Avatar {...args}/>
 NoImageAvatar.args = {
 	name: 'Aurore Leblois',
 	size: 'big',
+	backgroundColor: 'tomato',
+	textColor: 'white',
+	shape: 'round'
+}
+
+export const SvgAvatar = (args) => <Avatar {...args}/>
+SvgAvatar.args = {
+	name: 'Aurore Leblois',
+	size: 'big',
+	customIcon: 'eyeOpen',
 	backgroundColor: 'tomato',
 	textColor: 'white',
 	shape: 'round'

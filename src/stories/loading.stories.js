@@ -11,7 +11,7 @@ export default {
 				type: 'select',
 				options: [
 					'loadingDefault',
-					'SvgSvgLoadingDots'
+					// 'LoadingDots'
 				]
 			}
 		},
@@ -19,7 +19,7 @@ export default {
 	}
 }
 
-const Template = (args) => <Icon {...args} />;
+const Template = (args) => <Loading {...args} />;
 
 export const Default = (args) => <Loading {...args}/>
 Default.args = {

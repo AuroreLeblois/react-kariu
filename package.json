@@ -8,7 +8,7 @@
   "scripts": {
     "start": "start-storybook --quiet --ci --port 9999",
     "build": "npm run build:svg && style-dictionary build && rollup -c",
-    "build:svg": "svgr --icon --svg-props direction={props.direction} --svg-props color={props.color} --replace-attr-values currentColor={props.color} --svg-props animation={props.animation}  src/elements/icon/svg -d src/elements/icon/components ",
+    "build:svg": "svgr --icon --svg-props direction={props.direction} --svg-props color={props.color} --replace-attr-values currentColor={props.color} --svg-props animation={props.animation}  src/elements/icon/svg -d src/elements/icon/components --ignore-existing",
     "build-storybook": "build-storybook -o build --quiet",
     "build-docs": "build-storybook -o build_docs --quiet --docs"
   },

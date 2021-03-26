@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Loading } from './../../index.js'
 import './../reset.css'
 import './button.css'
@@ -12,14 +12,14 @@ export default class Button extends React.Component {
 
 		this.state = {
 			loading: (props.loading ? props.loading : false),
-			colorLabel: (props.colorLabel ? props.colorLabel : 'white')
+			textColor: (props.textColor ? props.textColor : 'white')
 		}
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.colorLabel !== prevProps.colorLabel ||
+		if (this.props.textColor !== prevProps.textColor ||
 			this.props.loading !== prevProps.loading) {
-			this.setState({ colorLabel: this.props.colorLabel, loading: this.props.loading })
+			this.setState({ textColor: this.props.textColor, loading: this.props.loading })
 		}
 	}
 
@@ -47,7 +47,7 @@ export default class Button extends React.Component {
 	}
 
 	renderText() {
-		const color = this.state.colorLabel
+		const color = this.state.textColor
 		if (this.state.loading) {
 			const dimensions = (this.props.size === 'medium' ? '1rem' :
 				this.props.size === 'small' ? '0.75rem' : '1.15rem')
@@ -65,7 +65,7 @@ export default class Button extends React.Component {
 
 Button.propTypes = {
 	backgroundColor: PropTypes.string,
-	colorLabel: PropTypes.string,
+	textColor: PropTypes.string,
 	label: PropTypes.string,
 	loading: PropTypes.bool,
 	onClick: PropTypes.func,
@@ -78,7 +78,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
 	backgroundColor: 'tomato',
-	colorLabel: 'white',
+	textColor: 'white',
 	label: 'Button',
 	loading: false,
 	onClick: undefined,

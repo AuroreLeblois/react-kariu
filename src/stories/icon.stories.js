@@ -11,6 +11,7 @@ export default {
 				type: 'select',
 				options: [
 					'eyeOpen',
+					'eyeSlashed',
 					'soundOff',
 					'soundOn',
 					'hamburgerMenu'

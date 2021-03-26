@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Icon, Loading } from './../../index.js'
 import './../reset.css'
 import './avatar.css'
 
@@ -7,7 +8,20 @@ class Avatar extends React.Component {
 	// Renderers ----------------------------------------------------------------
 	render() {
 		let content = null
-		if (this.props.url) {
+		if (this.props.loading) {
+			content = ( <Loading
+				icon='loadingDefault'
+				loading={this.props.loading}
+				color={this.props.textColor}
+				className={`avatar-kariu--size-${this.props.size}`}
+				/>)
+			} else if (this.props.customIcon && !this.props.url) {
+				content = ( <Icon
+					icon={this.props.customIcon}
+					color={this.props.textColor}
+					className={`avatar-kariu--size-${this.props.size}`}
+					/> )
+				} else if (this.props.url) {
 			content = (
 				<img src={this.props.url}
 					className={`avatar-kariu
@@ -32,6 +46,14 @@ class Avatar extends React.Component {
 
 Avatar.propTypes = {
 	backgroundColor: PropTypes.string,
+	customIcon: PropTypes.oneOf([
+		'eyeOpen',
+		'eyeSlashed',
+		'soundOff',
+		'soundOn',
+		'hamburgerMenu'
+	]),
+	loading: PropTypes.bool,
 	name: PropTypes.string.isRequired,
 	textColor: PropTypes.string,
 	url: PropTypes.string,
@@ -49,6 +71,7 @@ Avatar.propTypes = {
 
 Avatar.defaultProps = {
 	backgroundColor: 'tomato',
+	customIcon: null,
 	name: 'Aurore Leblois',
 	url: null,
 	size: 'medium',

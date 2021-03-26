@@ -14,7 +14,7 @@ export default {
   		control: {type : 'text'}
   	},
 	backgroundColor: { name: 'backgroundColor', control: 'color' },
-	colorLabel: { name: 'colorLabel', control : 'color' },
+	textColor: { name: 'textColor', control : 'color' },
 	tabIndex : {
 	  name: 'tabIndex',
 	  type: {name: 'number', required: false},
