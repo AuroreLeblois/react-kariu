@@ -1,7 +1,6 @@
 import * as React from "react";
 
 function SvgLoading(props) {
-	console.log(props);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
