@@ -61,7 +61,7 @@ export default class Button extends React.Component {
 Button.propTypes = {
 	backgroundColor: PropTypes.string,
 	colorLabel: PropTypes.string,
-	label: PropTypes.string.isRequired,
+	label: PropTypes.string,
 	loading: PropTypes.bool,
 	onClick: PropTypes.func,
 	shape: PropTypes.oneOf(['rounded', 'basic']),

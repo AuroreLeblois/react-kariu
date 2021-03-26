@@ -8,8 +8,8 @@ export default {
   argTypes: {
 	  label : {
   		name: 'label',
-  		type: {name: 'string', required: true},
-  		description: 'Provides a text to your button: Required',
+  		type: {name: 'string', required: false},
+  		description: 'Provides a text to your button',
   		dafaultValue: 'Aurore Leblois',
   		control: {type : 'text'}
   	},
