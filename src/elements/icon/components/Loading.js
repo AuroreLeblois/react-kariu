@@ -1,15 +1,15 @@
 import * as React from "react";
 
 function SvgLoading(props) {
+	console.log(props);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
       viewBox="0 0 50 50"
-      direction={props.direction}
       color={props.color}
-      animation={props.animation}
+	  loading={props.loading}
       {...props}
     >
       <path

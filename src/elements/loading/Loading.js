@@ -10,21 +10,22 @@ export default class Loading extends React.Component {
 		super(props)
 
 		this.state = {
-			icon: (props.icon ? props.icon : null)
+			icon: (props.icon ? props.icon : null),
+			loading: (props.loading ? props.loading : false)
 		}
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.icon !== prevProps.icon) {
-			this.setState({ icon: this.props.icon })
+		if (this.props.icon !== prevProps.icon ||
+			this.props.loading !== prevProps.loading) {
+			this.setState({ icon: this.props.icon , loading: this.props.loading })
 		}
 	}
 
 	render() {
-		if (!this.props.loading) return null
-
-		switch(this.props.icon) {
-			case 'loadingDefault': return <SvgLoading {...this.props} />
+		if (this.state.loading === false || !this.state.icon) return null
+		switch(this.state.icon) {
+			case 'loadingDefault': return <SvgLoading {...this.props}/>
 		// case 'loadingDots': return <SvgLoadingDots {...this.props}/>
 			default: return <div />
 		}
@@ -32,10 +33,9 @@ export default class Loading extends React.Component {
 }
 
 Loading.propTypes = {
-	loading: PropTypes.bool,
+	loading: PropTypes.bool.isRequired,
 	icon: PropTypes.oneOf([
-		'loadingDefault',
-		'LoadingDots'
+		'loadingDefault'
 	])
 }
 
