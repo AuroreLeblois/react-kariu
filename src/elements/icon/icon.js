@@ -35,5 +35,5 @@ Icon.defaultProps = {
 
 Icon.defaultProps = {
 	icon: 'eye',
-	color: 'red'
+	color: 'inherit'
 };

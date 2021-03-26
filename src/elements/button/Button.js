@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Icon } from './../index.js'
 import './../reset.css'
 import './button.css';
 
@@ -10,18 +11,24 @@ export default class Button extends React.Component {
 		super(props)
 
 		this.state = {
-			loading: (props.loading ? props.loading : false)
+			loading: (props.loading ? props.loading : false),
+			colorLabel: (props.colorLabel ? props.colorLabel : 'black')
+		}
+	}
+
+	componentDidUpdate(prevProps) {
+		if (this.props.colorLabel !== prevProps.colorLabel) {
+			this.setState({ colorLabel: this.props.colorLabel })
 		}
 	}
 
 	// Renderers ----------------------------------------------------------------
 	render() {
 		const backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : 'white'
-		const label = this.props.label ? this.props.label : null
 		const size = this.props.size ? this.props.size : 'medium'
 		const mode = 'kariu-button--primary'
 		const shape = this.props.shape ? this.props.shape : 'rounded'
-		const colorLabel = {color: this.props.colorLabel ? this.props.colorLabel : 'black'}
+
 
 		return (
 			<button
@@ -31,9 +38,19 @@ export default class Button extends React.Component {
 				tabIndex={this.props.tabIndex ? this.props.tabIndex : 0}
 				{...this.props}
 			>
-				<span style={colorLabel}>{label}</span>
+				{this.renderText()}
 			</button>
 		)
+	}
+
+	renderText() {
+		const colorLabel = this.state.colorLabel
+		if (this.props.loading) {
+			return (<span><Icon icon='loading' color={colorLabel}/> </span>)
+		} else {
+			const label = this.props.label ? this.props.label : null
+			return (<span style={{color: colorLabel}}>{label}</span>)
+		}
 	}
 }
 
@@ -47,11 +64,15 @@ Button.propTypes = {
 	size: PropTypes.oneOf(['small', 'medium', 'large']),
 	tabIndex: PropTypes.number
 
-};
+}
 
 Button.defaultProps = {
-	backgroundColor: null,
-	size: 'medium',
+	backgroundColor: 'tomato',
+	colorLabel: 'white',
+	label: 'Button',
+	loading: false,
 	onClick: undefined,
+	shape: 'basic',
+	size: 'medium',
 	tabIndex: 0
-};
+}
