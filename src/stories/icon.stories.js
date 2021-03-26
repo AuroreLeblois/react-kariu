@@ -13,10 +13,11 @@ export default {
 					'eyeOpen',
 					'soundOff',
 					'soundOn',
+					'hamburgerMenu'
 				]
 			}
 		},
-		color: { control: 'color' },
+		color: { control: 'color' }
 	}
 }
 

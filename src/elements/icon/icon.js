@@ -4,7 +4,8 @@ import {
 	SvgEyeOpen,
 	SvgSoundOn,
 	SvgSoundOff,
-	SvgLoading
+	SvgLoading,
+	SvgHamburger
 } from "./components/index.js"
 
 export default class Icon extends React.Component {
@@ -18,17 +19,22 @@ export default class Icon extends React.Component {
 			case 'eyeOpen': return <SvgEyeOpen {...this.props} />
 			case 'soundOff': return <SvgSoundOff {...this.props} />
 			case 'soundOn': return <SvgSoundOn {...this.props} />
+			case 'hamburgerMenu': return <SvgHamburger {...this.props} />
 			default: return <div />
 		}
 	}
 }
 
-Icon.defaultProps = {
+Icon.propTypes = {
 	icon: PropTypes.oneOf([
 		'eyeOpen',
 		'soundOff',
-		'soundOn'
-	])
+		'soundOn',
+		'hamburgerMenu'
+	]),
+	color: PropTypes.string,
+	height: PropTypes.string,
+	width: PropTypes.string
 }
 
 Icon.defaultProps = {

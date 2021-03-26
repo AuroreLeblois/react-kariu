@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {
 	SvgLoading
 } from "./../icon/components/index.js"
+import './../reset.css'
 
 export default class Loading extends React.Component {
 
