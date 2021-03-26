@@ -12,7 +12,7 @@ class Avatar extends React.Component {
 				<img src={this.props.url}
 					className={`avatar-kariu
 						avatar-kariu--size-${this.props.size}
-						avatar-kariu--shape-${this.props.shape}`
+						avatar-kariu--shape-${this.props.shape} `+this.props.className
 					}
 					alt={this.props.name}/>
 			)
@@ -22,7 +22,7 @@ class Avatar extends React.Component {
 		}
 
 		return (
-			<div style={{color: this.props.textColor, backgroundColor: this.props.backgroundColor}}
+			<div style={{color: this.props.textColor, backgroundColor: (this.props.url ? null : this.props.backgroundColor)}}
 				className={`avatar-kariu avatar-kariu--size-${this.props.size} avatar-kariu--shape-${this.props.shape} `+this.props.className}>
 				{content}
 			</div>

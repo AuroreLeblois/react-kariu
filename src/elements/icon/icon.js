@@ -15,7 +15,7 @@ export default class Icon extends React.Component {
 
 	render() {
 		switch(this.props.icon) {
-			case 'eye': return <SvgEyeOpen {...this.props} />
+			case 'eyeOpen': return <SvgEyeOpen {...this.props} />
 			case 'soundOff': return <SvgSoundOff {...this.props} />
 			case 'soundOn': return <SvgSoundOn {...this.props} />
 			default: return <div />
@@ -25,14 +25,14 @@ export default class Icon extends React.Component {
 
 Icon.defaultProps = {
 	icon: PropTypes.oneOf([
-		'eye',
+		'eyeOpen',
 		'soundOff',
 		'soundOn'
 	])
 }
 
 Icon.defaultProps = {
-	icon: 'eye',
+	icon: 'eyeOpen',
 	color: 'tomato',
 	height: '1rem',
 	width: '1rem'

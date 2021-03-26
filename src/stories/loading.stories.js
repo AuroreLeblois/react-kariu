@@ -3,7 +3,7 @@ import React from 'react';
 import { Loading } from './../index.js'
 
 export default {
-  title: 'Components/Loading',
+  title: 'Components/Atoms/Loading',
   component: Loading,
   argTypes: {
 		icon: {

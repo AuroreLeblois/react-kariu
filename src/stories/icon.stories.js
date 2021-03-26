@@ -3,14 +3,14 @@ import React from 'react';
 import { Icon } from './../index.js'
 
 export default {
-  title: 'Components/Icon',
+  title: 'Components/Atoms/Icon',
   component: Icon,
   argTypes: {
 		icon: {
 			control: {
 				type: 'select',
 				options: [
-					'eye',
+					'eyeOpen',
 					'soundOff',
 					'soundOn',
 				]
@@ -24,7 +24,7 @@ const Template = (args) => <Icon {...args} />;
 
 export const Default = (args) => <Icon {...args}/>
 Default.args = {
-	icon: 'eye',
+	icon: 'eyeOpen',
 	height: '20rem',
 	width: '20rem',
 	color: 'tomato'

@@ -17,8 +17,9 @@ export default class Button extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.colorLabel !== prevProps.colorLabel) {
-			this.setState({ colorLabel: this.props.colorLabel })
+		if (this.props.colorLabel !== prevProps.colorLabel ||
+			this.props.loading !== prevProps.loading) {
+			this.setState({ colorLabel: this.props.colorLabel, loading: this.props.loading })
 		}
 	}
 
@@ -48,7 +49,7 @@ export default class Button extends React.Component {
 		if (this.props.loading) {
 			const dimensions = (this.props.size === 'medium' ? '1rem' :
 				this.props.size === 'small' ? '0.75rem' : '1.15rem')
-			return (<span><Loading icon='loadingDefault' color={colorLabel} width={dimensions} height={dimensions}/> </span>)
+			return (<span><Loading icon='loadingDefault' loading={this.state.loading} color={colorLabel} width={dimensions} height={dimensions}/> </span>)
 		} else {
 			const label = this.props.label ? this.props.label : null
 			return (<span style={{color: colorLabel}}>{label}</span>)
