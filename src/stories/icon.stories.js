@@ -11,8 +11,7 @@ export default {
 				type: 'select',
 				options: [
 					'eye',
-					// 'plugi',
-					// 'rep',
+					'loading',
 					'soundOff',
 					'soundOn',
 				]

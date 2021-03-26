@@ -2,12 +2,17 @@
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   border: 0;
-  border-radius: 3em;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
+}
+.kariu-button--rounded {
+	border-radius: 3em;
+}
+.kariu-button--basic {
+	border-radius: 0.5em;
 }
 .kariu-button:active {
 	filter: brightness(85%);
@@ -19,7 +24,7 @@
 .kariu-button--primary {
   color: #333;
   background-color: transparent;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+  /* box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset; */
 }
 .kariu-button--small {
   font-size: 12px;

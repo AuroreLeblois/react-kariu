@@ -1,9 +1,9 @@
 import * as React from "react";
 
-function SvgIconEye(props) {
+function SvgSvgEyeOpen(props) {
   return (
     <svg
-      className="iconEye_svg__svg-icon"
+      className="SvgEyeOpen_svg__svg-icon"
       viewBox="0 0 20 20"
       width="1em"
       height="1em"
@@ -20,4 +20,4 @@ function SvgIconEye(props) {
   );
 }
 
-export default SvgIconEye;
+export default SvgSvgEyeOpen;

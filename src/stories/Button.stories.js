@@ -22,12 +22,14 @@ Primary.args = {
 
 export const Large = Template.bind({});
 Large.args = {
-  size: 'large',
-  label: 'Button',
+	backgroundColor: 'tomato',
+	size: 'large',
+	label: 'Button',
 };
 
 export const Small = Template.bind({});
 Small.args = {
-  size: 'small',
-  label: 'Button',
+	backgroundColor: 'tomato',
+	size: 'small',
+	label: 'Button',
 };

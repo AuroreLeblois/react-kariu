@@ -1,9 +1,9 @@
 import * as React from "react";
 
-function SvgSoundOff(props) {
+function SvgSvgSoundOff(props) {
   return (
     <svg
-      className="soundOff_svg__svg-icon"
+      className="SvgSoundOff_svg__svg-icon"
       viewBox="0 0 20 20"
       width="1em"
       height="1em"
@@ -20,4 +20,4 @@ function SvgSoundOff(props) {
   );
 }
 
-export default SvgSoundOff;
+export default SvgSvgSoundOff;
