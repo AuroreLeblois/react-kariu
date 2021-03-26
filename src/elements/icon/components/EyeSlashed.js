@@ -8,7 +8,7 @@ function SvgEyeSlashed(props) {
       height="1em"
       fill={props.color}
       className="EyeSlashed_svg__bi EyeSlashed_svg__bi-eye-slash"
-      viewBox="0 0 20 20"
+      viewBox="0 0 16 16"
       direction={props.direction}
       color={props.color}
       animation={props.animation}

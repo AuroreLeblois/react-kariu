@@ -8,7 +8,6 @@ function SvgLoading(props) {
       width="1em"
       height="1em"
       viewBox="0 0 50 50"
-      color={props.color}
 	  loading={props.loading}
       {...props}
     >
@@ -22,7 +21,7 @@ function SvgLoading(props) {
           type="rotate"
           from="0 25 25"
           to="360 25 25"
-          dur="0.6s"
+          dur="1s"
           repeatCount="indefinite"
         />
       </path>
