@@ -18,7 +18,6 @@ export default class Icon extends React.Component {
 			case 'eye': return <SvgEyeOpen {...this.props} />
 			case 'soundOff': return <SvgSoundOff {...this.props} />
 			case 'soundOn': return <SvgSoundOn {...this.props} />
-			case 'loading': return <SvgLoading {...this.props} />
 			default: return <div />
 		}
 	}
@@ -28,8 +27,7 @@ Icon.defaultProps = {
 	icon: PropTypes.oneOf([
 		'eye',
 		'soundOff',
-		'soundOn',
-		'loading'
+		'soundOn'
 	])
 }
 

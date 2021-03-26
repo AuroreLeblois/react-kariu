@@ -1,18 +1,16 @@
 import React from 'react';
 
-import { Icon } from './../index.js'
+import { Loading } from './../index.js'
 
 export default {
-  title: 'Components/Icon',
-  component: Icon,
+  title: 'Components/Loading',
+  component: Loading,
   argTypes: {
 		icon: {
 			control: {
 				type: 'select',
 				options: [
-					'eye',
-					'soundOff',
-					'soundOn',
+					'loadingDefault',
 				]
 			}
 		},
@@ -22,9 +20,9 @@ export default {
 
 const Template = (args) => <Icon {...args} />;
 
-export const Default = (args) => <Icon {...args}/>
+export const Default = (args) => <Loading {...args}/>
 Default.args = {
-	icon: 'eye',
+	icon: 'loadingDefault',
 	height: '20rem',
 	width: '20rem',
 	color: 'tomato'
