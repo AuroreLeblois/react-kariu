@@ -1,7 +1,8 @@
 import React from "react"
 import PropTypes from 'prop-types'
 import {
-	SvgLoading
+	SvgLoading,
+	SvgSvgLoadingDots
 } from "./../icon/components/index.js"
 import './../reset.css'
 
@@ -15,10 +16,11 @@ export default class Loading extends React.Component {
 	}
 
 	render() {
-		if (!this.props.loading) return null
+		if (!this.state.loading) return null
 
 		switch(this.props.icon) {
 			case 'loadingDefault': return <SvgLoading {...this.props} />
+			case 'loadingDots': return <SvgSvgLoadingDots {...this.props}/>
 			default: return <div />
 		}
 	}
@@ -27,7 +29,8 @@ export default class Loading extends React.Component {
 Loading.propTypes = {
 	loading: PropTypes.bool,
 	icon: PropTypes.oneOf([
-		'loadingDefault'
+		'loadingDefault',
+		'SvgSvgLoadingDots'
 	])
 }
 

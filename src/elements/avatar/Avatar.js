@@ -50,7 +50,7 @@ Avatar.propTypes = {
 Avatar.defaultProps = {
 	backgroundColor: 'tomato',
 	name: 'Aurore Leblois',
-	url: 'https://media-exp1.licdn.com/dms/image/C4E03AQHZB-8fKQrkpw/profile-displayphoto-shrink_200_200/0/1517549970272?e=1620864000&v=beta&t=Ni4cCb8UuerLrEMB9plHd7g3GMYxJowbvnE9LHqbGOE',
+	url: null,
 	size: 'medium',
 	shape: 'round',
 	textColor: 'white'

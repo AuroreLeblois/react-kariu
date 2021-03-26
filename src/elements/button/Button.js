@@ -25,7 +25,7 @@ export default class Button extends React.Component {
 
 	// Renderers ----------------------------------------------------------------
 	render() {
-		const backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : 'white'
+		const backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : 'tomato'
 		const size = this.props.size ? this.props.size : 'medium'
 		const mode = 'kariu-button--primary'
 		const shape = this.props.shape ? this.props.shape : 'rounded'
@@ -34,8 +34,9 @@ export default class Button extends React.Component {
 		return (
 			<button
 				type="button"
+				title={this.props.title}
 				className={['kariu-button', `kariu-button--${shape}`, `kariu-button--${size}`, mode, this.props.className].join(' ')}
-				style={{backgroundColor}}
+				style={{backgroundColor: backgroundColor}}
 				tabIndex={this.props.tabIndex ? this.props.tabIndex : 0}
 				{...this.props}
 			>
@@ -65,7 +66,8 @@ Button.propTypes = {
 	onClick: PropTypes.func,
 	shape: PropTypes.oneOf(['rounded', 'basic']),
 	size: PropTypes.oneOf(['small', 'medium', 'large']),
-	tabIndex: PropTypes.number
+	tabIndex: PropTypes.number,
+	title: PropTypes.string,
 
 }
 

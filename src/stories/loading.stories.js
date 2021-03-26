@@ -11,6 +11,7 @@ export default {
 				type: 'select',
 				options: [
 					'loadingDefault',
+					'SvgSvgLoadingDots'
 				]
 			}
 		},

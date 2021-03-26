@@ -13,9 +13,10 @@ export default {
 
 const Template = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   label: 'Button',
+  title: 'This is a simple button',
   backgroundColor: 'tomato',
   colorLabel: 'white'
 };
