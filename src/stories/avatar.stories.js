@@ -4,8 +4,11 @@ import { Avatar } from './../index.js'
 
 export default {
   title: 'Components/Avatar',
-  component: Avatar
-
+  component: Avatar,
+  argTypes: {
+	backgroundColor: { control: 'color' },
+	textColor: { control : 'color' }
+  },
 }
 
 const Template = (args) => <Avatar {...args} />;
@@ -14,5 +17,6 @@ export const Default = (args) => <Avatar {...args}/>
 Default.args = {
 	name: 'Aurore Leblois',
 	size: 'medium',
-	color: 'tomato'
+	backgroundColor: 'tomato',
+	textColor: 'white'
 }

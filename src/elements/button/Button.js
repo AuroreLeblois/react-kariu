@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon } from './../../index.js'
+import { Icon, Loading } from './../../index.js'
 import './../reset.css'
-import './button.css';
+import './button.css'
 
 
 export default class Button extends React.Component {
@@ -48,7 +48,7 @@ export default class Button extends React.Component {
 		if (this.props.loading) {
 			const dimensions = (this.props.size === 'medium' ? '1rem' :
 				this.props.size === 'small' ? '0.75rem' : '1.15rem')
-			return (<span><Icon icon='loading' color={colorLabel} width={dimensions} height={dimensions}/> </span>)
+			return (<span><Loading icon='loadingDefault' color={colorLabel} width={dimensions} height={dimensions}/> </span>)
 		} else {
 			const label = this.props.label ? this.props.label : null
 			return (<span style={{color: colorLabel}}>{label}</span>)
