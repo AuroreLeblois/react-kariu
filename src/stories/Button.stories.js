@@ -24,28 +24,26 @@ export default {
   },
 	tooltip: {description: 'Provides a tooltip to your button: Optionnal'}
   },
-};
+}
 
 const Template = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
   label: 'Button',
-  tooltip: 'This is a simple button',
-  backgroundColor: 'tomato',
-  colorLabel: 'white'
-};
+  tooltip: 'This is a simple button'
+}
 
 export const Large = Template.bind({});
 Large.args = {
 	backgroundColor: 'tomato',
 	size: 'large',
 	label: 'Button',
-};
+}
 
 export const Small = Template.bind({});
 Small.args = {
 	backgroundColor: 'tomato',
 	size: 'small',
 	label: 'Button',
-};
+}

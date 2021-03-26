@@ -24,35 +24,41 @@ export default class Button extends React.Component {
 	}
 
 	// Renderers ----------------------------------------------------------------
-	render(props) {
+	render() {
 		const backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : 'tomato'
 		const size = this.props.size ? this.props.size : 'medium'
 		const mode = 'kariu-button--primary'
 		const shape = this.props.shape ? this.props.shape : 'rounded'
 
-
 		return (
+			<div>
 			<button
+				className={['kariu-button', `kariu-button--${shape}`, `kariu-button--${size}`, mode, this.props.className].join(' ')}
+				style={{backgroundColor: backgroundColor}}
 				type="button"
 				disabled={this.props.disabled}
 				title={this.props.tooltip}
-				className={['kariu-button', `kariu-button--${shape}`, `kariu-button--${size}`, mode, this.props.className].join(' ')}
-				style={{backgroundColor: backgroundColor}}
 				tabIndex={this.props.tabIndex ? this.props.tabIndex : 0}
-				{...this.props}
 			>
 				{this.renderText()}
 			</button>
+			</div>
 		)
 	}
 
 	renderText() {
+		const color = this.state.colorLabel
 		if (this.state.loading) {
 			const dimensions = (this.props.size === 'medium' ? '1rem' :
 				this.props.size === 'small' ? '0.75rem' : '1.15rem')
-			return (<Loading icon='loadingDefault' loading={this.state.loading} color={this.state.colorLabel} width={dimensions} height={dimensions}/>)
+			return ( <Loading
+					icon='loadingDefault'
+					loading={this.state.loading}
+					color={color}
+					width={dimensions}
+					height={dimensions}/>)
 		} else {
-			return (<span style={{color: this.state.colorLabel}}>{this.props.label}</span>)
+			return (<span style={{color: color}}>{this.props.label}</span>)
 		}
 	}
 }

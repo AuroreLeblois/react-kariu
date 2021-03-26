@@ -9,7 +9,7 @@ import './../reset.css'
 export default class Loading extends React.Component {
 
 	render() {
-		if (this.props.loading === false) return null
+		if (this.props.loading) return null
 
 		switch(this.props.icon) {
 			case 'loadingDefault': return <SvgLoading {...this.props} />
