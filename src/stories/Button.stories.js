@@ -6,8 +6,23 @@ export default {
   title: 'Components/Molecules/Button',
   component: Button,
   argTypes: {
+	  label : {
+  		name: 'label',
+  		type: {name: 'string', required: true},
+  		description: 'Provides a text to your button: Required',
+  		dafaultValue: 'Aurore Leblois',
+  		control: {type : 'text'}
+  	},
 	backgroundColor: { control: 'color' },
-	colorLabel: { control : 'color' }
+	colorLabel: { control : 'color' },
+	tabIndex : {
+	  name: 'tabIndex',
+	  type: {name: 'number', required: false},
+	  description: 'Important for your application and navigation with keyboard, but optionnal',
+	  dafaultValue: 'Aurore Leblois',
+	  control: {type : 'text'}
+  },
+	tooltip: {description: 'Provides a tooltip to your button: Optionnal'}
   },
 };
 
@@ -16,7 +31,7 @@ const Template = (args) => <Button {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   label: 'Button',
-  title: 'This is a simple button',
+  tooltip: 'This is a simple button',
   backgroundColor: 'tomato',
   colorLabel: 'white'
 };

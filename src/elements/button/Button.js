@@ -34,7 +34,7 @@ export default class Button extends React.Component {
 		return (
 			<button
 				type="button"
-				title={this.props.title}
+				title={this.props.tooltip}
 				className={['kariu-button', `kariu-button--${shape}`, `kariu-button--${size}`, mode, this.props.className].join(' ')}
 				style={{backgroundColor: backgroundColor}}
 				tabIndex={this.props.tabIndex ? this.props.tabIndex : 0}
@@ -67,7 +67,7 @@ Button.propTypes = {
 	shape: PropTypes.oneOf(['rounded', 'basic']),
 	size: PropTypes.oneOf(['small', 'medium', 'large']),
 	tabIndex: PropTypes.number,
-	title: PropTypes.string,
+	tooltip: PropTypes.string,
 
 }
 
