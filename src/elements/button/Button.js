@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon, Loading } from './../../index.js'
+import { Loading } from './../../index.js'
 import './../reset.css'
 import './button.css'
 
@@ -12,7 +12,7 @@ export default class Button extends React.Component {
 
 		this.state = {
 			loading: (props.loading ? props.loading : false),
-			colorLabel: (props.colorLabel ? props.colorLabel : 'black')
+			colorLabel: (props.colorLabel ? props.colorLabel : 'white')
 		}
 	}
 
@@ -24,7 +24,7 @@ export default class Button extends React.Component {
 	}
 
 	// Renderers ----------------------------------------------------------------
-	render() {
+	render(props) {
 		const backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : 'tomato'
 		const size = this.props.size ? this.props.size : 'medium'
 		const mode = 'kariu-button--primary'
@@ -34,6 +34,7 @@ export default class Button extends React.Component {
 		return (
 			<button
 				type="button"
+				disabled={this.props.disabled}
 				title={this.props.tooltip}
 				className={['kariu-button', `kariu-button--${shape}`, `kariu-button--${size}`, mode, this.props.className].join(' ')}
 				style={{backgroundColor: backgroundColor}}
@@ -46,14 +47,12 @@ export default class Button extends React.Component {
 	}
 
 	renderText() {
-		const colorLabel = this.state.colorLabel
-		if (this.props.loading) {
+		if (this.state.loading) {
 			const dimensions = (this.props.size === 'medium' ? '1rem' :
 				this.props.size === 'small' ? '0.75rem' : '1.15rem')
-			return (<span><Loading icon='loadingDefault' loading={this.state.loading} color={colorLabel} width={dimensions} height={dimensions}/> </span>)
+			return (<Loading icon='loadingDefault' loading={this.state.loading} color={this.state.colorLabel} width={dimensions} height={dimensions}/>)
 		} else {
-			const label = this.props.label ? this.props.label : null
-			return (<span style={{color: colorLabel}}>{label}</span>)
+			return (<span style={{color: this.state.colorLabel}}>{this.props.label}</span>)
 		}
 	}
 }

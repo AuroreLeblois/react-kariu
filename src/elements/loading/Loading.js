@@ -2,25 +2,18 @@ import React from "react"
 import PropTypes from 'prop-types'
 import {
 	SvgLoading,
-	SvgSvgLoadingDots
+	SvgLoadingDots
 } from "./../icon/components/index.js"
 import './../reset.css'
 
 export default class Loading extends React.Component {
 
-	constructor(props) {
-		super(props)
-		this.state = {
-			loading : (props.loading ? props.loading : true)
-		}
-	}
-
 	render() {
-		if (!this.state.loading) return null
+		if (this.props.loading === false) return null
 
 		switch(this.props.icon) {
 			case 'loadingDefault': return <SvgLoading {...this.props} />
-			case 'loadingDots': return <SvgSvgLoadingDots {...this.props}/>
+			case 'loadingDots': return <SvgLoadingDots {...this.props}/>
 			default: return <div />
 		}
 	}

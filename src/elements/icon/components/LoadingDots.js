@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function SvgSvgLoadingDots(props) {
+function SvgLoadingDots(props) {
   return (
     <svg
       width="1em"
@@ -13,12 +13,12 @@ function SvgSvgLoadingDots(props) {
       {...props}
     >
       <g fill={props.color} fillRule="evenodd">
-        <path cx={25} cy={30} r={13} />
-        <path cx={65} cy={30} r={13} />
-        <path cx={105} cy={30} r={13} />
+        <circle cx={25} cy={30} r={13} />
+        <circle cx={65} cy={30} r={13} />
+        <circle cx={105} cy={30} r={13} />
       </g>
     </svg>
   );
 }
 
-export default SvgSvgLoadingDots;
+export default SvgLoadingDots;

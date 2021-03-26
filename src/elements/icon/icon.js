@@ -4,7 +4,6 @@ import {
 	SvgEyeOpen,
 	SvgSoundOn,
 	SvgSoundOff,
-	SvgLoading,
 	SvgHamburger
 } from "./components/index.js"
 

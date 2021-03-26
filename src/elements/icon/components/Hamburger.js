@@ -1,12 +1,13 @@
 import * as React from "react";
 
-function SvgSvgHamburger(props) {
+function SvgHamburger(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
       fill={props.color}
+      className="Hamburger_svg__bi Hamburger_svg__bi-list"
       viewBox="0 0 16 16"
       direction={props.direction}
       color={props.color}
@@ -21,4 +22,4 @@ function SvgSvgHamburger(props) {
   );
 }
 
-export default SvgSvgHamburger;
+export default SvgHamburger;

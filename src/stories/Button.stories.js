@@ -13,8 +13,8 @@ export default {
   		dafaultValue: 'Aurore Leblois',
   		control: {type : 'text'}
   	},
-	backgroundColor: { control: 'color' },
-	colorLabel: { control : 'color' },
+	backgroundColor: { name: 'backgroundColor', control: 'color' },
+	colorLabel: { name: 'colorLabel', control : 'color' },
 	tabIndex : {
 	  name: 'tabIndex',
 	  type: {name: 'number', required: false},

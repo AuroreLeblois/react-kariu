@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function SvgSvgLoading(props) {
+function SvgLoading(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,7 @@ function SvgSvgLoading(props) {
           type="rotate"
           from="0 25 25"
           to="360 25 25"
-          dur="1s"
+          dur="0.6s"
           repeatCount="indefinite"
         />
       </path>
@@ -30,4 +30,4 @@ function SvgSvgLoading(props) {
   );
 }
 
-export default SvgSvgLoading;
+export default SvgLoading;
