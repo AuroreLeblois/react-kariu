@@ -24,11 +24,8 @@ export default {
 const Template = (args) => <Icon {...args} />;
 
 export const Default = (args) => <Icon {...args}/>
-Default.args = { icon: 'eye' }
-
-export const Custom = (args) => <Icon {...args}/>
-Custom.args = {
-	icon: 'soundOff',
+Default.args = {
+	icon: 'eye',
 	height: '20rem',
 	width: '20rem',
 	color: 'tomato'

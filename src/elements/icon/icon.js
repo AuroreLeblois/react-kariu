@@ -35,5 +35,7 @@ Icon.defaultProps = {
 
 Icon.defaultProps = {
 	icon: 'eye',
-	color: 'inherit'
+	color: 'tomato',
+	height: '1rem',
+	width: '1rem'
 };
