@@ -1,0 +1,10 @@
+.input-kariu--wrapper{
+	display: flex;
+	flex-direction: column;
+	flex-flow: column nowrap;
+	cursor: default;
+	border-style: solid;
+}
+.input-kariu--label{
+	display: flex;
+}

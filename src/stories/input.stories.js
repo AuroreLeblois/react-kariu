@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InputItem } from './../index.js'
+import { Input, InputItem } from './../index.js'
 
 export default {
   title: 'Components/Atoms/InputItems',
@@ -15,6 +15,11 @@ const Template = (args) => <InputItem {...args} />;
 
 export const InputItemDefault = (args) => <InputItem {...args}/>
 InputItemDefault.args = {
+
+}
+
+export const InputDefault = (args) => <Input {...args}/>
+InputDefault.args = {
 
 }
 

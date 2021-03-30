@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Color from 'color'
 import { Icon } from './../../index.js'
 import './../reset.css'
 import './inputItem.css'
