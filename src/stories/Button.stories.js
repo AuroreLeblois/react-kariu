@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from './../index.js';
 
 export default {
-  title: 'Components/Molecules/Button',
+  title: 'Components/Atoms/Button',
   component: Button,
   argTypes: {
 	  label : {
@@ -32,6 +32,12 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'Button',
   tooltip: 'This is a simple button'
+}
+export const Rounded = Template.bind({});
+Rounded.args = {
+  label: 'Button',
+  shape: 'rounded',
+  tooltip: 'This is a rounded button'
 }
 
 export const Large = Template.bind({});
