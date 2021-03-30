@@ -65,13 +65,13 @@ export default class Button extends React.Component {
 
 Button.propTypes = {
 	backgroundColor: PropTypes.string,
-	textColor: PropTypes.string,
 	label: PropTypes.string,
 	loading: PropTypes.bool,
 	onClick: PropTypes.func,
 	shape: PropTypes.oneOf(['rounded', 'basic']),
 	size: PropTypes.oneOf(['small', 'medium', 'large']),
 	tabIndex: PropTypes.number,
+	textColor: PropTypes.string,
 	tooltip: PropTypes.string,
 
 }
@@ -79,7 +79,6 @@ Button.propTypes = {
 Button.defaultProps = {
 	backgroundColor: 'tomato',
 	textColor: 'white',
-	label: 'Button',
 	loading: false,
 	onClick: undefined,
 	shape: 'basic',

@@ -1,3 +1,4 @@
+export { default as SvgCross } from './Cross'
 export { default as SvgEyeOpen } from './EyeOpen'
 export { default as SvgEyeSlashed } from './EyeSlashed'
 export { default as SvgHamburger } from './Hamburger'
