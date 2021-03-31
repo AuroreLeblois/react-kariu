@@ -3,7 +3,7 @@ import React from 'react';
 import { Avatar } from './../index.js'
 
 export default {
-  title: 'Components/Atoms/Avatar',
+  title: 'React-Kariu/Atoms/Avatar',
   component: Avatar,
   argTypes: {
 	name : {

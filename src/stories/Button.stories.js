@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from './../index.js';
 
 export default {
-  title: 'Components/Atoms/Button',
+  title: 'React-Kariu/Atoms/Button',
   component: Button,
   argTypes: {
 	  label : {

@@ -3,7 +3,7 @@ import React from 'react';
 import { Icon } from './../index.js'
 
 export default {
-  title: 'Components/Atoms/Icon',
+  title: 'React-Kariu/Atoms/Icon',
   component: Icon,
   argTypes: {
 		icon: {

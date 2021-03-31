@@ -3,7 +3,7 @@ import React from 'react';
 import { Input, InputItem } from './../index.js'
 
 export default {
-  title: 'Components/Atoms/Input',
+  title: 'React-Kariu/Atoms/Input',
   component: InputItem,
   argTypes: {
 	  backgroundColor: { control: 'color' },
