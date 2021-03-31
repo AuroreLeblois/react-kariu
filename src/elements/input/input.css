@@ -1,10 +1,24 @@
-.input-kariu--wrapper{
+.input-kariu--wrapper {
 	display: flex;
 	flex-direction: column;
 	flex-flow: column nowrap;
 	cursor: default;
+}
+.input-kariu {
+	border: 2px;
+	border-radius: 0.5rem;
 	border-style: solid;
 }
-.input-kariu--label{
+.input-kariu:required {
+	border-color: red;
+}
+.input-kariu:focus {
+	border-color: blue;
+}
+.input-kariu:disabled {
+	border-color: grey;
+	background-color: lightgrey;
+}
+.input-kariu--label {
 	display: flex;
 }
