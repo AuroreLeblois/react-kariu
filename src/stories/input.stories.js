@@ -3,7 +3,7 @@ import React from 'react';
 import { Input, InputItem } from './../index.js'
 
 export default {
-  title: 'Components/Atoms/InputItems',
+  title: 'Components/Atoms/Input',
   component: InputItem,
   argTypes: {
 	  backgroundColor: { control: 'color' },
@@ -13,8 +13,8 @@ export default {
 
 const Template = (args) => <InputItem {...args} />;
 
-export const InputItemDefault = (args) => <InputItem {...args}/>
-InputItemDefault.args = {
+export const InputItemObject = (args) => <InputItem {...args}/>
+InputItemObject.args = {
 
 }
 
