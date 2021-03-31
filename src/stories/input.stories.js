@@ -8,6 +8,18 @@ export default {
   argTypes: {
 	  backgroundColor: { control: 'color' },
 	  textColor: { control: 'color' }
+  },
+  component: Input,
+  argTypes: {
+	  backgroundColor: { control: 'color' },
+	  textColor: { control: 'color' },
+	  label : {
+ 	   name: 'label',
+ 	   type: {name: 'string', required: false},
+ 	   description: 'Provides a label to your input',
+ 	   dafaultValue: 'Label',
+ 	   control: {type : 'text'}
+    },
   }
 }
 

@@ -10,7 +10,7 @@ class Input extends React.Component {
 		super(props)
 
 		this.state = {
-			label: (props.label ? props.label : 'label'),
+			label: (props.label ? props.label : 'Label'),
 			value: (props.value ? props.value : ''),
 			type: (props.type ? props.type : 'text'),
 			isPassword: (props.type === 'password')
@@ -19,8 +19,12 @@ class Input extends React.Component {
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.value !== this.props.value ||
-		prevProps.label !== this.props.label) {
-			this.setState({ value: this.props.value, label: this.props.label })
+			prevProps.label !== this.props.label ||
+			prevProps.type !== this.props.type) {
+				this.setState({ value: this.props.value,
+					label: this.props.label,
+					type: this.props.type
+				})
 		}
 	}
 
@@ -45,13 +49,13 @@ class Input extends React.Component {
 	renderLabel() {
 		if (!this.props.label) return null
 		return (
-			<label for={this.props.name} className={'input-kariu--label'}>{this.props.label}</label>
+			<label for={this.props.name} style={{color: this.props.textColor}} className={'input-kariu--label'}>{this.props.label}</label>
 		)
 	}
 
 	renderBtnShowPwd() {
-		if (!this.state.value.length) return null
-		
+		if (!this.state.value) return null
+
 		if (this.state.isPassword) {
 			if (this.state.type === 'password') {
 				return (
@@ -110,7 +114,7 @@ Input.propTypes = {
 Input.defaultProps = {
 	type: 'text',
 	size: 'medium',
-	label: 'label'
+	label: 'Label'
 }
 
 export default Input
