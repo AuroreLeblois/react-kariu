@@ -1,27 +1,19 @@
 import React from 'react';
 
-import { Input } from './../index.js'
+import { InputItem } from './../index.js'
 
 export default {
-  title: 'React-Kariu/Atoms/Input',
-  component: Input,
+  title: 'React-Kariu/Atoms/InputItem',
+  component: InputItem,
   argTypes: {
 	  backgroundColor: { control: 'color' },
-	  textColor: { control: 'color' },
-	  label : {
- 	   name: 'label',
- 	   type: {name: 'string', required: false},
- 	   description: 'Provides a label to your input',
- 	   dafaultValue: 'Label',
- 	   control: {type : 'text'}
-    },
-  }
+	  textColor: { control: 'color' }
+  },
 }
 
-const Template = (args) => <Input {...args} />;
+const Template = (args) => <InputItem {...args} />;
 
-
-export const Default = (args) => <Input {...args}/>
+export const Default = (args) => <InputItem {...args}/>
 Default.args = {
 
 }
