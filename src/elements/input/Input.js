@@ -21,7 +21,8 @@ class Input extends React.Component {
 		if (prevProps.value !== this.props.value ||
 			prevProps.label !== this.props.label ||
 			prevProps.type !== this.props.type) {
-				this.setState({ value: this.props.value,
+				this.setState({
+					value: this.props.value,
 					label: this.props.label,
 					type: this.props.type
 				})

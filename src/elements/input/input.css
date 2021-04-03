@@ -15,6 +15,9 @@
 .input-kariu:focus {
 	border-color: blue;
 }
+.input-kariu:hover {
+	border-color: blue;
+}
 .input-kariu:disabled {
 	border-color: grey;
 	background-color: lightgrey;

@@ -1,6 +1,6 @@
+export { default as Avatar } from './elements/avatar/Avatar.js'
 export { default as Button } from './elements/button/Button.js'
 export { default as Icon } from './elements/icon/Icon.js'
-export { default as Loading } from './elements/loading/Loading.js'
-export { default as Avatar } from './elements/avatar/Avatar.js'
 export { default as InputItem } from './elements/input/InputItem.js'
 export { default as Input } from './elements/input/Input.js'
+export { default as Loading } from './elements/loading/Loading.js'
