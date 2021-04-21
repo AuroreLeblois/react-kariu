@@ -35,13 +35,13 @@ class Map extends React.Component {
 	render() {
 		if (!this.state.markers.length) return null
 
-		const styleMap = {{
+		const styleMap = {
 			overflow: 'hidden',
 			height: this.props.height,
 			width: this.props.width
-		}}
+		}
 		return (
-			<div id="map" className={styleMap}/>
+			<div id="map" className={this.props.className} style={styleMap}/>
 		)
 	}
 

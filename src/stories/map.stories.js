@@ -1,8 +1,8 @@
 import React from 'react'
-import { Map } from './../../index.js'
+import { Map } from './../index.js'
 
 export default {
-	title: 'Design system/Atoms/Map',
+	title: 'react-kariu/Molecule/Map',
 	component: Map
 }
 
@@ -10,8 +10,8 @@ const Template = (args) => <Map {...args}/>
 export const Default = Template.bind({})
 
 Default.args = {
-	height: '500px',
-	width: '500px',
+	height: '300px',
+	width: '300px',
 	markers: [
 		{latitude: 50, longitude: 45, popupContent: 'Je suis un point'},
 		{latitude: 70, longitude: 80, popupContent: 'Je suis à un autre point'},
