@@ -365,3 +365,5 @@ textarea {
     color: #000;
     padding: 0.2em 0;
 }
+
+@import url(https://unpkg.com/leaflet@1.7.1/dist/leaflet.css);
