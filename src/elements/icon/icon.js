@@ -6,7 +6,8 @@ import {
 	SvgEyeSlashed,
 	SvgSoundOn,
 	SvgSoundOff,
-	SvgHamburger
+	SvgHamburger,
+	SvgMarker
 } from "./components/index.js"
 
 export default class Icon extends React.Component {
@@ -19,6 +20,7 @@ export default class Icon extends React.Component {
 			case 'soundOff': return <SvgSoundOff {...this.props} />
 			case 'soundOn': return <SvgSoundOn {...this.props} />
 			case 'hamburgerMenu': return <SvgHamburger {...this.props} />
+			case 'marker': return <SvgMarker {...this.props} />
 			default: return <div />
 		}
 	}

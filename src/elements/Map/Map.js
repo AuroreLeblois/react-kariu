@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Icon } from './../../index.js'
 import L from "leaflet"
+import 'leaflet/dist/leaflet.css';
 import './Map.css'
 
 class Map extends React.Component {
@@ -9,7 +11,7 @@ class Map extends React.Component {
 		super(props)
 
 		this.state = {
-			markers: (props.markers ? props.markers : [])
+			markers: (props.markers ? props.markers : []),
 		}
 		this._isMounted = false
 	}
@@ -25,6 +27,9 @@ class Map extends React.Component {
 		}
 		if (this.props.zoom !== prevProps.zoom) {
 			this.map.setZoom(this.props.zoom)
+		}
+		if (this.props.areaColor !== prevProps.areaColor) {
+			this.setState({ areaColor: this.props.areaColor })
 		}
 	}
 
@@ -60,8 +65,8 @@ class Map extends React.Component {
 		for (let index = 0; index < this.state.markers.length; index++) {
 			if (this.state.markers[index].areaRadius) {
 				this.marker = L.circle([this.state.markers[index].latitude, this.state.markers[index].longitude], {
-					color: 'red',
-					fillColor: '#f03',
+					color: this.state.markers[index].areaColor ? this.state.markers[index].areaColor : 'tomato',
+					fillColor: this.state.markers[index].areaFill ? this.state.markers[index].areaFill : 'red',
 					fillOpacity: 0.5,
 					radius: this.state.markers[index].areaRadius}).addTo(this.map)
 			}
@@ -85,8 +90,8 @@ class Map extends React.Component {
 			zoom: this.props.zoom ? this.props.zoom : 15,
 			tileSize: 250,
 			layers: [
-				L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-					attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+				L.tileLayer((this.props.tileLayer ? this.props.tileLayer : "http://{s}.tile.osm.org/{z}/{x}/{y}.png"), {
+					attribution: (this.props.attribution ? this.props.attribution : '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors')
 				})
 			]
 		})

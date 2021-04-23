@@ -15,7 +15,8 @@ export default {
 					'eyeSlashed',
 					'soundOff',
 					'soundOn',
-					'hamburgerMenu'
+					'hamburgerMenu',
+					'marker'
 				]
 			}
 		},
