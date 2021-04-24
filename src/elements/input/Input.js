@@ -53,7 +53,7 @@ class Input extends React.Component {
 	renderLabel() {
 		if (!this.props.label) return null
 		return (
-			<label for={this.props.name} style={{color: this.props.textColor}} className={'input-kariu--label'}>{this.props.label}</label>
+			<label htmlFor={this.props.name} style={{color: this.props.textColor}} className={'input-kariu--label'}>{this.props.label}</label>
 		)
 	}
 

@@ -1,5 +1,6 @@
 export { default as Avatar } from './elements/avatar/Avatar.js'
 export { default as Button } from './elements/button/Button.js'
+export { default as Checkbox } from './elements/input/Checkbox.js'
 export { default as DatePicker } from './elements/datePicker/DatePicker.js'
 export { default as Icon } from './elements/icon/Icon.js'
 export { default as InputItem } from './elements/input/InputItem.js'
