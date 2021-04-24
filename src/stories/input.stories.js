@@ -23,8 +23,15 @@ const Template = (args) => <Input {...args} />;
 
 export const Default = (args) => <Input {...args}/>
 Default.args = {
-
+	name: 'Default'
 }
+export const Password = (args) => <Input {...args}/>
+Password.args = {
+  label: 'Password',
+  name: 'Password',
+  type: 'password'
+}
+
 
 // export const SquareAvatar = (args) => <Avatar {...args}/>
 // SquareAvatar.args = {

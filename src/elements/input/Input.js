@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Icon } from '../../index.js'
+import { Button, Icon } from './../../index.js'
 import './../reset.css'
 import './input.css'
 
@@ -34,7 +34,9 @@ class Input extends React.Component {
 		return (
 			<div className={'input-kariu--wrapper'}>
 				{this.renderLabel()}
-				<input className={'input-kariu'} style={{color: this.props.textColor, borderColor: this.props.borderColor,  backgroundColor: this.props.backgroundColor}}
+				<input className={'input-kariu'} style={{color: this.props.textColor,
+						borderColor: this.props.borderColor,
+						backgroundColor: this.props.backgroundColor}}
 					type={this.state.type}
 					name={this.props.name}
 					value={this.state.value}
@@ -42,7 +44,8 @@ class Input extends React.Component {
 					placeholder={this.props.placeholder}
 					required={this.props.required}
 					disabled={this.props.disabled}
-					>{this.renderBtnShowPwd()}</input>
+					/>
+					{this.renderBtnShowPwd()}
 			</div>
 		)
 	}
@@ -55,24 +58,29 @@ class Input extends React.Component {
 	}
 
 	renderBtnShowPwd() {
-		if (!this.state.value) return null
-
 		if (this.state.isPassword) {
 			if (this.state.type === 'password') {
 				return (
-					<button type='button' className={'button-eye-kariu'} onClick={this.toggleShow.bind(this)}>
-						<Icon icon='eyeOpen'
-							color={this.props.textColor}
-							className={icon}/>
-					</button>
+					<Button
+						icon='eyeOpen'
+						size='xSmall'
+						shape='round'
+						backgroundColor='transparent'
+						textColor='inherit'
+						className={'button-eye-kariu'}
+						onClick={this.toggleShow.bind(this)}/>
+
 				)
 			} else {
 				return (
-					<button type='button' className={'button-eye-kariu'} onClick={this.toggleShow.bind(this)}>
-						<Icon icon='eyeSlashed'
-							color={this.props.textColor}
-							className={icon}/>
-					</button>
+					<Button
+						icon='eyeSlashed'
+						size='xSmall'
+						backgroundColor='transparent'
+						textColor='inherit'
+						shape='round'
+						className={'button-eye-kariu'}
+						onClick={this.toggleShow.bind(this)}/>
 				)
 			}
 		}

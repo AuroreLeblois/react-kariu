@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Loading } from './../../index.js'
+import { Loading, Icon } from './../../index.js'
 import './../reset.css'
 import './button.css'
 
@@ -39,8 +39,10 @@ export default class Button extends React.Component {
 				disabled={this.props.disabled}
 				title={this.props.tooltip}
 				tabIndex={this.props.tabIndex ? this.props.tabIndex : 0}
+				onClick={this.props.onClick}
 			>
 				{this.renderText()}
+				{this.renderIcon()}
 			</button>
 			</div>
 		)
@@ -61,6 +63,15 @@ export default class Button extends React.Component {
 			return (<span style={{color: color}}>{this.props.label}</span>)
 		}
 	}
+
+	renderIcon() {
+		if (!this.state.text && !this.props.icon) return null
+
+		if (this.props.icon) {
+			return <Icon icon={this.props.icon} color={this.state.textColor}/>
+		}
+
+	}
 }
 
 Button.propTypes = {
@@ -68,8 +79,8 @@ Button.propTypes = {
 	label: PropTypes.string,
 	loading: PropTypes.bool,
 	onClick: PropTypes.func,
-	shape: PropTypes.oneOf(['rounded', 'basic']),
-	size: PropTypes.oneOf(['small', 'medium', 'large']),
+	shape: PropTypes.oneOf(['rounded', 'basic', 'round']),
+	size: PropTypes.oneOf([ 'xSmall','small', 'medium', 'large']),
 	tabIndex: PropTypes.number,
 	textColor: PropTypes.string,
 	tooltip: PropTypes.string,
