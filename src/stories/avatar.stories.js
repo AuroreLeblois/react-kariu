@@ -50,14 +50,14 @@ Default.args = {
 	size: 'big',
 	backgroundColor: 'tomato',
 	textColor: 'white',
-	url: 'https://media-exp1.licdn.com/dms/image/C4E03AQHZB-8fKQrkpw/profile-displayphoto-shrink_200_200/0/1517549970272?e=1620864000&v=beta&t=Ni4cCb8UuerLrEMB9plHd7g3GMYxJowbvnE9LHqbGOE'
+	url: 'https://images.midilibre.fr/api/v1/images/view/5b4655058fe56f2aa819df0f/original/image.jpg'
 }
 
 export const SquareAvatar = (args) => <Avatar {...args}/>
 SquareAvatar.args = {
 	name: 'Aurore Leblois',
 	size: 'big',
-	url: 'https://media-exp1.licdn.com/dms/image/C4E03AQHZB-8fKQrkpw/profile-displayphoto-shrink_200_200/0/1517549970272?e=1620864000&v=beta&t=Ni4cCb8UuerLrEMB9plHd7g3GMYxJowbvnE9LHqbGOE',
+	url: 'https://images.midilibre.fr/api/v1/images/view/5b4655058fe56f2aa819df0f/original/image.jpg',
 	backgroundColor: 'tomato',
 	textColor: 'white',
 	shape: 'square',

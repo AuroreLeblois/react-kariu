@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Input } from '../../index.js'
 import './../reset.css'
+import './../input/input.css'
 
 class DatePicker extends React.Component {
 	// Constructor -------------------------------------------------------------
@@ -28,11 +29,14 @@ class DatePicker extends React.Component {
 	render() {
 		if (!this.state.value || !this.props.id) return null
 		return (
-			<div>
+			<div className='input-kariu--wrapper'>
 			{this.renderLabel()}
-				<input type="date" id={this.props.id} name={this.props.name}
+				<input
+					className={'input-kariu '+this.props.className}
+					onChange={(value)=> this.handleChange(value)}
+					type="date" id={this.props.id} name={this.props.name}
 					value={this.state.value}
-					min={this.props.minValue ? this.props.minValue : '00/01/0000'}
+					min={this.props.minValue ? this.props.minValue : '01/01/0000'}
 					max={this.props.maxValue ? this.props.maxValue : '12/12/3000'}/>
 			</div>
 		)
@@ -41,7 +45,7 @@ class DatePicker extends React.Component {
 	renderLabel() {
 		if (!this.state.label || !this.props.id) return null
 		return (
-			<label for={this.props.id}>{this.state.label}</label>
+			<label className={'label'} for={this.props.id}>{this.state.label}</label>
 		)
 	}
 
