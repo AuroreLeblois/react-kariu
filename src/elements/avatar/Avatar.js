@@ -24,7 +24,8 @@ class Avatar extends React.Component {
 				} else if (this.props.url) {
 			content = (
 				<img src={this.props.url}
-					className={`avatar-kariu
+					className={
+						`avatar-kariu
 						avatar-kariu--size-${this.props.size}
 						avatar-kariu--shape-${this.props.shape} `+this.props.className
 					}
