@@ -21,7 +21,9 @@ class SideBar extends React.Component {
 	render() {
 		if (!this.state.options.length) return null
 		return (
-		<div style={{backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'lightgrey'}} key='sidenav-wrapper-kariu' className={'sidenav-kariu'}>
+		<div style={{
+			textColor: this.props.textColor ? this.props.textColor : 'inherit',
+			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'lightgrey'}} key='sidenav-wrapper-kariu' className={'sidenav-kariu'}>
 			{this.renderOptions()}
 		</div>
 		 )
