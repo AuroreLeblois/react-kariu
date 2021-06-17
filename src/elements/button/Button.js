@@ -97,6 +97,14 @@ Button.propTypes = {
 	tabIndex: PropTypes.number,
 	textColor: PropTypes.string,
 	tooltip: PropTypes.string,
+	icon: PropTypes.oneOf([
+		'cross',
+		'eyeOpen',
+		'eyeSlashed',
+		'soundOff',
+		'soundOn',
+		'hamburgerMenu'
+	]),
 
 }
 
