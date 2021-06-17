@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './../reset.css'
 import './sidenav.css'
 
 class SideBar extends React.Component {

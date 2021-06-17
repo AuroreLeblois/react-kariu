@@ -27,6 +27,7 @@
 }
 .input-kariu:focus {
 	border-color: #309bc2;
+	border-width: medium;
 }
 .input-kariu:hover {
 	border-color: #309bc2;

@@ -53,3 +53,12 @@ Small.args = {
 	size: 'small',
 	label: 'Button',
 }
+
+export const Icon = Template.bind({});
+Icon.args = {
+	backgroundColor: 'tomato',
+	size: 'medium',
+	label: null,
+	shape: 'round',
+	icon: 'soundOn'
+}

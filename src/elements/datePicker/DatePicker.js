@@ -11,7 +11,14 @@ class DatePicker extends React.Component {
 
 		this.state = {
 			label: (props.label ? props.label : 'Label'),
-			value: (props.value ? props.value : '')
+			value: (props.value ? props.value : this.getCurrentDate())
+		}
+	}
+
+	componentDidMount() {
+		if (!this.state.value) {
+			let currentDate = this.getCurrentDate()
+			this.setState({ value: currentDate })
 		}
 	}
 
@@ -30,25 +37,30 @@ class DatePicker extends React.Component {
 		if (!this.state.value || !this.props.id) return null
 		return (
 			<div className='input-kariu--wrapper'>
-			{this.renderLabel()}
-				<input
-					className={'input-kariu '+this.props.className}
+				<Input
+					label={this.props.label}
+					required={this.props.required}
+					className={'input-kariu '+'datePicker-kariu '+this.props.className}
 					onChange={(value)=> this.handleChange(value)}
 					type="date" id={this.props.id} name={this.props.name}
 					value={this.state.value}
-					min={this.props.minValue ? this.props.minValue : '01/01/0000'}
-					max={this.props.maxValue ? this.props.maxValue : '12/12/3000'}/>
+					min={this.props.minValue ? this.props.minValue : '1000-01-01'}
+					max={this.props.maxValue ? this.props.maxValue : '3000-12-31'}/>
 			</div>
 		)
 	}
 
-	renderLabel() {
-		if (!this.state.label || !this.props.id) return null
-		return (
-			<label className={'label'} for={this.props.id}>{this.state.label}</label>
-		)
+	// Fonctions ----------------------------------------------------------------
+	getCurrentDate() {
+		let currentDate = new Date()
+		let day = currentDate.getDate()
+		if (day < 10) day = '0' + day
+		let month = currentDate.getMonth()
+		if (month < 10) month = '0' + month
+		let year = currentDate.getFullYear()
+		let value= `${year}-${month}-${day}`
+		return value
 	}
-
 
 	// Listeners ----------------------------------------------------------------
 	handleDelete = () => {
@@ -58,7 +70,7 @@ class DatePicker extends React.Component {
 	}
 
 	handleChange = (event) => {
-		this.setState({ value: event.target.value }, () => {
+		this.setState({ value: event }, () => {
 			this.props.onChange && this.props.onChange(this.state.value)
 		})
 	}

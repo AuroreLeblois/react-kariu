@@ -51,8 +51,7 @@ export default class Button extends React.Component {
 	renderText() {
 		const color = this.state.textColor
 		if (this.state.loading) {
-			const dimensions = (this.props.size === 'medium' ? '1rem' :
-				this.props.size === 'small' ? '0.75rem' : '1.15rem')
+			const dimensions = this.renderDimensions()
 			return ( <Loading
 					icon='loadingDefault'
 					loading={this.state.loading}
@@ -72,6 +71,20 @@ export default class Button extends React.Component {
 		}
 
 	}
+
+	renderDimensions() {
+		switch (this.props.size) {
+			case 'medium':
+				return '1rem'
+			case 'small':
+				return '0.75rem'
+			case 'xSmall':
+				return '0.75rem'
+			case 'large':
+				return '1.75rem'
+			default: '1.15rem'
+		}
+	}
 }
 
 Button.propTypes = {
@@ -84,6 +97,14 @@ Button.propTypes = {
 	tabIndex: PropTypes.number,
 	textColor: PropTypes.string,
 	tooltip: PropTypes.string,
+	icon: PropTypes.oneOf([
+		'cross',
+		'eyeOpen',
+		'eyeSlashed',
+		'soundOff',
+		'soundOn',
+		'hamburgerMenu'
+	]),
 
 }
 
