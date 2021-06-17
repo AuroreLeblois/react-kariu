@@ -15,6 +15,20 @@ class DatePicker extends React.Component {
 		}
 	}
 
+	componentDidMount() {
+		if (!this.state.value.length) {
+			let currentDate = new Date()
+			let day = currentDate.getDate()
+			if (day < 10) day = '0' + day
+			let month = currentDate.getMonth()
+			if (month < 10) month = '0' + month
+			let year = currentDate.getFullYear()
+			let value = `${day}/${month}/${year}`
+			this.setState({ value: value })
+		}
+
+	}
+
 	componentDidUpdate(prevProps) {
 		if (prevProps.value !== this.props.value ||
 			prevProps.label !== this.props.label) {
@@ -30,22 +44,15 @@ class DatePicker extends React.Component {
 		if (!this.state.value || !this.props.id) return null
 		return (
 			<div className='input-kariu--wrapper'>
-			{this.renderLabel()}
-				<input
+				<Input
+					label={this.props.label}
 					className={'input-kariu '+this.props.className}
 					onChange={(value)=> this.handleChange(value)}
 					type="date" id={this.props.id} name={this.props.name}
 					value={this.state.value}
-					min={this.props.minValue ? this.props.minValue : '01/01/0000'}
+					min={this.props.minValue ? this.props.minValue : '01/01/1000'}
 					max={this.props.maxValue ? this.props.maxValue : '12/12/3000'}/>
 			</div>
-		)
-	}
-
-	renderLabel() {
-		if (!this.state.label || !this.props.id) return null
-		return (
-			<label className={'label'} for={this.props.id}>{this.state.label}</label>
 		)
 	}
 
@@ -58,7 +65,7 @@ class DatePicker extends React.Component {
 	}
 
 	handleChange = (event) => {
-		this.setState({ value: event.target.value }, () => {
+		this.setState({ value: event }, () => {
 			this.props.onChange && this.props.onChange(this.state.value)
 		})
 	}
