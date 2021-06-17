@@ -39,7 +39,8 @@ class DatePicker extends React.Component {
 			<div className='input-kariu--wrapper'>
 				<Input
 					label={this.props.label}
-					className={'input-kariu '+this.props.className}
+					required={this.props.required}
+					className={'input-kariu '+'datePicker-kariu '+this.props.className}
 					onChange={(value)=> this.handleChange(value)}
 					type="date" id={this.props.id} name={this.props.name}
 					value={this.state.value}

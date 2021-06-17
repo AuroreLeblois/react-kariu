@@ -8,6 +8,7 @@ export default {
   argTypes: {
 	  backgroundColor: { control: 'color' },
 	  textColor: { control: 'color' },
+	  borderColor: { control: 'color' },
 	  label : {
  	   name: 'label',
  	   type: {name: 'string', required: false},
