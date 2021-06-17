@@ -11,22 +11,15 @@ class DatePicker extends React.Component {
 
 		this.state = {
 			label: (props.label ? props.label : 'Label'),
-			value: (props.value ? props.value : '')
+			value: (props.value ? props.value : this.getCurrentDate())
 		}
 	}
 
 	componentDidMount() {
-		if (!this.state.value.length) {
-			let currentDate = new Date()
-			let day = currentDate.getDate()
-			if (day < 10) day = '0' + day
-			let month = currentDate.getMonth()
-			if (month < 10) month = '0' + month
-			let year = currentDate.getFullYear()
-			let value = `${day}/${month}/${year}`
-			this.setState({ value: value })
+		if (!this.state.value) {
+			let currentDate = this.getCurrentDate()
+			this.setState({ value: currentDate })
 		}
-
 	}
 
 	componentDidUpdate(prevProps) {
@@ -50,12 +43,23 @@ class DatePicker extends React.Component {
 					onChange={(value)=> this.handleChange(value)}
 					type="date" id={this.props.id} name={this.props.name}
 					value={this.state.value}
-					min={this.props.minValue ? this.props.minValue : '01/01/1000'}
-					max={this.props.maxValue ? this.props.maxValue : '12/12/3000'}/>
+					min={this.props.minValue ? this.props.minValue : '1000-01-01'}
+					max={this.props.maxValue ? this.props.maxValue : '3000-12-31'}/>
 			</div>
 		)
 	}
 
+	// Fonctions ----------------------------------------------------------------
+	getCurrentDate() {
+		let currentDate = new Date()
+		let day = currentDate.getDate()
+		if (day < 10) day = '0' + day
+		let month = currentDate.getMonth()
+		if (month < 10) month = '0' + month
+		let year = currentDate.getFullYear()
+		let value= `${year}-${month}-${day}`
+		return value
+	}
 
 	// Listeners ----------------------------------------------------------------
 	handleDelete = () => {
@@ -66,6 +70,7 @@ class DatePicker extends React.Component {
 
 	handleChange = (event) => {
 		this.setState({ value: event }, () => {
+			console.log(event);
 			this.props.onChange && this.props.onChange(this.state.value)
 		})
 	}
