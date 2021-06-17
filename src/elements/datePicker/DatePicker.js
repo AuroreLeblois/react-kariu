@@ -71,7 +71,6 @@ class DatePicker extends React.Component {
 
 	handleChange = (event) => {
 		this.setState({ value: event }, () => {
-			console.log(event);
 			this.props.onChange && this.props.onChange(this.state.value)
 		})
 	}
