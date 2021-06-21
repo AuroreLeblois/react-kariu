@@ -22,12 +22,12 @@
 .button-eye-kariu:focus {
 	outline: none;
 }
-.input-kariu:required {
-	border-color: #ed4637;
-}
 .input-kariu:focus {
 	border-color: #309bc2;
 	border-width: medium;
+}
+.input-kariu:required {
+	border-color: #ed4637;
 }
 .input-kariu:hover {
 	border-color: #309bc2;
