@@ -66,8 +66,10 @@ export default class Button extends React.Component {
 	renderIcon() {
 		if (!this.state.text && !this.props.icon) return null
 
+		let iconSize = this.renderDimensions()
+
 		if (this.props.icon) {
-			return <Icon icon={this.props.icon} color={this.state.textColor}/>
+			return <Icon className={'kariu-button--icon'} width={iconSize} height={iconSize} icon={this.props.icon} color={this.state.textColor}/>
 		}
 
 	}
@@ -77,9 +79,9 @@ export default class Button extends React.Component {
 			case 'medium':
 				return '1rem'
 			case 'small':
-				return '0.75rem'
+				return '0.85rem'
 			case 'xSmall':
-				return '0.75rem'
+				return '0.65rem'
 			case 'large':
 				return '1.75rem'
 			default: '1.15rem'
