@@ -13,7 +13,7 @@ export default {
  	   name: 'label',
  	   type: {name: 'string', required: false},
  	   description: 'Provides a label to your input',
- 	   dafaultValue: 'Label',
+ 	   defaultValue: 'Label',
  	   control: {type : 'text'}
     },
   }

@@ -13,7 +13,8 @@ class Input extends React.Component {
 			label: (props.label ? props.label : 'Label'),
 			value: (props.value ? props.value : ''),
 			type: (props.type ? props.type : 'text'),
-			isPassword: (props.type === 'password')
+			isPassword: (props.type === 'password'),
+			isSearch: (props.type === 'search')
 		}
 	}
 
@@ -24,7 +25,9 @@ class Input extends React.Component {
 				this.setState({
 					value: this.props.value,
 					label: this.props.label,
-					type: this.props.type
+					type: this.props.type,
+					isPassword: (this.props.type === 'password'),
+					isSearch: (this.props.type === 'search')
 				})
 		}
 	}
@@ -46,6 +49,7 @@ class Input extends React.Component {
 					disabled={this.props.disabled}
 					/>
 					{this.renderBtnShowPwd()}
+					{this.renderBtnSearch()}
 			</div>
 		)
 	}
@@ -63,7 +67,7 @@ class Input extends React.Component {
 				return (
 					<Button
 						icon='eyeOpen'
-						size='xSmall'
+						size='small'
 						shape='round'
 						backgroundColor='transparent'
 						textColor='inherit'
@@ -75,7 +79,7 @@ class Input extends React.Component {
 				return (
 					<Button
 						icon='eyeSlashed'
-						size='xSmall'
+						size='small'
 						backgroundColor='transparent'
 						textColor='inherit'
 						shape='round'
@@ -83,7 +87,23 @@ class Input extends React.Component {
 						onClick={this.toggleShow.bind(this)}/>
 				)
 			}
-		}
+		} else return null
+	}
+
+	renderBtnSearch() {
+		if (this.state.isSearch) {
+			return (
+				<Button
+					icon='search'
+					size='small'
+					shape='round'
+					backgroundColor='transparent'
+					textColor='inherit'
+					className={'button-eye-kariu'}
+					onClick={this.props.onClick}/>
+
+			)
+		} else return null
 	}
 	// Listeners ----------------------------------------------------------------
 	toggleShow = () => {
@@ -108,11 +128,19 @@ Input.propTypes = {
 	backgroundColor: PropTypes.string,
 	borderColor: PropTypes.string,
 	value: PropTypes.string,
-	type: PropTypes.string,
+	type: PropTypes.oneOf(['text',
+		'password',
+		'color',
+		'email',
+		'file',
+		'hidden',
+		'number',
+		'range',
+		'url',
+		'search']),
 	name: PropTypes.string.isRequired,
 	label: PropTypes.string,
 	placeholder: PropTypes.string,
-	description: PropTypes.string,
 	icon: PropTypes.string,
 	required: PropTypes.bool,
 	disabled: PropTypes.bool,

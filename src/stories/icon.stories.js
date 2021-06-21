@@ -16,7 +16,8 @@ export default {
 					'soundOff',
 					'soundOn',
 					'hamburgerMenu',
-					'marker'
+					'marker',
+					'search'
 				]
 			}
 		},

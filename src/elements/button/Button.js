@@ -105,7 +105,8 @@ Button.propTypes = {
 		'eyeSlashed',
 		'soundOff',
 		'soundOn',
-		'hamburgerMenu'
+		'hamburgerMenu',
+		'search'
 	]),
 
 }

@@ -7,7 +7,8 @@ import {
 	SvgSoundOn,
 	SvgSoundOff,
 	SvgHamburger,
-	SvgMarker
+	SvgMarker,
+	SvgSearch
 } from "./components/index.js"
 
 export default class Icon extends React.Component {
@@ -21,6 +22,7 @@ export default class Icon extends React.Component {
 			case 'soundOn': return <SvgSoundOn {...this.props} />
 			case 'hamburgerMenu': return <SvgHamburger {...this.props} />
 			case 'marker': return <SvgMarker {...this.props} />
+			case 'search': return <SvgSearch {...this.props} />
 			default: return <div />
 		}
 	}
@@ -33,6 +35,8 @@ Icon.propTypes = {
 		'eyeSlashed',
 		'soundOff',
 		'soundOn',
+		'search',
+		'marker',
 		'hamburgerMenu'
 	]),
 	color: PropTypes.string,
