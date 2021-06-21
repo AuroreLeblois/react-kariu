@@ -38,6 +38,7 @@ class DatePicker extends React.Component {
 		return (
 			<div className='input-kariu--wrapper'>
 				<Input
+					disabled={this.props.disabled}
 					label={this.props.label}
 					required={this.props.required}
 					className={'input-kariu '+'datePicker-kariu '+this.props.className}

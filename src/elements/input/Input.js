@@ -37,7 +37,8 @@ class Input extends React.Component {
 		return (
 			<div className={'input-kariu--wrapper'}>
 				{this.renderLabel()}
-				<input className={'input-kariu'} style={{color: this.props.textColor,
+				<input className={'input-kariu'}
+					style={{color: this.props.textColor,
 						borderColor: this.props.borderColor,
 						backgroundColor: this.props.backgroundColor}}
 					type={this.state.type}
@@ -71,6 +72,7 @@ class Input extends React.Component {
 						shape='round'
 						backgroundColor='transparent'
 						textColor='inherit'
+						className={'button-eye-kariu'}
 						onClick={this.toggleShow.bind(this)}/>
 
 				)
@@ -82,6 +84,7 @@ class Input extends React.Component {
 						backgroundColor='transparent'
 						textColor='inherit'
 						shape='round'
+						className={'button-eye-kariu'}
 						onClick={this.toggleShow.bind(this)}/>
 				)
 			}
@@ -97,6 +100,7 @@ class Input extends React.Component {
 					shape='round'
 					backgroundColor='transparent'
 					textColor='inherit'
+					className={'button-eye-kariu'}
 					onClick={this.props.onClick}/>
 
 			)
@@ -126,6 +130,7 @@ Input.propTypes = {
 	borderColor: PropTypes.string,
 	value: PropTypes.string,
 	type: PropTypes.oneOf(['text',
+		'tel',
 		'password',
 		'color',
 		'email',
@@ -134,6 +139,8 @@ Input.propTypes = {
 		'number',
 		'range',
 		'url',
+		'date',
+		'month',
 		'search']),
 	name: PropTypes.string.isRequired,
 	label: PropTypes.string,
