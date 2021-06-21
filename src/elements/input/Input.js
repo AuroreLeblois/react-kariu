@@ -71,7 +71,6 @@ class Input extends React.Component {
 						shape='round'
 						backgroundColor='transparent'
 						textColor='inherit'
-						className={'button-eye-kariu'}
 						onClick={this.toggleShow.bind(this)}/>
 
 				)
@@ -83,7 +82,6 @@ class Input extends React.Component {
 						backgroundColor='transparent'
 						textColor='inherit'
 						shape='round'
-						className={'button-eye-kariu'}
 						onClick={this.toggleShow.bind(this)}/>
 				)
 			}
@@ -99,7 +97,6 @@ class Input extends React.Component {
 					shape='round'
 					backgroundColor='transparent'
 					textColor='inherit'
-					className={'button-eye-kariu'}
 					onClick={this.props.onClick}/>
 
 			)
