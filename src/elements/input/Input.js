@@ -51,6 +51,7 @@ class Input extends React.Component {
 					/>
 					{this.renderBtnShowPwd()}
 					{this.renderBtnSearch()}
+					{this.renderDescription()}
 			</div>
 		)
 	}
@@ -106,6 +107,12 @@ class Input extends React.Component {
 			)
 		} else return null
 	}
+
+	renderDescription() {
+		if (this.state.type === 'range') {
+			return (<p className='input-Kariu--description'>{`${this.props.text} ${this.state.value}`}</p>)
+		}
+	}
 	// Listeners ----------------------------------------------------------------
 	toggleShow = () => {
 		this.setState({ type: this.state.type === 'text' ? 'password' : 'text' })
@@ -154,7 +161,9 @@ Input.propTypes = {
 
 Input.defaultProps = {
 	type: 'text',
+	text:'Value:',
 	size: 'medium',
+	value: null,
 	label: 'Label'
 }
 
