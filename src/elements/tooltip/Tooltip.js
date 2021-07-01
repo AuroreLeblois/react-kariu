@@ -29,6 +29,7 @@ class Tooltip extends React.Component {
 		const color = (this.props.color ? this.rpops.color : 'black')
 
 		let styleMainContainer = {
+			width: 'fit-content',
 			position: 'relative',
 			display: 'flex',
 			justifyContent: 'center',
