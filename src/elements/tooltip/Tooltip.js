@@ -114,7 +114,8 @@ Tooltip.propTypes = {
 	text: PropTypes.string.isRequired,
 	direction: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
 	backgroundColor: PropTypes.string,
-	textColor: PropTypes.string
+	textColor: PropTypes.string,
+	minWidth: PropTypes.string
 }
 
 Tooltip.defaultProps = {
