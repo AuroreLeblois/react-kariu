@@ -16,7 +16,9 @@
 }
 .button-eye-kariu {
 	position: absolute;
-	top: 40%;
+	margin: 0.25rem;
+	padding: 0;
+	top: 50%;
 	right: 0%;
 }
 .button-eye-kariu:focus {
