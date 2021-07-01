@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon, Loading } from './../../index.js'
+import { css } from '@emotion/css'
 import './../reset.css'
 import './avatar.css'
 
@@ -8,6 +9,7 @@ class Avatar extends React.Component {
 	// Renderers ----------------------------------------------------------------
 	render() {
 		let content = null
+
 		if (this.props.loading) {
 			content = ( <Loading
 				icon='loadingDefault'
@@ -36,9 +38,16 @@ class Avatar extends React.Component {
 			content = fullName[0].charAt(0) + (fullName[1] ? fullName[1].charAt(0) : '')
 		}
 
+		let colors = {
+			color: this.props.textColor,
+			backgroundColor: (this.props.url ? null : this.props.backgroundColor)
+		}
+
 		return (
-			<div style={{color: this.props.textColor, backgroundColor: (this.props.url ? null : this.props.backgroundColor)}}
-				className={`avatar-kariu avatar-kariu--size-${this.props.size} avatar-kariu--shape-${this.props.shape} `+this.props.className}>
+			<div className={`avatar-kariu
+				avatar-kariu--size-${this.props.size}
+			 	avatar-kariu--shape-${this.props.shape} `
+				+css(colors)+ ' ' + this.props.className}>
 				{content}
 			</div>
 		)

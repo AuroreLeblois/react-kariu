@@ -4,6 +4,7 @@ import { Icon } from './../../index.js'
 import L from "leaflet"
 import 'leaflet/dist/leaflet.css';
 import './Map.css'
+import { css } from '@emotion/css'
 
 class Map extends React.Component {
 	// Constructor ----------------------------------------------------------------
@@ -46,7 +47,7 @@ class Map extends React.Component {
 			width: this.props.width
 		}
 		return (
-			<div id="map" className={this.props.className} style={styleMap}/>
+			<div id="map" className={this.props.className+' '+css(styleMap)}/>
 		)
 	}
 

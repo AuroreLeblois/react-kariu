@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Icon } from './../../index.js'
+import { css } from '@emotion/css'
 import './../reset.css'
 import './input.css'
+
 
 class Input extends React.Component {
 	// Constructor -------------------------------------------------------------
@@ -34,13 +36,16 @@ class Input extends React.Component {
 
 	// Renderers ----------------------------------------------------------------
 	render() {
+		let colors = {
+			color: this.props.textColor,
+			borderColor: this.props.borderColor,
+			backgroundColor: this.props.backgroundColor
+		}
+
 		return (
 			<div className={'input-kariu--wrapper'}>
 				{this.renderLabel()}
-				<input className={'input-kariu'}
-					style={{color: this.props.textColor,
-						borderColor: this.props.borderColor,
-						backgroundColor: this.props.backgroundColor}}
+				<input className={'input-kariu '+css(colors)}
 					type={this.state.type}
 					name={this.props.name}
 					value={this.state.value}
@@ -58,8 +63,10 @@ class Input extends React.Component {
 
 	renderLabel() {
 		if (!this.props.label) return null
+
+		let color = {color: this.props.textColor}
 		return (
-			<label htmlFor={this.props.name} style={{color: this.props.textColor}} className={'input-kariu--label'}>{this.props.label}</label>
+			<label htmlFor={this.props.name} className={'input-kariu--label '+css(color)}>{this.props.label}</label>
 		)
 	}
 
