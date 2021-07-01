@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Loading, Icon } from './../../index.js'
 import './../reset.css'
 import './button.css'
+import { css } from '@emotion/css'
 
 
 export default class Button extends React.Component {
@@ -12,14 +13,13 @@ export default class Button extends React.Component {
 
 		this.state = {
 			loading: (props.loading ? props.loading : false),
-			textColor: (props.textColor ? props.textColor : 'white')
+			// textColor: (props.textColor ? props.textColor : 'white')
 		}
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.textColor !== prevProps.textColor ||
-			this.props.loading !== prevProps.loading) {
-			this.setState({ textColor: this.props.textColor, loading: this.props.loading })
+		if (this.props.loading !== prevProps.loading) {
+			this.setState({ loading: this.props.loading })
 		}
 	}
 
@@ -30,11 +30,14 @@ export default class Button extends React.Component {
 		const mode = 'kariu-button--primary'
 		const shape = this.props.shape ? this.props.shape : 'rounded'
 
+		let styleBackGround = {
+			backgroundColor: backgroundColor
+		}
+
 		return (
 			<div>
 			<button
-				className={['kariu-button', `kariu-button--${shape}`, `kariu-button--${size}`, mode, this.props.className].join(' ')}
-				style={{backgroundColor: backgroundColor}}
+				className={['kariu-button', `kariu-button--${shape}`, `kariu-button--${size}`, mode, css(styleBackGround), this.props.className].join(' ')}
 				type="button"
 				disabled={this.props.disabled}
 				title={this.props.tooltip}
@@ -49,7 +52,9 @@ export default class Button extends React.Component {
 	}
 
 	renderText() {
-		const color = this.state.textColor
+		const color = this.props.textColor
+
+		let textColor = { color: color }
 		if (this.state.loading) {
 			const dimensions = this.renderDimensions()
 			return ( <Loading
@@ -61,7 +66,7 @@ export default class Button extends React.Component {
 					/>
 				)
 		} else {
-			return (<span style={{color: color}}>{this.props.label}</span>)
+			return (<span className={css(textColor)}>{this.props.label}</span>)
 		}
 	}
 
@@ -71,7 +76,7 @@ export default class Button extends React.Component {
 		let iconSize = this.renderDimensions()
 
 		if (this.props.icon) {
-			return <Icon className={'kariu-button--icon'} width={iconSize} height={iconSize} icon={this.props.icon} color={this.state.textColor}/>
+			return <Icon className={'kariu-button--icon'} width={iconSize} height={iconSize} icon={this.props.icon} color={this.props.textColor}/>
 		}
 
 	}

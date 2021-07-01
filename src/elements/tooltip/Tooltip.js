@@ -119,7 +119,7 @@ Tooltip.propTypes = {
 
 Tooltip.defaultProps = {
 	text: 'Tooltip',
-	direction: 'bottom',
+	direction: 'right',
 	minWidth : '2rem'
 }
 
