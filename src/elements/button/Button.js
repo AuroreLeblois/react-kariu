@@ -53,11 +53,13 @@ export default class Button extends React.Component {
 		if (this.state.loading) {
 			const dimensions = this.renderDimensions()
 			return ( <Loading
-					icon='loadingDefault'
-					loading={this.state.loading}
-					color={color}
-					width={dimensions}
-					height={dimensions}/>)
+						icon='loadingDefault'
+						loading={this.state.loading}
+						color={color}
+						width={dimensions}
+						height={dimensions}
+					/>
+				)
 		} else {
 			return (<span style={{color: color}}>{this.props.label}</span>)
 		}
