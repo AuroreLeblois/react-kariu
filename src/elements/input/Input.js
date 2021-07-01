@@ -163,7 +163,7 @@ Input.defaultProps = {
 	type: 'text',
 	text:'Value:',
 	size: 'medium',
-	value: null,
+	value: '',
 	label: 'Label'
 }
 

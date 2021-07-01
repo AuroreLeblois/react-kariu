@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon } from './../../index.js'
 import './../reset.css'
-import './inputItem.css'
+import { css } from '@emotion/css'
 
 class InputItem extends React.Component {
 		constructor(props) {
@@ -26,18 +26,52 @@ class InputItem extends React.Component {
 	render() {
 		if(!this.state.value) return null
 
+		let backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : 'lightblue'
+		let textColor = this.props.textColor ? this.props.textColor : 'black'
+
+		let inputItemKariu = {
+			maxWidth :'fit-content',
+			display: 'flex',
+			flexFlow: 'row nowrap',
+			alignItems: 'center',
+			justifyContent: 'center',
+			bordeRadius: '15%',
+			borderRadius: '0.25rem',
+			backgroundColor: backgroundColor
+		}
+
+		let inputItemKariuParagraph = {
+			color: textColor,
+			fontWeight: 'normal',
+			fontSize: '0.85rem',
+			lineHeight: '1rem',
+			padding: '0.25rem',
+		}
+
+		let inputItemKariuButtonDelete = {
+			outline: 'none',
+			border: 0,
+			display: 'inline-flex',
+			alignItems: 'center',
+			justifyContent: 'center',
+			padding :'0.5rem',
+			borderTopRightRadius:'0.25rem',
+			borderBottomRightRadius: '0.25rem',
+			backgroundColor: backgroundColor,
+			color: textColor,
+			cursor: 'pointer',
+			':hover': { filter: 'brightness(95%)' }
+		}
+
 		return (
-			<div style={{backgroundColor: this.props.backgroundColor}}
-				className={`inputItem-kariu`+' '+this.props.className}>
-				<p style={{color: this.props.textColor}}
-					className={`inputItem-kariu--paragraph`}>{this.state.value}</p>
-				<button className={'inputItem-kariu--button-delete'}
-					style={{backgroundColor: this.props.backgroundColor, color: this.props.textColor}}
+			<div className={css(inputItemKariu) +' '+ this.props.className}>
+				<p className={css(inputItemKariuParagraph)}>{this.state.value}</p>
+				<button className={css(inputItemKariuButtonDelete)}
 					onClick={this.handleDelete.bind(this)}>
 					<Icon icon='cross'
 						height='.6rem'
 						width='.6rem'
-						color={this.props.textColor}/>
+						color={textColor}/>
 				</button>
 			</div>
 		)

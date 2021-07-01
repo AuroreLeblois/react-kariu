@@ -25,10 +25,10 @@ class Tooltip extends React.Component {
 			cursor: 'default'
 		}
 
-		const backgroundColor = (this.props.color ? this.props.color : 'lightgrey')
-		const color = (this.props.color ? this.rpops.color : 'black')
+		const backgroundColor = (this.props.backgroundColor ? this.props.backgroundColor : 'lightgrey')
+		const color = (this.props.textColor ? this.props.textColor : 'black')
 
-		let styleMainContainer = {
+		let tooltipKariuMainContainer = {
 			width: 'fit-content',
 			position: 'relative',
 			display: 'flex',
@@ -92,7 +92,7 @@ class Tooltip extends React.Component {
 
 		return (
 			<div
-				className={css(styleMainContainer)}
+				className={css(tooltipKariuMainContainer)}
 				onMouseEnter={this.onMouseHover.bind()}
 				onMouseLeave={this.onMouseHover.bind()}
 			>
@@ -112,7 +112,9 @@ class Tooltip extends React.Component {
 
 Tooltip.propTypes = {
 	text: PropTypes.string.isRequired,
-	direction : PropTypes.oneOf(['left', 'right', 'top', 'bottom'])
+	direction: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+	backgroundColor: PropTypes.string,
+	textColor: PropTypes.string
 }
 
 Tooltip.defaultProps = {

@@ -34,7 +34,7 @@ class DatePicker extends React.Component {
 
 	// Renderers ----------------------------------------------------------------
 	render() {
-		if (!this.state.value || !this.props.id) return null
+		if (!this.props.id) return null
 		return (
 			<div className='input-kariu--wrapper'>
 				<Input

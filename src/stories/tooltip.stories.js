@@ -8,14 +8,16 @@ export default {
 	component: Tooltip,
 	argTypes: {
 		text: {
-			description: 'value of the text',
+			description: 'Text in Tooltip',
 			control: { type: 'text' }
 		},
 		direction: {
 			description: 'Direction of the tooltip',
 			control: { type: 'select' },
 			options: [ 'top', 'right', 'bottom', 'left' ]
-		}
+		},
+		backgroundColor: { name: 'backgroundColor', control: 'color' },
+		textColor: { name: 'textColor', control : 'color' },
 	}
 }
 
