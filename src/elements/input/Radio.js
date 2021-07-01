@@ -5,7 +5,7 @@ import './../reset.css'
 import './input.css'
 import { css } from '@emotion/css'
 
-class Checkbox extends React.Component {
+class Radio extends React.Component {
 		constructor(props) {
 		super(props)
 
@@ -37,11 +37,11 @@ class Checkbox extends React.Component {
 		}
 
 		return (
-			<div className={'checkbox-kariu--wrapper'}>
+			<div className={'radio-kariu--wrapper'}>
 				<input
-					type="checkbox"
+					type="radio"
 					required={this.props.required}
-					className={'checkbox-kariu '+css(colors)}
+					className={'radio-kariu '+css(colors)}
 					id={this.props.id}
 					name={this.props.name}
 					onChange={ ()=> {this.handleClick() && this.props.onChange}}
@@ -53,7 +53,7 @@ class Checkbox extends React.Component {
 	}
 }
 
-Checkbox.propTypes = {
+Radio.propTypes = {
 	id: PropTypes.string.isRequired,
 	textColor: PropTypes.string,
 	backgroundColor: PropTypes.string,
@@ -61,4 +61,4 @@ Checkbox.propTypes = {
 	required: PropTypes.bool
 }
 
-export default Checkbox
+export default Radio

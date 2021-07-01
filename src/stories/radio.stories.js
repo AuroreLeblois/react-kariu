@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Checkbox } from './../index.js'
+import { Radio } from './../index.js'
 
 export default {
-  title: 'React-Kariu/Atoms/Input/Checkbox',
-  component: Checkbox,
+  title: 'React-Kariu/Atoms/Input/Radio',
+  component: Radio,
   argTypes: {
 	  textColor: { control: 'color' },
 	  backgroundColor : { control: 'color' },
@@ -18,10 +18,9 @@ export default {
   }
 }
 
-const Template = (args) => <Checkbox {...args} />;
+const Template = (args) => <Radio {...args} />;
 
-
-export const Default = (args) => <Checkbox {...args}/>
+export const Default = (args) => <Radio {...args}/>
 Default.args = {
-	id: 'Default'
+	id: 'form'
 }
