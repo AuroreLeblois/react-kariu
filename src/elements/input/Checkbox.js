@@ -42,7 +42,7 @@ class Checkbox extends React.Component {
 		return (
 			<div className={'checkbox-kariu--wrapper '+this.props.className}>
 				<input
-					type="checkbox"
+					type='checkbox'
 					required={this.props.required}
 					className={'checkbox-kariu '+css(colors)}
 					id={this.props.id}

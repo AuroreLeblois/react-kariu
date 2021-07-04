@@ -8,18 +8,24 @@ export default {
   argTypes: {
 	  label : {
   		name: 'label',
-  		type: {name: 'string', required: false},
+  		type: { name: 'string', required: false},
   		description: 'Provides a text to your button',
-  		dafaultValue: 'Aurore Leblois',
-  		control: {type : 'text'}
+  		control: { type : 'text' }
   	},
-	backgroundColor: { name: 'backgroundColor', control: 'color' },
-	textColor: { name: 'textColor', control : 'color' },
+	backgroundColor: {
+		name: 'backgroundColor',
+		control: 'color',
+		description: 'Control the color of your button',
+ 	},
+	textColor: {
+		name: 'textColor',
+		control : 'color',
+		description: 'Control the color of the text',
+	},
 	tabIndex : {
 	  name: 'tabIndex',
 	  type: {name: 'number', required: false},
 	  description: 'Important for your application and navigation with keyboard, but optionnal',
-	  dafaultValue: 'Aurore Leblois',
 	  control: {type : 'text'}
   },
 	tooltip: {description: 'Provides a tooltip to your button: Optionnal'}

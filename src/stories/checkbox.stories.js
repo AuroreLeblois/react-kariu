@@ -7,13 +7,17 @@ export default {
   component: Checkbox,
   argTypes: {
 	  textColor: { control: 'color' },
-	  backgroundColor : { control: 'color' },
-	   backgroundColorChecked : { control: 'color' },
+	  backgroundColor : { control: 'color',
+	   description: 'You can customize the background color of the checkbox',
+		},
+	   backgroundColorChecked : {
+		   control: 'color',
+		   description: 'You can customize the background color when the checkbox is checked',
+	   },
 		id : {
  		name: 'id',
  		type: {name: 'string', required: true},
- 		description: 'Provides a label and id to your checkbox. The component WILL NOT RENDER without it',
- 		dafaultValue: 'nope'
+ 		description: 'Provides a label and id to your checkbox. The component WILL NOT RENDER without it'
     },
   }
 }

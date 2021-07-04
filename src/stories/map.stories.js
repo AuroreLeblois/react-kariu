@@ -5,6 +5,18 @@ export default {
 	title: 'React-Kariu/Molecule/Map',
 	component: Map,
 	argTypes: {
+		height : {
+    		name: 'height',
+    		type: { name: 'string', required: true},
+    		description: 'REQUIRED for rendering on the page',
+    		control: { type : 'text' }
+    	},
+		width : {
+    		name: 'width',
+    		type: { name: 'string', required: true},
+    		description: 'REQUIRED for rendering on the page',
+    		control: { type : 'text' }
+    	}
 	}
 }
 

@@ -10,6 +10,11 @@ class Avatar extends React.Component {
 	render() {
 		let content = null
 
+		let colors = {
+			color: this.props.textColor,
+			backgroundColor: (this.props.url && !this.props.loading ? null : this.props.backgroundColor)
+		}
+
 		if (this.props.loading) {
 			content = ( <Loading
 				icon='loadingDefault'
@@ -23,7 +28,7 @@ class Avatar extends React.Component {
 					color={this.props.textColor}
 					className={`avatar-kariu--size-${this.props.size}`}
 					/> )
-				} else if (this.props.url) {
+				} else if (this.props.url && !this.props.loading) {
 			content = (
 				<img src={this.props.url}
 					className={
@@ -38,10 +43,7 @@ class Avatar extends React.Component {
 			content = fullName[0].charAt(0) + (fullName[1] ? fullName[1].charAt(0) : '')
 		}
 
-		let colors = {
-			color: this.props.textColor,
-			backgroundColor: (this.props.url ? null : this.props.backgroundColor)
-		}
+
 
 		return (
 			<div className={`avatar-kariu

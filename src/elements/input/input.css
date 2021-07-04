@@ -1,6 +1,7 @@
 .input-kariu--wrapper {
 	display: flex;
 	width: 100%;
+	line-height: 1rem;
 	position: relative;
 	flex-direction: column;
 	flex-flow: column nowrap;
@@ -9,9 +10,8 @@
 .input-kariu {
 	display: flex;
 	width: 100%;
-	padding: 10px 15px;
 	margin: 5px 0px;
-	display: flex;
+	height: 2.5rem;
 	border: 1.25px solid #ccc;
 	border-radius: 4px;
 	box-sizing: border-box;

@@ -147,7 +147,8 @@ Input.propTypes = {
 	backgroundColor: PropTypes.string,
 	borderColor: PropTypes.string,
 	value: PropTypes.string,
-	type: PropTypes.oneOf(['text',
+	type: PropTypes.oneOf([
+		'text',
 		'tel',
 		'password',
 		'color',

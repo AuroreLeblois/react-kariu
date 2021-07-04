@@ -6,7 +6,7 @@
   "copyright": "Copyright © year ${author}",
   "main": "build/index.js",
   "scripts": {
-    "start": "start-storybook --quiet --ci --port 9999 && start http://localhost:9999",
+    "start": "start http://localhost:9999 && start-storybook --quiet --ci --port 9999",
     "web": "npm start",
     "build:svg": "svgr --icon --svg-props direction={props.direction} --svg-props color={props.color} --replace-attr-values currentColor={props.color} --svg-props animation={props.animation}  src/elements/icon/svg -d src/elements/icon/components --ignore-existing",
     "build-storybook": "build-storybook -o build --quiet",

@@ -13,8 +13,7 @@ export default class Button extends React.Component {
 		super(props)
 
 		this.state = {
-			loading: (props.loading ? props.loading : false),
-			// textColor: (props.textColor ? props.textColor : 'white')
+			loading: (props.loading ? props.loading : false)
 		}
 	}
 
@@ -120,6 +119,7 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
+	label: '',
 	backgroundColor: 'tomato',
 	textColor: 'white',
 	loading: false,

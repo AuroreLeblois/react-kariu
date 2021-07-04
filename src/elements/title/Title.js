@@ -100,7 +100,8 @@ Title.propTypes = {
 Title.defaultProps = {
 	priority: 1,
 	align: 'center',
-	cursor : 'default'
+	cursor : 'text',
+	textColor: 'tomato',
 }
 
 export default Title
