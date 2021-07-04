@@ -35,7 +35,9 @@ export default {
 		babel({
 			exclude: 'node_modules/**',
 			babelHelpers: 'runtime',
-			skipPreflightCheck: true
+			skipPreflightCheck: true,
+			plugins: ['@babel/plugin-transform-runtime'],
+			extensions: ['.js', '.jsx', '.es6', '.es', '.mjs', '.ts', '.vue', '.css']
 		}),
 		resolve(),
 		commonjs()

@@ -1,3 +1,5 @@
+import './elements/reset.css'
+
 export { default as Avatar } from './elements/avatar/Avatar.js'
 export { default as Button } from './elements/button/Button.js'
 export { default as Checkbox } from './elements/input/Checkbox.js'
@@ -9,4 +11,5 @@ export { default as Loading } from './elements/loading/Loading.js'
 export { default as Map } from './elements/Map/Map.js'
 export { default as Radio } from './elements/input/Radio.js'
 export { default as SideBar } from './elements/nav/SideBar.js'
+export { default as Title } from './elements/title/Title.js'
 export { default as Tooltip } from './elements/tooltip/Tooltip.js'

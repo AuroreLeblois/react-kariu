@@ -4,14 +4,15 @@
   "description": "react library for react",
   "author": "Aurore Leblois",
   "copyright": "Copyright © year ${author}",
-  "main": "./build/index.js",
+  "main": "build/index.js",
   "scripts": {
-    "start": "start http://localhost:9999 && start-storybook --quiet --ci --port 9999",
+    "start": "start-storybook --quiet --ci --port 9999 && start http://localhost:9999",
     "web": "npm start",
     "build:svg": "svgr --icon --svg-props direction={props.direction} --svg-props color={props.color} --replace-attr-values currentColor={props.color} --svg-props animation={props.animation}  src/elements/icon/svg -d src/elements/icon/components --ignore-existing",
     "build-storybook": "build-storybook -o build --quiet",
     "build-docs": "build-storybook -o build_docs --quiet --docs",
-    "build": "rollup -c && tsc"
+    "build": "rollup -c",
+    "chromatic": "npx chromatic --project-token b47fc4262037"
   },
   "repository": {
     "type": "git",

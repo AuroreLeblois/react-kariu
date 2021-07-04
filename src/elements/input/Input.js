@@ -36,15 +36,16 @@ class Input extends React.Component {
 
 	// Renderers ----------------------------------------------------------------
 	render() {
+		let colorText = (this.props.textColor ? this.props.textColor : '#43464B')
 		let colors = {
-			color: this.props.textColor,
-			borderColor: this.props.borderColor,
-			backgroundColor: this.props.backgroundColor
+			color: colorText,
+			borderColor: (this.props.borderColor ? this.props.borderColor : '#bfbfbf'),
+			backgroundColor: (this.props.backgroundColor ? this.props.backgroundColor : '#eeeeee')
 		}
 
 		return (
 			<div className={'input-kariu--wrapper'}>
-				{this.renderLabel()}
+				{this.renderLabel(colorText)}
 				<input className={'input-kariu '+css(colors)}
 					type={this.state.type}
 					name={this.props.name}
@@ -54,23 +55,23 @@ class Input extends React.Component {
 					required={this.props.required}
 					disabled={this.props.disabled}
 					/>
-					{this.renderBtnShowPwd()}
-					{this.renderBtnSearch()}
-					{this.renderDescription()}
+					{this.renderBtnShowPwd(colorText)}
+					{this.renderBtnSearch(colorText)}
+					{this.renderDescription(colorText)}
 			</div>
 		)
 	}
 
-	renderLabel() {
+	renderLabel(colorText) {
 		if (!this.props.label) return null
 
-		let color = {color: this.props.textColor}
+		let color = { color: colorText }
 		return (
 			<label htmlFor={this.props.name} className={'input-kariu--label '+css(color)}>{this.props.label}</label>
 		)
 	}
 
-	renderBtnShowPwd() {
+	renderBtnShowPwd(colorText) {
 		if (this.state.isPassword) {
 			if (this.state.type === 'password') {
 				return (
@@ -79,7 +80,7 @@ class Input extends React.Component {
 						size='small'
 						shape='round'
 						backgroundColor='transparent'
-						textColor='inherit'
+						textColor={colorText}
 						className={'button-eye-kariu'}
 						onClick={this.toggleShow.bind(this)}/>
 
@@ -90,7 +91,7 @@ class Input extends React.Component {
 						icon='eyeSlashed'
 						size='small'
 						backgroundColor='transparent'
-						textColor='inherit'
+						textColor={colorText}
 						shape='round'
 						className={'button-eye-kariu'}
 						onClick={this.toggleShow.bind(this)}/>
@@ -99,25 +100,28 @@ class Input extends React.Component {
 		} else return null
 	}
 
-	renderBtnSearch() {
+	renderBtnSearch(colorText) {
 		if (this.state.isSearch) {
+			let cursor = { cursor: 'default' }
 			return (
 				<Button
 					icon='search'
 					size='small'
 					shape='round'
 					backgroundColor='transparent'
-					textColor='inherit'
-					className={'button-eye-kariu'}
+					textColor={colorText}
+					className={'button-eye-kariu '+css(cursor)}
+					disabled={true}
 					onClick={this.props.onClick}/>
 
 			)
 		} else return null
 	}
 
-	renderDescription() {
+	renderDescription(colorText) {
 		if (this.state.type === 'range') {
-			return (<p className='input-Kariu--description'>{`${this.props.text} ${this.state.value}`}</p>)
+			let color = { color: colorText }
+			return (<p className={'input-Kariu--description '+css(color)}>{`${this.props.text} ${this.state.value}`}</p>)
 		}
 	}
 	// Listeners ----------------------------------------------------------------

@@ -21,13 +21,16 @@ class Checkbox extends React.Component {
 	}
 
 	handleClick() {
-		this.setState({ checked: true })
+		this.setState({ checked: !this.state.checked })
 	}
 
 	render() {
 		if (!this.props.id) return null
 
-		let textColor = { color: this.props.textColor ? this.props.textColor : 'blue navy'}
+		let textColor = {
+			color: this.props.textColor ? this.props.textColor : '#43464B',
+			textAlign: 'end'
+		}
 
 		let colors = {
 			backgroundColor : this.props.backgroundColor ? this.props.backgroundColor : 'white',
@@ -37,7 +40,7 @@ class Checkbox extends React.Component {
 		}
 
 		return (
-			<div className={'checkbox-kariu--wrapper'}>
+			<div className={'checkbox-kariu--wrapper '+this.props.className}>
 				<input
 					type="checkbox"
 					required={this.props.required}

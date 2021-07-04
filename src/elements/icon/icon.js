@@ -38,7 +38,7 @@ Icon.propTypes = {
 		'search',
 		'marker',
 		'hamburgerMenu'
-	]),
+	]).isRequired,
 	color: PropTypes.string,
 	height: PropTypes.string,
 	width: PropTypes.string
