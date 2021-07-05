@@ -92,7 +92,7 @@ class Map extends React.Component {
 			tileSize: 250,
 			layers: [
 				L.tileLayer((this.props.tileLayer ? this.props.tileLayer : "http://{s}.tile.osm.org/{z}/{x}/{y}.png"), {
-					attribution: (this.props.attribution ? this.props.attribution : '&copy; <a href="https://github.com/AuroreLeblois">OpenStreetMap</a> AuroreLeblois')
+					attribution: (this.props.attribution ? this.props.attribution : '&copy; <a href="https://github.com/AuroreLeblois">React-Kariu</a> AuroreLeblois')
 				})
 			]
 		})
@@ -125,7 +125,7 @@ Map.defaultProps = {
 	width: '30rem',
 	zoom: 3,
 	tileLayer: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
-	attribution: '&copy; <a href="https://github.com/AuroreLeblois">OpenStreetMap</a> AuroreLeblois'
+	attribution: '&copy; <a href="https://github.com/AuroreLeblois">AuroreLeblois</a> AuroreLeblois'
 }
 
 export default Map
