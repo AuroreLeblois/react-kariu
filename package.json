@@ -14,6 +14,12 @@
     "build": "rollup -c",
     "chromatic": "npx chromatic --project-token b47fc4262037"
   },
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/auroreleblois"
+	},
+	"files": [
+		"dist"
+	],
   "repository": {
     "type": "git",
     "url": "react_kariu"
