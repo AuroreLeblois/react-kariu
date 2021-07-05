@@ -15,6 +15,7 @@
 	border: 1.25px solid #ccc;
 	border-radius: 4px;
 	box-sizing: border-box;
+	padding-left: 0.85rem;
 }
 .button-eye-kariu {
 	display: block;
