@@ -32,12 +32,12 @@ export const Default = (args) => (
 
 export const ShortText = (args) => (
 	<Tooltip {...args}
-		text="Pas de prise de service si la vacation n'est pas affectée"
+		text="I'm a medium text with a minWidth props, so be careful if you want to use me"
 		minWidth='34vw'
 	>
 		<Button
 			color={'tomato'}
-			label='Button'
+			label='Tooltip right'
 		/>
 	</Tooltip>
 )
@@ -49,7 +49,7 @@ export const LongText = (args) => (
 			Ice cream dragée danish chupa chups tart apple pie chocolate bar sweet roll macaroon.
 			Jelly-o icing candy sugar plum cookie. Marshmallow fruitcake chocolate.
 			Candy canes bonbon pudding'
-		minWidth='80vw'
+		minWidth='55vw'
 	>
 		<Button
 			icon='eyeOpen'
