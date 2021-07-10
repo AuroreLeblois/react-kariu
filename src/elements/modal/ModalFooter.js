@@ -11,6 +11,7 @@ class ModalFooter extends React.Component {
 				'1rem '+'1rem'
 			],
 			flexGrow: 1,
+			display: 'flex',
 			flexDirection:'row',
 			flexWrap:'wrap',
 			alignItems:'flex-end',

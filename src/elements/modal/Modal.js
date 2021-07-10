@@ -60,16 +60,14 @@ Modal.propTypes = {
 	portalNodeId: PropTypes.string,
 	textColor: PropTypes.string,
 	onClose: PropTypes.func.isRequired,
-	title: PropTypes.string,
-	variant: PropTypes.string
+	title: PropTypes.string
 }
 
 Modal.defaultProps = {
 	portalNodeId: 'root',
 	show: false,
 	textColor: 'tomato',
-	title: '',
-	variant: ''
+	title: ''
 }
 
 export default Modal

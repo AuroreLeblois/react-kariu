@@ -10,6 +10,7 @@ class ModalItem extends React.Component {
 		const styleItem = {
 			display: 'flex',
 			padding: '0.75rem '+'0.5rem',
+			lineHeight: '1.5rem',
 			justifyContent: this.props.justify,
 			flexWrap: this.props.wrap,
 			flexGrow: this.props.grow,

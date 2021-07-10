@@ -71,7 +71,7 @@ export default class Button extends React.Component {
 	}
 
 	renderIcon() {
-		if (!this.state.text && !this.props.icon) return null
+		if (!this.props.text && !this.props.icon) return null
 
 		let iconSize = this.renderDimensions()
 

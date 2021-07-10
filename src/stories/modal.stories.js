@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, ModalItem, ModalFooter } from './../index.js'
+import { Modal, ModalItem, ModalFooter, Button } from './../index.js'
 
 export default {
 	title: 'React-Kariu/Organism/Modal',
@@ -8,12 +8,8 @@ export default {
 		portalNodeId: {
     		description: 'REQUIRED for rendering on the page, aim for an existing element in the DOM'
 		},
-		backgroundColor: {
-			description: "Only required if you don't provide an url or an icon to the component",
-			control: 'color' },
-		textColor: {
-			description: "Only required if you don't provide an url or an icon to the component",
-			control: 'color' },
+		backgroundColor: { control: 'color' },
+		textColor: { control: 'color' },
     	}
 }
 
@@ -26,8 +22,11 @@ export const Default = (args) => {
 		<Modal {...args} title='Title Modal' priority={4}>
 			<ModalItem>
 				<p>This is an example modal with portal</p>
+				<p>I will disapear from the DOM if my state show is at false</p>
 			</ModalItem>
-			<ModalFooter><p>I'm a footer for your modal</p></ModalFooter>
+			<ModalFooter>
+				<Button label='click on me (log)' onClick={()=>console.log('hello')}/>
+			</ModalFooter>
 
 		</Modal>
 	)
