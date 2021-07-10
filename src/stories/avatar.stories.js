@@ -10,7 +10,6 @@ export default {
 		name: 'name',
 		type: {name: 'string', required: true},
 		description: 'Take string and convert it into an array: this only works with 1 space or 0 space into the string',
-		dafaultValue: 'Aurore Leblois',
 		control: {type : 'text'}
 	},
 	url: {

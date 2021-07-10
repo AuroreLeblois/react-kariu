@@ -1,0 +1,33 @@
+|
+| - dist
+    | - index.esm.js
+    | - index.cjs.js
+    | - index.umd.js
+| - src
+    | - index.js
+    | - index.css
+    | - button.jsx
+| - .babelrc
+| - package.json
+| - rollup.config.js
+
+## the src folder
+src
+.babelrc
+rollup.config.js
+## node modules folder
+node_modules
+## incase you have a git repositiory initiated
+.git
+.gitignore
+CVS
+.svn
+.hg
+.lock-wscript
+.wafpickle-N
+.DS_Store
+npm-debug.log
+.npmrc
+
+config.gypi
+package-lock.json

@@ -9,6 +9,12 @@ export { default as InputItem } from './elements/input/InputItem.js'
 export { default as Input } from './elements/input/Input.js'
 export { default as Loading } from './elements/loading/Loading.js'
 export { default as Map } from './elements/Map/Map.js'
+
+export { default as Modal } from './elements/modal/Modal.js'
+export { default as ModalHeader } from './elements/modal/ModalHeader.js'
+export { default as ModalItem } from './elements/modal/ModalItem.js'
+export { default as Portal } from './elements/portal/Portal.js'
+
 export { default as Radio } from './elements/input/Radio.js'
 export { default as SideBar } from './elements/nav/SideBar.js'
 export { default as Title } from './elements/title/Title.js'
