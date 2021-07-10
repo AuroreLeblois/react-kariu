@@ -11,12 +11,20 @@ class Modal extends React.Component {
 	this.state = {
 		show: (props.show ? props.show : false)
 	}
+	this.refModal =  React.createRef()
     }
+
+	componentDidMount() {
+		document.addEventListener("click", this.handleOutsideClick, false)
+	}
 
 	componentDidUpdate(prevProps) {
 		if (this.props.show !== prevProps.show) {
 			this.setState({ show: this.props.show })
 		}
+	}
+	componentWillUnmount() {
+		document.removeEventListener("click", this.handleOutsideClick, false)
 	}
 
 	render() {
@@ -29,7 +37,10 @@ class Modal extends React.Component {
 
 		return (
 			<Portal portalNodeId={this.props.portalNodeId}>
-				<div className={'modal-kariu '+css(styleModal)}>
+				<div onClick={(event) => {
+					this.handleOutsideClick(event)
+						}}
+					ref={this.refModal} className={'modal-kariu '+css(styleModal)}>
 					{this.renderHeader()}
 					{this.props.children}
 				</div>
@@ -51,8 +62,13 @@ class Modal extends React.Component {
 	}
 
 	handleCloseModal = () => {
-		this.setState({show: false}, this.props.onClose && this.props.onClose())
+		this.setState({show: false})
 	}
+
+	handleOutsideClick = e => {
+		console.log(e);
+		if (!this.refModal.current.contains(e.target)) this.handleCloseModal();
+  };
 }
 
 Modal.propTypes = {

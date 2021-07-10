@@ -8,7 +8,7 @@ class ModalFooter extends React.Component {
 		const styleFooter = {
 			// backgroundColor: tokens.color.gray.light.value,
 			padding: [
-				'1rem '+'1rem'
+				'0.5rem '+'0.5rem'
 			],
 			flexGrow: 1,
 			display: 'flex',
