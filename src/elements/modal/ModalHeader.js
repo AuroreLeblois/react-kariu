@@ -21,8 +21,9 @@ class ModalHeader extends React.Component {
 		const paddingX = '0.125rem'
 
 		const styleHeader = {
-			paddingTop: '1rem',
-			paddingBottom: '0.75rem',
+			paddingTop: '0.25rem',
+			paddingBottom: '0.25rem',
+			borderBottom: '1px solid  #C7C7C7',
 			marginLeft: paddingX,
 			paddingRight: paddingX,
 			flexDirection: 'row',
@@ -65,7 +66,7 @@ class ModalHeader extends React.Component {
 				shape='round'
 				icon='cross'
 				onClick={this.props.onClick}
-				backgroundColor={this.props.backgroundColor? this.props.backgroundColor : 'lightgrey'}
+				backgroundColor={'inherit'}
 				textColor={this.props.textColor? this.props.textColor: 'inherit'}
 			/>
 		)

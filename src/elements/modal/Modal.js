@@ -59,7 +59,6 @@ Modal.propTypes = {
 	show: PropTypes.bool.isRequired,
 	portalNodeId: PropTypes.string,
 	textColor: PropTypes.string,
-	showCloseBtn: PropTypes.bool,
 	onClose: PropTypes.func.isRequired,
 	title: PropTypes.string,
 	variant: PropTypes.string

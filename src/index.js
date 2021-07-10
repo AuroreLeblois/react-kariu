@@ -13,6 +13,7 @@ export { default as Map } from './elements/Map/Map.js'
 export { default as Modal } from './elements/modal/Modal.js'
 export { default as ModalHeader } from './elements/modal/ModalHeader.js'
 export { default as ModalItem } from './elements/modal/ModalItem.js'
+export { default as ModalFooter } from './elements/modal/ModalFooter.js'
 export { default as Portal } from './elements/portal/Portal.js'
 
 export { default as Radio } from './elements/input/Radio.js'
