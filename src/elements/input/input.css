@@ -1,8 +1,8 @@
 .input-kariu--wrapper {
 	display: flex;
+	position: relative;
 	width: 100%;
 	line-height: 1rem;
-	position: relative;
 	flex-direction: column;
 	flex-flow: column nowrap;
 	cursor: default;
@@ -22,7 +22,7 @@
 	position: absolute;
 	margin-right: 0.5rem;
 	padding: 0;
-	top: 47%;
+	top: 50%;
 	right: 0%;
 }
 .button-eye-kariu:focus {
@@ -41,6 +41,9 @@
 }
 .input-kariu--label {
 	display: flex;
+}
+.input-Kariu--description {
+	font-size: smaller;
 }
 .input-kariu[type=number]::-webkit-inner-spin-button {
 	opacity: 1;
@@ -84,4 +87,5 @@ input[type=range]::-webkit-slider-runnable-track {
 
 .input-kariu[type=search] {
 	width: auto;
+	display: flex;
 }

@@ -66,7 +66,6 @@ class Modal extends React.Component {
 	}
 
 	handleOutsideClick = e => {
-		console.log(e);
 		if (!this.refModal.current.contains(e.target)) this.handleCloseModal();
   };
 }

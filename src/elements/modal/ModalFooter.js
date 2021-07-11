@@ -16,7 +16,7 @@ class ModalFooter extends React.Component {
 			flexWrap:'wrap',
 			alignItems:'flex-end',
 			justifyContent:'flex-end',
-			borderTop: '1px solid  #C7C7C7',
+			borderTop: '1px solid  #C7C7C7'
 		}
 
 		return (

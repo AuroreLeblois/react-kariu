@@ -23,6 +23,7 @@ class Input extends React.Component {
 	componentDidUpdate(prevProps) {
 		if (prevProps.value !== this.props.value ||
 			prevProps.label !== this.props.label ||
+			prevProps.description !== this.props.description ||
 			prevProps.type !== this.props.type) {
 				this.setState({
 					value: this.props.value,
@@ -56,7 +57,7 @@ class Input extends React.Component {
 					disabled={this.props.disabled}
 					/>
 					{this.renderBtnShowPwd(colorText)}
-					{this.renderBtnSearch(colorText)}
+
 					{this.renderDescription(colorText)}
 			</div>
 		)
@@ -100,28 +101,32 @@ class Input extends React.Component {
 		} else return null
 	}
 
-	renderBtnSearch(colorText) {
-		if (this.state.isSearch) {
-			let cursor = { cursor: 'default' }
-			return (
-				<Button
-					icon='search'
-					size='small'
-					shape='round'
-					backgroundColor='transparent'
-					textColor={colorText}
-					className={'button-eye-kariu '+css(cursor)}
-					disabled={true}
-					onClick={this.props.onClick}/>
-
-			)
-		} else return null
-	}
+	// renderBtnSearch(colorText) {
+	// 	if (this.state.isSearch) {
+	// 		let cursor = { cursor: 'default' }
+	// 		return (
+	// 			<Button
+	// 				icon='search'
+	// 				size='small'
+	// 				shape='round'
+	// 				backgroundColor='transparent'
+	// 				textColor={colorText}
+	// 				className={'button-eye-kariu '+css(cursor)}
+	// 				disabled={true}
+	// 				onClick={this.props.onClick}/>
+	//
+	// 		)
+	// 	} else return null
+	// }
 
 	renderDescription(colorText) {
+		let color = { color: colorText }
 		if (this.state.type === 'range') {
-			let color = { color: colorText }
 			return (<p className={'input-Kariu--description '+css(color)}>{`${this.props.text} ${this.state.value}`}</p>)
+		} else if (this.props.required) {
+			return (<p className={'input-Kariu--description '+css({color: 'red'})}>{this.props.description ? this.props.description : 'Required'}</p>)
+		} else {
+			return (<p className={'input-Kariu--description '+css(color)}>{this.props.description}</p>)
 		}
 	}
 	// Listeners ----------------------------------------------------------------
@@ -163,6 +168,7 @@ Input.propTypes = {
 		'search']),
 	name: PropTypes.string.isRequired,
 	label: PropTypes.string,
+	desciption: PropTypes.string,
 	placeholder: PropTypes.string,
 	icon: PropTypes.string,
 	required: PropTypes.bool,

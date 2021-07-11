@@ -3,7 +3,7 @@ import React from 'react';
 import { SideBar } from './../index.js';
 
 export default {
-  title: 'React-Kariu/Organism/SideBar',
+  title: 'React-Kariu/Molecule/SideBar',
   component: SideBar,
   argTypes: {
 	backgroundColor: { name: 'backgroundColor', control: 'color' },
@@ -16,10 +16,10 @@ const Template = (args) => <SideBar {...args} />;
 export const Default = Template.bind({});
 Default.args = {
 	options : [
-		{ href: '#section', label: 'section'},
-		{ href: '#prom', label: 'promo'},
-		{ href: '#section', label: 'icon'},
-		{ href: '#home', label: 'home' }
+		{ href: '#', label: 'section'},
+		{ href: '#', label: 'promo'},
+		{ href: '#', label: 'icon'},
+		{ href: '#', label: 'home' }
 	]
 
 }

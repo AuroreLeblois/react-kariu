@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import './../reset.css'
-import './sidenav.css'
+import './nav.css'
+import { NavItem } from './../../index.js'
 
 class SideBar extends React.Component {
 
@@ -22,13 +23,15 @@ class SideBar extends React.Component {
 
 	render() {
 		if (!this.state.options.length) return null
+		if (window.width < 600) return null
 
-		let backgroundColor = {
-			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'lightgrey'
+		let color = {
+			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white',
+			color: this.props.textColor ? this.props.textColor : 'tomato'
 		}
 
 		return (
-		<div key='sidenav-wrapper-kariu' className={'sidenav-kariu '+ css(backgroundColor)}>
+		<div key='sidenav-wrapper-kariu' className={'sidenav-kariu '+ css(color)}>
 			{this.renderOptions()}
 		</div>
 		 )
@@ -37,15 +40,17 @@ class SideBar extends React.Component {
 	renderOptions() {
 		let options = []
 
-		let textColor = {
-			textColor: this.props.textColor ? this.props.textColor : 'inherit'
-		}
-
 		for (let option of this.state.options) {
-			let link = <a className={'link '+css(textColor)} key={option.label} href={option.href}>{option.label ? option.label : option.icon}</a>
+			let topLink = (this.state.options[0] === option ? ' topLink': null)
+			console.log(topLink);
+			let link = <NavItem
+				option={option}
+				textColor={'inherit'}
+				backgroundColor={'inherit'}
+				className={(topLink ? topLink: null)}/>
 			options.push(link)
 		}
-		return[ options ]
+		return [ options ]
 	}
 }
 export default SideBar

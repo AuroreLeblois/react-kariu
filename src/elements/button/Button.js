@@ -35,7 +35,6 @@ export default class Button extends React.Component {
 		}
 
 		return (
-			<div>
 			<button
 				className={['kariu-button', `kariu-button--${shape}`, `kariu-button--${size}`, mode, css(styleBackGround), this.props.className].join(' ')}
 				type="button"
@@ -47,7 +46,6 @@ export default class Button extends React.Component {
 				{this.renderText()}
 				{this.renderIcon()}
 			</button>
-			</div>
 		)
 	}
 

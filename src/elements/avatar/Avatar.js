@@ -43,8 +43,6 @@ class Avatar extends React.Component {
 			content = fullName[0].charAt(0) + (fullName[1] ? fullName[1].charAt(0) : '')
 		}
 
-
-
 		return (
 			<div className={`avatar-kariu
 				avatar-kariu--size-${this.props.size}

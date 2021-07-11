@@ -1,0 +1,51 @@
+.sidenav-kariu {
+	position: absolute;
+	top:0;
+	left:0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* justify-content: center; */
+	flex-flow: column nowrap;
+	cursor: default;
+	max-width: 30%;
+	min-width: 30%;
+	height: 100%;
+	-webkit-box-shadow: 1px 2px 2px 1px #E6E6E6;
+	box-shadow: 1px 2px 2px 1px #E6E6E6;
+}
+.topBar-kariu {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right:0;
+	padding-left: 2.25rem;
+	border-style: solid;
+	border-bottom-width: .025rem;
+	z-index: 4;
+}
+.link {
+	margin-left: 1rem;
+	margin-right: 1rem;
+	margin-top: 1.2rem;
+	margin-bottom: 1.2rem;
+}
+.link a {
+	text-decoration: none;
+	text-transform: capitalize;
+}
+.link:hover a {
+	text-decoration: underline;
+}
+.link:visited {
+	filter: brightness(40%)
+}
+.disabled {
+	color: darkgrey;
+	cursor: not-allowed;
+}
+.topLink {
+	margin-top: 4rem
+}
