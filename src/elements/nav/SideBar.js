@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import './../reset.css'
-import './nav.css'
 import { NavItem } from './../../index.js'
+import './nav.css'
 
 class SideBar extends React.Component {
 
@@ -32,19 +32,20 @@ class SideBar extends React.Component {
 
 		return (
 		<div key='sidenav-wrapper-kariu' className={'sidenav-kariu '+ css(color)}>
-			{this.renderOptions()}
+			{this.renderOptions(color)}
 		</div>
 		 )
 	}
 
-	renderOptions() {
+	renderOptions(color) {
 		let options = []
 
 		for (let option of this.state.options) {
 			let topLink = (this.state.options[0] === option ? ' topLink': null)
+			let colorText = option.disabled ? 'darkgrey' : color.color
 			let link = <NavItem
 				option={option}
-				textColor={'inherit'}
+				textColor={colorText}
 				backgroundColor={'inherit'}
 				className={(topLink ? topLink: null)}/>
 			options.push(link)

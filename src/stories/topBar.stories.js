@@ -16,7 +16,7 @@ const Template = (args) => <TopBar {...args} />;
 export const Default = (args) => (
 	<TopBar {...args}>
 		<Title priority={3} text='AppName'/>
-		<NavItem option={ {href: '#', label: 'a link'} }/>
+		<NavItem onClick={()=>console.log('helloooo world')} option={ {href: '#', label: 'a link'} }/>
 		<NavItem option={ {href: '#', label: 'Another link but disabled', disabled: true} }/>
 	</TopBar>
 )

@@ -12,10 +12,12 @@ class NavItem extends React.Component {
 
 	render() {
 		if (!this.props.option) return null
+		let colorText = this.props.textColor ? this.props.textColor : 'inherit'
+		if (this.props.option.disabled) colorText = 'darkgrey'
 
 		let color = {
 			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white',
-			color: this.props.textColor ? this.props.textColor : 'tomato'
+			color: colorText
 		}
 		let disabled = this.props.option.disabled ? 'disabled' : ''
 
@@ -32,10 +34,11 @@ class NavItem extends React.Component {
 	}
 
 	handleClick = (option, e) => {
+		e.preventDefault();
 		if (option.disabled) {
-			e.preventDefault();
 			return null
 		}
+		this.props.onClick()
 	}
 }
 
