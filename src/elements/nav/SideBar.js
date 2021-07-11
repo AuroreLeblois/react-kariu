@@ -42,7 +42,6 @@ class SideBar extends React.Component {
 
 		for (let option of this.state.options) {
 			let topLink = (this.state.options[0] === option ? ' topLink': null)
-			console.log(topLink);
 			let link = <NavItem
 				option={option}
 				textColor={'inherit'}

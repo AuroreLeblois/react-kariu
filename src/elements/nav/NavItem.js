@@ -15,9 +15,7 @@ class NavItem extends React.Component {
 
 		let color = {
 			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white',
-			':link': {
-				color: this.props.textColor ? this.props.textColor : 'tomato'
-			}
+			color: this.props.textColor ? this.props.textColor : 'tomato'
 		}
 		let disabled = this.props.option.disabled ? 'disabled' : ''
 
