@@ -25,7 +25,7 @@ export const Default = (args) => {
 				<p>I will disapear from the DOM if my state show is at false</p>
 			</ModalItem>
 			<ModalFooter>
-				<Button label='click on me (log)' onClick={()=>console.log('hello')}/>
+				<Button backgroundColor={'purple'} label='click on me (log)' onClick={()=>console.log('hello')}/>
 			</ModalFooter>
 
 		</Modal>

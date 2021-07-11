@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TopBar,NavItem, Icon, Title } from './../index.js';
+import { TopBar, NavItem, Icon, Title } from './../index.js';
 
 export default {
   title: 'React-Kariu/Molecule/TopBar',
@@ -8,7 +8,7 @@ export default {
   argTypes: {
 	backgroundColor: { name: 'backgroundColor', control: 'color' },
 	textColor: { name: 'textColor', control : 'color' }
-  },
+  }
 }
 
 const Template = (args) => <TopBar {...args} />;
