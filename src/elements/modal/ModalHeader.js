@@ -28,7 +28,8 @@ class ModalHeader extends React.Component {
 			paddingRight: paddingX,
 			flexDirection: 'row',
 			flexWrap: 'nowrap',
-			alignItems: 'center'
+			alignItems: 'center',
+			justifyContent: 'space-between'
 		}
 
 		return (
@@ -61,14 +62,16 @@ class ModalHeader extends React.Component {
 	}
 	renderCloseBtn () {
 		return (
-			<Button
-				size='small'
-				shape='round'
-				icon='cross'
-				onClick={this.props.onClick}
-				backgroundColor={'inherit'}
-				textColor={this.props.textColor? this.props.textColor: 'inherit'}
-			/>
+			<div>
+				<Button
+					size='small'
+					shape='round'
+					icon='cross'
+					onClick={this.props.onClick}
+					backgroundColor={'inherit'}
+					textColor={this.props.textColor? this.props.textColor: 'inherit'}
+				/>
+			</div>
 		)
 	}
 }
