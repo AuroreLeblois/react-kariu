@@ -13,7 +13,6 @@
 | - rollup.config.js
 
 ## the src folder
-./src/stories
 src
 .babelrc
 rollup.config.js
