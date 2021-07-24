@@ -9,12 +9,15 @@
     | - button.jsx
 | - .babelrc
 | - package.json
+| - babel.config.json
 | - rollup.config.js
 
 ## the src folder
+./src/stories
 src
 .babelrc
 rollup.config.js
+
 ## node modules folder
 node_modules
 ## incase you have a git repositiory initiated

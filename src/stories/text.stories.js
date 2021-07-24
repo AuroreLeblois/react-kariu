@@ -6,11 +6,11 @@ export default {
 	component: Text,
 	argTypes: {
 		text: {
-			description: 'value of the text',
+			description: 'value of the text: REQUIRED for rendering',
 			control: { type: 'text' }
 		},
 		textColor:{
-			description: 'Control the color of your title',
+			description: 'Control the color of your text',
 			control: { type: 'color' }
 		},
 		align: {

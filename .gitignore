@@ -22,3 +22,4 @@ logs/
 *.sql
 *.7z
 *.zip
+.npmignore

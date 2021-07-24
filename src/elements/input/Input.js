@@ -57,7 +57,6 @@ class Input extends React.Component {
 					disabled={this.props.disabled}
 					/>
 					{this.renderBtnShowPwd(colorText)}
-
 					{this.renderDescription(colorText)}
 			</div>
 		)
@@ -100,24 +99,6 @@ class Input extends React.Component {
 			}
 		} else return null
 	}
-
-	// renderBtnSearch(colorText) {
-	// 	if (this.state.isSearch) {
-	// 		let cursor = { cursor: 'default' }
-	// 		return (
-	// 			<Button
-	// 				icon='search'
-	// 				size='small'
-	// 				shape='round'
-	// 				backgroundColor='transparent'
-	// 				textColor={colorText}
-	// 				className={'button-eye-kariu '+css(cursor)}
-	// 				disabled={true}
-	// 				onClick={this.props.onClick}/>
-	//
-	// 		)
-	// 	} else return null
-	// }
 
 	renderDescription(colorText) {
 		let color = { color: colorText }

@@ -55,7 +55,13 @@ class Text extends React.Component {
 
 Text.propTypes = {
 	text: PropTypes.string.isRequired,
-	variant: PropTypes.string,
+	variant: PropTypes.oneOf([
+	'default',
+	'label',
+	'description',
+	'disabled',
+	'danger',
+	'italic']),
 	align: PropTypes.string,
 	textColor: PropTypes.string,
 	fontFamily: PropTypes.string,
@@ -63,6 +69,8 @@ Text.propTypes = {
 }
 
 Text.defaultProps = {
+	fontFamily: 'sans-serif',
+	variant: 'default',
 	align: 'center',
 	cursor : 'text',
 	textColor: 'tomato',
