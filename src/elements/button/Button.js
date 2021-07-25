@@ -50,7 +50,7 @@ export default class Button extends React.Component {
 	}
 
 	renderText() {
-		const color = this.props.textColor
+		let color = this.props.textColor ? this.props.textColor : 'inherit'
 
 		let textColor = { color: color }
 		if (this.state.loading) {
@@ -71,10 +71,11 @@ export default class Button extends React.Component {
 	renderIcon() {
 		if (!this.props.text && !this.props.icon) return null
 
+		let color = this.props.textColor ? this.props.textColor : 'inherit'
 		let iconSize = this.renderDimensions()
 
 		if (this.props.icon) {
-			return <Icon className={'kariu-button--icon'} width={iconSize} height={iconSize} icon={this.props.icon} color={this.props.textColor}/>
+			return <Icon className={'kariu-button--icon'} width={iconSize} height={iconSize} icon={this.props.icon} color={color}/>
 		}
 
 	}

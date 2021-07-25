@@ -367,6 +367,13 @@ textarea {
 }
 .sb-show-main .sb-main-padded {
 	display: flex;
+
+}
+body{
+	margin:0;
+}
+#root {
+	height: 100%
 }
 
 @import url(https://unpkg.com/leaflet@1.7.1/dist/leaflet.css);

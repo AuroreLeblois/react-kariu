@@ -8,17 +8,19 @@
 	/* justify-content: center; */
 	flex-flow: column nowrap;
 	cursor: default;
-	max-width: 30%;
-	min-width: 30%;
 	height: 100%;
 	-webkit-box-shadow: 1px 2px 2px 1px #E6E6E6;
 	box-shadow: 1px 2px 2px 1px #E6E6E6;
+}
+.kariu-collapseBtn {
+	position: absolute;
+	top:0;
+	left:0;
 }
 .topBar-kariu {
 	display: flex;
 	align-items: center;
 	position: absolute;
-	top: 0;
 	left: 0;
 	right:0;
 	padding-left: 2.25rem;
@@ -48,4 +50,22 @@
 }
 .topLink {
 	margin-top: 4rem
+}
+
+@media screen and (max-width: 640px) {
+  .sidenav-kariu {
+  	min-width: 200px;
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 850px) {
+  .sidenav-kariu {
+  	min-width: 25%;
+  }
+}
+@media screen and (min-width: 850px) {
+  .sidenav-kariu {
+  	min-width: 20%;
+	max-width: 250px
+  }
 }

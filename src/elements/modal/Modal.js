@@ -36,6 +36,9 @@ class Modal extends React.Component {
 		}
 
 		return (
+			<>
+			<div className='Overlay'>
+			</div>
 			<Portal portalNodeId={this.props.portalNodeId}>
 				<div onClick={(event) => {
 					this.handleOutsideClick(event)
@@ -45,6 +48,7 @@ class Modal extends React.Component {
 					{this.props.children}
 				</div>
 			</Portal>
+			</>
 		)
 	}
 

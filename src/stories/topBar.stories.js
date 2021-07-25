@@ -1,22 +1,22 @@
 import React from 'react';
 
-import { TopBar, NavItem, Icon, Title } from './../index.js';
+import { NavBar, NavItem, Icon, Title } from './../index.js';
 
 export default {
-  title: 'React-Kariu/Molecule/TopBar',
-  component: TopBar,
+  title: 'React-Kariu/Molecule/NavBar',
+  component: NavBar,
   argTypes: {
 	backgroundColor: { name: 'backgroundColor', control: 'color' },
 	textColor: { name: 'textColor', control : 'color' }
   }
 }
 
-const Template = (args) => <TopBar {...args} />;
+const Template = (args) => <NavBar {...args} />;
 
 export const Default = (args) => (
-	<TopBar {...args}>
-		<Title cursor='pointer' priority={3} text='AppName'/>
+	<NavBar {...args}>
+		<Title cursor='pointer' priority={3} text='AppName' textColor='inherit'/>
 		<NavItem onClick={()=>console.log('helloooo world')} option={ {href: '#', label: 'a link'} }/>
 		<NavItem option={ {href: '#', label: 'Another link but disabled', disabled: true} }/>
-	</TopBar>
+	</NavBar>
 )

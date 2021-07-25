@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import './../reset.css'
-import { NavItem } from './../../index.js'
+import { Button, NavItem } from './../../index.js'
 import './nav.css'
 
 class SideBar extends React.Component {
@@ -11,7 +11,8 @@ class SideBar extends React.Component {
 		super(props)
 
 		this.state = {
-			options: (props.options ? props.options : [])
+			options: (props.options ? props.options : []),
+			show: (props.show ? props.show : (window.innerWidth > 600))
 		}
 	}
 
@@ -23,7 +24,6 @@ class SideBar extends React.Component {
 
 	render() {
 		if (!this.state.options.length) return null
-		if (window.width < 600) return null
 
 		let color = {
 			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white',
@@ -31,10 +31,21 @@ class SideBar extends React.Component {
 		}
 
 		return (
-		<div key='sidenav-wrapper-kariu' className={'sidenav-kariu '+ css(color)}>
-			{this.renderOptions(color)}
-		</div>
-		 )
+			<>
+			{this.renderNavSide(color)}
+			{this.renderCollapseBtn(color)}
+			</>
+		)
+	}
+
+	renderNavSide(color) {
+		if (!this.state.show) return null
+
+		return (
+			<nav key='sidenav-wrapper-kariu' className={'sidenav-kariu '+ css(color)}>
+				{this.renderOptions(color)}
+			</nav>
+		)
 	}
 
 	renderOptions(color) {
@@ -52,5 +63,34 @@ class SideBar extends React.Component {
 		}
 		return [ options ]
 	}
+
+	renderCollapseBtn(color) {
+		if (!this.props.btnCollapse) return null
+
+		let tooltip = this.state.show ? this.props.tooltipMessageHide : this.props.tooltipMessageShow
+		return <Button
+			className='kariu-collapseBtn'
+			onClick={() => {this.setState({show: !this.state.show})}}
+			shape='round'
+			icon={'hamburgerMenu'}
+			tooltip={tooltip}
+			textColor={this.props.textColor? this.props.textColor :'tomato'}
+			backgroundColor={color.backgroundColor}/>
+	}
+}
+
+SideBar.propTypes = {
+	options: PropTypes.array.isRequired,
+	backgroundColor: PropTypes.string,
+	textColor:  PropTypes.string,
+	btnCollapse: PropTypes.bool,
+	tooltipMessageShow: PropTypes.string,
+	tooltipMessageHide: PropTypes.string
+}
+
+SideBar.defaultProps = {
+	btnCollapse: true,
+	tooltipMessageShow:'Show me the nav',
+	tooltipMessageHide: 'Hide the nav'
 }
 export default SideBar

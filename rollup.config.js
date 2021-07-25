@@ -4,42 +4,52 @@ import external from 'rollup-plugin-peer-deps-external'
 import postcss from 'rollup-plugin-postcss'
 // import scss from 'rollup-plugin-scss'
 import resolve from '@rollup/plugin-node-resolve'
+// import typescript from "rollup-plugin-typescript2";
 import url from '@rollup/plugin-url'
 import svgr from '@svgr/rollup'
 import pkg from './package.json'
 
 export default {
 	input: 'src/index.js',
-	output:[
+	output:
 		{
 			file: pkg.main,
-			format: 'cjs',
-			sourcemap: true
+			format: 'iife',
+			sourcemap: true,
+			name: 'react_kariu',
 		},
-		{
-			file: pkg.module,
-			format: 'es',
-			sourcemap: true
-		}
-	],
 	plugins: [
-		external(),
+		external([
+			'prop-types',
+			'react',
+			'react-dom',
+			'storybook',
+			'@emotion/css',
+			'leaflet'
+		]),
 		postcss({
 			modules: true,
 			extract: true,
-			extract: 'reset.css'
+			extract: 'reset.css',
+			extensions: ['.css']
 		}),
 		// scss(),
 		url(),
 		svgr(),
 		babel({
-			exclude: 'node_modules/**',
+			exclude: [
+				'node_modules/**',
+				'.storybook/**',
+				'src/*/*.stories.js'
+			],
 			babelHelpers: 'runtime',
 			skipPreflightCheck: true,
 			plugins: ['@babel/plugin-transform-runtime'],
-			extensions: ['.js', '.jsx', '.es6', '.es', '.mjs', '.ts', '.vue', '.css']
+			extensions: ['.js', '.es6', '.es']
 		}),
-		resolve(),
-		commonjs()
+		resolve({
+  			mainFields: ['module', 'browser', 'main']}),
+		commonjs(),
+		// typescript({ useTsconfigDeclarationDir: true })
 	]
 }

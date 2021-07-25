@@ -18,7 +18,7 @@ export { default as Portal } from './elements/portal/Portal.js'
 
 //Navigation Elements
 export { default as NavItem } from './elements/nav/NavItem.js'
-export { default as TopBar } from  './elements/nav/TopBar.js'
+export { default as NavBar } from  './elements/nav/NavBar.js'
 export { default as SideBar } from './elements/nav/SideBar.js'
 
 //Input Elements

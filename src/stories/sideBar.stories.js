@@ -7,7 +7,10 @@ export default {
   component: SideBar,
   argTypes: {
 	backgroundColor: { name: 'backgroundColor', control: 'color' },
-	textColor: { name: 'textColor', control : 'color' }
+	textColor: { name: 'textColor', control : 'color' },
+	btnCollapse: {description: "Will set if you want a button to toggle the sideBar"},
+	tooltipMessageShow: {description: "Will show a tooltip on the Button element when the sideBar is hidden"},
+	tooltipMessageHide: {description: "Will show a tooltip on the Button element when the sideBar is visible"}
   },
 }
 

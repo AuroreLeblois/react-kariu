@@ -7,6 +7,9 @@ package-lock.json
 build/
 conf/
 dist/
+babel.config.json
+.storybook
+./src/stories
 
 # misc
 .env

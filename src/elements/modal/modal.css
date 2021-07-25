@@ -8,6 +8,7 @@
   min-width: 15rem;
   max-width: 90%;
   border-radius: 1em;
+  z-index: 10000;
   transform: translate(-50%, -50%);
   outline: transparent;
   -webkit-box-shadow: 2px 1px 3px 1px #C7C7C7;
@@ -15,9 +16,10 @@
 }
 .Overlay {
   position: fixed;
+  z-index: 100;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.16);
 }

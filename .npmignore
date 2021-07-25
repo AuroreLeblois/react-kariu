@@ -1,35 +1,12 @@
-|
-| - dist
-    | - index.esm.js
-    | - index.cjs.js
-    | - index.umd.js
-| - src
-    | - index.js
-    | - index.css
-    | - button.jsx
-| - .babelrc
-| - package.json
-| - babel.config.json
-| - rollup.config.js
-
-## the src folder
-src
+./src/stories
 .babelrc
 rollup.config.js
-
-## node modules folder
+webpack.config.js
+README.md
 node_modules
-## incase you have a git repositiory initiated
+.storybook
+.github
 .git
 .gitignore
-CVS
-.svn
-.hg
-.lock-wscript
-.wafpickle-N
-.DS_Store
-npm-debug.log
 .npmrc
-
-config.gypi
 package-lock.json
