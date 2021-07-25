@@ -9,7 +9,7 @@ class NavBar extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			position: null
+			position: this.props.position ? this.props.position : 'top'
 		}
 		this._isMounted = false
 		this.pos = {}
@@ -17,7 +17,6 @@ class NavBar extends React.Component {
 
 	componentDidMount() {
 		this._isMounted = true
-		this.setState({ position: this.props.position ? this.props.position : 'top' })
 	 }
 
 	componentDidUpdate(prevProps) {
@@ -31,8 +30,6 @@ class NavBar extends React.Component {
 	// Renderers ----------------------------------------------------------------
 	render() {
 		if (!this.props.children) return null
-
-
 
 		switch (this.state.position) {
 			case 'top':

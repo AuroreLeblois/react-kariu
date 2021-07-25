@@ -17,12 +17,12 @@ class NavItem extends React.Component {
 
 		let color = {
 			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'inherit',
-			color: colorText
+			color: colorText,
 		}
 		let disabled = this.props.option.disabled ? 'disabled' : ''
 
 		return (
-			<div className={'link'+ (this.props.className ? this.props.className : '')} onClick = {(e)=>this.handleClick(this.props.option, e)}>
+			<div className={'link'+ (this.props.className ? this.props.className : '')} onClick= {(e)=>this.handleClick(this.props.option, e)}>
 			<a className={css(color)+' '+disabled+ ' ' +this.props.className}
 				key={this.props.option.label+ ' '+this.props.option.href}
 				href={this.props.option.href}
@@ -38,7 +38,7 @@ class NavItem extends React.Component {
 		if (option.disabled) {
 			return null
 		}
-		this.props.onClick()
+		 this.props.onClick && this.props.onClick()
 	}
 }
 
