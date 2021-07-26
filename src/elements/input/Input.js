@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import { Button, Icon } from './../../index.js'
 import { css } from '@emotion/css'
 import './../reset.css'
-import './input.css'
-
 
 class Input extends React.Component {
 	// Constructor -------------------------------------------------------------
@@ -38,16 +36,55 @@ class Input extends React.Component {
 	// Renderers ----------------------------------------------------------------
 	render() {
 		let colorText = (this.props.textColor ? this.props.textColor : '#43464B')
-		let colors = {
+
+		let wrapper = {
+			display: 'flex',
+			position: 'relative',
+			width: '100%',
+			lineHeight: '1rem',
+			flexDirection: 'column',
+			flexFlow: 'column nowrap',
+			cursor: 'default'
+		}
+
+		let styleInput = {
+			display: 'flex',
+			width: 'auto',
+			margin: (this.state.type !== 'range' ? '5px 0px': 0),
+			height: '2.25rem',
+			border: '1.25px solid #ccc',
+			borderRadius: '4px',
+			boxSizing: 'border-box',
+			paddingLeft: (this.state.type !== 'range' ? '0.85rem': 0),
 			color: colorText,
 			borderColor: (this.props.borderColor ? this.props.borderColor : '#bfbfbf'),
-			backgroundColor: (this.props.backgroundColor ? this.props.backgroundColor : '#eeeeee')
+			backgroundColor: (this.props.backgroundColor ? this.props.backgroundColor : '#eeeeee'),
+			'&:focus': {
+				borderColor: '#309bc2',
+				borderWidth: 'medium'
+			},
+			'[type=number]::-webkit-inner-spin-button': {
+				opacity: 1
+			},
+			'[type=range]::-webkit-slider-runnable-track': {
+				width: '100%',
+				height: '15px',
+				cursor: 'pointer',
+				/* box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; */
+				background: '#3071a9',
+				borderRadius: '1.3px',
+				border: '0.2px solid #010101'
+			},
+			'[type=search]': {
+				width: 'auto',
+				display: 'flex'
+			}
 		}
 
 		return (
-			<div className={'input-kariu--wrapper'}>
+			<div className={'input-kariu--wrapper '+css(wrapper)}>
 				{this.renderLabel(colorText)}
-				<input className={'input-kariu '+css(colors)}
+				<input className={'input-kariu '+css(styleInput)}
 					type={this.state.type}
 					name={this.props.name}
 					value={this.state.value}
@@ -73,6 +110,21 @@ class Input extends React.Component {
 
 	renderBtnShowPwd(colorText) {
 		if (this.state.isPassword) {
+			let btnEye = {
+				flex: '0 1 auto',
+				display:  'inline-flex',
+				position: 'absolute',
+				right:0,
+				top:'35%',
+				height:'2.25rem',
+				alignItems: 'center',
+				justifyContent: 'center',
+				marginRight: '0.5rem',
+				padding:' 0',
+				'&:focus': { outline: 'none'},
+				'&:required': { borderColor: '#ed4637' },
+				'&:disabled': { borderColor: 'grey', backgroundColor:'lightgrey'}
+			}
 			if (this.state.type === 'password') {
 				return (
 					<Button
@@ -81,9 +133,8 @@ class Input extends React.Component {
 						shape='round'
 						backgroundColor='transparent'
 						textColor={colorText}
-						className={'button-eye-kariu'}
+						className={'button-eye-kariu '+css(btnEye)}
 						onClick={this.toggleShow.bind(this)}/>
-
 				)
 			} else {
 				return (
@@ -93,7 +144,7 @@ class Input extends React.Component {
 						backgroundColor='transparent'
 						textColor={colorText}
 						shape='round'
-						className={'button-eye-kariu'}
+						className={'button-eye-kariu '+css(btnEye)}
 						onClick={this.toggleShow.bind(this)}/>
 				)
 			}
@@ -101,13 +152,14 @@ class Input extends React.Component {
 	}
 
 	renderDescription(colorText) {
-		let color = { color: colorText }
+		let styleDescription = { color: colorText, fontSize: 'smaller', marginTop: 0 }
+
 		if (this.state.type === 'range') {
-			return (<p className={'input-Kariu--description '+css(color)}>{`${this.props.text} ${this.state.value}`}</p>)
+			return (<p className={'input-Kariu--description '+css(styleDescription)}>{`${this.props.description} ${this.state.value}`}</p>)
 		} else if (this.props.required) {
 			return (<p className={'input-Kariu--description '+css({color: 'red'})}>{this.props.description ? this.props.description : 'Required'}</p>)
 		} else {
-			return (<p className={'input-Kariu--description '+css(color)}>{this.props.description}</p>)
+			return (<p className={'input-Kariu--description '+css(styleDescription)}>{this.props.description}</p>)
 		}
 	}
 	// Listeners ----------------------------------------------------------------
@@ -149,7 +201,7 @@ Input.propTypes = {
 		'search']),
 	name: PropTypes.string.isRequired,
 	label: PropTypes.string,
-	desciption: PropTypes.string,
+	description: PropTypes.string,
 	placeholder: PropTypes.string,
 	icon: PropTypes.string,
 	required: PropTypes.bool,
@@ -160,7 +212,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
 	type: 'text',
-	text:'Value:',
+	description: null,
 	size: 'medium',
 	value: '',
 	label: 'Label'

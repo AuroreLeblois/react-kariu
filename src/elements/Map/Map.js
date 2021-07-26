@@ -1,10 +1,10 @@
 import React from 'react'
+import './../reset.css'
 import PropTypes from 'prop-types'
-import { Icon } from './../../index.js'
 import L from "leaflet"
-import 'leaflet/dist/leaflet.css';
-import './Map.css'
+import 'leaflet/dist/leaflet.css'
 import { css } from '@emotion/css'
+import 'leaflet/dist/images/marker-shadow.png'
 
 class Map extends React.Component {
 	// Constructor ----------------------------------------------------------------
@@ -46,8 +46,9 @@ class Map extends React.Component {
 			height: this.props.height,
 			width: this.props.width
 		}
-		return (
-			<div id="map" className={this.props.className+' '+css(styleMap)}/>
+
+		return ( <div id="map" className={'leafletMap-kariu '+this.props.className+' '+css(styleMap)}>
+			</div>
 		)
 	}
 

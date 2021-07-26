@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Input } from '../../index.js'
 import './../reset.css'
-import './../input/input.css'
 
 class DatePicker extends React.Component {
 	// Constructor -------------------------------------------------------------
@@ -36,7 +35,7 @@ class DatePicker extends React.Component {
 	render() {
 		if (!this.props.id) return null
 		return (
-			<div className='input-kariu--wrapper'>
+			<div className={'input-kariu--wrapper '+this.props.className}>
 				<Input
 					disabled={this.props.disabled}
 					label={this.props.label}

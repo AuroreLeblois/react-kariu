@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon } from './../../index.js'
 import './../reset.css'
-import './input.css'
 import { css } from '@emotion/css'
 
 class Radio extends React.Component {
@@ -29,7 +28,17 @@ class Radio extends React.Component {
 
 		let textColor = { color: this.props.textColor ? this.props.textColor : 'blue navy'}
 
-		let colors = {
+		const wrapper = {
+				display: 'flex',
+				lineHeight: 'normal',
+		}
+
+		let styleRadio = {
+			verticalAlign: 'text-bottom',
+			borderRadius: '4px',
+			height: '1rem',
+			width: '1rem',
+			marginRight: '.25rem',
 			backgroundColor : this.props.backgroundColor ? this.props.backgroundColor : 'white',
 			'&:checked': {
 				backgroundColor : this.props.backgroundColorChecked ? this.props.backgroundColorChecked : 'tomato',
@@ -37,11 +46,11 @@ class Radio extends React.Component {
 		}
 
 		return (
-			<div className={'radio-kariu--wrapper'}>
+			<div className={'radio-kariu--wrapper '+css(wrapper)+' '+this.props.className}>
 				<input
 					type="radio"
 					required={this.props.required}
-					className={'radio-kariu '+css(colors)}
+					className={'radio-kariu '+css(styleRadio)}
 					id={this.props.id}
 					name={this.props.name}
 					onChange={ ()=> {this.handleClick() && this.props.onChange}}

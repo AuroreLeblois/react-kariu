@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 import { Loading, Icon } from './../../index.js'
 import { css } from '@emotion/css'
 import './../reset.css'
-import './button.css'
-
-
 
 export default class Button extends React.Component {
 	// Constructor ----------------------------------------------------------------
@@ -25,10 +22,52 @@ export default class Button extends React.Component {
 
 	// Renderers ----------------------------------------------------------------
 	render() {
-		const backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : 'tomato'
-		const size = this.props.size ? this.props.size : 'medium'
+		const backgroundColor = (this.props.backgroundColor ? this.props.backgroundColor : 'tomato')
+		const size = (this.props.size ? this.props.size : 'medium')
 		const mode = 'kariu-button--primary'
 		const shape = this.props.shape ? this.props.shape : 'rounded'
+
+		let styleBtn = {
+			fontWeight: 700,
+			border: 0,
+			cursor: 'pointer',
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'center',
+			lineHeight: 1,
+			margin: 'auto',
+			fontSize: '0.85rem',
+			padding: '0.65rem',
+			borderRadius: (this.props.shape==='basic' ? '0.5rem' : this.props.shape ==='rounded' ? '3rem' : '50%'),
+			'&:active': {
+				filter: 'brightness(85%)'
+			},
+			'&:focus': {
+				outline: '1px dashed',
+				outlineColor: 'inherit'
+			},
+			'&:disabled': {
+				backgroundColor: '#D3D3D3'
+			}
+		}
+
+		switch (this.props.size) {
+			case 'xSmall':
+				styleBtn.fontSize = '0.45rem',
+				styleBtn.padding = '0.45rem'
+			break;
+			case 'small':
+				styleBtn.fontSize = '0.55rem',
+				styleBtn.padding = '0.55rem'
+			break;
+			case 'large':
+				styleBtn.fontSize = '1.25rem',
+				styleBtn.padding = '1rem'
+			break;
+			default:
+				styleBtn
+			break;
+		}
 
 		let styleBackGround = {
 			backgroundColor: backgroundColor
@@ -36,7 +75,7 @@ export default class Button extends React.Component {
 
 		return (
 			<button
-				className={['kariu-button', `kariu-button--${shape}`, `kariu-button--${size}`, mode, css(styleBackGround), this.props.className].join(' ')}
+				className={['kariu-button', `kariu-button--${shape}`, `kariu-button--${size}`, css(styleBackGround), css(styleBtn), this.props.className].join(' ')}
 				type="button"
 				disabled={this.props.disabled}
 				title={this.props.tooltip}
@@ -69,13 +108,17 @@ export default class Button extends React.Component {
 	}
 
 	renderIcon() {
-		if (!this.props.text && !this.props.icon) return null
+		if (!this.props.label && !this.props.icon) return null
 
 		let color = this.props.textColor ? this.props.textColor : 'inherit'
 		let iconSize = this.renderDimensions()
+		let styleIcon = {
+			fontWeight: 'bolder',
+			margin: '.25rem'
+		}
 
 		if (this.props.icon) {
-			return <Icon className={'kariu-button--icon'} width={iconSize} height={iconSize} icon={this.props.icon} color={color}/>
+			return <Icon className={'kariu-button--icon '+css(styleIcon)} width={iconSize} height={iconSize} icon={this.props.icon} color={color}/>
 		}
 
 	}
@@ -97,6 +140,7 @@ export default class Button extends React.Component {
 
 Button.propTypes = {
 	backgroundColor: PropTypes.string,
+	disabled: PropTypes.bool,
 	label: PropTypes.string,
 	loading: PropTypes.bool,
 	onClick: PropTypes.func,

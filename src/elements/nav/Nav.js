@@ -20,7 +20,7 @@ class Nav extends React.Component {
 		}
 
 		return (
-		<div key='sidenav-wrapper-kariu' className={'sidenav-kariu '+ css(backgroundColor)}>
+		<div key='sidenav-wrapper-kariu' className={'sidenav-kariu '+ css(backgroundColor)+' '+this.props.className}>
 			{this.renderOptions()}
 		</div>
 		 )

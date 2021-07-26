@@ -11,13 +11,17 @@ import pkg from './package.json'
 
 export default {
 	input: 'src/index.js',
-	output:
+	output:[
 		{
 			file: pkg.main,
-			format: 'iife',
-			sourcemap: true,
-			name: 'react_kariu',
+			format: 'cjs',
+			sourcemap: true
 		},
+		{
+			file: pkg.module,
+			format: 'es',
+			sourcemap: true
+		}],
 	plugins: [
 		external([
 			'prop-types',
@@ -40,7 +44,7 @@ export default {
 			exclude: [
 				'node_modules/**',
 				'.storybook/**',
-				'src/*/*.stories.js'
+				'./src/stories'
 			],
 			babelHelpers: 'runtime',
 			skipPreflightCheck: true,

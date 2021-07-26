@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import { Button, Icon, ModalItem, ModalHeader, Portal } from '../../index.js'
 import './../reset.css'
-import './modal.css'
 
 class Modal extends React.Component {
   constructor(props) {
@@ -31,13 +30,37 @@ class Modal extends React.Component {
 		if (!this.state.show) return null
 
 		let styleModal = {
-			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white',
-			color: this.props.textColor ? this.props.textColor : 'tomato'
+			position: 'absolute',
+			top: '50%',
+			left: '50%',
+			display: 'flex',
+			flexDirection: 'column',
+			padding: '0.85em',
+			minWidth: '15rem',
+			maxWidth: '90%',
+			borderRadius: '1em',
+			zIndex: '10000',
+			transform: 'translate(-50%, -50%)',
+			outline: 'transparent',
+			webkitBoxShadow: '2px 1px 3px 1px #C7C7C7',
+			boxShadow: '2px 1px 3px 1px #C7C7C7',
+			backgroundColor: (this.props.backgroundColor ? this.props.backgroundColor : 'white'),
+			color: (this.props.textColor ? this.props.textColor : 'tomato')
+		}
+
+		const overlay = {
+			  position: 'fixed',
+			  zIndex: 100,
+			  top: 0,
+			  right: 0,
+			  bottom: 0,
+			  left: 0,
+			  backgroundColor: 'rgba(0,0,0,0.16)',
 		}
 
 		return (
 			<>
-			<div className='Overlay'>
+			<div className={css(overlay)+' Overlay'}>
 			</div>
 			<Portal portalNodeId={this.props.portalNodeId}>
 				<div onClick={(event) => {

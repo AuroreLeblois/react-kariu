@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import './../reset.css'
-import './nav.css'
 
 class NavItem extends React.Component {
 
@@ -15,15 +14,34 @@ class NavItem extends React.Component {
 		let colorText =  this.props.textColor ? this.props.textColor : 'inherit'
 		if (this.props.option.disabled) colorText = 'darkgrey'
 
-		let color = {
+		let link = {
 			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'inherit',
 			color: colorText,
+			textDecoration: 'none',
+			textTransform: 'capitalize',
+			'&:hover': {
+				textDecoration: 'underline'
+			},
+			':visited': {
+				filter: 'brightness(40%)'
+			},
+			':disabled': {
+				color: 'darkgrey',
+				cursor: 'not-allowed'
+			}
+
+		}
+		let linkWrapper = {
+			marginLeft: '1rem',
+			marginRight: '1rem',
+			marginTop: '1.2rem',
+			marginBottom: '1.2rem'
 		}
 		let disabled = this.props.option.disabled ? 'disabled' : ''
 
 		return (
-			<div className={'link'+ (this.props.className ? this.props.className : '')} onClick= {(e)=>this.handleClick(this.props.option, e)}>
-			<a className={css(color)+' '+disabled+ ' ' +this.props.className}
+			<div className={'link'+' '+css(linkWrapper)+' '+(this.props.className ? this.props.className : '')} onClick= {(e)=>this.handleClick(this.props.option, e)}>
+			<a className={css(link)+' '+disabled}
 				key={this.props.option.label+ ' '+this.props.option.href}
 				href={this.props.option.href}
 			>

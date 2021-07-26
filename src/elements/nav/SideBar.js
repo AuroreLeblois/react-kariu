@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import './../reset.css'
 import { Button, NavItem } from './../../index.js'
-import './nav.css'
 
 class SideBar extends React.Component {
 
@@ -17,23 +16,48 @@ class SideBar extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (prevProps.options !== this.props.options) {
-			this.setState({ options: this.props.options })
+		if (prevProps.options !== this.props.options ||
+			prevProps.show !== this.props.show) {
+			this.setState({
+				options: this.props.options,
+				show: this.props.show
+			})
 		}
 	}
 
 	render() {
 		if (!this.state.options.length) return null
 
-		let color = {
+		let sideBarStyle = {
+			position: 'absolute',
+			top:0,
+			left:0,
+			display: 'flex',
+			flexDirection: 'column',
+			alignItems: 'center',
+			/* justify-content: center; */
+			flexFlow: 'column nowrap',
+			cursor: 'default',
+			height: '100%',
+			'-webkit-box-shadow': '1px 2px 2px 1px #E6E6E6',
+			boxShadow: '1px 2px 2px 1px #E6E6E6',
 			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white',
-			color: this.props.textColor ? this.props.textColor : 'tomato'
+			color: this.props.textColor ? this.props.textColor : 'tomato',
+			"@media screen and (max-width: 640px)": { minWidth: '200px' },
+			'@media screen and (min-width: 640px) and (max-width: 850px)': { minWidth:' 25%' },
+			'@media screen and (min-width: 850px)': {
+			  	minWidth: '20%',
+				maxWidth: '250px'
+			},
+			'div:first-of-type': {
+				marginTop: '4rem'
+			}
 		}
 
 		return (
 			<>
-			{this.renderNavSide(color)}
-			{this.renderCollapseBtn(color)}
+			{this.renderNavSide(sideBarStyle)}
+			{this.renderCollapseBtn(sideBarStyle)}
 			</>
 		)
 	}
@@ -42,7 +66,7 @@ class SideBar extends React.Component {
 		if (!this.state.show) return null
 
 		return (
-			<nav key='sidenav-wrapper-kariu' className={'sidenav-kariu '+ css(color)}>
+			<nav key='sidenav-wrapper-kariu' className={'sidenav-kariu '+ css(color)+' '+this.props.className}>
 				{this.renderOptions(color)}
 			</nav>
 		)
@@ -52,13 +76,13 @@ class SideBar extends React.Component {
 		let options = []
 
 		for (let option of this.state.options) {
-			let topLink = (this.state.options[0] === option ? ' topLink': null)
+			let topLinkStyle = { marginTop : (this.state.options[0] === option ? '4rem' : null)}
 			let colorText = option.disabled ? 'darkgrey' : color.color
 			let link = <NavItem
 				option={option}
 				textColor={colorText}
 				backgroundColor={'inherit'}
-				className={(topLink ? topLink: null)}/>
+				className={css(topLinkStyle)}/>
 			options.push(link)
 		}
 		return [ options ]
@@ -68,8 +92,15 @@ class SideBar extends React.Component {
 		if (!this.props.btnCollapse) return null
 
 		let tooltip = this.state.show ? this.props.tooltipMessageHide : this.props.tooltipMessageShow
+
+		const styleBtn = {
+			position: 'absolute',
+			top:0,
+			left:0
+		}
+
 		return <Button
-			className='kariu-collapseBtn'
+			className={'kariu-collapseBtn '+css(styleBtn)}
 			onClick={() => {this.setState({show: !this.state.show})}}
 			shape='round'
 			icon={'hamburgerMenu'}
@@ -85,7 +116,8 @@ SideBar.propTypes = {
 	textColor:  PropTypes.string,
 	btnCollapse: PropTypes.bool,
 	tooltipMessageShow: PropTypes.string,
-	tooltipMessageHide: PropTypes.string
+	tooltipMessageHide: PropTypes.string,
+	show: PropTypes.bool
 }
 
 SideBar.defaultProps = {

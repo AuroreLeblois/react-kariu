@@ -1,9 +1,6 @@
 import React from "react"
 import PropTypes from 'prop-types'
-import {
-	SvgLoading
-} from "./../icon/components/index.js"
-import './../reset.css'
+import { SvgLoading } from "./../icon/components/index.js"
 
 export default class Loading extends React.Component {
 	constructor(props) {

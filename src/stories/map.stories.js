@@ -18,7 +18,7 @@ export default {
     		control: { type : 'text' }
     	},
 		markers : {
-    		description: 'REQUIRED for rendering on the page your markers, for update it only take one marker'
+    		description: 'REQUIRED for rendering on the page your markers, for update it only takes one marker'
     	},
 		tileLayer : {
     		description: 'You can define a tile model for your map'
@@ -27,7 +27,7 @@ export default {
     		description: 'Customize the attribution'
     	},
 		zoom : {
-    		description: 'Customize the zoom for the first render of the map'
+    		description: 'Customize the zoom for the first rendering of the map'
     	}
 	}
 }
@@ -41,7 +41,7 @@ Default.args = {
 	markers: [
 		{latitude: 50, longitude: 45, popupContent: "I am a point"},
 		{latitude: 70, longitude: 80, popupContent: 'I am an other point'},
-		{latitude: 51.508, longitude: -0.11, popupContent: "i'm a area", areaRadius: 500, areaColor: 'blue', areaFill: 'tomato'}
+		{latitude: 51.508, longitude: -0.11, popupContent: "i'm an area", areaRadius: 5000, areaColor: 'blue', areaFill: 'tomato'}
 	],
 	zoom: 2,
 	tileLayer: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",

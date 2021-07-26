@@ -3,16 +3,45 @@ import PropTypes from 'prop-types'
 import { Icon, Loading } from './../../index.js'
 import { css } from '@emotion/css'
 import './../reset.css'
-import './avatar.css'
 
 class Avatar extends React.Component {
 	// Renderers ----------------------------------------------------------------
 	render() {
 		let content = null
 
-		let colors = {
+		let avatar = {
 			color: this.props.textColor,
-			backgroundColor: (this.props.url && !this.props.loading ? null : this.props.backgroundColor)
+			backgroundColor: (this.props.url && !this.props.loading ? null : this.props.backgroundColor),
+			display: 'flex',
+			justifyContent: 'center',
+			alignItems: 'center',
+			cursor: 'default',
+			margin: 'auto',
+			fontWeight: 'bold',
+			borderRadius: (this.props.shape === 'square' ? '15%' : '50%'),
+			width: '2rem',
+			height: '2rem',
+			fontSize: '1.25rem'
+		}
+		switch (this.props.size) {
+			case 'small':
+				avatar.width = ' 1.5rem',
+				avatar.height = '1.5rem',
+				avatar.fontSize = '0.75rem'
+			break;
+			case 'big':
+				avatar.width = ' 4rem',
+				avatar.height = '4rem',
+				avatar.fontSize = '2rem'
+			break;
+			case 'giant':
+				avatar.width = '7rem',
+				avatar.height = '7rem',
+				avatar.fontSize = '4rem'
+			break;
+			default:
+				avatar
+			break;
 		}
 
 		if (this.props.loading) {
@@ -20,22 +49,18 @@ class Avatar extends React.Component {
 				icon='loadingDefault'
 				loading={this.props.loading}
 				color={this.props.textColor}
-				className={`avatar-kariu--size-${this.props.size}`}
+				className={`avatar-kariu--loader`}
 				/>)
 			} else if (this.props.customIcon && !this.props.url) {
 				content = ( <Icon
 					icon={this.props.customIcon}
 					color={this.props.textColor}
-					className={`avatar-kariu--size-${this.props.size}`}
+					className={`avatar-kariu--icon `+css(avatar)}
 					/> )
 				} else if (this.props.url && !this.props.loading) {
 			content = (
 				<img src={this.props.url}
-					className={
-						`avatar-kariu
-						avatar-kariu--size-${this.props.size}
-						avatar-kariu--shape-${this.props.shape} `+this.props.className
-					}
+					className={ `avatar-kariu--img `+css(avatar)+' '+this.props.className }
 					alt={this.props.name}/>
 			)
 		} else {
@@ -44,10 +69,7 @@ class Avatar extends React.Component {
 		}
 
 		return (
-			<div className={`avatar-kariu
-				avatar-kariu--size-${this.props.size}
-			 	avatar-kariu--shape-${this.props.shape} `
-				+css(colors)+ ' ' + this.props.className}>
+			<div className={`avatar-kariu `+css(avatar)+' '+this.props.className}>
 				{content}
 			</div>
 		)

@@ -1,4 +1,4 @@
-./src/stories
+stories
 .babelrc
 rollup.config.js
 webpack.config.js
@@ -9,4 +9,6 @@ node_modules
 .git
 .gitignore
 .npmrc
+build/index.js
 package-lock.json
+index.js

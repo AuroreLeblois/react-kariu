@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import './../reset.css'
-import './nav.css'
 
 class NavBar extends React.Component {
 	// Constructor ----------------------------------------------------------------
@@ -43,11 +42,21 @@ class NavBar extends React.Component {
 		}
 
 		const styleNavBar = {
+			display: 'flex',
+			alignItems: 'center',
+			position: 'absolute',
+			left: 0,
+			right:0,
+			...this.pos,
+			paddingLeft: '2.25rem',
+			borderStyle: 'solid',
+			borderBottomWidth: '.025rem',
+			zIndex: '4',
 			color: this.props.textColor ? this.props.textColor : 'tomato',
 			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white',
-			boxShadow: '0px 1px 2px 0px rgba(0,0,0,0.082)',
+			boxShadow: (this.state.position === 'top' ? '0px 1px 2px 0px rgba(0,0,0,0.082)': '-3px -1px 0px 0px rgba(0,0,0,0.082)'),
 			borderBottomColor: 'lightgrey',
-			...this.pos
+
 		}
 
 		if (window.width < 500) { this.pos = { bottom: 8 } }
@@ -63,7 +72,7 @@ class NavBar extends React.Component {
 		}
 
 		return (
-			<nav className={css(styleNavBar)+' topBar-kariu '+css(styleBreakpoint)} >
+			<nav className={css(styleNavBar)+' navBar-kariu '+css(styleBreakpoint)} >
 				{[this.props.children]}
 			</nav>
 		)

@@ -375,5 +375,7 @@ body{
 #root {
 	height: 100%
 }
-
+/* ============================================
+								LEAFLET
+============================================= */
 @import url(https://unpkg.com/leaflet@1.7.1/dist/leaflet.css);
