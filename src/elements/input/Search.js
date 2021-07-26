@@ -12,25 +12,21 @@ class Search extends React.Component {
 			data: (props.data ? props.data : []),
 			value: ''
 		}
-		this.datas = [...props.data]
 	}
 
 	componentDidUpdate(prevProps) {
 		if (this.props.data !== prevProps.data) {
 			this.setState({	data: this.props.data })
-			if (!this.state.value) {
-				this.datas = [...this.props.data]
-			}
 		}
 	}
 
 	onSearch = (value) => {
 		this.setState({	value: value }, () => {
 			if (this.state.value.length) {
-				const datasFiltred = this.filter(this.datas, this.props.headCols, this.state.value)
+				const datasFiltred = this.filter(this.state.data, this.props.headCols, this.state.value)
 				this.props.onChange && this.props.onChange(datasFiltred)
 			} else {
-				this.props.onChange && this.props.onChange(this.datas)
+				this.props.onChange && this.props.onChange(this.state.data)
 			}
 		})
 	}
@@ -65,6 +61,8 @@ class Search extends React.Component {
 				size={this.props.size}
 				showBtnClear={this.props.showBtnClear}
 				placeholder={this.props.placeholder}
+				backgroundColor={this.props.backgroundColor}
+				textColor={this.props.textColor}
 				onChange={this.onSearch.bind(this)}
 				className={css(styleAnimation)+' '+this.props.className}
 			/>
@@ -72,8 +70,15 @@ class Search extends React.Component {
 	}
 }
 
+Search.propTypes = {
+	label: PropTypes.string,
+	textColor: PropTypes.string,
+	backgroundColor: PropTypes.string,
+	headCols: PropTypes.object,
+	data: PropTypes.array
+}
+
 Search.defaultProps = {
-	animatedWidth: false
 }
 
 export default Search

@@ -1,6 +1,6 @@
 import React from 'react'
 import { css } from '@emotion/css'
-import { Title } from '../index.js'
+import { Title, Text } from '../index.js'
 import './../../.storybook/faviconKariu.png'
 
 export default {
@@ -23,5 +23,7 @@ export const Introduction = () => (
 			<Title text='Props className' priority={4} textColor='#922D50' align='left'/>
 			<p> Once again, the prop className is accepted in most of the components. This will allow you to customize even more</p>
 		</div>
+		<Text text={`If you are lazy.... I hope you like tomato...`}/>
+
 	</div>
 )

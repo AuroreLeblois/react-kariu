@@ -5,6 +5,7 @@ export default {
 	title: 'React-Kariu/Molecule/Search',
 	component: Search,
 	argTypes: {
+		headCols: { description: 'Provides fields to filter from' }
 		}
 	}
 
@@ -26,5 +27,10 @@ Default.args = {
 	description: 'Look in the logs for results',
 	name: 'search',
 	placeholder: 'Search...',
-	animatedWidth: true
+	headCols: {
+		pict: { type: 'avatar', name: 'name' },
+		name: 'Nom prénom',
+		username: 'Identifiant',
+		email: 'E-mail'
+	}
 }
