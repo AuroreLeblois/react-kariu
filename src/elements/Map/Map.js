@@ -36,6 +36,7 @@ class Map extends React.Component {
 			for(var i = 0; i < this.markers.length; i++){
 				this.map.removeLayer(this.markers[i])
 			}
+			this.markers = []
 			this.initMarkers()
 		}
 	}
