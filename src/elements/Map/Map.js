@@ -32,12 +32,10 @@ class Map extends React.Component {
 		if (this.props.zoom !== prevProps.zoom) {
 			this.map.setZoom(this.props.zoom)
 		}
-		if (this.props.customMarkers !== prevProps.customMarkers) {
-			for(var i = 0; i < this.markers.length; i++){
-				this.map.removeLayer(this.markers[i])
-			}
-			this.markers = []
-			this.initMarkers()
+		if (this.props.customMarkers !== prevProps.customMarkers ||
+			this.props.markerWidth !== prevProps.markerWidth ||
+			this.props.markerHeight !== prevProps.markerHeight) {
+			this.updateMap()
 		}
 	}
 
@@ -72,8 +70,11 @@ class Map extends React.Component {
 	// Listeners ----------------------------------------------------------------
 	updateMap() {
 		if (!this.state.markers.length) return null
-		// la fonction ne gère qu'un seul marker pour le moment
-		this.map.removeLayer(this.marker)
+
+		for (let i = 0; i < this.markers.length; i++){
+			this.map.removeLayer(this.markers[i])
+		}
+		this.markers = []
 		if (this.state.markers.length === 1) {
 			this.map.panTo(new L.LatLng(this.state.markers[0].latitude, this.state.markers[0].longitude))
 		}
