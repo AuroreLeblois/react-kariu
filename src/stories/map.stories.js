@@ -18,7 +18,7 @@ export default {
     		control: { type : 'text' }
     	},
 		markers : {
-    		description: 'REQUIRED for rendering on the page your markers, for update it only takes one marker'
+    		description: `REQUIRED for rendering on the page your markers`
     	},
 		tileLayer : {
     		description: 'You can define a tile model for your map'
@@ -28,7 +28,16 @@ export default {
     	},
 		zoom : {
     		description: 'Customize the zoom for the first rendering of the map'
-    	}
+    	},
+		iconUrl : {
+    		description: 'If you wish a custom Icon as a marker, upload your own and give the map the path. If absent, the custom icon will be the same as the demo'
+    	},
+		markerWidth : {
+    		description: 'Give your custom Icon a width'
+    	},
+		markerHeight : {
+    		description: 'Give your custom Icon a height'
+    	},
 	}
 }
 

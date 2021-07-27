@@ -5,6 +5,8 @@ import L from "leaflet"
 import 'leaflet/dist/leaflet.css'
 import { css } from '@emotion/css'
 import 'leaflet/dist/images/marker-shadow.png'
+import 'leaflet/dist/images/marker-icon-2x.png'
+import customIcon from './marker.png'
 
 class Map extends React.Component {
 	// Constructor ----------------------------------------------------------------
@@ -15,6 +17,7 @@ class Map extends React.Component {
 			markers: (props.markers ? props.markers : []),
 		}
 		this._isMounted = false
+		this.markers = []
 	}
 
 	componentDidMount() {
@@ -29,8 +32,11 @@ class Map extends React.Component {
 		if (this.props.zoom !== prevProps.zoom) {
 			this.map.setZoom(this.props.zoom)
 		}
-		if (this.props.areaColor !== prevProps.areaColor) {
-			this.setState({ areaColor: this.props.areaColor })
+		if (this.props.customMarkers !== prevProps.customMarkers) {
+			for(var i = 0; i < this.markers.length; i++){
+				this.map.removeLayer(this.markers[i])
+			}
+			this.initMarkers()
 		}
 	}
 
@@ -52,6 +58,16 @@ class Map extends React.Component {
 		)
 	}
 
+	renderIcons(width, height) {
+		let markerIcon = L.icon({
+			iconUrl: (this.props.iconUrl ? this.props.iconUrl : customIcon),
+			iconSize:     [width, height], // size of the icon
+			iconAnchor:   [width/2, height], // point of the icon which will correspond to marker's location
+			popupAnchor:  [0, -height] // point from which the popup should open relative to the iconAnchor
+		});
+		return markerIcon
+	}
+
 	// Listeners ----------------------------------------------------------------
 	updateMap() {
 		if (!this.state.markers.length) return null
@@ -64,6 +80,7 @@ class Map extends React.Component {
 	}
 
 	initMarkers() {
+
 		for (let index = 0; index < this.state.markers.length; index++) {
 			if (this.state.markers[index].areaRadius) {
 				this.marker = L.circle([this.state.markers[index].latitude, this.state.markers[index].longitude], {
@@ -72,12 +89,16 @@ class Map extends React.Component {
 					fillOpacity: 0.5,
 					radius: this.state.markers[index].areaRadius}).addTo(this.map)
 			}
-			else {
+			else if (this.props.customMarkers) {
+				this.marker = L.marker([this.state.markers[index].latitude, this.state.markers[index].longitude],
+					{icon: this.renderIcons(this.props.markerWidth, this.props.markerHeight)}).addTo(this.map)
+			} else {
 				this.marker = L.marker([this.state.markers[index].latitude, this.state.markers[index].longitude]).addTo(this.map)
 			}
 			if (this.state.markers[index].popupContent) {
 				this.marker.bindPopup(this.state.markers[index].popupContent)
 			}
+			this.markers.push(this.marker)
 		}
 	}
 
@@ -118,14 +139,21 @@ Map.propTypes = {
 	markers: PropTypes.array.isRequired,
 	height: PropTypes.string.isRequired,
 	width: PropTypes.string.isRequired,
-	zoom: PropTypes.number
+	zoom: PropTypes.number,
+	iconUrl: PropTypes.string,
+	markerWidth: PropTypes.number,
+	markerHeight: PropTypes.number,
+	customMarkers: PropTypes.bool
 }
 
 Map.defaultProps = {
-	height: '30rem',
-	width: '30rem',
+	customMarkers: true,
+	height: '100%',
+	width: '100%',
 	zoom: 3,
-	tileLayer: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+	markerWidth: 32,
+	markerHeight: 40,
+	tileLayer: "https://{s}.tile.osm.org/{z}/{x}/{y}.png",
 	attribution: '&copy; <a href="https://github.com/AuroreLeblois">AuroreLeblois</a> AuroreLeblois'
 }
 
