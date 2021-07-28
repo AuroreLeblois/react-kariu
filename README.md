@@ -18,6 +18,8 @@ npm i react-kariu
 import { ComponentName, OtherComponent } from 'react-kariu'
 ```
 
+
+
 ### Components available for now
 - Avatar
 - Button
@@ -38,6 +40,17 @@ import { ComponentName, OtherComponent } from 'react-kariu'
   - ModalHeader
   - ModalFooter
 - Map (with leaflet)
+
+## Map with LEAFLET:
+This component won't replace leaflet!
+You will still need to import leaflet css!
+If you wish to use either the default markers or the 'default' custom markers:
+```jsx
+import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/images/marker-shadow.png'
+import 'leaflet/dist/images/marker-icon-2x.png'
+import  icon from 'react-kariu/src/elements/Map/marker.png'
+```
 
 ### Components to add (for future updates)
 - Select

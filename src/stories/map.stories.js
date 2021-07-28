@@ -1,5 +1,5 @@
 import React from 'react'
-import { Map } from './../index.js'
+import { Map, Text, Title } from './../index.js'
 
 export default {
 	title: 'React-Kariu/Molecule/Map',
@@ -30,7 +30,10 @@ export default {
     		description: 'Customize the zoom for the first rendering of the map'
     	},
 		iconUrl : {
-    		description: 'If you wish a custom Icon as a marker, upload your own and give the map the path. If absent, the custom icon will be the same as the demo'
+    		description: `If you wish a custom Icon as a marker, upload your own and give the map the path.
+				If absent, the custom icon will be the same as the demo
+				Method of import: import {icon} from 'yourPath'
+				props: iconUrl={icon}`
     	},
 		markerWidth : {
     		description: 'Give your custom Icon a width'
@@ -56,3 +59,18 @@ Default.args = {
 	tileLayer: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
 	attribution: '&copy; <a href="https://github.com/AuroreLeblois">AuroreLeblois</a> AuroreLeblois'
 }
+
+export const Warning = () => (
+	<div>
+		<Title text='Warning' />
+		<Text variant='danger' text={`This component won't replace leaflet!`}/>
+		<Text variant='danger' text={`You will still need to install leaflet and import leaflet css!`}/>
+		<Text varaint='danger' text={'To prevent bugs please follow the next instructions'}/>
+		<Text variant='danger' text={`If you wish to use either the default markers or the 'default' custom markers:`}/>
+
+		<Text variant='danger' text={`import 'leaflet/dist/leaflet.css';`}/>
+		<Text variant='danger' text={`import 'leaflet/dist/images/marker-shadow.png'`}/>
+		<Text variant='danger' text={`import 'leaflet/dist/images/marker-icon-2x.png'`}/>
+		<Text variant='danger' text={`import  icon from 'react-kariu/src/elements/Map/marker.png'`}/>
+	</div>
+)

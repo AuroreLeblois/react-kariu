@@ -9,8 +9,6 @@ export default {
 
 export const Introduction = () => (
 	<div>
-		<div>
-		</div>
 			<Title text='React-Kariu: A simple library with customisable elements' priority={1} textColor='#501537'/>
 
 			<Title text='Customizable for devs' priority={2} textColor='#922D50' align='left'/>
