@@ -3,7 +3,7 @@ import React from 'react';
 import { Input } from './../index.js'
 
 export default {
-  title: 'React-Kariu/Atoms/Input/Input',
+  title: 'React-Kariu/Molecule/Input/Input',
   component: Input,
   argTypes: {
 	  backgroundColor: { control: 'color' },
@@ -26,7 +26,6 @@ export default {
 }
 
 const Template = (args) => <Input {...args} />;
-
 
 export const Default = (args) => <Input {...args}/>
 Default.args = {
