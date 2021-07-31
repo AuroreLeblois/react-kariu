@@ -1,13 +1,15 @@
 import * as React from "react";
 
-function SvgLoading(props) {
+function SvgSvgLoading(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
       viewBox="0 0 50 50"
-	  loading={props.loading}
+      direction={props.direction}
+      color={props.color}
+      animation={props.animation}
       {...props}
     >
       <path
@@ -20,7 +22,7 @@ function SvgLoading(props) {
           type="rotate"
           from="0 25 25"
           to="360 25 25"
-          dur="1s"
+          dur="0.6s"
           repeatCount="indefinite"
         />
       </path>
@@ -28,4 +30,4 @@ function SvgLoading(props) {
   );
 }
 
-export default SvgLoading;
+export default SvgSvgLoading;

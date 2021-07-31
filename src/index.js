@@ -3,6 +3,7 @@ import './elements/reset.css'
 // Basic Elements
 export { default as Avatar } from './elements/avatar/Avatar.js'
 export { default as Button } from './elements/button/Button.js'
+export { default as Card } from './elements/card/Card.js'
 export { default as Title } from './elements/title/Title.js'
 export { default as Text } from './elements/text/Text.js'
 export { default as Tooltip } from './elements/tooltip/Tooltip.js'

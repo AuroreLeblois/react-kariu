@@ -2,7 +2,7 @@ import React from 'react'
 import { Map, Text, Title } from './../index.js'
 
 export default {
-	title: 'React-Kariu/Molecule/Map',
+	title: 'React-Kariu/Organism/Map',
 	component: Map,
 	argTypes: {
 		height : {

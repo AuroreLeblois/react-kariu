@@ -71,7 +71,7 @@ class Input extends React.Component {
 				height: '15px',
 				cursor: 'pointer',
 				/* box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; */
-				background: '#3071a9',
+				background:  this.props.backgroundColor ? this.props.backgroundColor : '#3071a9',
 				borderRadius: '1.3px',
 				border: '0.2px solid #010101'
 			},
