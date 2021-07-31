@@ -22,6 +22,11 @@ export { default as NavItem } from './elements/nav/NavItem.js'
 export { default as NavBar } from  './elements/nav/NavBar.js'
 export { default as SideBar } from './elements/nav/SideBar.js'
 
+//Dropdown
+export { default as List } from './elements/dropdown/List.js'
+export { default as ListItem } from  './elements/dropdown/ListItem.js'
+// export { default as Dropdown } from './elements/nav/SideBar.js'
+
 //Input Elements
 export { default as InputItem } from './elements/input/InputItem.js'
 export { default as Input } from './elements/input/Input.js'
