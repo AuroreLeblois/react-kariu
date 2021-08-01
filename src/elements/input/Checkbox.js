@@ -27,21 +27,24 @@ class Checkbox extends React.Component {
 		if (!this.props.id) return null
 
 		const wrapper = {
-				display: 'flex',
-				lineHeight: 'normal',
+			display: 'flex',
+			lineHeight: 'normal',
+			cursor: 'pointer'
 		}
 
 
 		let textColor = {
 			color: this.props.textColor ? this.props.textColor : '#43464B',
-			textAlign: 'end'
+			textAlign: 'end',
+			cursor: 'pointer'
 		}
 
 		let styleCheckbox = {
-			'-webkit-appearance': 'none',
-			'-moz-appearance': 'none',
-			'-ms-appearance': 'none',
+			WebkitAppearance: 'none',
+			MozAppearance: 'none',
+			msAppearance: 'none',
 			verticalAlign: 'text-bottom',
+			cursor: 'pointer',
 			borderRadius: '4px',
 			height: '1rem',
 			width: '1rem',
@@ -55,17 +58,19 @@ class Checkbox extends React.Component {
 		}
 
 		return (
-			<div className={'checkbox-kariu--wrapper '+css(wrapper)+' '+this.props.className}>
+			<div onClick={this.handleClick.bind(this)} className={'checkbox-kariu--wrapper '+css(wrapper)+' '+this.props.className}>
+				<label className={css(textColor)} htmlFor={this.props.id}>
 				<input
-					type='checkbox'
+					type="checkbox"
 					required={this.props.required}
 					className={'checkbox-kariu '+css(styleCheckbox)}
-					id={this.props.id}
+					value={this.props.id}
 					name={this.props.name}
-					onChange={ ()=> {this.handleClick() && this.props.onChange}}
 					checked= {this.state.checked}
+					onChange={this.handleClick.bind(this) && this.props.onChange}
 					/>
-				<label className={css(textColor)} htmlFor={this.props.id}>{this.props.id}</label>
+				{this.props.id}
+				</label>
 			</div>
 		)
 	}

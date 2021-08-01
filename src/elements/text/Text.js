@@ -7,7 +7,7 @@ class Text extends React.Component {
 	// Renderers ----------------------------------------------------------------
 	render() {
 		let style = {
-			display: 'block',
+			display: 'flex',
 			color: (this.props.textColor ? this.props.textColor : 'tomato'),
 			fontFamily: (this.props.fontFamily ? this.props.fontFamily : 'sans-serif'),
 			wordBreak: 'break-word',

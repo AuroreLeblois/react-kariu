@@ -110,7 +110,7 @@ class Select extends React.Component {
 						backgroundColor={this.props.backgroundColor ? this.props.backgroundColor : 'inherit'}
 						textColor={this.props.textColor ? this.props.textColor : 'inherit'}
 						value={''}
-						text={this.props.noDataText ? this.props.noDataText : 'No data'}/>
+						text={this.props.textNoData ? this.props.textNoData : 'No data'}/>
 				</select>
 			)
 		}
@@ -168,7 +168,7 @@ Select.propTypes = {
 	idSelect: PropTypes.string.isRequired,
 	textColor: PropTypes.string,
 	options: PropTypes.array.isRequired,
-	noDataText: PropTypes.string,
+	textNoData: PropTypes.string,
 	textLoading: PropTypes.string,
 	textLoadingLabel: PropTypes.string,
 	multiple: PropTypes.bool
