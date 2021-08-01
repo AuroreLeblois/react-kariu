@@ -1,8 +1,9 @@
 import React from 'react'
+import {ReactDOM} from 'react-dom';
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import './../reset.css'
-import { List, Button, Input } from './../../index.js'
+import { List, Button, Search } from './../../index.js'
 
 
 class Dropdown extends React.Component {
@@ -33,17 +34,18 @@ class Dropdown extends React.Component {
 					optionsSelected: this.props.optionsSelected,
 					show: this.props.show
 				})
-			this.btnDim = this.btnRef.current.getBoundingClientRect()
 		}
 	}
 
 	componentDidMount() {
 		window.addEventListener('resize', this.handleResize, true)
+		window.addEventListener('click', this.handleClickOutside.bind(this));
 		this.handleResize()
 	}
 
 	componentWillUnmount() {
 		window.removeEventListener('resize', this.handleResize, true)
+		window.removeEventListener('click', this.handleClickOutside.bind(this));
 	}
 
 	render () {
@@ -65,8 +67,15 @@ class Dropdown extends React.Component {
 		let dropdown = null
 
 		switch (this.state.variant) {
-			case 'input':
-				dropdown = <Input/>
+			case 'search':
+				dropdown = <Search
+					data={this.state.options}
+					label="Search in log"
+					name="search"
+					onChange={() => {}}
+					headCols={this.props.headCols}
+					placeholder="Search..."
+					/>
 			break;
 			default:
 				dropdown = <Button
@@ -113,6 +122,12 @@ class Dropdown extends React.Component {
 			this.props.onChange && this.props.onChange(this.state.optionsSelected)
 		})
 
+	}
+
+	handleClickOutside(event) {
+		if (this.btnRef && this.btnRef.current && !this.btnRef.current.contains(event.target)) {
+			this.setState({ show: false })
+		}
 	}
 
 	handleResize = () => {
