@@ -121,7 +121,6 @@ class Dropdown extends React.Component {
 		if (data !== event.target) this.setState({optionsSelected: this.optionsSelected}, ()=>{
 			this.props.onChange && this.props.onChange(this.state.optionsSelected)
 		})
-
 	}
 
 	handleClickOutside(event) {

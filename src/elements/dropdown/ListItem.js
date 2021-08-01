@@ -83,9 +83,9 @@ class ListItem extends React.Component {
 			);
 			case 'navigation':
 			return (
-				<div onClick={()=>window.location.href=this.props.navigation} className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`}>
+				<div onClick={()=>window.location.href=this.state.option.navigation} className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`}>
 					<li className={css(liStyle)}>
-						<a href={this.props.navigation}>{this.text}</a>
+						<a href={this.state.option.navigation}>{this.text}</a>
 					</li>
 				</div>
 			);
