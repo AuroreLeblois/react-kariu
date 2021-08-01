@@ -9,7 +9,8 @@ class ListItem extends React.Component {
 		super(props)
 		this.state = {
 			isSelected: (props.selected ? props.selected : false),
-			variant: (props.variant ? props.variant : 'default')
+			variant: (props.variant ? props.variant : 'default'),
+			option: props.option ? props.option : {}
 		}
 		this.text = null
 		this.description = null
@@ -18,10 +19,10 @@ class ListItem extends React.Component {
 
 
 	render () {
-		if (this.props.text) this.text = this.capitalize(this.props.text)
-		if (this.props.description) this.description = this.capitalize(this.props.description)
+		if (this.state.option.text) this.text = this.capitalize(this.state.option.text)
+		if (this.state.option.description) this.description = this.capitalize(this.state.option.description)
 		if (this.props.textNoData) this.textNoData = this.capitalize(this.props.textNoData)
-		let color = this.handleBackgroundColor()
+		let color =  this.props.backgroundColor ? this.props.backgroundColor : 'white'
 
 		let optionStyle = {
 			display: 'flex',
@@ -31,17 +32,26 @@ class ListItem extends React.Component {
 			color: this.props.textColor ? this.props.textColor : 'tomato',
 			minHeight:'1.8rem',
 			fontFamily: 'inherit',
+			borderRadius: '2px',
 			'input':{
-				cursor: 'pointer'
+				cursor: 'pointer',
 			},
 			'label': {
-				cursor: 'pointer'
+				cursor: 'pointer',
+				whiteSpace: 'nowrap'
 			},
 			'p':{
 				cursor: 'default',
 				marginBottom: 0,
 				marginTop: 0,
-				maxWidth: '10rem'
+				maxWidth: '10rem',
+				whiteSpace: 'nowrap'
+			},
+			'a': {
+				cursor: 'pointer',
+				whiteSpace: 'nowrap',
+				textDecoration: 'none',
+				color: this.props.textColor ? this.props.textColor : 'tomato'
 			}
 		}
 		let liStyle = {
@@ -53,28 +63,38 @@ class ListItem extends React.Component {
 			textAlign: 'center',
 			verticalAlign: 'middle'
 		}
+
 		switch (this.state.variant) {
 			case 'description':
 				return (
 					<div className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`}>
 						<li className={css(liStyle)}>
-							<Text variant='description' text={this.description}/>
+							<Text variant={this.state.variant} text={this.description}/>
 						</li>
 					</div>
 				);
-				case 'noData':
-				return (
-					<div className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`}>
-						<li className={css(liStyle)}>
-							<Text variant='disabled' cursor='default' textColor='inherit' text={this.textNoData}/>
-						</li>
-					</div>
-				);
+			case 'noData':
+			return (
+				<div className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`}>
+					<li className={css(liStyle)}>
+						<Text variant='disabled' cursor='default' textColor='inherit' text={this.textNoData}/>
+					</li>
+				</div>
+			);
+			case 'navigation':
+			return (
+				<div onClick={()=>window.location.href=this.props.navigation} className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`}>
+					<li className={css(liStyle)}>
+						<a href={this.props.navigation}>{this.text}</a>
+					</li>
+				</div>
+			);
 			default :
 				return (
 					<div onClick={()=>this.handleClick(event)} className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`} onClick={this.handleClick}>
 						<li className={css(liStyle)}>
 							<Checkbox
+								textColor={'inherit'}
 								backgroundColorChecked={this.props.backgroundColorChecked ? this.props.backgroundColorChecked : 'tomato'}
 								onChange={()=>this.handleClick(event) && this.props.onChange}
 								checked={this.state.isSelected}
@@ -91,18 +111,9 @@ class ListItem extends React.Component {
 	}
 
 	handleClick = (event) => {
-		if (event) this.setState({ isSelected: !this.state.isSelected },
-			()=>{
-				this.props.onSelect && this.props.onSelect(this.text)
-			}
+		if (event && this.text) this.setState({ isSelected: !this.state.isSelected },
+			()=> {this.props.onSelect(this.state.option)}
 		)
-	}
-
-	handleBackgroundColor() {
-		let color = this.props.backgroundColorSelected ? this.props.backgroundColorSelected : 'lightgrey'
-		let backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : 'white'
-		if (!this.state.isSelected) return backgroundColor
-		else return color
 	}
 }
 export default ListItem

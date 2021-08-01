@@ -25,7 +25,7 @@ export { default as SideBar } from './elements/nav/SideBar.js'
 //Dropdown
 export { default as List } from './elements/dropdown/List.js'
 export { default as ListItem } from  './elements/dropdown/ListItem.js'
-// export { default as Dropdown } from './elements/nav/SideBar.js'
+export { default as Dropdown } from './elements/dropdown/Dropdown.js'
 
 //Input Elements
 export { default as InputItem } from './elements/input/InputItem.js'

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import './../reset.css'
-import { ListItem, Text } from './../../index.js'
+import { ListItem } from './../../index.js'
 
 
 class List extends React.Component {
@@ -10,71 +10,82 @@ class List extends React.Component {
 		super(props)
 
 		this.state = {
-			options: (props.options ? props.options : []),
 			optionsSelected: props.optionsSelected ? props.optionsSelected : [],
 			loading: (props.loading ? props.loading : false),
 			show: (props.show ? props.show : false)
 		}
 		this.handleChange = this.handleChange.bind(this);
+		this.optionsSelected = []
+	}
+
+	componentDidMount() {
 		this.optionsSelected = [...this.state.optionsSelected]
 	}
 
 	componentDidUpdate(prevProps) {
-		if (prevProps.options !== this.props.options ||
+		if (
 			prevProps.optionsSelected !== this.props.optionsSelected ||
 			prevProps.show !== this.props.show) {
 				this.setState({
-					options: this.props.options,
 					optionsSelected: this.props.optionsSelected,
 					show: this.props.show
-				}, ()=>this.optionsSelected = [...this.state.optionsSelected])
-
+				})
+				this.optionsSelected = []
 		}
 	}
 
 	render () {
-		if (!this.state.show || this.state.loading) return null
+		if (!this.state && this.state.loading) return null
+
 		let options = []
 		let index = 0
+
 		let listStyle = {
+			display: 'flex',
+			flexDirection: 'column',
+			visibility: this.state.show ? 'visible' : 'hidden',
+			flexFlow: 'column nowrap',
 			borderRadius: '5px',
 			webkitBoxShadow: '1px 1px 2px 1px #C7C7C7',
 			boxShadow: '1px 1px 2px 1px #C7C7C7',
 			width: 'fit-content',
+			height: 'fit-content',
+			overflowY: 'visible',
+			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white',
+			zIndex: 1000,
+			minHeight: '1.8rem',
 			marginTop: '0.2rem',
 			marginBottom: '0.2rem'
 		}
-		let color = this.props.backgroundColorSelected ? this.props.backgroundColorSelected : 'lightgrey'
 
-		if (!this.state.options.length) {
+
+		if (!this.props.options || !this.props.options.length) {
 			options.push(
 				<ListItem
 					key={index}
 					variant='noData'
 					backgroundColor={this.props.backgroundColor ? this.props.backgroundColor : 'inherit'}
-					backgroundColorSelected={this.props.backgroundColorSelected ? this.props.backgroundColorSelected : 'lightgrey'}
 					textColor={this.props.textColor ? this.props.textColor : 'inherit'}
 					textNoData={this.props.textNoData ? this.props.textNoData : 'No data'}
 				/>
 			)
-		}
-		if (this.state.options.length) {
-			for (let option of this.state.options) {
-				let style= { backgroundColor: this.state.optionsSelected === option.text ? color : 'inherit' }
+		} else if (this.props.options && this.props.options.length) {
+			for (let option of this.props.options) {
+				let style = { backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white'}
+				let variant = (option.description ? 'description' : option.navigation ? 'navigation' : 'default')
 
 				options.push(
 					<ListItem
 						onClick={option.onClick}
 						key={index}
+						isSelected={this.optionsSelected.includes(this.text)}
 						onSelect={(data)=>this.handleChange(data)}
 						backgroundColorChecked={this.props.backgroundColorChecked ? this.props.backgroundColorChecked : 'tomato'}
-						variant={option.description ? 'description' : 'default'}
+						variant={variant}
+						option={option}
 						backgroundColor={this.props.backgroundColor ? this.props.backgroundColor : 'inherit'}
-						backgroundColorSelected={this.props.backgroundColorSelected ? this.props.backgroundColorSelected : 'lightgrey'}
 						textColor={this.props.textColor ? this.props.textColor : 'inherit'}
-						className={css(style)}
-						text={option.text}
-						description={option.description}
+						className={css(style)+' '+this.props.className}
 					/>
 				)
 				index++
@@ -83,7 +94,6 @@ class List extends React.Component {
 
 		return (
 			<ul className={`droplist-kariu--wrapper ${css(listStyle)} ${this.props.className}`}
-				id={this.props.idSelect}
 				onChange={this.props.onChange}>
 				{options}
 			</ul>
@@ -93,8 +103,10 @@ class List extends React.Component {
 	handleChange(data) {
 		if (this.optionsSelected.includes(data)) this.optionsSelected = this.optionsSelected.filter(e => e !== data) // will return [remains]
 		else this.optionsSelected.push(data)
-		if (data !== event.target) this.setState({optionsSelected: this.optionsSelected})
-		this.props.onChange && this.props.onChange(this.state.optionsSelected)
+		if (data !== event.target) this.setState({optionsSelected: this.optionsSelected}, () => {
+			this.props.onChange && this.props.onChange(this.state.optionsSelected)
+		})
+
 	}
 }
 

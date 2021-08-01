@@ -1,26 +1,37 @@
 import React from 'react';
 
-import { List } from './../index.js'
+import { Dropdown } from './../index.js'
 
 export default {
-  title: 'React-Kariu/Molecule/List',
-  component: List,
+  title: 'React-Kariu/Organism/Dropdown',
+  component: Dropdown,
   argTypes: {
 	backgroundColor: { control: 'color' },
-	backgroundColorSelected: { control: 'color' },
-	backgroundColorChecked: { control: 'color' },
+	backgroundColorBtn: { control: 'color' , description: 'Be aware that the color you determine for the button will be applied to the checked Checkbox'},
 	textColor: { control: 'color' },
+	textColorBtn: { control: 'color', description: 'So the button and the text can be read the 2 colors are applied with different props'},
 	}
 }
-const Template = (args) => <List {...args} />
-export const Default = (args) => <List {...args}/>
+const Template = (args) => <Dropdown {...args} />
+export const Default = (args) => <Dropdown {...args}/>
 Default.args = {
 	show: true,
+	label: 'Dropdown',
 	options: [{description: 'Please choose wisely'}, {value: '1', text: 'Option 1'}, {value: '2', text: 'Option 2'}]
 }
-export const NoData = (args) => <List {...args}/>
+export const NoData = (args) => <Dropdown {...args}/>
 NoData.args = {
 	show: true,
-	options: [],
+	options: null,
+	label: 'Dropdown with no data',
 	textNoData: 'No data available'
+}
+
+export const Navigation = (args) => <Dropdown {...args}/>
+Navigation.args = {
+	show: true,
+	options: null,
+	label: '',
+	variant: 'navigation',
+	options: [{navigation: 'https://www.linkedin.com/in/aurore-leblois', text: 'Check my linkedin'}]
 }

@@ -150,13 +150,15 @@ Button.propTypes = {
 	textColor: PropTypes.string,
 	tooltip: PropTypes.string,
 	icon: PropTypes.oneOf([
+		'arrow',
 		'cross',
 		'eyeOpen',
 		'eyeSlashed',
 		'soundOff',
 		'soundOn',
-		'hamburgerMenu',
-		'search'
+		'search',
+		'marker',
+		'hamburgerMenu'
 	]),
 
 }
