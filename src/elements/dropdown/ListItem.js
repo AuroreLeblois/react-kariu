@@ -26,7 +26,7 @@ class ListItem extends React.Component {
 		let optionStyle = {
 			display: 'flex',
 			cursor: 'pointer',
-			width: 'fit-content',
+			width: '100%',
 			backgroundColor: color,
 			color: this.props.textColor ? this.props.textColor : 'tomato',
 			minHeight:'1.8rem',
@@ -74,7 +74,11 @@ class ListItem extends React.Component {
 				return (
 					<div onClick={()=>this.handleClick(event)} className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`} onClick={this.handleClick}>
 						<li className={css(liStyle)}>
-							<Checkbox onChange={()=>this.handleClick(event) && this.props.onChange} checked={this.state.isSelected} id={this.text}/>
+							<Checkbox
+								backgroundColorChecked={this.props.backgroundColorChecked ? this.props.backgroundColorChecked : 'tomato'}
+								onChange={()=>this.handleClick(event) && this.props.onChange}
+								checked={this.state.isSelected}
+								id={this.text}/>
 						</li>
 					</div>
 				);
@@ -87,7 +91,11 @@ class ListItem extends React.Component {
 	}
 
 	handleClick = (event) => {
-		if (event) this.setState({ isSelected: !this.state.isSelected })
+		if (event) this.setState({ isSelected: !this.state.isSelected },
+			()=>{
+				this.props.onSelect && this.props.onSelect(this.text)
+			}
+		)
 	}
 
 	handleBackgroundColor() {

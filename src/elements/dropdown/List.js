@@ -11,22 +11,24 @@ class List extends React.Component {
 
 		this.state = {
 			options: (props.options ? props.options : []),
-			value: undefined,
+			optionsSelected: props.optionsSelected ? props.optionsSelected : [],
 			loading: (props.loading ? props.loading : false),
 			show: (props.show ? props.show : false)
 		}
 		this.handleChange = this.handleChange.bind(this);
+		this.optionsSelected = [...this.state.optionsSelected]
 	}
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.options !== this.props.options ||
-			prevProps.value !== this.props.value ||
+			prevProps.optionsSelected !== this.props.optionsSelected ||
 			prevProps.show !== this.props.show) {
 				this.setState({
 					options: this.props.options,
-					value: this.props.value,
+					optionsSelected: this.props.optionsSelected,
 					show: this.props.show
-				})
+				}, ()=>this.optionsSelected = [...this.state.optionsSelected])
+
 		}
 	}
 
@@ -58,12 +60,14 @@ class List extends React.Component {
 		}
 		if (this.state.options.length) {
 			for (let option of this.state.options) {
-				let style= { backgroundColor: this.state.value === option.value ? color : 'inherit' }
+				let style= { backgroundColor: this.state.optionsSelected === option.text ? color : 'inherit' }
 
 				options.push(
 					<ListItem
 						onClick={option.onClick}
 						key={index}
+						onSelect={(data)=>this.handleChange(data)}
+						backgroundColorChecked={this.props.backgroundColorChecked ? this.props.backgroundColorChecked : 'tomato'}
 						variant={option.description ? 'description' : 'default'}
 						backgroundColor={this.props.backgroundColor ? this.props.backgroundColor : 'inherit'}
 						backgroundColorSelected={this.props.backgroundColorSelected ? this.props.backgroundColorSelected : 'lightgrey'}
@@ -78,28 +82,29 @@ class List extends React.Component {
 		}
 
 		return (
-			<ul className={`dropdown-kariu--wrapper ${css(listStyle)} ${this.props.className}`}
-				onClick={this.handleChange}
-				id={this.props.idSelect}>
+			<ul className={`droplist-kariu--wrapper ${css(listStyle)} ${this.props.className}`}
+				id={this.props.idSelect}
+				onChange={this.props.onChange}>
 				{options}
 			</ul>
 		)
 	}
 
-	handleChange(event) {
-		this.setState({value: event.target.value})
-		this.props.onChange && this.props.onChange(this.state.value)
+	handleChange(data) {
+		if (this.optionsSelected.includes(data)) this.optionsSelected = this.optionsSelected.filter(e => e !== data) // will return [remains]
+		else this.optionsSelected.push(data)
+		if (data !== event.target) this.setState({optionsSelected: this.optionsSelected})
+		this.props.onChange && this.props.onChange(this.state.optionsSelected)
 	}
 }
 
 List.propTypes = {
 	show: PropTypes.bool,
+	optionsSelected: PropTypes.array,
 	backgroundColor: PropTypes.string,
 	backgroundColorSelected: PropTypes.string,
-	name: PropTypes.string.isRequired,
-	text: PropTypes.string.isRequired,
+	backgroundColorChecked: PropTypes.string,
 	textNoData: PropTypes.string,
-	idSelect: PropTypes.string.isRequired,
 	textColor: PropTypes.string,
 }
 export default List
