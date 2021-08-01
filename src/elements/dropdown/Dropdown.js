@@ -70,6 +70,7 @@ class Dropdown extends React.Component {
 		switch (this.state.variant) {
 			case 'search':
 				dropdown = <Search
+					autocomplete="off"
 					data={this.state.options}
 					label="Search in log"
 					name="search"
@@ -91,7 +92,7 @@ class Dropdown extends React.Component {
 		}
 		return (
 			<div onClick={()=>{
-				if (this.state.variant === 'default' || ! this.state.show) this.setState({show: !this.state.show})}} ref={this.btnRef} className={css(dropStyle)}>
+				if (this.state.variant === 'default' && !this.state.show) this.setState({show: !this.state.show})}} ref={this.btnRef} className={css(dropStyle)}>
 				{dropdown}
 				{this.renderList()}
 			</div>
@@ -131,7 +132,6 @@ class Dropdown extends React.Component {
 		}
 	}
 	handleSearch = (data) => {
-		this.number = data.length
 		this.setState({ options : data })
 	}
 

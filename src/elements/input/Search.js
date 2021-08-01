@@ -62,6 +62,7 @@ class Search extends React.Component {
 				showBtnClear={this.props.showBtnClear}
 				placeholder={this.props.placeholder}
 				backgroundColor={this.props.backgroundColor}
+				autocomplete={this.props.autocomplete}
 				textColor={this.props.textColor}
 				onChange={this.onSearch.bind(this)}
 				className={css(styleAnimation)+' '+this.props.className}
@@ -72,6 +73,7 @@ class Search extends React.Component {
 
 Search.propTypes = {
 	label: PropTypes.string,
+	autocomplete: PropTypes.oneOf(['on', 'off']),
 	textColor: PropTypes.string,
 	backgroundColor: PropTypes.string,
 	headCols: PropTypes.object,
@@ -79,6 +81,7 @@ Search.propTypes = {
 }
 
 Search.defaultProps = {
+	autocomplete: 'off'
 }
 
 export default Search

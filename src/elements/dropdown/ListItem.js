@@ -17,6 +17,12 @@ class ListItem extends React.Component {
 		this.textNoData = null
 	}
 
+	componentDidUpdate(prevProps) {
+		if (prevProps.option !== this.props.option) {
+			this.setState({ option : this.props.option})
+		}
+	}
+
 
 	render () {
 		if (this.state.option.text) this.text = this.capitalize(this.state.option.text)

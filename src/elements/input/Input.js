@@ -86,6 +86,7 @@ class Input extends React.Component {
 				{this.renderLabel(colorText)}
 				<input className={'input-kariu '+css(styleInput)}
 					type={this.state.type}
+					autocomplete={this.props.autocomplete}
 					name={this.props.name}
 					value={this.state.value}
 					onChange={this.handleChange.bind(this)}
@@ -185,6 +186,7 @@ Input.propTypes = {
 	backgroundColor: PropTypes.string,
 	borderColor: PropTypes.string,
 	value: PropTypes.string,
+	autocomplete: PropTypes.oneOf(['on', 'off']),
 	type: PropTypes.oneOf([
 		'text',
 		'tel',
@@ -211,6 +213,7 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
+	autocomplete: 'off',
 	type: 'text',
 	description: null,
 	size: 'medium',
