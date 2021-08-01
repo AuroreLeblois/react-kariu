@@ -22,6 +22,7 @@ class Dropdown extends React.Component {
 		this.btnRef= React.createRef()
 		this.listRef = React.createRef()
 		this.btnDim =  null
+		this.number = 0
 	}
 
 	componentDidUpdate(prevProps) {
@@ -72,7 +73,7 @@ class Dropdown extends React.Component {
 					data={this.state.options}
 					label="Search in log"
 					name="search"
-					onChange={() => {}}
+					onChange={(data) => {this.handleSearch(data)}}
 					headCols={this.props.headCols}
 					placeholder="Search..."
 					/>
@@ -89,7 +90,8 @@ class Dropdown extends React.Component {
 
 		}
 		return (
-			<div ref={this.btnRef} className={css(dropStyle)}>
+			<div onClick={()=>{
+				if (this.state.variant === 'default' || ! this.state.show) this.setState({show: !this.state.show})}} ref={this.btnRef} className={css(dropStyle)}>
 				{dropdown}
 				{this.renderList()}
 			</div>
@@ -103,7 +105,7 @@ class Dropdown extends React.Component {
 			position: 'absolute',
 			...this.state.pos
 		}
-		return <div ref={this.listRef} className={css(position)}>
+		return <div onClick={()=>this.setState({show: true})} ref={this.listRef} className={css(position)}>
 		<List
 			onChange={(data)=>this.handleChange(data)}
 			backgroundColor={this.props.backgroundColor ? this.props.backgroundColor : 'white'}
@@ -114,7 +116,7 @@ class Dropdown extends React.Component {
 		</div>
 	}
 
-	handleChange(data) {
+	handleChange = (data) => {
 		this.optionsSelected = this.state.optionsSelected
 		if (this.optionsSelected.includes(data)) this.optionsSelected = this.optionsSelected.filter(e => e !== data) // will return [remains]
 		else this.optionsSelected.push(data)
@@ -123,10 +125,14 @@ class Dropdown extends React.Component {
 		})
 	}
 
-	handleClickOutside(event) {
+	handleClickOutside = (event) => {
 		if (this.btnRef && this.btnRef.current && !this.btnRef.current.contains(event.target)) {
-			this.setState({ show: false })
+			this.setState({ show: false, options: this.props.options })
 		}
+	}
+	handleSearch = (data) => {
+		this.number = data.length
+		this.setState({ options : data })
 	}
 
 	handleResize = () => {
@@ -184,7 +190,8 @@ Dropdown.propTypes = {
 	textColorBtn: PropTypes.string,
 	backgroundColorSelected: PropTypes.string,
 	textNoData: PropTypes.string,
-	textColor: PropTypes.string
+	textColor: PropTypes.string,
+	headCols: PropTypes.object
 }
 
 Dropdown.defaultProps = {

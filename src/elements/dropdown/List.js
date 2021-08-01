@@ -12,7 +12,8 @@ class List extends React.Component {
 		this.state = {
 			optionsSelected: props.optionsSelected ? props.optionsSelected : [],
 			loading: (props.loading ? props.loading : false),
-			show: (props.show ? props.show : false)
+			show: (props.show ? props.show : false),
+			options: (props.options ? props.options : [])
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.optionsSelected = []
@@ -23,12 +24,13 @@ class List extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (
-			prevProps.optionsSelected !== this.props.optionsSelected ||
-			prevProps.show !== this.props.show) {
+		if ( prevProps.optionsSelected !== this.props.optionsSelected ||
+			prevProps.show !== this.props.show ||
+			prevProps.options !== this.props.options) {
 				this.setState({
 					optionsSelected: this.props.optionsSelected,
-					show: this.props.show
+					show: this.props.show,
+					options: this.props.options
 				})
 				this.optionsSelected = []
 		}
@@ -59,7 +61,7 @@ class List extends React.Component {
 		}
 
 
-		if (!this.props.options || !this.props.options.length) {
+		if (!this.state.options || !this.state.options.length) {
 			options.push(
 				<ListItem
 					key={index}
@@ -69,8 +71,8 @@ class List extends React.Component {
 					textNoData={this.props.textNoData ? this.props.textNoData : 'No data'}
 				/>
 			)
-		} else if (this.props.options && this.props.options.length) {
-			for (let option of this.props.options) {
+		} else if (this.state.options && this.state.options.length) {
+			for (let option of this.state.options) {
 				let style = { backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white'}
 				let variant = (option.description ? 'description' : option.navigation ? 'navigation' : 'default')
 

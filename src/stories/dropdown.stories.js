@@ -35,3 +35,13 @@ Navigation.args = {
 	variant: 'navigation',
 	options: [{navigation: 'https://www.linkedin.com/in/aurore-leblois', text: 'Check my linkedin'}]
 }
+
+export const Search = (args) => <Dropdown {...args}/>
+Search.args = {
+	show: true,
+	options: null,
+	label: '',
+	variant: 'search',
+	options:  [{value: '1', text: 'Option 1'}, {value: '2', text: 'Option 2'},{value: 'test', text: 'random option'}],
+	headCols:{ value: "value", text: "text"}
+}
