@@ -3,7 +3,7 @@ import {ReactDOM} from 'react-dom';
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import './../reset.css'
-import { List, Button, Search } from './../../index.js'
+import { List, Button, Search, InputItem } from './../../index.js'
 
 
 class Dropdown extends React.Component {
@@ -29,26 +29,32 @@ class Dropdown extends React.Component {
 	componentDidUpdate(prevProps) {
 		if (prevProps.options !== this.props.options ||
 			prevProps.optionsSelected !== this.props.optionsSelected ||
-			prevProps.show !== this.props.show
+			prevProps.show !== this.props.show ||
+			prevProps.variant !== this.props.variant
 		) {
 				this.setState({
 					options: this.props.options,
 					optionsSelected: this.props.optionsSelected,
-					show: this.props.show
+					show: this.props.show,
+					variant: this.props.variant
 				})
 				this.datas = [...this.state.options]
 		}
 	}
 
 	componentDidMount() {
+		this._isMounted = true
+		window.addEventListener('keypress', this.handleKey.bind(this), true )
 		window.addEventListener('resize', this.handleResize, true)
 		window.addEventListener('click', this.handleClickOutside.bind(this));
 		this.handleResize()
 	}
 
 	componentWillUnmount() {
+		window.addEventListener('keypress', this.handleKey.bind(this), true)
 		window.removeEventListener('resize', this.handleResize, true)
-		window.removeEventListener('click', this.handleClickOutside.bind(this));
+		window.removeEventListener('click', this.handleClickOutside.bind(this))
+		this._isMounted = false
 	}
 
 	render () {
@@ -74,16 +80,17 @@ class Dropdown extends React.Component {
 				dropdown = <Search
 					autoComplete="off"
 					data={this.state.options}
-					label="Search in log"
+					label={this.props.label}
 					name="search"
+					onClick={()=>this.setState({ show:true })}
 					onChange={(data) => {this.handleSearch(data)}}
 					headCols={this.props.headCols}
-					placeholder="Search..."
+					placeholder={this.props.placeholder}
 					/>
 			break;
 			default:
 				dropdown = <Button
-					shape={this.props.variant === 'navigation' ? 'round' : 'basic'}
+					shape={this.props.shape}
 					backgroundColor={this.props.backgroundColorBtn ? this.props.backgroundColorBtn : 'tomato'}
 					textColor = {this.props.textColorBtn ? this.props.textColorBtn : 'white'}
 					icon={this.props.icon ? this.props.icon : 'arrow'}
@@ -93,11 +100,14 @@ class Dropdown extends React.Component {
 
 		}
 		return (
+			<>
 			<div onClick={()=>{
 				if (this.state.variant === 'default' && !this.state.show) this.setState({show: !this.state.show})}} ref={this.btnRef} className={css(dropStyle)}>
 				{dropdown}
 				{this.renderList()}
 			</div>
+			{this.renderInputItems()}
+			</>
 		)
 
 	}
@@ -108,11 +118,12 @@ class Dropdown extends React.Component {
 			position: 'absolute',
 			...this.state.pos
 		}
-		return <div onClick={()=>this.setState({show: true})} ref={this.listRef} className={css(position)}>
+		return <div onClick={()=>this.setState({ show: true })} ref={this.listRef} className={css(position)+' dropdown-kariu '+this.props.className}>
 		<List
+			isSearch={this.props.variant === 'search'}
 			textNoData={this.props.textNoData ? this.props.textNoData : 'No Data'}
 			checkbox={this.props.checkbox}
-			onChange={(data)=>this.handleChange(data)}
+			onSelect={(data)=>this.handleChange(data)}
 			backgroundColor={this.props.backgroundColor ? this.props.backgroundColor : 'white'}
 			backgroundColorChecked={this.props.backgroundColorBtn ? this.props.backgroundColorBtn : 'tomato'}
 			textColor={this.props.textColor ? this.props.textColor : 'tomato'}
@@ -121,7 +132,30 @@ class Dropdown extends React.Component {
 		</div>
 	}
 
+	renderInputItems () {
+		if (this.state.variant === 'default') return null
+		let items = []
+
+		for (let i = 0; i < this.state.options.length; i++) {
+			if (this.state.options.checked === true) {
+				items.push(
+					<InputItem
+					key={i}
+					onDelete={()=>this.handleChange(this.state.options[i])}
+					value={this.state.options[i].text}/>
+				)
+			}
+		}
+
+		return items
+	}
+
 	handleChange = (data) => {
+		if (data.length === this.state.options.length) {
+			this.setState({optionsSelected: this.state.options},
+			()=> this.props.onChange && this.props.onChange(this.state.optionsSelected)
+			)
+		}
 		this.optionsSelected = this.state.optionsSelected
 		if (this.optionsSelected.includes(data)) this.optionsSelected = this.optionsSelected.filter(e => e !== data) // will return [remains]
 		else this.optionsSelected.push(data)
@@ -143,6 +177,13 @@ class Dropdown extends React.Component {
 		this.setState({pos : this.getPosRelativeTo(this.listRef.current, this.btnRef.current)})
 
 	}
+
+	handleKey = (e) => {
+		if (e.key === 'Enter' && this.props.variant === 'search' && this.state.options.length === 1) {
+			this.handleChange(this.state.options[0])
+		}
+	}
+
 	rotate = () => {
 		let rotation = null
 		if (this.props.icon === 'arrow') {
@@ -197,7 +238,9 @@ Dropdown.propTypes = {
 	textColor: PropTypes.string,
 	headCols: PropTypes.object,
 	checkbox: PropTypes.bool,
-	variant: PropTypes.oneOf(['search', 'default'])
+	variant: PropTypes.oneOf(['default']),
+	shape: PropTypes.oneOf(['basic', 'rounded', 'round']),
+	placeholder: PropTypes.string
 }
 
 Dropdown.defaultProps = {

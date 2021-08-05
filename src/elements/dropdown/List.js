@@ -50,14 +50,15 @@ class List extends React.Component {
 			borderRadius: '5px',
 			webkitBoxShadow: '1px 1px 2px 1px #C7C7C7',
 			boxShadow: '1px 1px 2px 1px #C7C7C7',
-			width: 'fit-content',
+			width: '100%',
 			height: 'fit-content',
 			overflowY: 'visible',
 			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white',
-			zIndex: 1000,
+			zIndex: this.state.show ? 1000: -1000,
 			minHeight: '1.8rem',
 			marginTop: '0.2rem',
-			marginBottom: '0.2rem'
+			marginBottom: '0.2rem',
+			paddingInlineStart: 0
 		}
 
 
@@ -78,6 +79,7 @@ class List extends React.Component {
 					<ListItem
 						onClick={option.onClick}
 						key={index}
+						isSearch={this.props.isSearch}
 						isSelected={this.optionsSelected.includes(this.text)}
 						onSelect={(data)=>this.handleChange(data)}
 						checkbox={this.props.checkbox ? this.props.checkbox : false}
@@ -105,7 +107,7 @@ class List extends React.Component {
 		if (this.optionsSelected.includes(data)) this.optionsSelected = this.optionsSelected.filter(e => e !== data) // will return [remains]
 		else this.optionsSelected.push(data)
 		if (data !== event.target) this.setState({optionsSelected: this.optionsSelected}, () => {
-			this.props.onChange && this.props.onChange(this.state.optionsSelected)
+			this.props.onSelect && this.props.onSelect(this.state.optionsSelected)
 		})
 
 	}

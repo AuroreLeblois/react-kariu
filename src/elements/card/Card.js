@@ -32,7 +32,7 @@ class Card extends React.Component {
 				: 'default'
 			)
 		}
-		let backgroundColor = (this.props.backgroundColor ? this.props.backgroundColor : 'white')
+		let backgroundColor = (this.props.backgroundColor ? this.props.backgroundColor : 'transparent')
 		let textColor = (this.props.textColor ? this.props.textColor : 'tomato')
 
 		const styleCard = {

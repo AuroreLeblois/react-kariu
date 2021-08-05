@@ -12,12 +12,11 @@ https://master--608041216ca77600211c434a.chromatic.com
 npm i react-kariu
 ```
 
-## Import components in project
+## Import components in your project
 
 ```
 import { ComponentName, OtherComponent } from 'react-kariu'
 ```
-
 
 
 ### Components available for now
@@ -40,6 +39,9 @@ import { ComponentName, OtherComponent } from 'react-kariu'
   - ModalHeader
   - ModalFooter
 - Map (with leaflet)
+- Select
+- Dropdown
+- Card
 
 ## Map with LEAFLET:
 This component won't replace leaflet!
@@ -51,8 +53,3 @@ import 'leaflet/dist/images/marker-shadow.png'
 import 'leaflet/dist/images/marker-icon-2x.png'
 import  icon from 'react-kariu/src/elements/Map/marker.png'
 ```
-
-### Components to add (for future updates)
-- Select
-- Dropdown
-- Card

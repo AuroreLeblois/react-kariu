@@ -27,7 +27,8 @@ export default {
     		description: 'Customize the attribution'
     	},
 		zoom : {
-    		description: 'Customize the zoom for the first rendering of the map'
+    		description: 'Customize the zoom for the first rendering of the map',
+			control: { type: 'range', min: 1, max: 20 }
     	},
 		iconUrl : {
     		description: `If you wish a custom Icon as a marker, upload your own and give the map the path.

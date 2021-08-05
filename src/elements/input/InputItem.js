@@ -20,7 +20,7 @@ class InputItem extends React.Component {
 	}
 
 	handleDelete() {
-		this.setState({value: ''})
+		this.setState({value: ''}, this.props.onDelete)
 	}
 
 	render() {

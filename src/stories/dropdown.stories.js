@@ -33,15 +33,15 @@ Navigation.args = {
 	show: true,
 	options: null,
 	label: '',
+	shape: 'round',
 	options: [{navigation: 'https://www.linkedin.com/in/aurore-leblois', isExternal: true, text: 'Check my linkedin'}]
 }
 
-export const Search = (args) => <Dropdown {...args}/>
-Search.args = {
-	show: true,
-	options: null,
-	label: '',
-	variant: 'search',
-	options:  [{value: '1', text: 'Option 1'}, {value: '2', text: 'Option 2'},{value: 'test', text: 'random option'}],
-	headCols:{ value: "value", text: "text"}
-}
+// export const Search = (args) => <Dropdown {...args}/>
+// Search.args = {
+// 	show: true,
+// 	label: 'Search dropdown',
+// 	variant: 'search',
+// 	options:  [{value: '1', text: 'Option 1'}, {value: '2', text: 'Option 2'},{value: 'test', text: 'random option'}],
+// 	headCols:{ value: "value", text: "text"}
+// }

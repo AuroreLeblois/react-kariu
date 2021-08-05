@@ -12,6 +12,7 @@ class Search extends React.Component {
 			data: (props.data ? props.data : []),
 			value: ''
 		}
+		this.datas = [...this.state.data]
 	}
 
 	componentDidUpdate(prevProps) {
@@ -23,10 +24,10 @@ class Search extends React.Component {
 	onSearch = (value) => {
 		this.setState({	value: value }, () => {
 			if (this.state.value.length) {
-				const datasFiltred = this.filter(this.state.data, this.props.headCols, this.state.value)
+				const datasFiltred = this.filter(this.datas, this.props.headCols, this.state.value)
 				this.props.onChange && this.props.onChange(datasFiltred)
 			} else {
-				this.props.onChange && this.props.onChange(this.state.data)
+				this.props.onChange && this.props.onChange(this.datas)
 			}
 		})
 	}
@@ -65,6 +66,7 @@ class Search extends React.Component {
 				autocomplete={this.props.autocomplete}
 				textColor={this.props.textColor}
 				onChange={this.onSearch.bind(this)}
+				onClick={this.props.onClick}
 				className={css(styleAnimation)+' '+this.props.className}
 			/>
 		)

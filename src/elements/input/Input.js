@@ -86,13 +86,14 @@ class Input extends React.Component {
 				{this.renderLabel(colorText)}
 				<input className={'input-kariu '+css(styleInput)}
 					type={this.state.type}
-					autocomplete={this.props.autocomplete}
+					autoComplete={this.props.autoComplete}
 					name={this.props.name}
 					value={this.state.value}
 					onChange={this.handleChange.bind(this)}
 					placeholder={this.props.placeholder}
 					required={this.props.required}
 					disabled={this.props.disabled}
+					onClick={this.props.onClick}
 					/>
 					{this.renderBtnShowPwd(colorText)}
 					{this.renderDescription(colorText)}

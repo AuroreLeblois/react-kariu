@@ -34,6 +34,7 @@ class ListItem extends React.Component {
 			display: 'flex',
 			cursor: 'pointer',
 			width: '100%',
+			height: '100%',
 			backgroundColor: color,
 			color: this.props.textColor ? this.props.textColor : 'tomato',
 			minHeight:'1.8rem',
@@ -58,8 +59,11 @@ class ListItem extends React.Component {
 				marginTop: '2px'
 			},
 			':hover': {
-				filter: " brightness(85%)"
-			}
+				filter: (this.props.textNoData || this.props.option.description ? null : "brightness(85%)")
+			},
+			'a:hover': {
+				filter: null
+			},
 		}
 		let liStyle = {
 			lineHeight: '1.5rem',
@@ -74,11 +78,12 @@ class ListItem extends React.Component {
 		return (
 			<div onClick={()=>{ this.handleClick(event) && this.props.onClick()}} className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`} onClick={this.handleClick}>
 				<li className={css(liStyle)}>
+					{this.renderTitle()}
+					{this.renderText()}
 					{this.renderDescription()}
 					{this.renderNoData()}
 					{this.renderCheckbox()}
 					{this.renderLink()}
-					{this.renderTitle()}
 				</li>
 			</div>
 		);
@@ -87,9 +92,9 @@ class ListItem extends React.Component {
 	}
 
 	renderDescription() {
-		if (!this.description) return null
+		if (!this.state.option || !this.state.option.description || !this.state.option.description.length) return null
 
-		return <Text variant='description' text={this.description}/>
+		return <Text variant='description' text={this.capitalize(this.state.option.description)}/>
 	}
 
 	renderTitle() {
@@ -99,9 +104,9 @@ class ListItem extends React.Component {
 	}
 
 	renderLink() {
-		if (!this.state.option.navigation || !this.text) return null
+		if (!this.state.option.navigation || !this.state.option.text) return null
 
-		return <Link text={this.text} isExternal={this.state.option.isExternal} href={this.state.option.navigation}/>
+		return <Link text={this.capitalize(this.state.option.text)} isExternal={this.state.option.isExternal} href={this.state.option.navigation}/>
 	}
 
 	renderCheckbox() {
@@ -114,9 +119,14 @@ class ListItem extends React.Component {
 			checked={this.state.option.checked}
 			id={this.text}/>
 	}
+	renderText() {
+		if (!this.state.option.text || this.props.checkbox || this.state.option.navigation) return null
+		
+		return <Text cursor='pointer' text={this.capitalize(this.state.option.text)} value={this.state.option.value}/>
+	}
 
 	renderNoData() {
-		if (!this.state.option || this.state.option.length) return null
+		if(!this.props.textNoData) return null
 
 		return <Text variant='disabled' cursor='default' textColor='inherit' text={this.textNoData}/>
 	}
@@ -126,7 +136,7 @@ class ListItem extends React.Component {
 	}
 
 	handleClick = () => {
-		if (this.props.checkbox) {
+		if (this.props.checkbox || this.props.isSearch) {
 			let data = this.state.option
 			let checked = !this.state.option.checked
 			data.checked = checked
