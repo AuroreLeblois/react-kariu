@@ -65,7 +65,6 @@ class List extends React.Component {
 			options.push(
 				<ListItem
 					key={index}
-					variant='noData'
 					backgroundColor={this.props.backgroundColor ? this.props.backgroundColor : 'inherit'}
 					textColor={this.props.textColor ? this.props.textColor : 'inherit'}
 					textNoData={this.props.textNoData ? this.props.textNoData : 'No data'}
@@ -74,7 +73,6 @@ class List extends React.Component {
 		} else if (this.state.options && this.state.options.length) {
 			for (let option of this.state.options) {
 				let style = { backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white'}
-				let variant = (option.description ? 'description' : option.navigation ? 'navigation' : 'default')
 
 				options.push(
 					<ListItem
@@ -82,8 +80,9 @@ class List extends React.Component {
 						key={index}
 						isSelected={this.optionsSelected.includes(this.text)}
 						onSelect={(data)=>this.handleChange(data)}
+						checkbox={this.props.checkbox ? this.props.checkbox : false}
+						id={option.text}
 						backgroundColorChecked={this.props.backgroundColorChecked ? this.props.backgroundColorChecked : 'tomato'}
-						variant={variant}
 						option={option}
 						backgroundColor={this.props.backgroundColor ? this.props.backgroundColor : 'inherit'}
 						textColor={this.props.textColor ? this.props.textColor : 'inherit'}
@@ -120,5 +119,6 @@ List.propTypes = {
 	backgroundColorChecked: PropTypes.string,
 	textNoData: PropTypes.string,
 	textColor: PropTypes.string,
+	checkbox: PropTypes.bool
 }
 export default List

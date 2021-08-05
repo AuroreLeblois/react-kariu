@@ -2,13 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import './../reset.css'
-import { Checkbox, Text } from './../../index.js'
+import { Checkbox, Text, Link } from './../../index.js'
 
 class ListItem extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			isSelected: (props.selected ? props.selected : false),
 			variant: (props.variant ? props.variant : 'default'),
 			option: props.option ? props.option : {}
 		}
@@ -25,6 +24,7 @@ class ListItem extends React.Component {
 
 
 	render () {
+		if (!this.state) return null
 		if (this.state.option.text) this.text = this.capitalize(this.state.option.text)
 		if (this.state.option.description) this.description = this.capitalize(this.state.option.description)
 		if (this.props.textNoData) this.textNoData = this.capitalize(this.props.textNoData)
@@ -53,11 +53,12 @@ class ListItem extends React.Component {
 				maxWidth: '10rem',
 				whiteSpace: 'nowrap'
 			},
-			'a': {
-				cursor: 'pointer',
-				whiteSpace: 'nowrap',
-				textDecoration: 'none',
-				color: this.props.textColor ? this.props.textColor : 'tomato'
+			'a svg': {
+				transform: 'rotate(0deg)',
+				marginTop: '2px'
+			},
+			':hover': {
+				filter: " brightness(85%)"
 			}
 		}
 		let liStyle = {
@@ -70,56 +71,69 @@ class ListItem extends React.Component {
 			verticalAlign: 'middle'
 		}
 
-		switch (this.state.variant) {
-			case 'description':
-				return (
-					<div className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`}>
-						<li className={css(liStyle)}>
-							<Text variant={this.state.variant} text={this.description}/>
-						</li>
-					</div>
-				);
-			case 'noData':
-			return (
-				<div className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`}>
-					<li className={css(liStyle)}>
-						<Text variant='disabled' cursor='default' textColor='inherit' text={this.textNoData}/>
-					</li>
-				</div>
-			);
-			case 'navigation':
-			return (
-				<div onClick={()=>window.location.href=this.state.option.navigation} className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`}>
-					<li className={css(liStyle)}>
-						<a href={this.state.option.navigation}>{this.text}</a>
-					</li>
-				</div>
-			);
-			default :
-				return (
-					<div onClick={()=>this.handleClick(event)} className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`} onClick={this.handleClick}>
-						<li className={css(liStyle)}>
-							<Checkbox
-								textColor={'inherit'}
-								backgroundColorChecked={this.props.backgroundColorChecked ? this.props.backgroundColorChecked : 'tomato'}
-								onChange={()=>this.handleClick(event) && this.props.onChange}
-								checked={this.state.isSelected}
-								id={this.text}/>
-						</li>
-					</div>
-				);
-		}
+		return (
+			<div onClick={()=>{ this.handleClick(event) && this.props.onClick()}} className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`} onClick={this.handleClick}>
+				<li className={css(liStyle)}>
+					{this.renderDescription()}
+					{this.renderNoData()}
+					{this.renderCheckbox()}
+					{this.renderLink()}
+					{this.renderTitle()}
+				</li>
+			</div>
+		);
 
+
+	}
+
+	renderDescription() {
+		if (!this.description) return null
+
+		return <Text variant='description' text={this.description}/>
+	}
+
+	renderTitle() {
+		if (!this.state.option.title) return null
+
+		return <Title priority={5} text={this.state.option.title}/>
+	}
+
+	renderLink() {
+		if (!this.state.option.navigation || !this.text) return null
+
+		return <Link text={this.text} isExternal={this.state.option.isExternal} href={this.state.option.navigation}/>
+	}
+
+	renderCheckbox() {
+		if (!this.props.checkbox) return null
+
+		return <Checkbox
+			textColor={'inherit'}
+			backgroundColorChecked={this.props.backgroundColorChecked ? this.props.backgroundColorChecked : 'tomato'}
+			onChange={()=>this.handleClick(event) && this.props.onChange}
+			checked={this.state.option.checked}
+			id={this.text}/>
+	}
+
+	renderNoData() {
+		if (!this.state.option || this.state.option.length) return null
+
+		return <Text variant='disabled' cursor='default' textColor='inherit' text={this.textNoData}/>
 	}
 
 	capitalize(s) {
 		return s[0].toUpperCase() + s.slice(1)
 	}
 
-	handleClick = (event) => {
-		if (event && this.text) this.setState({ isSelected: !this.state.isSelected },
-			()=> {this.props.onSelect(this.state.option)}
-		)
+	handleClick = () => {
+		if (this.props.checkbox) {
+			let data = this.state.option
+			let checked = !this.state.option.checked
+			data.checked = checked
+			this.setState({ option: data },
+				()=> {this.props.onSelect(this.state.option)}
+			)
+		}
 	}
 }
 export default ListItem

@@ -152,6 +152,7 @@ Button.propTypes = {
 	icon: PropTypes.oneOf([
 		'arrow',
 		'cross',
+		'external',
 		'eyeOpen',
 		'eyeSlashed',
 		'soundOff',

@@ -10,14 +10,16 @@ export default {
 			control: {
 				type: 'select',
 				options: [
+					'arrow',
 					'cross',
+					'external',
 					'eyeOpen',
 					'eyeSlashed',
 					'soundOff',
 					'soundOn',
-					'hamburgerMenu',
+					'search',
 					'marker',
-					'search'
+					'hamburgerMenu'
 				]
 			}
 		},

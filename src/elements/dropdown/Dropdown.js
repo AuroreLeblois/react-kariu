@@ -23,6 +23,7 @@ class Dropdown extends React.Component {
 		this.listRef = React.createRef()
 		this.btnDim =  null
 		this.number = 0
+		this.datas = [...this.state.options]
 	}
 
 	componentDidUpdate(prevProps) {
@@ -35,6 +36,7 @@ class Dropdown extends React.Component {
 					optionsSelected: this.props.optionsSelected,
 					show: this.props.show
 				})
+				this.datas = [...this.state.options]
 		}
 	}
 
@@ -70,7 +72,7 @@ class Dropdown extends React.Component {
 		switch (this.state.variant) {
 			case 'search':
 				dropdown = <Search
-					autocomplete="off"
+					autoComplete="off"
 					data={this.state.options}
 					label="Search in log"
 					name="search"
@@ -108,6 +110,8 @@ class Dropdown extends React.Component {
 		}
 		return <div onClick={()=>this.setState({show: true})} ref={this.listRef} className={css(position)}>
 		<List
+			textNoData={this.props.textNoData ? this.props.textNoData : 'No Data'}
+			checkbox={this.props.checkbox}
 			onChange={(data)=>this.handleChange(data)}
 			backgroundColor={this.props.backgroundColor ? this.props.backgroundColor : 'white'}
 			backgroundColorChecked={this.props.backgroundColorBtn ? this.props.backgroundColorBtn : 'tomato'}
@@ -191,10 +195,14 @@ Dropdown.propTypes = {
 	backgroundColorSelected: PropTypes.string,
 	textNoData: PropTypes.string,
 	textColor: PropTypes.string,
-	headCols: PropTypes.object
+	headCols: PropTypes.object,
+	checkbox: PropTypes.bool,
+	variant: PropTypes.oneOf(['search', 'default'])
 }
 
 Dropdown.defaultProps = {
-	icon: 'arrow'
+	icon: 'arrow',
+	variant: 'default',
+	show: false
 }
 export default Dropdown

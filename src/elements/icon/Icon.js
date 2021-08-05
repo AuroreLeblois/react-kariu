@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {
 	Arrow,
 	Cross,
+	ExternalLink,
 	EyeOpen,
 	EyeSlashed,
 	SoundOn,
@@ -18,6 +19,7 @@ export default class Icon extends React.Component {
 		switch(this.props.icon) {
 			case 'arrow': return <Arrow {...this.props} />
 			case 'cross': return <Cross {...this.props} />
+			case 'external': return <ExternalLink {...this.props}/>
 			case 'eyeOpen': return <EyeOpen {...this.props} />
 			case 'eyeSlashed' : return <EyeSlashed {...this.props}/>
 			case 'soundOff': return <SoundOff {...this.props} />
@@ -34,6 +36,7 @@ Icon.propTypes = {
 	icon: PropTypes.oneOf([
 		'arrow',
 		'cross',
+		'external',
 		'eyeOpen',
 		'eyeSlashed',
 		'soundOff',

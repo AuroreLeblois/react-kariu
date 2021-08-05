@@ -77,7 +77,7 @@ class Checkbox extends React.Component {
 }
 
 Checkbox.propTypes = {
-	id: PropTypes.string.isRequired,
+	id: PropTypes.string,
 	textColor: PropTypes.string,
 	backgroundColor: PropTypes.string,
 	backgroundColorChecked: PropTypes.string,

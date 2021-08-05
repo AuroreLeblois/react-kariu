@@ -1,5 +1,6 @@
 export { default as Arrow } from './Arrow'
 export { default as Cross } from './Cross'
+export { default as ExternalLink } from './ExternalLink'
 export { default as EyeOpen } from './EyeOpen'
 export { default as EyeSlashed } from './EyeSlashed'
 export { default as Hamburger } from './Hamburger'

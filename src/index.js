@@ -9,6 +9,7 @@ export { default as Text } from './elements/text/Text.js'
 export { default as Tooltip } from './elements/tooltip/Tooltip.js'
 export { default as Icon } from './elements/icon/Icon.js'
 export { default as Loading } from './elements/loading/Loading.js'
+export { default as Link } from './elements/link/Link.js'
 
 //Modal Elements
 export { default as Modal } from './elements/modal/Modal.js'

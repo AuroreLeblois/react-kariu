@@ -16,6 +16,7 @@ const Template = (args) => <Dropdown {...args} />
 export const Default = (args) => <Dropdown {...args}/>
 Default.args = {
 	show: true,
+	checkbox: true,
 	label: 'Dropdown',
 	options: [{description: 'Please choose wisely'}, {value: '1', text: 'Option 1'}, {value: '2', text: 'Option 2'}]
 }
@@ -32,8 +33,7 @@ Navigation.args = {
 	show: true,
 	options: null,
 	label: '',
-	variant: 'navigation',
-	options: [{navigation: 'https://www.linkedin.com/in/aurore-leblois', text: 'Check my linkedin'}]
+	options: [{navigation: 'https://www.linkedin.com/in/aurore-leblois', isExternal: true, text: 'Check my linkedin'}]
 }
 
 export const Search = (args) => <Dropdown {...args}/>
