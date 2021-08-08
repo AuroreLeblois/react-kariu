@@ -27,5 +27,6 @@ const Template = (args) => <Checkbox {...args} />;
 
 export const Default = (args) => <Checkbox {...args}/>
 Default.args = {
-	id: 'Default'
+	id: 'Default',
+	onChange: ()=>{console.log('hello')}
 }
