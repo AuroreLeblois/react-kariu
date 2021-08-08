@@ -26,3 +26,4 @@ logs/
 *.7z
 *.zip
 .npmignore
+src/elements/icon/_svg_

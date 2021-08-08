@@ -10,5 +10,10 @@ node_modules
 .gitignore
 .npmrc
 build/index.js
+dist
 package-lock.json
-index.js
+src/elements/icon/_svg_
+dist/reset.css
+babel.config.json
+build-storybook.log
+build/index.js.map

@@ -1,6 +1,6 @@
 {
   "name": "react-kariu",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "react library for devs",
   "author": "Aurore Leblois",
   "copyright": "Copyright © year ${author}",
@@ -8,7 +8,7 @@
   "module": "dist/index.fr.js",
   "scripts": {
     "start": "start http://localhost:9999 && start-storybook --quiet --ci --port 9999",
-    "build:svg": "svgr --icon --svg-props direction={props.direction} --svg-props color={props.color} --replace-attr-values currentColor={props.color} --svg-props animation={props.animation}  src/elements/icon/svg -d src/elements/icon/components --ignore-existing",
+    "build:svg": "svgr --icon --svg-props direction={props.direction} --svg-props color={props.color} --replace-attr-values currentColor={props.color} --svg-props animation={props.animation}  src/elements/icon/_svg_ -d src/elements/icon/components --ignore-existing",
     "build-storybook": "build-storybook -o build --quiet",
     "build-docs": "build-storybook -o build_docs --quiet --docs",
     "build": "rollup -c",
@@ -23,8 +23,9 @@
   },
   "postinstall": "node env-dependencies.js",
   "files": [
-	 "src/elements",
-	 "src/index.js"
+	 "build/reset.css",
+	 "build/index.js",
+	 "/src/elements/Map/marker.png"
   ],
   "repository": {
     "type": "git",

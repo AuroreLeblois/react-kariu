@@ -49,7 +49,7 @@ export default {
 			babelHelpers: 'runtime',
 			skipPreflightCheck: true,
 			plugins: ['@babel/plugin-transform-runtime'],
-			extensions: ['.js', '.es6', '.es']
+			extensions: ['.js', '.es6', '.es', '.png']
 		}),
 		resolve({
   			mainFields: ['module', 'browser', 'main']}),
