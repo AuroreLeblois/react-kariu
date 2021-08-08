@@ -62,7 +62,8 @@ class Tooltip extends React.Component {
 			fontSize: '0.85rem',
 			lineHeight: '0.85rem',
 			overflowWrap: 'break-word',
-			backgroundColor: backgroundColor
+			backgroundColor: backgroundColor,
+			fontFamily: (this.props.fontFamily ? this.props.fontFamily : 'inherit')
 		}
 
 		switch (this.props.direction) {
@@ -109,6 +110,7 @@ class Tooltip extends React.Component {
 }
 
 Tooltip.propTypes = {
+	fontFamily: PropTypes.string,
 	text: PropTypes.string.isRequired,
 	direction: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
 	backgroundColor: PropTypes.string,
@@ -117,6 +119,7 @@ Tooltip.propTypes = {
 }
 
 Tooltip.defaultProps = {
+	fontFamily: 'inherit',
 	text: 'Tooltip',
 	direction: 'right',
 	minWidth : '2rem'

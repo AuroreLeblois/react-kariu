@@ -20,6 +20,9 @@ export const Introduction = () => (
 				which only take color as prop, and Map, which doesn't need color.</p>
 			<Title text='Props className' priority={4} textColor='#922D50' align='left'/>
 			<p> Once again, the prop className is accepted in most of the components. This will allow you to customize even more</p>
+			<Title text='Props fontFamily' priority={4} textColor='#922D50' align='left'/>
+			<p>A new prop is now accepted in almost all the components: </p>
+			<p>fontFamily: most of the components are set to inherit the font you choose</p>
 		</div>
 		<Text text={`If you are lazy.... I hope you like tomato...`}/>
 

@@ -375,6 +375,7 @@ body{
 #root {
 	height: 100%
 }
+input, select, textarea, button{font-family:inherit;}
 /* ============================================
 								LEAFLET
 ============================================= */

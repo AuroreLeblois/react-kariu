@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import { Button, Icon, ModalItem, ModalHeader, Portal } from '../../index.js'
-import './../reset.css'
 
 class Modal extends React.Component {
   constructor(props) {
@@ -45,6 +44,7 @@ class Modal extends React.Component {
 			webkitBoxShadow: '2px 1px 3px 1px #C7C7C7',
 			boxShadow: '2px 1px 3px 1px #C7C7C7',
 			backgroundColor: (this.props.backgroundColor ? this.props.backgroundColor : 'white'),
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'Arial',
 			color: (this.props.textColor ? this.props.textColor : 'tomato')
 		}
 
@@ -80,6 +80,7 @@ class Modal extends React.Component {
 
 		return (
 			<ModalHeader
+				fontFamily='inherit'
 				onClick={this.handleCloseModal.bind()}
 				textColor={this.props.textColor}
 				title={this.props.title}
@@ -98,6 +99,7 @@ class Modal extends React.Component {
 }
 
 Modal.propTypes = {
+	fontFamily: PropTypes.string,
 	show: PropTypes.bool.isRequired,
 	portalNodeId: PropTypes.string,
 	textColor: PropTypes.string,
@@ -106,6 +108,7 @@ Modal.propTypes = {
 }
 
 Modal.defaultProps = {
+	fontFamily: 'inherit',
 	portalNodeId: 'root',
 	show: false,
 	textColor: 'tomato',

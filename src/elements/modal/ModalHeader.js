@@ -29,7 +29,8 @@ class ModalHeader extends React.Component {
 			flexDirection: 'row',
 			flexWrap: 'nowrap',
 			alignItems: 'center',
-			justifyContent: 'space-between'
+			justifyContent: 'space-between',
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit'
 		}
 
 		return (
@@ -44,6 +45,7 @@ class ModalHeader extends React.Component {
 		if (!this.props.title) return null
 
 		const styleTitle = {
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
 			display: 'flex',
 			flexDirection: 'row',
 			justifyContent: 'space-between'

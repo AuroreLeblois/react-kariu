@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
-import './../reset.css'
 import { ListItem } from './../../index.js'
 
 
@@ -13,14 +12,24 @@ class List extends React.Component {
 			optionsSelected: props.optionsSelected ? props.optionsSelected : [],
 			loading: (props.loading ? props.loading : false),
 			show: (props.show ? props.show : false),
-			options: (props.options ? props.options : [])
+			options: (props.options ? props.options : []),
+			textSelectAll : (this.props.textSelectAll ? this.props.textSelectAll : 'Select All'),
+			textUnselectAll: (this.props.textUnselectAll ? this.props.textUnselectAll : 'Unselect All')
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.optionsSelected = []
+		this.number = 0
+		this.numberOfOptions = 0
 	}
 
 	componentDidMount() {
 		this.optionsSelected = [...this.state.optionsSelected]
+		for (let i=0; i < this.state.options.length; i++) {
+			let data= this.state.options[i]
+			if ((data.checked=== true || data.checked === false) && this.props.checkbox) this.numberOfOptions ++
+			if (data.checked === true) this.number++
+			else null
+		}
 	}
 
 	componentDidUpdate(prevProps) {
@@ -32,7 +41,6 @@ class List extends React.Component {
 					show: this.props.show,
 					options: this.props.options
 				})
-				this.optionsSelected = []
 		}
 	}
 
@@ -53,6 +61,7 @@ class List extends React.Component {
 			width: '100%',
 			height: 'fit-content',
 			overflowY: 'visible',
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
 			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white',
 			zIndex: this.state.show ? 1000: -1000,
 			minHeight: '1.8rem',
@@ -72,11 +81,21 @@ class List extends React.Component {
 				/>
 			)
 		} else if (this.state.options && this.state.options.length) {
-			for (let option of this.state.options) {
-				let style = { backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white'}
-
+			if (this.props.checkbox===true) {
 				options.push(
 					<ListItem
+						key='select'
+						number={this.number}
+						onSelectAll={(data)=>this.selectAll(data)}
+						textSelectAll={this.state.textSelectAll}
+						textUnselectAll={this.state.textUnselectAll}
+						numberOfOptions={this.numberOfOptions}/>)
+			}
+			for (let option of this.state.options) {
+				let style = { backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white'}
+				options.push(
+					<ListItem
+						fontFamily={this.props.fontFamily}
 						onClick={option.onClick}
 						key={index}
 						isSearch={this.props.isSearch}
@@ -104,17 +123,51 @@ class List extends React.Component {
 	}
 
 	handleChange(data) {
-		if (this.optionsSelected.includes(data)) this.optionsSelected = this.optionsSelected.filter(e => e !== data) // will return [remains]
-		else this.optionsSelected.push(data)
+		if (this.optionsSelected.includes(data)) {
+			this.optionsSelected = this.optionsSelected.filter(e => e !== data)
+		} else {
+			this.optionsSelected.push(data)
+		}
+		this.number = this.optionsSelected.length
 		if (data !== event.target) this.setState({optionsSelected: this.optionsSelected}, () => {
-			this.props.onSelect && this.props.onSelect(this.state.optionsSelected)
+			this.props.onSelect && this.props.onSelect(this.optionsSelected)
 		})
+	}
 
+	selectAll(data) {
+		let optionsSelected = []
+		let options = []
+		if (data === this.state.textSelectAll) {
+			for (let i=0; i < this.state.options.length; i++) {
+				let data = this.state.options[i]
+				if (data.checked === false){
+					data.checked = true
+					optionsSelected.push(data)
+					options.push(data)
+				}
+			}
+		} else if (data === this.state.textUnselectAll) {
+			for (let i=0; i < this.state.options.length; i++) {
+				let data = this.state.options[i]
+				if (data.checked === true){
+					data.checked = false
+				}
+				options.push(data)
+			}
+		}
+		this.optionsSelected = optionsSelected
+		this.number = optionsSelected.length
+		this.setState({optionsSelected: this.optionsSelected, options: options}, ()=>
+			this.props.onSelect && this.props.onSelect(this.optionsSelected)
+		)
 	}
 }
 
 List.propTypes = {
 	show: PropTypes.bool,
+	textSelectAll: PropTypes.string,
+	textUnselectAll: PropTypes.string,
+	fontFamily: PropTypes.string,
 	optionsSelected: PropTypes.array,
 	backgroundColor: PropTypes.string,
 	backgroundColorSelected: PropTypes.string,

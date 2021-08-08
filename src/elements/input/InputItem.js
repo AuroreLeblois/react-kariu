@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon } from './../../index.js'
-import './../reset.css'
 import { css } from '@emotion/css'
 
 class InputItem extends React.Component {
@@ -46,6 +45,7 @@ class InputItem extends React.Component {
 			fontSize: '0.85rem',
 			lineHeight: '1rem',
 			padding: '0.25rem',
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
 		}
 
 		let inputItemKariuButtonDelete = {
@@ -79,12 +79,14 @@ class InputItem extends React.Component {
 }
 
 InputItem.propTypes = {
+	fontFamily: PropTypes.string,
 	backgroundColor: PropTypes.string,
 	textColor: PropTypes.string,
 	value: PropTypes.string
 }
 
 InputItem.defaultProps = {
+	fontFamily: 'inherit',
 	backgroundColor: 'lightblue',
 	textColor: 'blue-grey',
 	value: 'Example',

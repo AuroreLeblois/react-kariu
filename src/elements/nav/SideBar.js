@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
-import './../reset.css'
 import { Button, NavItem } from './../../index.js'
 
 class SideBar extends React.Component {
@@ -35,7 +34,7 @@ class SideBar extends React.Component {
 			display: 'flex',
 			flexDirection: 'column',
 			alignItems: 'center',
-			/* justify-content: center; */
+			flexGrow: 1,
 			flexFlow: 'column nowrap',
 			cursor: 'default',
 			height: '100%',
@@ -48,6 +47,11 @@ class SideBar extends React.Component {
 			'@media screen and (min-width: 850px)': {
 			  	minWidth: '20%',
 				maxWidth: '250px'
+			},
+			'nav':{
+				width: '100%',
+				display: 'flex',
+				justifyContent: 'center'
 			},
 			'div:first-of-type': {
 				marginTop: '4rem'
@@ -77,10 +81,10 @@ class SideBar extends React.Component {
 
 		for (let option of this.state.options) {
 			let topLinkStyle = { marginTop : (this.state.options[0] === option ? '4rem' : null)}
-			let colorText = option.disabled ? 'darkgrey' : color.color
 			let link = <NavItem
+				fontFamily={this.props.fontFamily}
 				option={option}
-				textColor={colorText}
+				textColor={'inherit'}
 				backgroundColor={'inherit'}
 				className={css(topLinkStyle)}/>
 			options.push(link)
@@ -112,6 +116,7 @@ class SideBar extends React.Component {
 
 SideBar.propTypes = {
 	options: PropTypes.array.isRequired,
+	fontFamily: PropTypes.string,
 	backgroundColor: PropTypes.string,
 	textColor:  PropTypes.string,
 	btnCollapse: PropTypes.bool,

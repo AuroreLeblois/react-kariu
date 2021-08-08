@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
-import './../reset.css'
 import { Icon } from './../../index.js'
 
 class Link extends React.Component {
@@ -21,13 +20,20 @@ class Link extends React.Component {
 			whiteSpace: 'nowrap',
 			fontWeight: 'bold',
 			textDecoration: 'none',
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
 			color: this.props.textColor ? this.props.textColor : '#3c89D0',
-			'svg': { marginLeft: '6px' }
+			'svg': { marginLeft: '6px' },
+			'&:hover': {
+				textDecoration: 'underline'
+			},
+			':visited': {
+				filter: 'brightness(40%)'
+			}
 		}
 
 		return (
 			<div onClick={()=>this.handleClick()}>
-				<a className={css(linkStyle)}>
+				<a className={css(linkStyle)+' link-kariu'}>
 					{this.props.text}
 					{this.renderIconExternal()}
 				</a>
@@ -46,7 +52,9 @@ class Link extends React.Component {
 		else window.location.href = this.props.href
 	}
 }
+
 Link.propTypes = {
+	fontFamily: PropTypes.string,
 	textColor: PropTypes.string,
 	href: PropTypes.string.isRequired,
 	text: PropTypes.string.isRequired,

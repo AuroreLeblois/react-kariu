@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Icon } from './../../index.js'
 import { css } from '@emotion/css'
-import './../reset.css'
 
 class Input extends React.Component {
 	// Constructor -------------------------------------------------------------
@@ -57,6 +56,7 @@ class Input extends React.Component {
 			boxSizing: 'border-box',
 			paddingLeft: (this.state.type !== 'range' ? '0.85rem': 0),
 			color: colorText,
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'Arial, sans-serif',
 			borderColor: (this.props.borderColor ? this.props.borderColor : '#bfbfbf'),
 			backgroundColor: (this.props.backgroundColor ? this.props.backgroundColor : '#eeeeee'),
 			'&:focus': {
@@ -104,7 +104,7 @@ class Input extends React.Component {
 	renderLabel(colorText) {
 		if (!this.props.label) return null
 
-		let color = { color: colorText }
+		let color = { color: colorText, fontFamily: this.props.fontFamily ? this.props.fontFamily : 'Arial, sans-serif' }
 		return (
 			<label htmlFor={this.props.name} className={'input-kariu--label '+css(color)}>{this.props.label}</label>
 		)
@@ -154,12 +154,14 @@ class Input extends React.Component {
 	}
 
 	renderDescription(colorText) {
-		let styleDescription = { color: colorText, fontSize: 'smaller', marginTop: 0 }
+		let styleDescription = { color: colorText, fontSize: 'smaller', marginTop: 0,
+		fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit'
+	}
 
 		if (this.state.type === 'range') {
 			return (<p className={'input-Kariu--description '+css(styleDescription)}>{`${this.props.description} ${this.state.value}`}</p>)
 		} else if (this.props.required) {
-			return (<p className={'input-Kariu--description '+css({color: 'red'})}>{this.props.description ? this.props.description : 'Required'}</p>)
+			return (<p className={'input-Kariu--description '+css({color: 'red', fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit'})}>{this.props.description ? this.props.description : 'Required'}</p>)
 		} else {
 			return (<p className={'input-Kariu--description '+css(styleDescription)}>{this.props.description}</p>)
 		}
@@ -186,6 +188,7 @@ class Input extends React.Component {
 Input.propTypes = {
 	backgroundColor: PropTypes.string,
 	borderColor: PropTypes.string,
+	fontFamily: PropTypes.string,
 	value: PropTypes.string,
 	autocomplete: PropTypes.oneOf(['on', 'off']),
 	type: PropTypes.oneOf([
@@ -214,6 +217,7 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
+	fontFamily: 'inherit',
 	autocomplete: 'off',
 	type: 'text',
 	description: null,

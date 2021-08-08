@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon } from './../../index.js'
-import './../reset.css'
 import { css } from '@emotion/css'
 
 class Radio extends React.Component {
@@ -26,7 +25,10 @@ class Radio extends React.Component {
 	render() {
 		if (!this.props.id) return null
 
-		let textColor = { color: this.props.textColor ? this.props.textColor : 'blue navy'}
+		let textColor = {
+			color: this.props.textColor ? this.props.textColor : 'blue navy',
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit'
+		}
 
 		const wrapper = {
 				display: 'flex',
@@ -64,6 +66,7 @@ class Radio extends React.Component {
 
 Radio.propTypes = {
 	id: PropTypes.string.isRequired,
+	fontFamily: PropTypes.string,
 	textColor: PropTypes.string,
 	backgroundColor: PropTypes.string,
 	backgroundColorChecked: PropTypes.string,

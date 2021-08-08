@@ -18,7 +18,7 @@ Default.args = {
 	show: true,
 	checkbox: true,
 	label: 'Dropdown',
-	options: [{description: 'Please choose wisely'}, {value: '1', text: 'Option 1'}, {value: '2', text: 'Option 2'}]
+	options: [{value: '1', text: 'Option 1'}, {value: '2', text: 'Option 2'}]
 }
 export const NoData = (args) => <Dropdown {...args}/>
 NoData.args = {
@@ -34,7 +34,7 @@ Navigation.args = {
 	options: null,
 	label: '',
 	shape: 'round',
-	options: [{navigation: 'https://www.linkedin.com/in/aurore-leblois', isExternal: true, text: 'Check my linkedin'}]
+	options: [ {title: 'Custom title'}, {navigation: 'https://www.linkedin.com/in/aurore-leblois', isExternal: true, text: 'Check my linkedin', description: 'i will open a new window'}]
 }
 
 // export const Search = (args) => <Dropdown {...args}/>

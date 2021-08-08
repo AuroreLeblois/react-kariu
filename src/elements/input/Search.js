@@ -57,6 +57,7 @@ class Search extends React.Component {
 				type="search"
 				icon='search'
 				name='Search'
+				fontFamily={this.props.fontFamily ? this.props.fontFamily : 'inherit'}
 				label={this.props.label}
 				description={this.props.description}
 				size={this.props.size}
@@ -74,6 +75,7 @@ class Search extends React.Component {
 }
 
 Search.propTypes = {
+	fontFamily: PropTypes.string,
 	label: PropTypes.string,
 	autocomplete: PropTypes.oneOf(['on', 'off']),
 	textColor: PropTypes.string,
@@ -83,6 +85,7 @@ Search.propTypes = {
 }
 
 Search.defaultProps = {
+	fontFamily: 'inherit',
 	autocomplete: 'off'
 }
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
-import './../reset.css'
 
 class NavBar extends React.Component {
 	// Constructor ----------------------------------------------------------------
@@ -44,6 +43,7 @@ class NavBar extends React.Component {
 		const styleNavBar = {
 			display: 'flex',
 			alignItems: 'center',
+			justifyContent: 'space-between',
 			position: 'absolute',
 			left: 0,
 			right:0,
@@ -52,6 +52,7 @@ class NavBar extends React.Component {
 			borderStyle: 'solid',
 			borderBottomWidth: '.025rem',
 			zIndex: '4',
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
 			color: this.props.textColor ? this.props.textColor : 'tomato',
 			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white',
 			boxShadow: (this.state.position === 'top' ? '0px 1px 2px 0px rgba(0,0,0,0.082)': '-3px -1px 0px 0px rgba(0,0,0,0.082)'),
@@ -71,11 +72,24 @@ class NavBar extends React.Component {
 			}
 		}
 
-		return (
-			<nav className={css(styleNavBar)+' navBar-kariu '+css(styleBreakpoint)} >
-				{[this.props.children]}
-			</nav>
-		)
+		switch (this.state.position) {
+			case 'top':
+			return (
+				<header>
+					<nav className={css(styleNavBar)+' navBar-kariu '+css(styleBreakpoint)} >
+						{[this.props.children]}
+					</nav>
+				</header>
+			)
+			case 'bottom':
+			return (
+				<footer>
+					<nav className={css(styleNavBar)+' navBar-kariu '+css(styleBreakpoint)} >
+						{[this.props.children]}
+					</nav>
+				</footer>
+			)
+		}
 	}
 }
 
@@ -83,6 +97,7 @@ class NavBar extends React.Component {
 // Listeners ----------------------------------------------------------------
 
 NavBar.propTypes = {
+	fontFamily: PropTypes.string,
 	backgroundColor: PropTypes.string,
 	textColor:  PropTypes.string,
 	position: PropTypes.oneOf(['top', 'bottom'])

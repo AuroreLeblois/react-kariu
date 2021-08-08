@@ -9,7 +9,7 @@ class Text extends React.Component {
 		let style = {
 			display: 'flex',
 			color: (this.props.textColor ? this.props.textColor : 'tomato'),
-			fontFamily: (this.props.fontFamily ? this.props.fontFamily : 'sans-serif'),
+			fontFamily: (this.props.fontFamily ? this.props.fontFamily : 'inherit'),
 			wordBreak: 'break-word',
 			fontWeight: 'regular',
 			textAlign: this.props.align,
@@ -70,7 +70,7 @@ Text.propTypes = {
 }
 
 Text.defaultProps = {
-	fontFamily: 'sans-serif',
+	fontFamily: 'inherit',
 	variant: 'default',
 	align: 'center',
 	cursor : 'text',

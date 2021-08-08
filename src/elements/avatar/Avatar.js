@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon, Loading } from './../../index.js'
 import { css } from '@emotion/css'
-import './../reset.css'
 
 class Avatar extends React.Component {
 	// Renderers ----------------------------------------------------------------
@@ -14,6 +13,7 @@ class Avatar extends React.Component {
 			backgroundColor: (this.props.url && !this.props.loading ? null : this.props.backgroundColor),
 			display: 'flex',
 			justifyContent: 'center',
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
 			alignItems: 'center',
 			cursor: 'default',
 			margin: 'auto',
@@ -78,6 +78,7 @@ class Avatar extends React.Component {
 
 Avatar.propTypes = {
 	backgroundColor: PropTypes.string,
+	fontFamily: PropTypes.string,
 	customIcon: PropTypes.oneOf([
 		'eyeOpen',
 		'eyeSlashed',

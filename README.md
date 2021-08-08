@@ -1,7 +1,7 @@
 # react-kariu
 A simple library of components for react users.
 
-## Work in progress
+## Documentation
 
 You can check the documentation here :
 https://master--608041216ca77600211c434a.chromatic.com
@@ -17,7 +17,6 @@ npm i react-kariu
 ```
 import { ComponentName, OtherComponent } from 'react-kariu'
 ```
-
 
 ### Components available for now
 - Avatar

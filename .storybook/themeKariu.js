@@ -3,6 +3,7 @@ import logo from './favicon.svg'
 
 export default create({
 	base: 'light',
+	title: 'React-kariu',
 	brandTitle: 'React-Kariu',
 
 	colorPrimary: '#3C1B43',

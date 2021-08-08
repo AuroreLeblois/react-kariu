@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, ModalItem, ModalFooter, Button } from './../index.js'
+import { Modal, ModalItem, ModalFooter, Button, Text } from './../index.js'
 
 export default {
 	title: 'React-Kariu/Organism/Modal',
@@ -21,8 +21,8 @@ export const Default = (args) => {
 	return (
 		<Modal {...args} title='Title Modal' priority={4}>
 			<ModalItem>
-				<p>This is an example modal with portal</p>
-				<p>I will disapear from the DOM if my state show is at false</p>
+				<Text text='This is an example modal with portal'/>
+				<Text text='I will disapear from the DOM if my state show is at false'/>
 			</ModalItem>
 			<ModalFooter>
 				<Button backgroundColor={'purple'} label='click on me (log)' onClick={()=>console.log('hello')}/>

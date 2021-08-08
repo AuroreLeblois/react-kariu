@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
-import './../reset.css'
 
 class ModalItem extends React.Component {
 	// Renderers ----------------------------------------------------------------
@@ -13,7 +12,8 @@ class ModalItem extends React.Component {
 			justifyContent: this.props.justify,
 			flexWrap: this.props.wrap,
 			flexGrow: this.props.grow,
-			flexDirection: this.props.direction
+			flexDirection: this.props.direction,
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
 		}
 
 		return (
@@ -25,6 +25,7 @@ class ModalItem extends React.Component {
 }
 
 ModalItem.propTypes = {
+	fontFamily: PropTypes.string,
 	direction: PropTypes.string,
 	grow: PropTypes.number,
 	wrap: PropTypes.string,

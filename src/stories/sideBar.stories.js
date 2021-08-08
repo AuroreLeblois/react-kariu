@@ -19,10 +19,10 @@ const Template = (args) => <SideBar {...args} />;
 export const Default = Template.bind({});
 Default.args = {
 	options : [
-		{ href: '#', label: 'section'},
-		{ href: '#', label: 'promo'},
-		{ href: '#', label: 'icon'},
-		{ href: '#', label: 'home' }
+		{ href: '#', label: 'Section'},
+		{ href: '#', label: 'Promo'},
+		{ href: '#', label: 'Icon'},
+		{ href: '#', label: 'Home' }
 	]
 
 }

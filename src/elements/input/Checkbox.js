@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon } from './../../index.js'
-import './../reset.css'
 import { css } from '@emotion/css'
 
 class Checkbox extends React.Component {
@@ -29,13 +28,14 @@ class Checkbox extends React.Component {
 		const wrapper = {
 			display: 'flex',
 			lineHeight: 'normal',
-			cursor: 'pointer'
+			cursor: 'pointer',
+			alignItems: 'baseline'
 		}
 
 
 		let textColor = {
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
 			color: this.props.textColor ? this.props.textColor : '#43464B',
-			textAlign: 'end',
 			cursor: 'pointer'
 		}
 
@@ -78,10 +78,14 @@ class Checkbox extends React.Component {
 
 Checkbox.propTypes = {
 	id: PropTypes.string,
+	fontFamily: PropTypes.string,
 	textColor: PropTypes.string,
 	backgroundColor: PropTypes.string,
 	backgroundColorChecked: PropTypes.string,
 	required: PropTypes.bool
+}
+Checkbox.defaultProps = {
+	fontFamily: 'inherit'
 }
 
 export default Checkbox

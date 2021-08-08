@@ -9,7 +9,7 @@ class Title extends React.Component {
 		let style = {
 			display: 'block',
 			color: (this.props.textColor ? this.props.textColor : 'tomato'),
-			fontFamily: (this.props.fontFamily ? this.props.fontFamily : 'sans-serif'),
+			fontFamily: (this.props.fontFamily ? this.props.fontFamily : 'inherit'),
 			wordBreak: 'break-word',
 			fontWeight: 'regular',
 			textAlign: this.props.align,
@@ -98,6 +98,7 @@ Title.propTypes = {
 }
 
 Title.defaultProps = {
+	fontFamily: 'inherit',
 	priority: 1,
 	align: 'center',
 	cursor : 'text',

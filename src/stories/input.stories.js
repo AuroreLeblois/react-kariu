@@ -3,7 +3,7 @@ import React from 'react';
 import { Input } from './../index.js'
 
 export default {
-  title: 'React-Kariu/Molecule/Input/Input',
+  title: 'React-Kariu/Molecule/Input',
   component: Input,
   argTypes: {
 	  backgroundColor: { control: 'color' },

@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
-import './../reset.css'
-
 
 class Option extends React.Component {
 	constructor(props) {
@@ -17,6 +15,7 @@ class Option extends React.Component {
 		let text = this.capitalize(this.props.text)
 
 		let optionStyle = {
+			fontFamily: (this.props.fontFamily ? this.props.fontFamily : 'inherit'),
 			backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white',
 			color: this.props.textColor ? this.props.textColor : 'tomato',
 			minHeight:'2rem',
@@ -75,6 +74,7 @@ class Select extends React.Component {
 				maxWidth: '15rem',
 				minWidth: '8rem',
 				backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'white',
+				fontFamily: (this.props.fontFamily ? this.props.fontFamily : 'inherit'),
 				color: this.props.textColor ? this.props.textColor : 'tomato'
 			},
 			'&:focus':{
@@ -150,8 +150,9 @@ class Select extends React.Component {
 	renderLabel () {
 		if (!this.props.label) return null
 		let text = this.props.loading ? this.props.textLoadingLabel : this.props.label
+		let fontFamily = {fontFamily:(this.props.fontFamily ? this.props.fontFamily : 'inherit')}
 
-		return <label className={`select-kariu--label`} htmlFor={this.props.idSelect}>{text}</label>
+		return <label className={`select-kariu--label ${css(fontFamily)}`} htmlFor={this.props.idSelect}>{text}</label>
 	}
 
 	handleChange(event) {
@@ -161,6 +162,7 @@ class Select extends React.Component {
 }
 
 Select.propTypes = {
+	fontFamily: PropTypes.string,
 	backgroundColor: PropTypes.string,
 	backgroundColorSelected: PropTypes.string,
 	name: PropTypes.string.isRequired,

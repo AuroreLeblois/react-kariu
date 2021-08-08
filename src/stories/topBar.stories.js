@@ -15,8 +15,10 @@ const Template = (args) => <NavBar {...args} />;
 
 export const Default = (args) => (
 	<NavBar {...args}>
-		<Title cursor='pointer' priority={3} text='AppName' textColor='inherit' onClick={console.log('click')}/>
-		<NavItem onClick={()=>console.log('helloooo world')} option={ {href: '#', label: 'a link'} }/>
-		<NavItem option={ {href: '#', label: 'Another link but disabled', disabled: true} }/>
+		<div onClick={()=>console.log('click')}>
+			<Title cursor='pointer' priority={3} text='AppName' textColor='inherit' />
+		</div>
+		<NavItem  onClick={()=>console.log('helloooo world')} option={ {href: '#', label: 'A link'} }/>
+		<NavItem  option={ {href: '#', label: 'Another link'} }/>
 	</NavBar>
 )

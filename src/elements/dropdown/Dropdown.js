@@ -1,9 +1,8 @@
 import React from 'react'
-import {ReactDOM} from 'react-dom';
+import {ReactDOM} from 'react-dom'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
-import './../reset.css'
-import { List, Button, Search, InputItem } from './../../index.js'
+import { List, ListItem, Button, Search, InputItem } from './../../index.js'
 
 
 class Dropdown extends React.Component {
@@ -16,7 +15,9 @@ class Dropdown extends React.Component {
 			loading: (props.loading ? props.loading : false),
 			show: (props.show ? props.show : false),
 			variant: (props.variant ? props.variant : 'default'),
-			pos: {}
+			pos: {},
+			textSelectAll : (this.props.textSelectAll ? this.props.textSelectAll : null),
+			textUnselectAll: (this.props.textUnselectAll ? this.props.textUnselectAll : null)
 		}
 		this.handleChange = this.handleChange.bind(this)
 		this.btnRef= React.createRef()
@@ -44,14 +45,14 @@ class Dropdown extends React.Component {
 
 	componentDidMount() {
 		this._isMounted = true
-		window.addEventListener('keypress', this.handleKey.bind(this), true )
+		// window.addEventListener('keypress', this.handleKey.bind(this), true )
 		window.addEventListener('resize', this.handleResize, true)
 		window.addEventListener('click', this.handleClickOutside.bind(this));
 		this.handleResize()
 	}
 
 	componentWillUnmount() {
-		window.addEventListener('keypress', this.handleKey.bind(this), true)
+		// window.addEventListener('keypress', this.handleKey.bind(this), true)
 		window.removeEventListener('resize', this.handleResize, true)
 		window.removeEventListener('click', this.handleClickOutside.bind(this))
 		this._isMounted = false
@@ -65,6 +66,7 @@ class Dropdown extends React.Component {
 			overflowY: 'visible',
 			flexDirection: (this.state.direction === 'bottom' ? 'column': 'column-reverse'),
 			alignItems: 'center',
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
 			'svg':{
 				transform: this.rotate(),
 				marginLeft: this.props.label.length ? '0.5rem' : '0.3rem',
@@ -79,6 +81,7 @@ class Dropdown extends React.Component {
 			case 'search':
 				dropdown = <Search
 					autoComplete="off"
+					fontFamily={this.props.fontFamily ? this.props.fontFamily : 'inherit'}
 					data={this.state.options}
 					label={this.props.label}
 					name="search"
@@ -90,6 +93,7 @@ class Dropdown extends React.Component {
 			break;
 			default:
 				dropdown = <Button
+					fontFamily={this.props.fontFamily ? this.props.fontFamily : 'inherit'}
 					shape={this.props.shape}
 					backgroundColor={this.props.backgroundColorBtn ? this.props.backgroundColorBtn : 'tomato'}
 					textColor = {this.props.textColorBtn ? this.props.textColorBtn : 'white'}
@@ -114,12 +118,14 @@ class Dropdown extends React.Component {
 
 	renderList () {
 		let position = {
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
 			borderRadius: '5px',
 			position: 'absolute',
 			...this.state.pos
 		}
 		return <div onClick={()=>this.setState({ show: true })} ref={this.listRef} className={css(position)+' dropdown-kariu '+this.props.className}>
 		<List
+			fontFamily={this.props.fontFamily}
 			isSearch={this.props.variant === 'search'}
 			textNoData={this.props.textNoData ? this.props.textNoData : 'No Data'}
 			checkbox={this.props.checkbox}
@@ -151,12 +157,13 @@ class Dropdown extends React.Component {
 	}
 
 	handleChange = (data) => {
+		console.log(data);
+		this.optionsSelected = this.state.optionsSelected
 		if (data.length === this.state.options.length) {
-			this.setState({optionsSelected: this.state.options},
-			()=> this.props.onChange && this.props.onChange(this.state.optionsSelected)
+			this.setState({optionsSelected: data},
+			()=> this.props.onChange && this.props.onChange(data)
 			)
 		}
-		this.optionsSelected = this.state.optionsSelected
 		if (this.optionsSelected.includes(data)) this.optionsSelected = this.optionsSelected.filter(e => e !== data) // will return [remains]
 		else this.optionsSelected.push(data)
 		if (data !== event.target) this.setState({optionsSelected: this.optionsSelected}, ()=>{
@@ -178,11 +185,11 @@ class Dropdown extends React.Component {
 
 	}
 
-	handleKey = (e) => {
-		if (e.key === 'Enter' && this.props.variant === 'search' && this.state.options.length === 1) {
-			this.handleChange(this.state.options[0])
-		}
-	}
+	// handleKey = (e) => {
+	// 	if (e.key === 'Enter' && this.props.variant === 'search' && this.state.options.length === 1) {
+	// 		this.handleChange(this.state.options[0])
+	// 	}
+	// }
 
 	rotate = () => {
 		let rotation = null
@@ -217,6 +224,7 @@ class Dropdown extends React.Component {
 
 Dropdown.propTypes = {
 	show: PropTypes.bool,
+	fontFamily: PropTypes.string,
 	icon:  PropTypes.oneOf([
 		'arrow',
 		'cross',
@@ -228,6 +236,8 @@ Dropdown.propTypes = {
 		'marker',
 		'hamburgerMenu'
 	]),
+	textSelectAll: PropTypes.string,
+	textUnselectAll: PropTypes.string,
 	label: PropTypes.string.isRequired,
 	optionsSelected: PropTypes.array,
 	backgroundColor: PropTypes.string,
@@ -244,8 +254,12 @@ Dropdown.propTypes = {
 }
 
 Dropdown.defaultProps = {
+	fontFamily: 'inherit',
+	textSelectAll: 'Select all',
+	textUnselectAll: 'Unselect all',
 	icon: 'arrow',
 	variant: 'default',
+	textColor: 'tomato',
 	show: false
 }
 export default Dropdown

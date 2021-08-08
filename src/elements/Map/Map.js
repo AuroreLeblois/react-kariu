@@ -1,5 +1,4 @@
 import React from 'react'
-import './../reset.css'
 import PropTypes from 'prop-types'
 import L from "leaflet"
 import 'leaflet/dist/leaflet.css'
