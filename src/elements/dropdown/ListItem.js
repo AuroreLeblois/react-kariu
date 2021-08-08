@@ -25,12 +25,12 @@ class ListItem extends React.Component {
 	componentDidUpdate(prevProps) {
 		if (prevProps.option !== this.props.option ||
 			prevProps.number !== this.props.number ||
-			prevProps.numberOfOptions !== this.props.numberOfOptions) {
-			let text = this.state.textSelect
-			text = this.updateTextSelect(text)
+			prevProps.numberOfOptions !== this.props.numberOfOptions ||
+			prevProps.textSelectAll !== this.props.textSelectAll ||
+			prevProps.textUnselectAll !== this.props.textUnselectAll) {
+
 			this.setState({
-				option : this.props.option,
-				textSelect: text
+				option : this.props.option
 			})
 		}
 	}
@@ -90,10 +90,10 @@ class ListItem extends React.Component {
 		return (
 			<div onClick={()=>{ this.handleClick(event) && this.props.onClick()}} className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`} onClick={this.handleClick}>
 				<li className={css(liStyle)}>
+					{this.renderNoData()}
 					{this.renderSelectAll()}
 					{this.renderTitle()}
 					{this.renderText()}
-					{this.renderNoData()}
 					{this.renderCheckbox()}
 					{this.renderLink()}
 					{this.renderDescription()}
@@ -149,33 +149,26 @@ class ListItem extends React.Component {
 	renderSelectAll() {
 		if (!this.state.textSelect || this.state.option) return null
 
-		return <Text onClick={()=>this.handleClick()} variant='disabled' cursor='default' textColor='inherit' text={this.state.textSelect}/>
+		let text = ''
+		if (this.props.number > 0) {
+			text = this.props.textUnselectAll
+		} else {
+			text = this.props.textSelectAll
+		}
+
+		return <Text onClick={()=>this.handleClick()} variant='disabled' cursor='default' textColor='inherit' text={text}/>
 	}
 
 	capitalize(s) {
 		return s[0].toUpperCase() + s.slice(1)
 	}
 
-	updateTextSelect(text) {
-		if (!this.props.numberOfOptions) return null
-		if (text === this.props.textUnselectAll && this.props.number !== this.props.numberOfOptions) {
-			text = this.props.textSelectAll
-		} else if (text === this.props.textSelectAll && this.props.number > 0) {
-			text = this.props.textUnselectAll
-		}
-
-		return text
-	}
-
 	handleClick = () => {
-		if (this.props.checkbox || this.state.textSelect) {
+		if (this.props.checkbox || this.props.textSelectAll) {
 			let data = this.state.option
-			let text = this.state.textSelect
+			let text = this.props.number > 0 ?  this.props.textUnselectAll : this.props.textSelectAll
 			if (this.props.textSelectAll || this.props.textUnselectAll) {
 				this.props.onSelectAll(text)
-				if (text === this.props.textSelectAll) text = this.props.textUnselectAll
-				else if (text === this.props.textUnselectAll) text = this.props.textSelectAll
-				this.setState({ textSelect: text })
 			} else {
 				if (data.checked === true) data.checked = false
 				else data.checked = true

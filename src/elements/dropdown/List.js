@@ -12,9 +12,7 @@ class List extends React.Component {
 			optionsSelected: props.optionsSelected ? props.optionsSelected : [],
 			loading: (props.loading ? props.loading : false),
 			show: (props.show ? props.show : false),
-			options: (props.options ? props.options : []),
-			textSelectAll : (this.props.textSelectAll ? this.props.textSelectAll : 'Select All'),
-			textUnselectAll: (this.props.textUnselectAll ? this.props.textUnselectAll : 'Unselect All')
+			options: (props.options ? props.options : [])
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.optionsSelected = []
@@ -35,11 +33,15 @@ class List extends React.Component {
 	componentDidUpdate(prevProps) {
 		if ( prevProps.optionsSelected !== this.props.optionsSelected ||
 			prevProps.show !== this.props.show ||
-			prevProps.options !== this.props.options) {
+			prevProps.options !== this.props.options ||
+			prevProps.textSelectAll !== this.props.textSelectAll ||
+			prevProps.textUnselectAll !== this.props.textUnselectAll) {
 				this.setState({
 					optionsSelected: this.props.optionsSelected,
 					show: this.props.show,
-					options: this.props.options
+					options: this.props.options,
+					textSelectAll: this.props.textSelectAll,
+					textUnselectAll: this.props.textUnselectAll
 				})
 		}
 	}
@@ -87,8 +89,8 @@ class List extends React.Component {
 						key='select'
 						number={this.number}
 						onSelectAll={(data)=>this.selectAll(data)}
-						textSelectAll={this.state.textSelectAll}
-						textUnselectAll={this.state.textUnselectAll}
+						textSelectAll={this.props.textSelectAll}
+						textUnselectAll={this.props.textUnselectAll}
 						numberOfOptions={this.numberOfOptions}/>)
 			}
 			for (let option of this.state.options) {
@@ -137,16 +139,14 @@ class List extends React.Component {
 	selectAll(data) {
 		let optionsSelected = []
 		let options = []
-		if (data === this.state.textSelectAll) {
+		if (data === this.props.textSelectAll) {
 			for (let i=0; i < this.state.options.length; i++) {
 				let data = this.state.options[i]
-				if (data.checked === false){
-					data.checked = true
-					optionsSelected.push(data)
-					options.push(data)
-				}
+				data.checked = true
+				optionsSelected.push(data)
+				options.push(data)
 			}
-		} else if (data === this.state.textUnselectAll) {
+		} else if (data === this.props.textUnselectAll) {
 			for (let i=0; i < this.state.options.length; i++) {
 				let data = this.state.options[i]
 				if (data.checked === true){
@@ -155,18 +155,17 @@ class List extends React.Component {
 				options.push(data)
 			}
 		}
+	;
 		this.optionsSelected = optionsSelected
 		this.number = optionsSelected.length
 		this.setState({optionsSelected: this.optionsSelected, options: options}, ()=>
-			this.props.onSelect && this.props.onSelect(this.optionsSelected)
+		this.props.onSelect && this.props.onSelect(this.optionsSelected)
 		)
 	}
 }
 
 List.propTypes = {
 	show: PropTypes.bool,
-	textSelectAll: PropTypes.string,
-	textUnselectAll: PropTypes.string,
 	fontFamily: PropTypes.string,
 	optionsSelected: PropTypes.array,
 	backgroundColor: PropTypes.string,

@@ -15,15 +15,12 @@ class Dropdown extends React.Component {
 			loading: (props.loading ? props.loading : false),
 			show: (props.show ? props.show : false),
 			variant: (props.variant ? props.variant : 'default'),
-			pos: {},
-			textSelectAll : (this.props.textSelectAll ? this.props.textSelectAll : null),
-			textUnselectAll: (this.props.textUnselectAll ? this.props.textUnselectAll : null)
+			pos: {}
 		}
 		this.handleChange = this.handleChange.bind(this)
 		this.btnRef= React.createRef()
 		this.listRef = React.createRef()
 		this.btnDim =  null
-		this.number = 0
 		this.datas = [...this.state.options]
 	}
 
@@ -31,7 +28,9 @@ class Dropdown extends React.Component {
 		if (prevProps.options !== this.props.options ||
 			prevProps.optionsSelected !== this.props.optionsSelected ||
 			prevProps.show !== this.props.show ||
-			prevProps.variant !== this.props.variant
+			prevProps.variant !== this.props.variant ||
+			prevProps.textSelectAll !== this.props.textSelectAll ||
+			prevProps.textUnselectAll !== this.props.textUnselectAll
 		) {
 				this.setState({
 					options: this.props.options,
@@ -125,6 +124,8 @@ class Dropdown extends React.Component {
 		}
 		return <div onClick={()=>this.setState({ show: true })} ref={this.listRef} className={css(position)+' dropdown-kariu '+this.props.className}>
 		<List
+			textSelectAll={this.props.textSelectAll}
+			textUnselectAll={this.props.textUnselectAll}
 			fontFamily={this.props.fontFamily}
 			isSearch={this.props.variant === 'search'}
 			textNoData={this.props.textNoData ? this.props.textNoData : 'No Data'}
@@ -157,17 +158,21 @@ class Dropdown extends React.Component {
 	}
 
 	handleChange = (data) => {
-		console.log(data);
-		this.optionsSelected = this.state.optionsSelected
-		if (data.length === this.state.options.length) {
-			this.setState({optionsSelected: data},
-			()=> this.props.onChange && this.props.onChange(data)
-			)
+		this.optionsSelected = []
+		for (let i=0; i<this.state.options.length; i++) {
+			let option = this.state.options[i]
+			if (option.checked) this.optionsSelected.push(option)
 		}
-		if (this.optionsSelected.includes(data)) this.optionsSelected = this.optionsSelected.filter(e => e !== data) // will return [remains]
-		else this.optionsSelected.push(data)
+		// this.optionsSelected = this.state.optionsSelected
+		// if (data.length === this.state.options.length) {
+		// 	this.setState({optionsSelected: data},
+		// 	()=> this.props.onChange && this.props.onChange(data)
+		// 	)
+		// }
+		// if (this.optionsSelected.includes(data)) this.optionsSelected = this.optionsSelected.filter(e => e !== data) // will return [remains]
+		// else this.optionsSelected.push(data)
 		if (data !== event.target) this.setState({optionsSelected: this.optionsSelected}, ()=>{
-			this.props.onChange && this.props.onChange(this.state.optionsSelected)
+			this.props.onChange && this.props.onChange(this.optionsSelected)
 		})
 	}
 
