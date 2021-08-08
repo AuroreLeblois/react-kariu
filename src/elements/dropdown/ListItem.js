@@ -46,6 +46,7 @@ class ListItem extends React.Component {
 				display: 'flex',
 				flexDirection: 'column',
 			},
+			display: 'flex',
 			cursor: 'pointer',
 			width: '100%',
 			height: '100%',
@@ -69,6 +70,12 @@ class ListItem extends React.Component {
 				maxWidth: '10rem',
 				whiteSpace: 'nowrap'
 			},
+			'h5':{
+				marginBottom: '0.3rem',
+				textTransform: 'uppercase',
+				fontSize: '1.25rem',
+				margin: 'none'
+			},
 			'a svg': {
 				transform: 'rotate(0deg)',
 				marginTop: '2px'
@@ -89,7 +96,7 @@ class ListItem extends React.Component {
 
 		return (
 			<div onClick={()=>{ this.handleClick(event) && this.props.onClick()}} className={`listItem-kariu--wrapper ${css(optionStyle)} ${this.props.className}`} onClick={this.handleClick}>
-				<li className={css(liStyle)}>
+				<li className={`${css(liStyle)} ${this.props.className} listItem-kariu`}>
 					{this.renderNoData()}
 					{this.renderSelectAll()}
 					{this.renderTitle()}

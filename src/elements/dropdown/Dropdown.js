@@ -104,7 +104,7 @@ class Dropdown extends React.Component {
 		}
 		return (
 			<>
-			<div onClick={()=>{
+			<div className={`dropdown-kariu--wrapper ${this.props.className}`} onClick={()=>{
 				if (this.state.variant === 'default' && !this.state.show) this.setState({show: !this.state.show})}} ref={this.btnRef} className={css(dropStyle)}>
 				{dropdown}
 				{this.renderList()}
@@ -163,14 +163,6 @@ class Dropdown extends React.Component {
 			let option = this.state.options[i]
 			if (option.checked) this.optionsSelected.push(option)
 		}
-		// this.optionsSelected = this.state.optionsSelected
-		// if (data.length === this.state.options.length) {
-		// 	this.setState({optionsSelected: data},
-		// 	()=> this.props.onChange && this.props.onChange(data)
-		// 	)
-		// }
-		// if (this.optionsSelected.includes(data)) this.optionsSelected = this.optionsSelected.filter(e => e !== data) // will return [remains]
-		// else this.optionsSelected.push(data)
 		if (data !== event.target) this.setState({optionsSelected: this.optionsSelected}, ()=>{
 			this.props.onChange && this.props.onChange(this.optionsSelected)
 		})
