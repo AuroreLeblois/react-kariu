@@ -80,7 +80,7 @@ Default.args = {
 		},
 		{ date_start : "2021-10-05", time_start: "08:00", time_end: '17:00', site_name: 'Work', activity_code: 'Money' },
 		{ date_start : "2021-10-07", time_start: "20:00", time_end: '07:00', site_name: 'Work', activity_code: 'Money', special: true },
-		{ unavailability_code : 'RDV', name: 'Doctor', unavailability_date_start: "2021-10-03", marked: true}
+		{ unavailability_code : 'RDV', name: 'Doctor', unavailability_date_start: "2021-10-03", unavailability_time_start:'09:00', unavailability_time_end:'10:00', marked: true}
 	],
 	vhead: [
 		{ name: "Work", id: 5 },

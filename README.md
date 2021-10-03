@@ -25,6 +25,7 @@ import { ComponentName, OtherComponent } from 'react-kariu'
 ### Components available for now
 - Avatar
 - Button
+- Calendar (test version)
 - Input (most of them: style in-progress) including:
   - Checkbox
   - Radio

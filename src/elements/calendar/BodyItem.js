@@ -181,13 +181,13 @@ class BodyItem extends React.Component {
 		if (!this.props.item.time_start && !this.props.item.unavailability_time_start) return null
 
 		const timeStart = (
-			this.props.item.unavailability_id
+			this.props.item.unavailability_code
 			? this.props.item.unavailability_time_start
 			: this.props.item.time_start
 		)
 
 		const timeEnd = (
-			this.props.item.unavailability_id
+			this.props.item.unavailability_code
 			? this.props.item.unavailability_time_end
 			: this.props.item.time_end
 		)
