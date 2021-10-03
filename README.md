@@ -6,6 +6,10 @@ A simple library of components for react users.
 You can check the documentation here :
 https://master--608041216ca77600211c434a.chromatic.com
 
+## Github
+
+https://github.com/AuroreLeblois/react-kariu.git
+
 ## npm install
 
 ```

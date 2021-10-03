@@ -28,6 +28,7 @@ export default class Button extends React.Component {
 		const shape = this.props.shape ? this.props.shape : 'rounded'
 
 		let styleBtn = {
+
 			fontWeight: 700,
 			border: 0,
 			cursor: 'pointer',
@@ -91,7 +92,10 @@ export default class Button extends React.Component {
 	renderText() {
 		let color = this.props.textColor ? this.props.textColor : 'inherit'
 
-		let textColor = { color: color }
+		let textColor = {
+			color: color,
+			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit'
+		}
 		if (this.state.loading) {
 			const dimensions = this.renderDimensions()
 			return ( <Loading
@@ -139,6 +143,7 @@ export default class Button extends React.Component {
 }
 
 Button.propTypes = {
+	fontFamily: PropTypes.string,
 	backgroundColor: PropTypes.string,
 	disabled: PropTypes.bool,
 	label: PropTypes.string,

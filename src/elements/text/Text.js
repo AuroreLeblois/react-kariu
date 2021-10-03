@@ -7,12 +7,11 @@ class Text extends React.Component {
 	// Renderers ----------------------------------------------------------------
 	render() {
 		let style = {
-			display: 'flex',
 			color: (this.props.textColor ? this.props.textColor : 'tomato'),
 			fontFamily: (this.props.fontFamily ? this.props.fontFamily : 'inherit'),
 			wordBreak: 'break-word',
 			fontWeight: 'regular',
-			textAlign: this.props.align,
+			textAlign: this.props.align ? this.props.align : 'center',
 			letterSpacing: '-0.025rem',
 			wordBreak: 'break-word',
 			whiteSpace: 'pre-wrap',
