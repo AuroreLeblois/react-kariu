@@ -43,7 +43,9 @@ class Calendar extends React.Component {
 	// Renderers ----------------------------------------------------------------
 	render() {
 		const styleTable = {
-			flex: (this.props.loading ? '1 1 auto' : '0 1 auto'),
+			flex: '1 1 auto',
+			margin: '2rem',
+			marginRight: '2rem',
 			userSelect: 'none',
 			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit'
 		}
@@ -113,7 +115,7 @@ class Calendar extends React.Component {
 		if (!this.state.vhead.length && !this.props.loading) {
 			const daysInMonth = moment(`${this.state.yearSelected}-${this.state.monthSelected}`).daysInMonth() + 1
 			return (
-				<tr style={{ padding: '2rem' }}>
+				<tr className={`${this.props.className} kariu-calendar--row`} style={{ padding: '2rem'}}>
 					<td
 						colSpan={daysInMonth}
 						style={{

@@ -18,7 +18,7 @@ class HeadItem extends React.Component {
 			minWidth: (
 				//for future custom datePicker
 				this.props.date.number
-					? '4.5rem'
+					? '3rem'
 					: 'auto'
 			 ),
 			cursor: 'default'
