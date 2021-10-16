@@ -78,6 +78,7 @@ class Calendar extends React.Component {
 			<th style={{ verticalAlign: 'middle' }}>
 				<div>
 					<HeadNav
+						fontFamily={(this.props.fontFamily ? this.props.fontFamily : 'inherit')}
 						date={`${this.state.yearSelected}-${this.state.monthSelected}-01`}
 						language={this.props.language}
 						onClick={(newDate) => {

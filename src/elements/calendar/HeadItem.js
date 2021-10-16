@@ -18,14 +18,16 @@ class HeadItem extends React.Component {
 			minWidth: (
 				//for future custom datePicker
 				this.props.date.number
-					? '3rem'
+					? '2.5rem'
 					: 'auto'
-			 ),
-			cursor: 'default'
+			),
+			cursor: 'default',
+			'span':{
+				fontFamily: (this.props.fontFamily ? this.props.fontFamily : 'inherit'),
+			}
 		}
 
 		const styleText = {
-			fontFamily: 'inherit',
 			fontSize: '1rem',
 			lineHeight: '1.2rem',
 			fontWeight: (

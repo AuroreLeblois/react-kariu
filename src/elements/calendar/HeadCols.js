@@ -63,6 +63,7 @@ class HeadCols extends React.Component {
 		days.map((day, index) => (
 			array.push(
 				<HeadItem
+					fontFamily={(this.props.fontFamily ? this.props.fontFamily : 'inherit')}
 					key={index+'Week'}
 					date={{
 						day: (day.day ? day.day : day),

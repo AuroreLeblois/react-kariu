@@ -51,7 +51,7 @@ class Card extends React.Component {
 			borderWidth: (this.props.showCard ? '0.5px' : 0),
 			':hover': {
 				opacity: (
-					(this.props.showCard && (this.props.onClick || (this.props.variant === 'accordion')))
+					((this.props.onClick || (this.props.variant === 'accordion')))
 					? 0.85
 					: 1
 				)
@@ -119,7 +119,7 @@ class Card extends React.Component {
 			)
 		} else {
 			contentTitle = (
-				<Title align='left' textColor='inherit' text={this.state.title} priority={4}/>
+				<Title align='left' textColor='inherit' fontFamily='inherit' text={this.state.title} priority={4}/>
 			)
 		}
 
@@ -159,8 +159,7 @@ Card.propTypes = {
 	loading: PropTypes.bool,
 	title: PropTypes.string,
 	variant: PropTypes.string,
-	grow: PropTypes.number,
-	showCard: PropTypes.bool
+	grow: PropTypes.number
 }
 
 Card.defaultProps = {

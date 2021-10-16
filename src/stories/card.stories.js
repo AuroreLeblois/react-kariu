@@ -26,7 +26,7 @@ export const Default = (args) => {
 	return (
 		<Card {...args} >
 			<Text textColor='blue' align='left' text='In the card if you give me a color i will not change'/>
-			<Text textColor='inherit' text='
+			<Text fontFamily='inherit' textColor='inherit' text='
 			Icing lemon drops chupa chups cupcake marzipan gingerbread donut.
 			 Bear claw I love oat cake fruitcake cotton candy.
 			Dragée fruitcake I love sweet oat cake jelly liquorice powder.
@@ -44,8 +44,8 @@ export const CustomContent = (args) => {
 
 	return (
 		<Card {...args}>
-			<Title textColor='inherit' text='Custom title' priority={5}/>
-			<Title textColor='inherit' text='Secondary text' priority={5}/>
+			<Title fontFamily='inherit' textColor='inherit' text='Custom title' priority={5}/>
+			<Title fontFamily='inherit' textColor='inherit' text='Secondary text' priority={5}/>
 		</Card>
 	)
 }
@@ -53,12 +53,14 @@ export const CustomContent = (args) => {
 export const Accordion = (args) => {
 	return (
 		<Card {...args} title='Accordion' variant='accordion'>
-		<Text text='
-		Icing lemon drops chupa chups cupcake marzipan gingerbread donut.
-		Bear claw I love oat cake fruitcake cotton candy.
-		Dragée fruitcake I love sweet oat cake jelly liquorice powder.
-		I love danish topping tart jujubes. Muffin toffee gingerbread donut wafer jujubes marshmallow I love.
-		Oat cake jujubes topping candy canes wafer I love cookie. Pie croissant chocolate cake danish bonbon jelly-o.'
+		<Text
+			fontFamily='inherit'
+			text='
+				Icing lemon drops chupa chups cupcake marzipan gingerbread donut.
+				Bear claw I love oat cake fruitcake cotton candy.
+				Dragée fruitcake I love sweet oat cake jelly liquorice powder.
+				I love danish topping tart jujubes. Muffin toffee gingerbread donut wafer jujubes marshmallow I love.
+				Oat cake jujubes topping candy canes wafer I love cookie. Pie croissant chocolate cake danish bonbon jelly-o.'
 		/>
 		</Card>
 	)

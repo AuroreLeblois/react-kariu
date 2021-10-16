@@ -38,7 +38,7 @@ class BodyItem extends React.Component {
 
 		const styleTd = {
 			position: 'relative',
-			height: '4.5rem',
+			height: '2.95rem',
 			padding: '0.125rem',
 			verticalAlign: 'middle',
 			cursor: (isEmpty ? 'default' : 'pointer'),
