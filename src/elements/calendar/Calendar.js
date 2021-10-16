@@ -170,7 +170,7 @@ class Calendar extends React.Component {
 		let cells = []
 		const infos = this.state.infos
 
-		const styleTd = {
+		let styleTd = {
 			cursor: 'default',
 			verticalAlign: 'middle'
 		}
@@ -218,33 +218,54 @@ class Calendar extends React.Component {
 			let day = index + 1
 			if (day < 10) day = '0'+day
 			const date = `${this.state.yearSelected}-${this.state.monthSelected}-${day}`
+			const dateWithoutYear = `${this.state.monthSelected}-${day}`
 			const indexOfDay = moment(date).isoWeekday()
-			cells.push(
-				<BodyItem
-					key={index+'weekday'}
-					isWeekEnd={indexOfDay === 6 || indexOfDay === 7}
-				/>
-			)
+			let isWeekEnd = (indexOfDay === 6 || indexOfDay === 7)
+			const isHoliday = (!this.props.holidays ? false : this.props.holidays.some(element => element.month_day === dateWithoutYear))
 
+			styleTd = {
+				...styleTd,
+				backgroundColor: ( // Holiday > Weekend > Default
+					isHoliday
+						? 'grey'
+						: isWeekEnd
+							? 'rgb(218, 218, 218)'
+							: 'inherit'
+					)
+						}
+			let cell = []
 			for (let ind = 0; ind < infos.length; ind++) {
 				if (
 					moment(infos[ind].date_start).format('YYYY-MM-DD') === moment(date).format('YYYY-MM-DD')
 					&& (name === infos[ind].name || name === infos[ind].site_name)
 				) {
-					let cell = []
-					cell.push(
-						<BodyItem
-							key={ind+'vacation'+name}
-							item={infos[ind]}
-							isWeekEnd={indexOfDay === 6 || indexOfDay === 7}
-							onClick={()=>{this. props.onClickItem && this.props.onClickItem(infos[ind])}}
-						/>
-					)
-					cells[index+1] = cell
+					cell.push(infos[ind])
 				}
 			}
+
+			cells[index+1] = (
+				<td key={'task'+index} className={css(styleTd)}>
+					{this.renderCellContent(cell, indexOfDay,isWeekEnd, isHoliday)}
+				</td>
+			)
 		}
 		return cells
+	}
+
+	renderCellContent(array, indexOfDay, isWeekEnd, isHoliday) {
+		if (!array.length) return null
+
+		let content = []
+		array.map((element, index) => content.push(
+			<BodyItem
+				key={'task'+element.resource_fullname+index}
+				isWeekEnd={isWeekEnd}
+				isHoliday={isHoliday}
+				item={element}
+				onClick={()=>{this.props.onClickItem && this.props.onClickItem(element)}}
+			/>
+		))
+		return content
 	}
 }
 

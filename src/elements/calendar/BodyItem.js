@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import { Dot } from './../../index.js'
-import Color from 'color'
 
 class BodyItem extends React.Component {
 	// Constructor ----------------------------------------------------------------
@@ -82,13 +81,13 @@ class BodyItem extends React.Component {
 			alignItems: 'center',
 			justifyContent: 'center',
 			height: '99%', // hack for full height div when we display only an unavailability_type_code
-			border: '0.125rem'+' solid '+Color(bgColor).darken(0.25).string(),
+			border: '0.125rem'+' solid '+bgColor,
 			borderRadius: '4px',
 			padding: '0rem'+' '+'0.5rem',
 			backgroundColor: bgColor,
-			':hover': { backgroundColor: (isEmpty ? bgColor : Color(bgColor).darken(0.05).string()) },
-			':active': { backgroundColor: (isEmpty ? bgColor : Color(bgColor).darken(0.1).string()) },
-			':focus': { backgroundColor: (isEmpty ? bgColor : Color(bgColor).darken(0.15).string()) }
+			':hover': { filter: 'brightness(90%)'},
+			':active': { backgroundColor: bgColor},
+			':focus': { backgroundColor: bgColor}
 		}
 
 		let content = null
@@ -204,35 +203,6 @@ class BodyItem extends React.Component {
 		)
 	}
 
-	// renderDatepickerItem() {
-	// 	// Cellule pour DatePicker
-	// 	// TODO upgrade ADS-170
-	// 	if (this.props.item || !this.props.number) return null
-	//
-	// 	const stylePickerDay = {
-	// 		height: tokens.spacing.layout.s.value,
-	// 		width: tokens.spacing.layout.s.value,
-	// 		padding: tokens.spacing.component.xs.value+' '+tokens.spacing.component.xs.value,
-	// 		fontWeight: tokens.font.weight.semibold.value,
-	// 		color: tokens.color.blue.navy.value,
-	// 		backgroundColor: tokens.color.white.value,
-	// 		cursor: 'pointer',
-	// justifyContent:'center',
-	// alignItems:'center',
-	// 		':hover': { backgroundColor: tokens.color.gray.light.value }
-	// 	}
-	//
-	// 	return (
-	// 		<div className={css(stylePickerDay)}
-// 				ref={this.dayPickerRef}
-// 				tabIndex='-1'
-// 				onMouseUp={()=>this.setState({ hasFocus: true })}
-// 			>
-	// 				{this.props.number}
-	// 		</div>
-	// 	)
-	// }
-
 
 	// Functions ----------------------------------------------------------------
 	handleClickOutside = (event) => {
@@ -256,7 +226,7 @@ class BodyItem extends React.Component {
 			// Day
 			item.time_end > item.time_start
 		) {
-			return "yellow"
+			return "rgb(238, 229, 2)"
 		} else if (
 			// Night
 			item.time_end < item.time_start
@@ -278,7 +248,7 @@ class BodyItem extends React.Component {
 			// Day
 			this.props.item.time_end > this.props.item.time_start
 		) {
-				return 'rgb(119, 130, 30)'
+			return 'rgb(119, 130, 30)'
 		} else if (
 			// Night
 			this.props.item.time_end < this.props.item.time_start

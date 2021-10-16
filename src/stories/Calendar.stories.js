@@ -87,6 +87,7 @@ Default.args = {
 		{ name: 'Doctor', id:42 },
 		{ name: null , id: 36 }
 	],
+	holidays:[{month_day: '10-16'}],
 	showAvatar: true,
 	onClickItem: (data) => console.log(data),
 	onDateChange: (data) => console.log(data)
