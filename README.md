@@ -16,10 +16,23 @@ https://github.com/AuroreLeblois/react-kariu.git
 npm i react-kariu
 ```
 
-## Import components in your project
+## Usage
 
 ```
 import { ComponentName, OtherComponent } from 'react-kariu'
+```
+
+## Example
+```
+import { Button } from 'react-kariu'
+
+<Button
+  label="Button"
+  onClick={() => {}}
+  shape="rounded"
+  tooltip="This is a rounded button"
+/>
+
 ```
 
 ### Components available for now
