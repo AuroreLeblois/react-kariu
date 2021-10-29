@@ -85,6 +85,7 @@ export default class Button extends React.Component {
 			>
 				{this.renderText()}
 				{this.renderIcon()}
+				{this.props.children}
 			</button>
 		)
 	}

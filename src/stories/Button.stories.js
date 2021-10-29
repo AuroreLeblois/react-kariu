@@ -32,12 +32,17 @@ export default {
   },
 }
 
-const Template = (args) => <Button {...args} />;
+const Template = (args) => <Button {...args} ></Button>;
 
 export const Default = Template.bind({});
 Default.args = {
   label: 'Button',
   tooltip: 'This is a simple button'
+}
+export const Children = (args) => {
+	return <Button{...args}>
+		<a href='#'>#</a>
+	</Button>
 }
 export const Rounded = Template.bind({});
 Rounded.args = {
