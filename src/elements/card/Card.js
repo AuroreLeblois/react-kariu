@@ -4,60 +4,47 @@ import { Icon, Loading, Title } from './../../index.js'
 import { css } from '@emotion/css'
 import './../reset.css'
 
-class Card extends React.Component {
-	// Constructor ----------------------------------------------------------------
-	constructor(props) {
-		super(props)
+const Card = (props) => {
 
-		this.state = {
-			showContent: (this.props.variant === 'accordion' ? false : true),
-			title: (this.props.title ? this.props.title : null)
-		}
-	}
+  const onClick = () => {
+    if (props.variant !== 'accordion') return
 
-
-	componentDidUpdate(prevProps) {
-		if (prevProps.title !== this.props.title) {
-			this.setState({ title: this.props.title })
-		}
-	}
-
-	// Renderers ----------------------------------------------------------------
-	render() {
+    this.setState({ showContent: !props.showContent })
+  }
 
 		const styleCursor = {
 			cursor: (
-				this.props.onClick || (this.props.variant === 'accordion')
+				props.onClick || (props.variant === 'accordion')
 				? 'pointer'
 				: 'default'
 			)
 		}
-		let backgroundColor = (this.props.backgroundColor ? this.props.backgroundColor : 'transparent')
-		let textColor = (this.props.textColor ? this.props.textColor : 'tomato')
+		let backgroundColor = (props.backgroundColor ? props.backgroundColor : 'transparent')
+		let textColor = (props.textColor ? props.textColor : 'tomato')
 
 		const styleCard = {
 			display: 'flex',
-			width: this.props.width,
+			width: props.width,
 			flexDirection: 'column',
 			flexWrap: 'nowrap',
-			alignItems: (this.props.loading ? 'center' : null),
-			flexGrow: this.props.grow,
-			padding: (this.props.showCard ? '1rem' : 0),
+			alignItems: (props.loading ? 'center' : null),
+			flexGrow: props.grow,
+			padding: (props.showCard ? '1rem' : 0),
 			color: textColor,
 			backgroundColor: backgroundColor,
-			borderRadius: (this.props.showCard ? '0.5rem' : 0),
+			borderRadius: (props.showCard ? '0.5rem' : 0),
 			borderStyle: 'solid',
-			borderColor: (this.props.showCard ? 'lightgrey' : 'transparent'),
-			borderWidth: (this.props.showCard ? '0.5px' : 0),
+			borderColor: (props.showCard ? 'lightgrey' : 'transparent'),
+			borderWidth: (props.showCard ? '0.5px' : 0),
 			':hover': {
 				opacity: (
-					((this.props.onClick || (this.props.variant === 'accordion')))
+					((props.onClick || (props.variant === 'accordion')))
 					? 0.85
 					: 1
 				)
 			},
 		}
-		if (this.props.loading) {
+		if (props.loading) {
 			return (
 				<div className={`card-kariu ${css(styleCard)} `}>
 					<Loading color={textColor} width={'8rem'} height={'8rem'}/>
@@ -66,17 +53,17 @@ class Card extends React.Component {
 		} else {
 			return (
 				<div className={`card-kariu ${css(styleCard)} `}
-					onClick={this.onClick.bind(this)}
+					onClick={props.onClick}
 				>
-					{this.renderTitle(styleCursor, textColor)}
-					{this.renderContent()}
+					{renderTitle(styleCursor, textColor, props.title, props.variant, showContent)}
+					{renderContent()}
 				</div>
 			)
 		}
 	}
 
-	renderTitle(styleCursor, textColor) {
-		if (!this.state.title) return null
+	function renderTitle(styleCursor, textColor, title, variant, showContent) {
+		if (!title) return null
 
 		const styleTitleContainer = {
 			...styleCursor,
@@ -88,7 +75,7 @@ class Card extends React.Component {
 			userSelect: 'none',
 			'button': {
 				marginLeft: (
-					this.props.variant === 'accordion'
+					variant === 'accordion'
 					? '1rem'
 					: '0'
 				)
@@ -96,19 +83,19 @@ class Card extends React.Component {
 		}
 		let rotate = {
 			'svg':{
-				transform: (this.state.showContent ? "rotate(-90deg)" : "rotate(90deg)")
+				transform: (showContent ? "rotate(-90deg)" : "rotate(90deg)")
 			}
 
 		}
 
 		let contentTitle = null
-		if (this.props.variant === 'accordion') {
+		if (props.variant === 'accordion') {
 			contentTitle = (
 				<div className={css(styleTitleContainer)}>
 					<Title align='left' textColor={textColor} text={this.state.title} priority={4}/>
 					<div className={css(rotate)}>
 						<Icon
-						className={`icon-show-kariu ${this.props.className}`}
+						className={`icon-show-kariu ${props.className}`}
 							icon='arrow'
 							color={textColor}
 							height='1.25rem'
@@ -126,7 +113,7 @@ class Card extends React.Component {
 		return contentTitle
 	}
 
-	renderContent() {
+	function renderContent() {
 		if (!this.state.showContent) return null
 
 		let styleContent = {
@@ -134,24 +121,16 @@ class Card extends React.Component {
 			backgroundColor: 'inherit',
 			flexDirection:'column',
 			flexWrap: 'nowrap',
-			flexGrow: this.props.grow,
-			paddingTop: (this.props.variant === 'accordion') ? '1rem' : '0'
+			flexGrow: props.grow,
+			paddingTop: (props.variant === 'accordion') ? '1rem' : '0'
 		}
 
 		return (
 			<div className={`card-kariu--content ${css(styleContent)} `}>
-				{this.props.children}
+				{props.children}
 			</div>
 		)
 	}
-
-	// Listeners ----------------------------------------------------------------
-	onClick = () => {
-		if (this.props.variant !== 'accordion') return
-
-		this.setState({ showContent: !this.state.showContent })
-	}
-}
 
 Card.propTypes = {
 	backgroundColor: PropTypes.string,

@@ -3,23 +3,22 @@ import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 
 // const Title = (props) => {
-class Text extends React.Component {
+const Text = (props) => {
 	// Renderers ----------------------------------------------------------------
-	render() {
 		let style = {
-			color: (this.props.textColor ? this.props.textColor : 'tomato'),
-			fontFamily: (this.props.fontFamily ? this.props.fontFamily : 'inherit'),
+			color: (props.textColor ? props.textColor : 'tomato'),
+			fontFamily: (props.fontFamily ? props.fontFamily : 'inherit'),
 			wordBreak: 'break-word',
 			fontWeight: 'regular',
-			textAlign: this.props.align ? this.props.align : 'center',
+			textAlign: props.align ? props.align : 'center',
 			letterSpacing: '-0.025rem',
 			wordBreak: 'break-word',
 			whiteSpace: 'pre-wrap',
 			marginBottom: '0.55rem',
 			marginTop: '0.25rem',
-			cursor: this.props.cursor
+			cursor: props.cursor
 		}
-		switch (this.props.variant) {
+		switch (props.variant) {
 			case 'label':
 				style.color = 'grey'
 				style.fontSize = '1rem'
@@ -45,11 +44,11 @@ class Text extends React.Component {
 			break;
 		}
 			return (
-				<p className={css(style)+' '+this.props.className}>
-					{this.props.text}
+				<p className={css(style)+' '+props.className}>
+					{props.text}
 				</p>
 			)
-		}
+
 }
 
 Text.propTypes = {

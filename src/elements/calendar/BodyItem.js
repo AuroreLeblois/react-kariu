@@ -227,11 +227,6 @@ const BodyItem = (props) => {
     </td>
   )
 
-
-
-
-
-
 }
 
 BodyItem.propTypes = {

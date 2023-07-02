@@ -1,30 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 
-class Tooltip extends React.Component {
-	constructor(props) {
-		super(props)
+const Tooltip = (props) => {
+		if (!props.text) return null;
+    const [show, setShow] = useState(props.show || false);
 
-		this.state = { show: (props.show ? props.show : false) }
+  	const onMouseHover = () => setShow(!show)
+    console.log(show);
 
-		this._isMounted = false
-	}
+    const styleDefault = {
+      cursor: 'default'
+    }
 
-	componentDidMount() { this._isMounted = true }
-
-	componentWillUnmount() { this._isMounted = false }
-
-	// Renderers ----------------------------------------------------------------
-	render() {
-		if (!this.props.text) return null
-
-		const styleDefault = {
-			cursor: 'default'
-		}
-
-		const backgroundColor = (this.props.backgroundColor ? this.props.backgroundColor : 'lightgrey')
-		const color = (this.props.textColor ? this.props.textColor : 'black')
+		const backgroundColor = (props.backgroundColor ? props.backgroundColor : 'lightgrey')
+		const color = (props.textColor ? props.textColor : 'black')
 
 		let tooltipKariuMainContainer = {
 			width: 'fit-content',
@@ -37,7 +27,7 @@ class Tooltip extends React.Component {
 		let styleTooltipContainer = {
 			position: 'absolute',
 			flexWrap: 'nowrap',
-			display: (this.state.show ? 'flex' : 'none'),
+			display: (show ? 'flex' : 'none'),
 			alignItems: 'center',
 			justifyContent: 'center',
 			zIndex: 2,
@@ -54,7 +44,7 @@ class Tooltip extends React.Component {
 
 		let styleText = {
 			...styleDefault,
-			minWidth: this.props.minWidth,
+			minWidth: props.minWidth,
 			maxWidth: '20rem',
 			padding: '.75rem',
 			borderRadius: '0.75rem',
@@ -63,10 +53,10 @@ class Tooltip extends React.Component {
 			lineHeight: '0.85rem',
 			overflowWrap: 'break-word',
 			backgroundColor: backgroundColor,
-			fontFamily: (this.props.fontFamily ? this.props.fontFamily : 'inherit')
+			fontFamily: (props.fontFamily ? props.fontFamily : 'inherit')
 		}
 
-		switch (this.props.direction) {
+		switch (props.direction) {
 			case 'top':
 				styleTooltipContainer.flexDirection = 'column-reverse'
 				styleTooltipContainer.bottom = '100%'
@@ -92,21 +82,18 @@ class Tooltip extends React.Component {
 		return (
 			<div
 				className={css(tooltipKariuMainContainer)}
-				onMouseEnter={this.onMouseHover.bind()}
-				onMouseLeave={this.onMouseHover.bind()}
+				onMouseEnter={(event) => onMouseHover()}
+				onMouseLeave={() => onMouseHover()}
 			>
-				{[this.props.children]}
+				{[props.children]}
 				<div className={css(styleTooltipContainer)}>
 					<span className={css(styleTip)}/>
 					<p className={css(styleText)}>
-						{this.props.text}
+						{props.text}
 					</p>
 				</div>
 			</div>
 		)
-	}
-
-	onMouseHover = () => { this.setState({ show: !this.state.show }) }
 }
 
 Tooltip.propTypes = {
@@ -124,6 +111,5 @@ Tooltip.defaultProps = {
 	direction: 'right',
 	minWidth : '2rem'
 }
-
 
 export default Tooltip
