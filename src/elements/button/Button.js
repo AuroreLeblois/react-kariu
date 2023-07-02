@@ -1,17 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Loading, Icon } from './../../index.js'
 import { css } from '@emotion/css'
 import './../reset.css'
 
 const Button = (props) => {
-
 	// Renderers ----------------------------------------------------------------
-
-		const backgroundColor = (props.backgroundColor ? props.backgroundColor : 'tomato')
-		const size = (props.size ? props.size : 'medium')
-		const mode = 'kariu-button--primary'
-		const shape = props.shape ? props.shape : 'rounded'
+		const backgroundColor = (props.backgroundColor ? props.backgroundColor : 'tomato');
+		const size = (props.size ? props.size : 'medium');
+		const mode = 'kariu-button--primary';
+		const shape = props.shape ? props.shape : 'rounded';
 
 		let styleBtn = {
 			fontWeight: 700,
@@ -59,6 +57,58 @@ const Button = (props) => {
 			backgroundColor: backgroundColor
 		}
 
+    const renderText = () => {
+      let color = props.textColor ? props.textColor : 'inherit'
+
+      let textColor = {
+        color: color,
+        fontFamily: props.fontFamily ? props.fontFamily : 'inherit'
+      }
+      if (props.loading) {
+        const dimensions = renderDimensions()
+        return ( <Loading
+              icon='loadingDefault'
+              loading={props.loading}
+              color={color}
+              width={dimensions}
+              height={dimensions}
+            />
+          )
+      } else {
+        return (<span className={css(textColor)}>{props.label}</span>)
+      }
+    }
+
+    const renderIcon = () => {
+      if (!props.label && !props.icon) return null
+
+      let color = props.textColor ? props.textColor : 'inherit'
+      let iconSize = renderDimensions()
+      let styleIcon = {
+        fontWeight: 'bolder',
+        margin: '.25rem'
+      }
+
+      if (props.icon) {
+        return <Icon className={'kariu-button--icon '+css(styleIcon)} width={iconSize} height={iconSize} icon={props.icon} color={color}/>
+      }
+
+    }
+
+    const renderDimensions = () => {
+      switch (props.size) {
+        case 'medium':
+          return '1rem'
+        case 'small':
+          return '0.85rem'
+        case 'xSmall':
+          return '0.65rem'
+        case 'large':
+          return '1.75rem'
+        default: '1.15rem'
+      }
+    }
+
 		return (
 			<button
 				className={['kariu-button', `kariu-button--${shape}`, `kariu-button--${size}`, css(styleBackGround), css(styleBtn), props.className].join(' ')}
@@ -68,63 +118,11 @@ const Button = (props) => {
 				tabIndex={props.tabIndex ? props.tabIndex : 0}
 				onClick={props.onClick}
 			>
-				{this.renderText()}
-				{this.renderIcon()}
+				{renderText()}
+				{renderIcon()}
 				{props.children}
 			</button>
-		)
-	}
-
-	const renderText = () => {
-		let color = props.textColor ? props.textColor : 'inherit'
-
-		let textColor = {
-			color: color,
-			fontFamily: props.fontFamily ? props.fontFamily : 'inherit'
-		}
-		if (this.state.loading) {
-			const dimensions = this.renderDimensions()
-			return ( <Loading
-						icon='loadingDefault'
-						loading={this.state.loading}
-						color={color}
-						width={dimensions}
-						height={dimensions}
-					/>
-				)
-		} else {
-			return (<span className={css(textColor)}>{props.label}</span>)
-		}
-	}
-
-	const renderIcon = () => {
-		if (!props.label && !props.icon) return null
-
-		let color = props.textColor ? props.textColor : 'inherit'
-		let iconSize = this.renderDimensions()
-		let styleIcon = {
-			fontWeight: 'bolder',
-			margin: '.25rem'
-		}
-
-		if (props.icon) {
-			return <Icon className={'kariu-button--icon '+css(styleIcon)} width={iconSize} height={iconSize} icon={props.icon} color={color}/>
-		}
-
-	}
-
-	const renderDimensions = () => {
-		switch (props.size) {
-			case 'medium':
-				return '1rem'
-			case 'small':
-				return '0.85rem'
-			case 'xSmall':
-				return '0.65rem'
-			case 'large':
-				return '1.75rem'
-			default: '1.15rem'
-		}
+		);
 
 }
 
@@ -151,8 +149,7 @@ Button.propTypes = {
 		'search',
 		'marker',
 		'hamburgerMenu'
-	]),
-
+	])
 }
 
 Button.defaultProps = {
@@ -165,3 +162,4 @@ Button.defaultProps = {
 	size: 'medium',
 	tabIndex: 0
 }
+export default Button

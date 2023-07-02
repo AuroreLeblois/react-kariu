@@ -10,7 +10,7 @@ import { Input } from '../../index';
 // ----------------------------------------------------------------------
 
 // https://developer.mozilla.org/fr/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
-export const DocUploader = forwardRef((props, ref) => {
+ const DocUploader = forwardRef((props, ref) => {
   const { filesTypes } = props;
   // [
   //   'application/msword', // .doc
@@ -81,3 +81,5 @@ DocUploader.propTypes = {
   multiple: PropTypes.bool,
   error: PropTypes.bool
 };
+
+export default DocUploader

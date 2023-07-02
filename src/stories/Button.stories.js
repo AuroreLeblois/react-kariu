@@ -32,9 +32,9 @@ export default {
   },
 }
 
-const Template = (args) => <Button {...args} ></Button>;
+const Template = (args) => <Button {...args} />;
 
-export const Default = Template.bind({});
+export const Default = (args) => <Button {...args}/>;
 Default.args = {
   label: 'Button',
   tooltip: 'This is a simple button'
