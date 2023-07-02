@@ -3,38 +3,157 @@ import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import { Dot } from './../../index.js'
 
-class BodyItem extends React.Component {
-	// Constructor ----------------------------------------------------------------
-	constructor(props) {
-		super(props)
-		this.state = {
-			hasFocus: false,
-			loading: (props.loading ? props.loading : false)
-		}
-		this.dayPickerRef = React.createRef();
-		this._isMounted = false
-	}
-
-	componentDidMount() {
-		this._isMounted = true
-		if (this.dayPickerRef.current) window.addEventListener('click', this.handleClickOutside, true)
-	}
-
-	componentWillUnmount() {
-		this._isMounted = false
-		if (this.dayPickerRef.current) window.removeEventListener('click', this.handleClickOutside, true)
-	}
-
-	// Renderers ----------------------------------------------------------------
-	render() {
+const BodyItem = (props) => {
 		// Empty cell
+
+    // Functions ----------------------------------------------------------------
+    const renderInfo = (styleText) => {
+      return (
+        <React.Fragment>
+          { renderDots()}
+          { renderActivityCode(styleText)}
+          { renderTimes(styleText)}
+        </React.Fragment>
+      )
+    }
+
+    const renderActivityCode = (styleText) => {
+      const styleCode = {
+        ...styleText,
+        fontSize:'0.85rem',
+        lineHeight: '1rem'
+      }
+      return (
+        <span className={css(styleCode)}>
+          {props.item.activity_code}
+        </span>
+      )
+    }
+
+    const renderUnavailability = (styleText) => {
+      return (
+        <React.Fragment>
+          <span className={css(styleText)}>
+            {props.item.unavailability_code}
+          </span>
+          { renderDots()}
+          { renderTimes(styleText)}
+        </React.Fragment>
+      )
+    }
+
+    const renderTimes = (styleText) => {
+      if (!props.item.time_start && !props.item.unavailability_time_start) return null
+
+      const timeStart = (
+        props.item.unavailability_code
+        ? props.item.unavailability_time_start
+        : props.item.time_start
+      )
+
+      const timeEnd = (
+        props.item.unavailability_code
+        ? props.item.unavailability_time_end
+        : props.item.time_end
+      )
+
+      return (
+        <React.Fragment>
+          <span className={css(styleText)}>
+            {timeStart}
+          </span>
+          <span className={css(styleText)}>
+            {timeEnd}
+          </span>
+        </React.Fragment>
+      )
+    }
+
+    const renderDots = () => {
+      if (!props.item.marked && !props.item.special) return null
+
+      const styleStickers = {
+        position: 'absolute',
+        top:'0.125rem' ,
+        left:  '0.125rem',
+        display: 'flex',
+        flexFlow: 'row nowrap'
+      }
+
+      let content = []
+
+      // Unavailability on a part of a item
+      if (props.item.special) content.push(
+        <Dot key='special' special={true}/>
+      )
+
+      // Bonus or marked (a specific type of bonus)
+      if (props.item.marked) content.push(
+        <Dot key='marked' marked={true}/>
+      )
+
+      return (
+        <span className={css(styleStickers)}>
+          {content}
+        </span>
+      )
+    }
+
+    const handleClickOutside = (event) => {
+      const node =  dayPickerRef.current
+      if (!node.contains(event.target))  setState({hasFocus: false})
+    }
+
+    const handleBackgroundColor = (isEmpty) => {
+      // Empty cell with no data
+      if (isEmpty) return null
+
+      const item = props.item
+      if (item.unavailability_code) {
+        // Unavailability
+        return "#ab88ab"
+      } else if (
+        // Day
+        item.time_end > item.time_start
+      ) {
+        return "rgb(238, 229, 2)"
+      } else if (
+        // Night
+        item.time_end < item.time_start
+      ) {
+        return 'rgb(103, 127, 233)'
+      }
+    }
+
+    const handleForegroundColor = (isEmpty) => {
+      if (props.number) return null // Datepicker item
+      if (isEmpty) return 'inherit'
+
+      if (
+        // Unavailability
+        props.item.unavailability_code
+      ) {
+        return 'rgb(66, 41, 102)'
+      } else if (
+        // Day
+        props.item.time_end > props.item.time_start
+      ) {
+        return 'rgb(119, 130, 30)'
+      } else if (
+        // Night
+        props.item.time_end < props.item.time_start
+      ) {
+        return 'rgb(18, 34, 119)'
+      }
+    }
+
 		const isEmpty = (
-			!this.props.item // Vacation or unavailability
-			&& !this.props.number // Datepicker
+			!props.item // Vacation or unavailability
+			&& !props.number // Datepicker
 		)
 
 		// Cell background color
-		const bgColor = this.handleBackgroundColor(isEmpty)
+		const bgColor = handleBackgroundColor(isEmpty);
 
 		const styleTd = {
 			position: 'relative',
@@ -44,31 +163,23 @@ class BodyItem extends React.Component {
 			cursor: (isEmpty ? 'default' : 'pointer'),
 			backgroundColor: (
 				// Holiday > Weekend > Default
-				this.props.isHoliday
+				props.isHoliday
 					? 'grey'
-					: this.props.isWeekEnd
+					: props.isWeekEnd
 						? 'lightgrey'
 						: 'inherit'
 				)
 			// (isEmpty ? bgColor : 'inherit')
 		}
 
-		return (
-			<td className={css(styleTd)} onClick={this.props.onClick}>
-				{this.renderCell(isEmpty,bgColor)}
-			</td>
-		)
-	}
-
-
-	renderCell(isEmpty,bgColor) {
+	const renderCell = (isEmpty,bgColor) => {
 		if (isEmpty) return null
 
 		const styleText = {
-			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
+			fontFamily: props.fontFamily ? props.fontFamily : 'inherit',
 			fontSize: '0.75rem',
 			lineHeight: '1rem',
-			color: this.handleForegroundColor(),
+			color: handleForegroundColor(isEmpty),
 			textAlign: 'center',
 			cursor: 'pointer'
 		}
@@ -92,16 +203,17 @@ class BodyItem extends React.Component {
 
 		let content = null
 		//later
-		// if (this.props.number) {
-		// 	content = this.renderDatepickerItem()
+		// if (props.number) {
+		// 	content =  renderDatepickerItem()
 		// }
-		if (!this.props.item.unavailability_code) {
+		if (!props.item.unavailability_code) {
 			// infos
-			content = this.renderInfo(styleText)
+			content = renderInfo(styleText)
 		} else {
 		// 	// Unavailability
-			content = this.renderUnavailability(styleText)
+			content = renderUnavailability(styleText)
 		}
+
 
 		return (
 			<div className={css(styleDiv)}>
@@ -109,153 +221,17 @@ class BodyItem extends React.Component {
 			</div>
 		)
 	}
-
-	renderInfo(styleText) {
-		return (
-			<React.Fragment>
-				{this.renderDots()}
-				{this.renderActivityCode(styleText)}
-				{this.renderTimes(styleText)}
-			</React.Fragment>
-		)
-	}
-
-	renderDots() {
-		if (!this.props.item.marked && !this.props.item.special) return null
-
-		const styleStickers = {
-			position: 'absolute',
-			top:'0.125rem' ,
-			left:  '0.125rem',
-			display: 'flex',
-			flexFlow: 'row nowrap'
-		}
-
-		let content = []
-
-		// Unavailability on a part of a item
-		if (this.props.item.special) content.push(
-			<Dot key='special' special={true}/>
-		)
-
-		// Bonus or marked (a specific type of bonus)
-		if (this.props.item.marked) content.push(
-			<Dot key='marked' marked={true}/>
-		)
-
-		return (
-			<span className={css(styleStickers)}>
-				{content}
-			</span>
-		)
-	}
-
-	renderActivityCode(styleText) {
-		// TODO user prefs can hide this
-		const styleCode = {
-			...styleText,
-			fontSize:'0.85rem',
-			lineHeight: '1rem'
-		}
-		return (
-			<span className={css(styleCode)}>
-				{this.props.item.activity_code}
-			</span>
-		)
-	}
-
-	renderUnavailability(styleText) {
-		return (
-			<React.Fragment>
-				<span className={css(styleText)}>
-					{this.props.item.unavailability_code}
-				</span>
-				{this.renderDots()}
-				{this.renderTimes(styleText)}
-			</React.Fragment>
-		)
-	}
-
-	renderTimes(styleText) {
-		if (!this.props.item.time_start && !this.props.item.unavailability_time_start) return null
-
-		const timeStart = (
-			this.props.item.unavailability_code
-			? this.props.item.unavailability_time_start
-			: this.props.item.time_start
-		)
-
-		const timeEnd = (
-			this.props.item.unavailability_code
-			? this.props.item.unavailability_time_end
-			: this.props.item.time_end
-		)
-
-		return (
-			<React.Fragment>
-				<span className={css(styleText)}>
-					{timeStart}
-				</span>
-				<span className={css(styleText)}>
-					{timeEnd}
-				</span>
-			</React.Fragment>
-		)
-	}
+  return (
+    <td className={css(styleTd)} onClick={props.onClick}>
+      {renderCell(isEmpty, bgColor)}
+    </td>
+  )
 
 
-	// Functions ----------------------------------------------------------------
-	handleClickOutside = (event) => {
-		const node = this.dayPickerRef.current
-		if (!node.contains(event.target)) this.setState({hasFocus: false})
-	}
 
-	handleBackgroundColor (isEmpty, isExternal = false) {
-		// Datepicker item
 
-		// if (this.props.number) return "white"
 
-		// Empty cell with no data
-		if (isEmpty) return null
 
-		const item = this.props.item
-		if (item.unavailability_code) {
-			// Unavailability
-			return "#ab88ab"
-		} else if (
-			// Day
-			item.time_end > item.time_start
-		) {
-			return "rgb(238, 229, 2)"
-		} else if (
-			// Night
-			item.time_end < item.time_start
-		) {
-			return 'rgb(103, 127, 233)'
-		}
-	}
-
-	handleForegroundColor (isEmpty, isExternal = false) {
-		if (this.props.number) return null // Datepicker item
-		if (isEmpty) return 'inherit'
-
-		if (
-			// Unavailability
-			this.props.item.unavailability_code
-		) {
-			return 'rgb(66, 41, 102)'
-		} else if (
-			// Day
-			this.props.item.time_end > this.props.item.time_start
-		) {
-			return 'rgb(119, 130, 30)'
-		} else if (
-			// Night
-			this.props.item.time_end < this.props.item.time_start
-		) {
-			return 'rgb(18, 34, 119)'
-		}
-	}
 }
 
 BodyItem.propTypes = {
