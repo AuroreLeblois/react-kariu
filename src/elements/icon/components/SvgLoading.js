@@ -22,7 +22,7 @@ function SvgSvgLoading(props) {
           type="rotate"
           from="0 25 25"
           to="360 25 25"
-          dur="0.6s"
+          dur={props.duration || "0.6s"}
           repeatCount="indefinite"
         />
       </path>

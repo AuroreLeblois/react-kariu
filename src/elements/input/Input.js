@@ -197,7 +197,6 @@ Input.propTypes = {
 		'password',
 		'color',
 		'email',
-		'file',
 		'hidden',
 		'number',
 		'range',

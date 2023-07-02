@@ -2,6 +2,7 @@ import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import external from 'rollup-plugin-peer-deps-external'
 import postcss from 'rollup-plugin-postcss'
+import terser from '@rollup/plugin-terser'
 // import scss from 'rollup-plugin-scss'
 import resolve from '@rollup/plugin-node-resolve'
 // import typescript from "rollup-plugin-typescript2";
@@ -23,6 +24,7 @@ export default {
 			sourcemap: true
 		}],
 	plugins: [
+    terser(),
 		external([
 			'prop-types',
 			'react',

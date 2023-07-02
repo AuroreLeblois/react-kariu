@@ -4,31 +4,16 @@ import { Loading, Icon } from './../../index.js'
 import { css } from '@emotion/css'
 import './../reset.css'
 
-export default class Button extends React.Component {
-	// Constructor ----------------------------------------------------------------
-	constructor(props) {
-		super(props)
-
-		this.state = {
-			loading: (props.loading ? props.loading : false)
-		}
-	}
-
-	componentDidUpdate(prevProps) {
-		if (this.props.loading !== prevProps.loading) {
-			this.setState({ loading: this.props.loading })
-		}
-	}
+const Button = (props) => {
 
 	// Renderers ----------------------------------------------------------------
-	render() {
-		const backgroundColor = (this.props.backgroundColor ? this.props.backgroundColor : 'tomato')
-		const size = (this.props.size ? this.props.size : 'medium')
+
+		const backgroundColor = (props.backgroundColor ? props.backgroundColor : 'tomato')
+		const size = (props.size ? props.size : 'medium')
 		const mode = 'kariu-button--primary'
-		const shape = this.props.shape ? this.props.shape : 'rounded'
+		const shape = props.shape ? props.shape : 'rounded'
 
 		let styleBtn = {
-
 			fontWeight: 700,
 			border: 0,
 			cursor: 'pointer',
@@ -39,9 +24,9 @@ export default class Button extends React.Component {
 			margin: 'auto',
 			fontSize: '0.85rem',
 			padding: '0.65rem',
-			borderRadius: (this.props.shape==='basic' ? '0.5rem' : this.props.shape ==='rounded' ? '3rem' : '50%'),
+			borderRadius: (props.shape === 'basic' ? '0.5rem' : props.shape === 'rounded' ? '3rem' : '50%'),
 			'&:active': {
-				filter: 'brightness(85%)'
+				filter: 'brightness(0)'
 			},
 			'&:focus': {
 				outline: '1px dashed',
@@ -52,7 +37,7 @@ export default class Button extends React.Component {
 			}
 		}
 
-		switch (this.props.size) {
+		switch (props.size) {
 			case 'xSmall':
 				styleBtn.fontSize = '0.45rem',
 				styleBtn.padding = '0.45rem'
@@ -76,26 +61,26 @@ export default class Button extends React.Component {
 
 		return (
 			<button
-				className={['kariu-button', `kariu-button--${shape}`, `kariu-button--${size}`, css(styleBackGround), css(styleBtn), this.props.className].join(' ')}
+				className={['kariu-button', `kariu-button--${shape}`, `kariu-button--${size}`, css(styleBackGround), css(styleBtn), props.className].join(' ')}
 				type="button"
-				disabled={this.props.disabled}
-				title={this.props.tooltip}
-				tabIndex={this.props.tabIndex ? this.props.tabIndex : 0}
-				onClick={this.props.onClick}
+				disabled={props.disabled}
+				title={props.tooltip}
+				tabIndex={props.tabIndex ? props.tabIndex : 0}
+				onClick={props.onClick}
 			>
 				{this.renderText()}
 				{this.renderIcon()}
-				{this.props.children}
+				{props.children}
 			</button>
 		)
 	}
 
-	renderText() {
-		let color = this.props.textColor ? this.props.textColor : 'inherit'
+	const renderText = () => {
+		let color = props.textColor ? props.textColor : 'inherit'
 
 		let textColor = {
 			color: color,
-			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit'
+			fontFamily: props.fontFamily ? props.fontFamily : 'inherit'
 		}
 		if (this.state.loading) {
 			const dimensions = this.renderDimensions()
@@ -108,28 +93,28 @@ export default class Button extends React.Component {
 					/>
 				)
 		} else {
-			return (<span className={css(textColor)}>{this.props.label}</span>)
+			return (<span className={css(textColor)}>{props.label}</span>)
 		}
 	}
 
-	renderIcon() {
-		if (!this.props.label && !this.props.icon) return null
+	const renderIcon = () => {
+		if (!props.label && !props.icon) return null
 
-		let color = this.props.textColor ? this.props.textColor : 'inherit'
+		let color = props.textColor ? props.textColor : 'inherit'
 		let iconSize = this.renderDimensions()
 		let styleIcon = {
 			fontWeight: 'bolder',
 			margin: '.25rem'
 		}
 
-		if (this.props.icon) {
-			return <Icon className={'kariu-button--icon '+css(styleIcon)} width={iconSize} height={iconSize} icon={this.props.icon} color={color}/>
+		if (props.icon) {
+			return <Icon className={'kariu-button--icon '+css(styleIcon)} width={iconSize} height={iconSize} icon={props.icon} color={color}/>
 		}
 
 	}
 
-	renderDimensions() {
-		switch (this.props.size) {
+	const renderDimensions = () => {
+		switch (props.size) {
 			case 'medium':
 				return '1rem'
 			case 'small':
@@ -140,7 +125,7 @@ export default class Button extends React.Component {
 				return '1.75rem'
 			default: '1.15rem'
 		}
-	}
+
 }
 
 Button.propTypes = {

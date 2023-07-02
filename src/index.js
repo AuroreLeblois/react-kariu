@@ -44,6 +44,7 @@ export { default as DatePicker } from './elements/datePicker/DatePicker.js'
 export { default as Radio } from './elements/input/Radio.js'
 export { default as Search } from './elements/input/Search.js'
 export { default as Select } from './elements/input/Select.js'
+export { default as DocUploader } from './elements/input/DocUploader.js'
 
 //Map Component
 export { default as Map } from './elements/Map/Map.js'

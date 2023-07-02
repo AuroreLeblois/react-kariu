@@ -3,27 +3,26 @@ import PropTypes from 'prop-types'
 import { Icon, Loading } from './../../index.js'
 import { css } from '@emotion/css'
 
-class Avatar extends React.Component {
+const Avatar = (props) => {
 	// Renderers ----------------------------------------------------------------
-	render() {
 		let content = null
 
 		let avatar = {
-			color: this.props.textColor,
-			backgroundColor: (this.props.url && !this.props.loading ? null : this.props.backgroundColor),
+			color: props.textColor,
+			backgroundColor: (props.url && !props.loading ? null : props.backgroundColor),
 			display: 'flex',
 			justifyContent: 'center',
-			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
+			fontFamily: props.fontFamily ? props.fontFamily : 'inherit',
 			alignItems: 'center',
 			cursor: 'default',
 			margin: 'auto',
 			fontWeight: 'bold',
-			borderRadius: (this.props.shape === 'square' ? '15%' : '50%'),
+			borderRadius: (props.shape === 'square' ? '15%' : '50%'),
 			width: '2rem',
 			height: '2rem',
 			fontSize: '1.25rem'
 		}
-		switch (this.props.size) {
+		switch (props.size) {
 			case 'small':
 				avatar.width = ' 1.5rem',
 				avatar.height = '1.5rem',
@@ -44,37 +43,36 @@ class Avatar extends React.Component {
 			break;
 		}
 
-		if (this.props.loading) {
+		if (props.loading) {
 			content = ( <Loading
 				icon='loadingDefault'
-				loading={this.props.loading}
-				color={this.props.textColor}
+				loading={props.loading}
+				color={props.textColor}
 				className={`avatar-kariu--loader`}
 				/>)
-			} else if (this.props.customIcon && !this.props.url) {
+			} else if (props.customIcon && !props.url) {
 				content = ( <Icon
-					icon={this.props.customIcon}
-					color={this.props.textColor}
+					icon={props.customIcon}
+					color={props.textColor}
 					className={`avatar-kariu--icon `+css(avatar)}
 					/> )
-				} else if (this.props.url && !this.props.loading) {
+				} else if (props.url && !props.loading) {
 			content = (
-				<img src={this.props.url}
-					className={ `avatar-kariu--img `+css(avatar)+' '+this.props.className }
-					alt={this.props.name}/>
+				<img src={props.url}
+					className={ `avatar-kariu--img `+css(avatar)+' '+props.className }
+					alt={props.name}/>
 			)
 		} else {
-			let fullName = this.props.name.split(' ')
+			let fullName = props.name.split(' ')
 			content = fullName[0].charAt(0) + (fullName[1] ? fullName[1].charAt(0) : '')
 		}
 
 		return (
-			<div className={`avatar-kariu `+css(avatar)+' '+this.props.className}>
+			<div className={`avatar-kariu `+css(avatar)+' '+props.className}>
 				{content}
 			</div>
 		)
 	}
-}
 
 Avatar.propTypes = {
 	backgroundColor: PropTypes.string,
