@@ -1,64 +1,60 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { css } from '@emotion/css'
-import { Icon } from './../../index.js'
+import React from "react";
+import PropTypes from "prop-types";
+import { css } from "@emotion/css";
+import { Icon } from "./../../index.js";
 
-class Link extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			wasClicked: props.wasClicked ? props.wasClicked : false
-		}
-	}
+const Link = (props) => {
+  if (!props.href || !props.text) return null;
 
-	render () {
-		if (!this.props.href || !this.props.text) return null
+  let linkStyle = {
+    display: "flex",
+    cursor: "pointer",
+    whiteSpace: "nowrap",
+    fontWeight: "bold",
+    textDecoration: "none",
+    fontFamily: props.fontFamily ? props.fontFamily : "inherit",
+    color: props.textColor ? props.textColor : "#3c89D0",
+    svg: { marginLeft: "6px" },
+    "&:hover": {
+      textDecoration: "underline",
+    },
+    ":visited": {
+      filter: "brightness(40%)",
+    },
+  };
 
-		let linkStyle = {
-			display: 'flex',
-			cursor: 'pointer',
-			whiteSpace: 'nowrap',
-			fontWeight: 'bold',
-			textDecoration: 'none',
-			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
-			color: this.props.textColor ? this.props.textColor : '#3c89D0',
-			'svg': { marginLeft: '6px' },
-			'&:hover': {
-				textDecoration: 'underline'
-			},
-			':visited': {
-				filter: 'brightness(40%)'
-			}
-		}
+  return (
+    <div onClick={() => handleClick(props)}>
+      <a className={css(linkStyle) + " link-kariu"}>
+        {props.text}
+        {renderIconExternal(props)}
+      </a>
+    </div>
+  );
+};
 
-		return (
-			<div onClick={()=>this.handleClick()}>
-				<a className={css(linkStyle)+' link-kariu'}>
-					{this.props.text}
-					{this.renderIconExternal()}
-				</a>
-			</div>
-		)
-	}
+const renderIconExternal = (props) => {
+  if (!props.isExternal) return null;
 
-	renderIconExternal() {
-		if (!this.props.isExternal) return null
+  return (
+    <Icon
+      icon="external"
+      color={props.textColor ? props.textColor : "#3c89D0"}
+    />
+  );
+};
 
-		return <Icon icon='external' color={this.props.textColor ? this.props.textColor : '#3c89D0'}/>
-	}
-
-	handleClick() {
-		if (this.props.isExternal) window.open(this.props.href)
-		else window.location.href = this.props.href
-	}
+function handleClick(props) {
+  if (props.isExternal) window.open(props.href);
+  else window.location.href = props.href;
 }
 
 Link.propTypes = {
-	fontFamily: PropTypes.string,
-	textColor: PropTypes.string,
-	href: PropTypes.string.isRequired,
-	text: PropTypes.string.isRequired,
-	isExternal: PropTypes.bool
-}
+  fontFamily: PropTypes.string,
+  textColor: PropTypes.string,
+  href: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  isExternal: PropTypes.bool,
+};
 
-export default Link
+export default Link;

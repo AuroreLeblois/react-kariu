@@ -3,14 +3,9 @@ import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import { SideBar } from './../../index.js'
 
-class Nav extends React.Component {
+const Nav = (props) => {
 
-	constructor(props) {
-		super(props)
-	}
 
-	componentDidUpdate(prevProps) {
-	}
 
 	render() {
 		if (window.width < 600) return null

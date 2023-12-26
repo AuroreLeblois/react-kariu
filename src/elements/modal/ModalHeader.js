@@ -1,89 +1,83 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { css } from '@emotion/css'
-import { Button ,Title } from '../../index.js'
+import React from "react";
+import PropTypes from "prop-types";
+import { css } from "@emotion/css";
+import { Button, Title } from "../../index.js";
 
-class ModalHeader extends React.Component {
-	// Constructor ----------------------------------------------------------------
-	constructor(props) {
-		super(props)
+const ModalHeader = (props) => {
+  // Renderers ----------------------------------------------------------------
 
-		this._isMounted = false
-	}
+  const paddingX = "0.125rem";
 
-	componentDidMount() { this._isMounted = true }
+  const styleHeader = {
+    paddingTop: "0.25rem",
+    paddingBottom: "0.25rem",
+    borderBottom: "1px solid  #C7C7C7",
+    marginLeft: paddingX,
+    paddingRight: paddingX,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    alignItems: "center",
+    justifyContent: "space-between",
+    fontFamily: props.fontFamily ? props.fontFamily : "inherit",
+  };
 
-	componentWillUnmount() { this._isMounted = false }
+  return (
+    <div
+      className={
+        "modal-kariu--header " +
+        css(styleHeader) +
+        " " +
+        (props.className ? props.className : "")
+      }
+    >
+      {renderTitle()}
+      {[props.children]}
+    </div>
+  );
 
+  function renderTitle() {
+    if (!props.title) return null;
 
-	// Renderers ----------------------------------------------------------------
-	render() {
-		const paddingX = '0.125rem'
+    const styleTitle = {
+      fontFamily: props.fontFamily ? props.fontFamily : "inherit",
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+    };
 
-		const styleHeader = {
-			paddingTop: '0.25rem',
-			paddingBottom: '0.25rem',
-			borderBottom: '1px solid  #C7C7C7',
-			marginLeft: paddingX,
-			paddingRight: paddingX,
-			flexDirection: 'row',
-			flexWrap: 'nowrap',
-			alignItems: 'center',
-			justifyContent: 'space-between',
-			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit'
-		}
-
-		return (
-			<div className={'modal-kariu--header '+css(styleHeader)+' '+(this.props.className ? this.props.className : '')}>
-				{this.renderTitle()}
-				{[this.props.children]}
-			</div>
-		)
-	}
-
-	renderTitle() {
-		if (!this.props.title) return null
-
-		const styleTitle = {
-			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit',
-			display: 'flex',
-			flexDirection: 'row',
-			justifyContent: 'space-between'
-		}
-
-		return (
-			<div className={'modal-kariu--header-title '+css(styleTitle)}>
-				<Title
-					textColor={this.props.textColor ? this.props.textColor : 'inherit'}
-					text={this.props.title}
-					priority={this.props.priority}
-				/>
-				{this.renderCloseBtn()}
-			</div>
-		)
-	}
-	renderCloseBtn () {
-		return (
-			<div>
-				<Button
-					size='small'
-					shape='round'
-					icon='cross'
-					onClick={this.props.onClick}
-					backgroundColor={'inherit'}
-					textColor={this.props.textColor? this.props.textColor: 'inherit'}
-				/>
-			</div>
-		)
-	}
-}
+    return (
+      <div className={"modal-kariu--header-title " + css(styleTitle)}>
+        <Title
+          textColor={props.textColor ? props.textColor : "inherit"}
+          text={props.title}
+          priority={props.priority}
+        />
+        {renderCloseBtn()}
+      </div>
+    );
+  }
+  function renderCloseBtn() {
+    return (
+      <div>
+        <Button
+          size="small"
+          shape="round"
+          icon="cross"
+          onClick={props.onClick}
+          backgroundColor={"inherit"}
+          textColor={props.textColor ? props.textColor : "inherit"}
+        />
+      </div>
+    );
+  }
+};
 
 ModalHeader.propTypes = {
-	title: PropTypes.string
-}
+  title: PropTypes.string,
+};
 
 ModalHeader.defaultProps = {
-	title: null
-}
+  title: null,
+};
 
-export default ModalHeader
+export default ModalHeader;

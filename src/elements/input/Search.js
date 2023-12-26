@@ -1,92 +1,76 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { css } from '@emotion/css'
-import { Input } from '../../index.js'
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { css } from "@emotion/css";
+import { Input } from "../../index.js";
 
-class Search extends React.Component {
-	// Constructor ----------------------------------------------------------------
-	constructor(props) {
-		super(props)
+const Search = (props) => {
+  const [data, setData] = useState(props.data ? props.data : []);
+  const [value, setValue] = useState("");
+  const datas = data;
 
-		this.state = {
-			data: (props.data ? props.data : []),
-			value: ''
-		}
-		this.datas = [...this.state.data]
-	}
+  function onSearch(newValue) {
+    setValue(newValue);
+    if (newValue.length) {
+      const datasFiltred = filter(datas, props.headCols, newValue);
+      props.onChange && props.onChange(datasFiltred);
+    } else {
+      props.onChange && props.onChange(datas);
+    }
+  }
 
-	componentDidUpdate(prevProps) {
-		if (this.props.data !== prevProps.data) {
-			this.setState({	data: this.props.data })
-		}
-	}
+  const styleAnimation = {
+    input: {
+      maxWidth: props.animatedWidth ? "6rem" : "auto",
+    },
+    "input:focus": {
+      maxWidth: props.animatedWidth ? "16rem" : "auto",
+    },
+  };
 
-	onSearch = (value) => {
-		this.setState({	value: value }, () => {
-			if (this.state.value.length) {
-				const datasFiltred = this.filter(this.datas, this.props.headCols, this.state.value)
-				this.props.onChange && this.props.onChange(datasFiltred)
-			} else {
-				this.props.onChange && this.props.onChange(this.datas)
-			}
-		})
-	}
+  return (
+    <Input
+      type="search"
+      icon="search"
+      name="Search"
+      fontFamily={props.fontFamily ? props.fontFamily : "inherit"}
+      label={props.label}
+      description={props.description}
+      size={props.size}
+      showBtnClear={props.showBtnClear}
+      placeholder={props.placeholder}
+      backgroundColor={props.backgroundColor}
+      autocomplete={props.autocomplete}
+      textColor={props.textColor}
+      onChange={(event) => onSearch(event.target.value)}
+      onClick={props.onClick}
+      className={css(styleAnimation) + " " + props.className}
+    />
+  );
+};
 
-	filter = (collection = [], filters = [], value = '') => {
-		const filterKeys = Object.keys(filters)
-		return collection.filter((data) => {
-			return filterKeys.some((key) => {
-				const val = (data[key] ? data[key].toString().toLowerCase() : '')
-				if (!val.includes('pict')) return val.includes(value.toLowerCase())
-			})
-		})
-	}
-
-	render() {
-		const styleAnimation = {
-			'input': {
-				maxWidth: this.props.animatedWidth ? '6rem' : 'auto'
-			},
-			'input:focus': {
-				maxWidth: this.props.animatedWidth ? '16rem' : 'auto'
-			}
-		}
-
-		return (
-			<Input
-				type="search"
-				icon='search'
-				name='Search'
-				fontFamily={this.props.fontFamily ? this.props.fontFamily : 'inherit'}
-				label={this.props.label}
-				description={this.props.description}
-				size={this.props.size}
-				showBtnClear={this.props.showBtnClear}
-				placeholder={this.props.placeholder}
-				backgroundColor={this.props.backgroundColor}
-				autocomplete={this.props.autocomplete}
-				textColor={this.props.textColor}
-				onChange={this.onSearch.bind(this)}
-				onClick={this.props.onClick}
-				className={css(styleAnimation)+' '+this.props.className}
-			/>
-		)
-	}
+function filter(collection = [], filters = [], value = "") {
+  const filterKeys = Object.keys(filters);
+  return collection.filter((data) => {
+    return filterKeys.some((key) => {
+      const val = data[key] ? data[key].toString().toLowerCase() : "";
+      if (!val.includes("pict")) return val.includes(value.toLowerCase());
+    });
+  });
 }
 
 Search.propTypes = {
-	fontFamily: PropTypes.string,
-	label: PropTypes.string,
-	autocomplete: PropTypes.oneOf(['on', 'off']),
-	textColor: PropTypes.string,
-	backgroundColor: PropTypes.string,
-	headCols: PropTypes.object,
-	data: PropTypes.array
-}
+  fontFamily: PropTypes.string,
+  label: PropTypes.string,
+  autocomplete: PropTypes.oneOf(["on", "off"]),
+  textColor: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  headCols: PropTypes.object,
+  data: PropTypes.array,
+};
 
 Search.defaultProps = {
-	fontFamily: 'inherit',
-	autocomplete: 'off'
-}
+  fontFamily: "inherit",
+  autocomplete: "off",
+};
 
-export default Search
+export default Search;

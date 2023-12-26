@@ -31,9 +31,3 @@ export const Default = (args) => <DocUploader {...args}/>
 Default.args = {
 	name: 'Default'
 }
-export const Password = (args) => <DocUploader {...args}/>
-Password.args = {
-  label: 'Password',
-  name: 'Password',
-  type: 'password'
-}

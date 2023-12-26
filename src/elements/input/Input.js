@@ -1,40 +1,99 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Button, Icon } from './../../index.js'
 import { css } from '@emotion/css'
 
-class Input extends React.Component {
-	// Constructor -------------------------------------------------------------
-	constructor(props) {
-		super(props)
+const Input = (props) => {
+  const [value, setValue] = useState(props.value);
+  const [type, setType] = useState(props.type);
 
-		this.state = {
-			label: (props.label ? props.label : 'Label'),
-			value: (props.value ? props.value : ''),
-			type: (props.type ? props.type : 'text'),
-			isPassword: (props.type === 'password'),
-			isSearch: (props.type === 'search')
-		}
-	}
+  useEffect(() => {
+    setType(props.type)
+  }, [props.type]);
 
-	componentDidUpdate(prevProps) {
-		if (prevProps.value !== this.props.value ||
-			prevProps.label !== this.props.label ||
-			prevProps.description !== this.props.description ||
-			prevProps.type !== this.props.type) {
-				this.setState({
-					value: this.props.value,
-					label: this.props.label,
-					type: this.props.type,
-					isPassword: (this.props.type === 'password'),
-					isSearch: (this.props.type === 'search')
-				})
-		}
-	}
+  // Listeners ----------------------------------------------------------------
+  const toggleShow = () => {
+    setType(type === 'password' ? 'text' : 'password');
+  }
 
-	// Renderers ----------------------------------------------------------------
-	render() {
-		let colorText = (this.props.textColor ? this.props.textColor : '#43464B')
+  const handleDelete = () => {
+    setValue('');
+    props.onChange && props.onChange('');
+  }
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    props.onChange && props.onChange(event.target.value);
+  }
+
+  function renderLabel(colorText) {
+    if (!props.label) return null
+
+    let color = { color: colorText, fontFamily: props.fontFamily ? props.fontFamily : 'Arial, sans-serif' }
+    return (
+      <label htmlFor={props.name} className={'input-kariu--label '+css(color)}>{props.label}</label>
+    )
+  }
+
+  function renderBtnShowPwd(colorText) {
+    if (!props.renderBtnShowPwd) return null;
+
+      let btnEye = {
+        flex: '0 1 auto',
+        display:  'inline-flex',
+        position: 'absolute',
+        right:0,
+        top:'35%',
+        height:'2.25rem',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: '0.5rem',
+        padding:' 0',
+        '&:focus': { outline: 'none'},
+        '&:required': { borderColor: '#ed4637' },
+        '&:disabled': { borderColor: 'grey', backgroundColor:'lightgrey'}
+      }
+      if (type === 'password') {
+        return (
+          <Button
+            icon='eyeOpen'
+            size='small'
+            shape='basic'
+            backgroundColor='transparent'
+            textColor={colorText}
+            className={'button-eye-kariu '+css(btnEye)}
+            onClick={()=>toggleShow()}/>
+        )
+      } else {
+        return (
+          <Button
+            icon='eyeSlashed'
+            size='small'
+            backgroundColor='transparent'
+            textColor={colorText}
+            shape='basic'
+            className={'button-eye-kariu '+css(btnEye)}
+            onClick={()=>toggleShow()}/>
+        )
+      }
+
+  }
+
+  function renderDescription(colorText) {
+    let styleDescription = { color: colorText, fontSize: 'smaller', marginTop: 0,
+    fontFamily: props.fontFamily ? props.fontFamily : 'inherit'
+  }
+
+    if (type === 'range') {
+      return (<p className={'input-Kariu--description '+css(styleDescription)}>{`${props.description} ${value}`}</p>)
+    } else if (props.required) {
+      return (<p className={'input-Kariu--description '+css({color: 'red', fontFamily: props.fontFamily ? props.fontFamily : 'inherit'})}>{props.description ? props.description : 'Required'}</p>)
+    } else {
+      return (<p className={'input-Kariu--description '+css(styleDescription)}>{props.description}</p>)
+    }
+  }
+
+		let colorText = (props.textColor ? props.textColor : '#43464B')
 
 		let wrapper = {
 			display: 'flex',
@@ -49,16 +108,16 @@ class Input extends React.Component {
 		let styleInput = {
 			display: 'flex',
 			width: 'auto',
-			margin: (this.state.type !== 'range' ? '5px 0px': 0),
+			margin: (props.type !== 'range' ? '5px 0px': 0),
 			height: '2.25rem',
 			border: '1.25px solid #ccc',
 			borderRadius: '4px',
 			boxSizing: 'border-box',
-			paddingLeft: (this.state.type !== 'range' ? '0.85rem': 0),
+			paddingLeft: (props.type !== 'range' ? '0.85rem': 0),
 			color: colorText,
-			fontFamily: this.props.fontFamily ? this.props.fontFamily : 'Arial, sans-serif',
-			borderColor: (this.props.borderColor ? this.props.borderColor : '#bfbfbf'),
-			backgroundColor: (this.props.backgroundColor ? this.props.backgroundColor : '#eeeeee'),
+			fontFamily: props.fontFamily ? props.fontFamily : 'Arial, sans-serif',
+			borderColor: (props.borderColor ? props.borderColor : '#bfbfbf'),
+			backgroundColor: (props.backgroundColor ? props.backgroundColor : '#eeeeee'),
 			'&:focus': {
 				borderColor: '#309bc2',
 				borderWidth: 'medium'
@@ -71,7 +130,7 @@ class Input extends React.Component {
 				height: '15px',
 				cursor: 'pointer',
 				/* box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; */
-				background:  this.props.backgroundColor ? this.props.backgroundColor : '#3071a9',
+				background:  props.backgroundColor ? props.backgroundColor : '#3071a9',
 				borderRadius: '1.3px',
 				border: '0.2px solid #010101'
 			},
@@ -83,115 +142,33 @@ class Input extends React.Component {
 
 		return (
 			<div className={'input-kariu--wrapper '+css(wrapper)}>
-				{this.renderLabel(colorText)}
+				{renderLabel(colorText)}
 				<input className={'input-kariu '+css(styleInput)}
-					type={this.state.type}
-					autoComplete={this.props.autoComplete}
-					name={this.props.name}
-					value={this.state.value}
-					onChange={this.handleChange.bind(this)}
-					placeholder={this.props.placeholder}
-					required={this.props.required}
-					disabled={this.props.disabled}
-					onClick={this.props.onClick}
+					type={props.type}
+					autoComplete={props.autoComplete}
+					name={props.name}
+					value={value}
+					onChange={(event)=>handleChange(event)}
+					placeholder={props.placeholder}
+					required={props.required}
+					disabled={props.disabled}
+					onClick={props.onClick}
 					/>
-					{this.renderBtnShowPwd(colorText)}
-					{this.renderDescription(colorText)}
+					{renderBtnShowPwd(colorText)}
+					{renderDescription(colorText)}
 			</div>
 		)
 	}
-
-	renderLabel(colorText) {
-		if (!this.props.label) return null
-
-		let color = { color: colorText, fontFamily: this.props.fontFamily ? this.props.fontFamily : 'Arial, sans-serif' }
-		return (
-			<label htmlFor={this.props.name} className={'input-kariu--label '+css(color)}>{this.props.label}</label>
-		)
-	}
-
-	renderBtnShowPwd(colorText) {
-		if (this.state.isPassword) {
-			let btnEye = {
-				flex: '0 1 auto',
-				display:  'inline-flex',
-				position: 'absolute',
-				right:0,
-				top:'35%',
-				height:'2.25rem',
-				alignItems: 'center',
-				justifyContent: 'center',
-				marginRight: '0.5rem',
-				padding:' 0',
-				'&:focus': { outline: 'none'},
-				'&:required': { borderColor: '#ed4637' },
-				'&:disabled': { borderColor: 'grey', backgroundColor:'lightgrey'}
-			}
-			if (this.state.type === 'password') {
-				return (
-					<Button
-						icon='eyeOpen'
-						size='small'
-						shape='round'
-						backgroundColor='transparent'
-						textColor={colorText}
-						className={'button-eye-kariu '+css(btnEye)}
-						onClick={this.toggleShow.bind(this)}/>
-				)
-			} else {
-				return (
-					<Button
-						icon='eyeSlashed'
-						size='small'
-						backgroundColor='transparent'
-						textColor={colorText}
-						shape='round'
-						className={'button-eye-kariu '+css(btnEye)}
-						onClick={this.toggleShow.bind(this)}/>
-				)
-			}
-		} else return null
-	}
-
-	renderDescription(colorText) {
-		let styleDescription = { color: colorText, fontSize: 'smaller', marginTop: 0,
-		fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit'
-	}
-
-		if (this.state.type === 'range') {
-			return (<p className={'input-Kariu--description '+css(styleDescription)}>{`${this.props.description} ${this.state.value}`}</p>)
-		} else if (this.props.required) {
-			return (<p className={'input-Kariu--description '+css({color: 'red', fontFamily: this.props.fontFamily ? this.props.fontFamily : 'inherit'})}>{this.props.description ? this.props.description : 'Required'}</p>)
-		} else {
-			return (<p className={'input-Kariu--description '+css(styleDescription)}>{this.props.description}</p>)
-		}
-	}
-	// Listeners ----------------------------------------------------------------
-	toggleShow = () => {
-		this.setState({ type: this.state.type === 'text' ? 'password' : 'text' })
-	}
-
-	handleDelete = () => {
-		this.setState({ value: '' }, () => {
-			this.props.onChange && this.props.onChange(this.state.value)
-		})
-	}
-
-	handleChange = (event) => {
-		this.setState({ value: event.target.value }, () => {
-			this.props.onChange && this.props.onChange(this.state.value)
-		})
-	}
-}
 
 // Définition des propTypes------------------------------------------------------
 Input.propTypes = {
 	backgroundColor: PropTypes.string,
 	borderColor: PropTypes.string,
 	fontFamily: PropTypes.string,
-	value: PropTypes.string,
+	value: PropTypes.any,
 	autocomplete: PropTypes.oneOf(['on', 'off']),
 	type: PropTypes.oneOf([
+    'file',
 		'text',
 		'tel',
 		'password',
@@ -212,7 +189,8 @@ Input.propTypes = {
 	required: PropTypes.bool,
 	disabled: PropTypes.bool,
 	textColor: PropTypes.string,
-	onChange: PropTypes.func
+	onChange: PropTypes.func,
+  renderBtnShowPwd: PropTypes.bool
 }
 
 Input.defaultProps = {
@@ -221,8 +199,8 @@ Input.defaultProps = {
 	type: 'text',
 	description: null,
 	size: 'medium',
-	value: '',
-	label: 'Label'
+	label: 'Label',
+  renderBtnShowPwd: false
 }
 
 export default Input

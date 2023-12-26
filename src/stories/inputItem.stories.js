@@ -1,22 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import { InputItem } from './../index.js'
+import { InputItem } from "./../index.js";
 
 export default {
-  title: 'React-Kariu/Atoms/Input/InputItem',
+  title: "React-Kariu/Atom/Input/InputItem",
   component: InputItem,
   argTypes: {
-	  backgroundColor: { control: 'color' },
-	  textColor: { control: 'color' }
+    backgroundColor: { control: "color" },
+    textColor: { control: "color" },
   },
-}
+};
 
 const Template = (args) => <InputItem {...args} />;
 
-export const Default = (args) => <InputItem {...args}/>
-Default.args = {
-
-}
+export const Default = (args) => <InputItem {...args} />;
+Default.args = {};
 
 // export const SquareAvatar = (args) => <Avatar {...args}/>
 // SquareAvatar.args = {

@@ -7,7 +7,6 @@ const Tooltip = (props) => {
     const [show, setShow] = useState(props.show || false);
 
   	const onMouseHover = () => setShow(!show)
-    console.log(show);
 
     const styleDefault = {
       cursor: 'default'
