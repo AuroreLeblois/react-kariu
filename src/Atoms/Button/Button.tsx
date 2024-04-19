@@ -1,4 +1,6 @@
+import React from "react";
 import './button.css';
+import { createRipple } from '../../utils/rippleCreators';
 
 /**
  * Primary UI component for user interaction
@@ -25,6 +27,10 @@ interface ButtonProps {
    * Button contents
    */
   label: string;
+  /**
+   * Button shape
+   */
+  shape: "square"| "round";
     /**
    * Button classname override
    */
@@ -36,12 +42,13 @@ interface ButtonProps {
   /**
    * Usual button props
    */
-  args?: any;
+  others?: any;
   /**
    * Optional click handler
    */
   onClick?: () => void;
-}
+  children: any;
+};
 
 export const Button = ({
   type= 'button',
@@ -49,18 +56,23 @@ export const Button = ({
   size = 'medium',
   backgroundColor,
   label,
+  shape = 'round',
   sx,
   className,
-  ...args
+  children,
+  ...others
 }: ButtonProps) => {
   const mode = primary ? 'kariu-button--primary' : 'kariu-button--secondary';
 
   return (
     <button
       type={type}
-      className={['kariu-button', `kariu-button--${size}`, mode, className].join(' ')}
+      className={['kariu-button', `kariu-button--${size}`, shape, mode, className].join(' ')}
       style={{ backgroundColor, ...sx }}
-      {...args}
+      onClick={() => {
+        if (others.onClick) others.onClick();
+      }}
+      {...others}
     >
       {label}
     </button>
