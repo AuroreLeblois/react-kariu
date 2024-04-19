@@ -5,7 +5,7 @@ A simple library of components for react users.
 ## Documentation
 
 You can check the documentation here :
-https://master--608041216ca77600211c434a.chromatic.com
+https://master--6622bfba82614764e0013a14.chromatic.com
 
 ## Github
 
