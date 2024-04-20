@@ -1,19 +1,11 @@
 node_modules
-build
-build-storybook.log
-package-lock.json
 
 # production
-build/
 conf/
 dist/
-babel.config.json
-.storybook
-./src/stories
 
 # misc
 .env
-.npmrc
 .env.local
 .env.development.local
 .env.test.local
@@ -25,5 +17,4 @@ logs/
 *.sql
 *.7z
 *.zip
-.npmignore
-src/elements/icon/_svg_
+*.tgz

@@ -1,0 +1,60 @@
+{
+    "root": true,
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es2021": true,
+      "node": true
+    },
+    "ignorePatterns": [
+      "/node_modules/",
+      "dist/",
+      "build/",
+      "logs/",
+      "coverage/",
+      "patches/",
+      "misc/",
+      "docs/",
+      "resources/",
+      "/src/stories",
+      "/test/"
+    ],
+    "plugins": ["prettier", "react", "react-hooks", "jsx"],
+    "extends": [
+      "airbnb",
+      "eslint:recommended",
+      "prettier",
+      "plugin:jsx-a11y/recommended",
+      "plugin:react-hooks/recommended"
+    ],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "requireConfigFile": false,
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true,
+        "impliedStrict": true
+      },
+      "babelOptions": {
+        "presets": ["@babel/preset-react"]
+      }
+    },
+    "rules": {
+      "no-control-regex": "off",
+      "no-prototype-builtins": "off",
+      "no-useless-escape": "off",
+      "no-param-reassign": "off",
+      "no-console": "off",
+      "import/no-extraneous-dependencies": "off",
+      "no-restricted-syntax": [
+        "error",
+        {
+          "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
+          "message": "Unexpected property on console object was called"
+        }
+      ],
+      "no-async-promise-executor": "off",
+      "linebreak-style": ["off", "windows"],
+      "semi": ["error", "always"]
+    }
+  }
