@@ -23,6 +23,7 @@ export function styleButton({backgroundColor, shape, primary, size}) {
     }
     let style =  {
       color,
+      boxShadow: !primary ? 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset': 'none',
       backgroundColor: backgroundColorStyle,
       fontFamily: ['Nunito Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
       fontWeight: '700',
@@ -57,10 +58,6 @@ export function styleButton({backgroundColor, shape, primary, size}) {
         transition: '0s',
       }
     };
-  
-    if (!primary) {
-      style = { ...style, boxShadow: 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset'};
-    }
   
     return style;
   }
