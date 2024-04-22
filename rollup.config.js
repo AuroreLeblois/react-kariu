@@ -5,11 +5,7 @@ import postcss from 'rollup-plugin-postcss'
 // import scss from 'rollup-plugin-scss'
 import resolve from '@rollup/plugin-node-resolve'
 // import typescript from "rollup-plugin-typescript2";
-// import url from '@rollup/plugin-url'
-// import fs from 'fs';
-// if (fs.existsSync('dist')) {
-// 	fs.unlinkSync('dist');
-//   }
+import url from '@rollup/plugin-url'
 
 export default {
 	input: 'src/index.ts',
@@ -43,13 +39,13 @@ export default {
 			extensions: ['.css']
 		}),
 		// scss(),
-		// url(),
+		url(),
 		// svgr(),
 		babel({
 			exclude: [
 				'node_modules/**',
 				'.storybook/**',
-				'./src/stories'
+				'./stories'
 			],
 			babelHelpers: 'runtime',
 			skipPreflightCheck: true,

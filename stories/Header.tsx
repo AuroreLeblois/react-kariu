@@ -1,4 +1,4 @@
-import { Button } from '../index.ts';
+import { Button } from '../src/index.ts';
 import './header.css';
 
 type User = {

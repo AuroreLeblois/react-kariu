@@ -1,5 +1,5 @@
-import './button.css';
-
+import React, { ReactNode } from 'react';
+import { styleButton } from './styleButton';
 /**
  * Primary UI component for user interaction
  */
@@ -40,13 +40,14 @@ interface ButtonProps {
   /**
    * Usual button props
    */
-  others?: any;
+  others?: object;
   /**
    * Optional click handler
    */
   onClick?: () => void;
-  children?: any;
-};
+  children?: ReactNode;
+  style?: object
+}
 
 const Button = ({
   type= 'button',
@@ -57,25 +58,25 @@ const Button = ({
   shape = 'round',
   sx,
   className,
-  children,
+  children = null,
   ...others
 }: ButtonProps) => {
   const mode = primary ? 'kariu-button--primary' : 'kariu-button--secondary';
+  const buttonCustom = styleButton({backgroundColor, shape, primary, size });
 
   return (
     <button 
       type={type}
       className={['kariu-button', `kariu-button--${size}`, shape, mode, className].join(' ')}
-      style={{ backgroundColor, ...sx }}
+      style={{...buttonCustom, ...sx }}
       onClick={() => {
         if (others.onClick) others.onClick();
       }}
       {...others}
     >
       {label}
-      {!!children && <span className='kariu-button-children'>{children}</span>}
+      {children}
     </button>
   );
 };
-
 export default Button;
