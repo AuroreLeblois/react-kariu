@@ -1,4 +1,4 @@
-export function styleButton({backgroundColor, shape, primary, size}) {
+export function styleButton(backgroundColor : string, shape: string, primary: boolean, size: string) {
     const color = primary ? 'white': '#333';
     let backgroundColorStyle = primary ? '#1ea7fd' : 'transparent';
     let fontSize = '14px';

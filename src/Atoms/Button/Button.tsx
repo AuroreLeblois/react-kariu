@@ -53,7 +53,7 @@ const Button = ({
   type= 'button',
   primary = true,
   size = 'medium',
-  backgroundColor,
+  backgroundColor = 'tomato',
   label,
   shape = 'round',
   sx,
@@ -62,7 +62,7 @@ const Button = ({
   ...others
 }: ButtonProps) => {
   const mode = primary ? 'kariu-button--primary' : 'kariu-button--secondary';
-  const buttonCustom = styleButton({backgroundColor, shape, primary, size });
+  const buttonCustom = styleButton(backgroundColor, shape, primary, size);
 
   return (
     <button 
