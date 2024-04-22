@@ -1,5 +1,3 @@
-
-
 .kariu-button:active:after {
   transform: scale(0,0);
   opacity: .2;
@@ -21,27 +19,3 @@ button.ripple {
   }
 }
 
-.kariu-button--primary {
-  color: white;
-  background-color: #1ea7fd;
-}
-.kariu-button--secondary {
-  color: #333;
-  background-color: transparent;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
-}
-.kariu-button--small {
-  font-size: 12px;
-  padding: 10px 16px;
-}
-.kariu-button--medium {
-  font-size: 14px;
-  padding: 11px 20px;
-}
-.kariu-button--large {
-  font-size: 16px;
-  padding: 12px 24px;
-}
-.square {
-  border-radius: 8%;
-}
