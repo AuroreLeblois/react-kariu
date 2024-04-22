@@ -4,24 +4,27 @@ export function styleButton({backgroundColor, shape, primary, size}) {
     let fontSize = '14px';
     let padding = '11px 20px';
     switch (size) {
-      case 'medium':
-        default:
-          fontSize = '14 px';
-          padding = '10px 16px';
-        break;
-        case 'small':
+      case 'small':
           fontSize = '12 px';
           padding = '11px 20px';
           break;
+      case 'medium':
+          fontSize = '14 px';
+          padding = '10px 16px';
+        break;
           case 'large':
             fontSize = '16 px';
           padding = '12px 24px';
             break;
+          default:
+          fontSize = '14 px';
+          padding = '10px 16px';
+        break;
     }
     if (backgroundColor) {
       backgroundColorStyle = backgroundColor;
     }
-    let style =  {
+    const style =  {
       color,
       boxShadow: !primary ? 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset': 'none',
       backgroundColor: backgroundColorStyle,
