@@ -53,7 +53,7 @@ const Button = ({
   type= 'button',
   primary = true,
   size = 'medium',
-  backgroundColor = 'tomato',
+  backgroundColor,
   label,
   shape = 'round',
   sx,
@@ -62,13 +62,14 @@ const Button = ({
   ...others
 }: ButtonProps) => {
   const mode = primary ? 'kariu-button--primary' : 'kariu-button--secondary';
-  const buttonCustom = styleButton(backgroundColor, shape, primary, size);
+  const buttonCustom = styleButton(backgroundColor || '', shape, primary, size);
+  const completeStyle = {...buttonCustom, ...sx };
 
   return (
     <button 
       type={type}
       className={['kariu-button', `kariu-button--${size}`, shape, mode, className].join(' ')}
-      style={{...buttonCustom, ...sx }}
+      style={completeStyle}
       onClick={() => {
         if (others.onClick) others.onClick();
       }}
