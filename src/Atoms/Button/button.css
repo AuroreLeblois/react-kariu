@@ -70,5 +70,5 @@ button.ripple {
   padding: 12px 24px;
 }
 .square {
-  border-radius: 8%;
+  border-radius: 0.75rem;
 }

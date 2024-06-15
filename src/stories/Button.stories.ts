@@ -36,3 +36,11 @@ export const Secondary: Story = {
     primary: false,
   },
 };
+
+export const Custom: Story = {
+  args: {
+    label: 'Button custom sx',
+    shape: 'square',
+    sx: { backgroundColor: 'red' }
+  }
+};
