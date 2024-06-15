@@ -5,7 +5,7 @@ export default create({
 	base: 'light',
 	title: 'React-kariu',
 	brandTitle: 'React-Kariu',
-	brandImage: "../favicon.ico",
+	brandImage: logo,
 
 	colorPrimary: '#3C1B43',
  	colorSecondary: '#501537',

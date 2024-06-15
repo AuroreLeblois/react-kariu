@@ -1,4 +1,5 @@
 {
+  "include": ["src"], /* Include only the src directory */
   "compilerOptions": {
     "noImplicitAny": false,
     "noEmitOnError": true,
