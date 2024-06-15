@@ -12,7 +12,7 @@ build-storybook.log
 .storybook
 .gitattributes
 .eslintrc.cjs
-src/
+src/stories
 index.html
 *.tgz
 *.json
