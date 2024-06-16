@@ -3,6 +3,7 @@ node_modules
 # production
 conf/
 dist/
+types/
 
 # misc
 .env

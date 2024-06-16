@@ -8,6 +8,7 @@ node_modules
 .git
 .gitignore
 .npmrc
+dist/
 build-storybook.log
 .storybook
 .gitattributes
