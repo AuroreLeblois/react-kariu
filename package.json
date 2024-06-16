@@ -1,7 +1,7 @@
 {
   "name": "react-kariu",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "react library for devs",
   "author": "Aurore Leblois",
   "type": "commonjs",
@@ -9,6 +9,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
+    "types",
     "README.md"
   ],
   "copyright": "Copyright © year ${author}",

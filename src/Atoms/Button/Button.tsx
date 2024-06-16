@@ -1,5 +1,9 @@
-import React, { ReactNode } from 'react';
+import * as React from 'react';
 import { styleButton } from './styleButton';
+import '../../reset.css';
+import './button.css';
+import Ripple from '../Ripple/Ripple';
+
 /**
  * Primary UI component for user interaction
  */
@@ -20,7 +24,7 @@ interface ButtonProps {
   /**
    * type of the button
    */
-  type?: "button" | "submit" | "reset" ;
+  type?: "button" | "submit" | "reset";
   /**
    * Button contents
    */
@@ -28,56 +32,76 @@ interface ButtonProps {
   /**
    * Button shape
    */
-  shape?: "square"| "round";
-    /**
+  shape?: "square" | "round";
+  /**
    * Button classname override
    */
   className?: string;
   /**
    * Button style overrides
    */
-  sx?: object;
+  sx?: React.CSSProperties;
   /**
-   * Usual button props
+   * Usual button props: onClick
    */
-  others?: object;
+  buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
   /**
    * Optional click handler
    */
-  onClick?: () => void;
-  children?: ReactNode;
-  style?: object
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  children?: React.ReactNode;
+  /**
+   * If the button has a ripple effect on click.
+   */
+  ripple?: boolean;
+  /**
+   * Duration of the ripple effect
+   */
+  rippleDuration?: number;
+   /**
+   * Color of the ripple effect. Default color is the color of the button's background.
+   */
+   rippleColor?: string;
 }
 
-const Button = ({
-  type= 'button',
+const Button: React.FC<ButtonProps> = ({
+  type,
   primary = true,
   size = 'medium',
-  backgroundColor,
+  backgroundColor = null,
   label,
   shape = 'round',
-  sx,
   className,
-  children = null,
-  ...others
-}: ButtonProps) => {
+  children,
+  ripple = true,
+  rippleDuration = 500, 
+  rippleColor,
+  sx = {},
+  ...buttonProps
+}) => {
   const mode = primary ? 'kariu-button--primary' : 'kariu-button--secondary';
-  const buttonCustom = styleButton(backgroundColor || '', shape, primary, size);
-  const completeStyle = {...buttonCustom, ...sx };
-
+  const buttonCustom = styleButton(backgroundColor || '', shape, primary, size) as unknown as React.CSSProperties;
+  const completeStyle: React.CSSProperties = { ...buttonCustom, ...sx };
+  let color =  backgroundColor ? backgroundColor : primary ? '#1ea7fd' : 'lightgray';
+  if (rippleColor) color = rippleColor;
+  
   return (
-    <button 
+    <button
       type={type}
       className={['kariu-button', `kariu-button--${size}`, shape, mode, className].join(' ')}
       style={completeStyle}
-      onClick={() => {
-        if (others.onClick) others.onClick();
+      onClick={(event) => {
+        if (buttonProps.onClick) {
+          buttonProps.onClick(event);
+        }
       }}
-      {...others}
+      {...buttonProps}
     >
       {label}
+      {ripple && <Ripple duration={rippleDuration} color={color} />}
       {children}
     </button>
   );
 };
+
 export default Button;

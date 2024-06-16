@@ -3,21 +3,22 @@ export function styleButton(backgroundColor : string, shape: string, primary: bo
     let backgroundColorStyle = primary ? '#1ea7fd' : 'transparent';
     let fontSize = '14px';
     let padding = '11px 20px';
+    
     switch (size) {
       case 'small':
-          fontSize = '12 px';
-          padding = '11px 20px';
+          fontSize = '0.85rem';
+          padding = '0.5rem 1rem';
           break;
       case 'medium':
-          fontSize = '14 px';
-          padding = '10px 16px';
+          fontSize = '1rem';
+          padding = '0.7rem 1.25rem';
         break;
           case 'large':
-            fontSize = '16 px';
-          padding = '12px 24px';
+            fontSize = '1.25rem';
+          padding = '0.85rem 1.5rem';
             break;
           default:
-          fontSize = '14 px';
+          fontSize = '14px';
           padding = '10px 16px';
         break;
     }
@@ -34,13 +35,13 @@ export function styleButton(backgroundColor : string, shape: string, primary: bo
       borderRadius:  shape === 'square' ? '10px': '3em',
       cursor: 'pointer',
       display: 'inline-block',
-      lineHeight: 1,
       position: 'relative',
       overflow: 'hidden',
       transform: 'translate3d(0, 0, 0)',
       fontSize,
       padding,
-      '&:after': {
+      lineHeight: 1,
+      '*:after': {
         display: 'block',
         position: 'absolute',
         width: '100%',
@@ -55,7 +56,7 @@ export function styleButton(backgroundColor : string, shape: string, primary: bo
         opacity: 0,
         transition: 'transform .5s, opacity 1s'
       },
-      '&:active:after': {
+      '*:active:after': {
         transform: 'scale(0,0)',
         opacity: .2,
         transition: '0s',

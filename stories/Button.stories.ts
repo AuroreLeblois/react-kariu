@@ -41,6 +41,7 @@ export const Custom: Story = {
   args: {
     label: 'Button custom sx',
     shape: 'square',
-    sx: { backgroundColor: 'red' }
+    backgroundColor: 'green',
+    sx: { color: 'tomato' }
   }
 };

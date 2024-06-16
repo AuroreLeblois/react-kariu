@@ -1,27 +1,17 @@
 {
-  "include": ["src"], /* Include only the src directory */
   "compilerOptions": {
-    "noImplicitAny": false,
-    "noEmitOnError": true,
-    "removeComments": false,
-    "sourceMap": true,
     "target": "es5",
-    "outDir": "dist",
-
-    /* Bundler mode */
-    "allowImportingTsExtensions": true,
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-
-    /* Linting */
+    "module": "commonjs",
+    "lib": ["dom", "esnext"],
+    "declaration": true,
+    "declarationDir": "./types",
+    "outDir": "./dist",
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx"
   },
-  "include": ["src",  "scripts/**/*"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src"]
 }
