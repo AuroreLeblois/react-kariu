@@ -1,6 +1,4 @@
 import * as React from 'react';
-import '../../reset.css';
-import './button.css';
 /**
  * Primary UI component for user interaction
  */
@@ -45,7 +43,7 @@ interface ButtonProps {
      * Optional click handler
      */
     onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-    children?: React.ReactNode;
+    children?: React.ReactElement;
     /**
      * If the button has a ripple effect on click.
      */

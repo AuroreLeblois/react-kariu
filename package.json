@@ -1,7 +1,7 @@
 {
   "name": "react-kariu",
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "react library for devs",
   "author": "Aurore Leblois",
   "type": "commonjs",
@@ -9,23 +9,34 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "types"
+    "types",
+    "*.js",
+    "*.d.ts",
+    "*.md"
+  ],
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "effects"
   ],
   "copyright": "Copyright © year ${author}",
   "scripts": {
     "build_tsc": "tsc",
+    "clean": "rimraf dist/",
+    "copy": "copyfiles -u 1 src/**/*.css dist/",
+    "build": "npm run clean && tsc && npm run copy",
     "start": "start http://localhost:9999 && storybook dev --quiet --ci --port 9999",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=token",
-    "build": "rollup -c"
+    "chromatic": "npx chromatic --project-token=token"
   },
   "exports": {
     ".": {
       "default": {
-        "require": "./dist/index.ts",
-        "default": "./dist/index.ts"
+        "require": "./dist/index.js",
+        "default": "./dist/index.js"
       }
     }
   },
@@ -40,10 +51,7 @@
     "@rollup/plugin-url": "^8.0.2",
     "@storybook/addons": "^7.6.17",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-typescript2": "^0.36.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-typescript": "^7.24.4",
@@ -63,10 +71,13 @@
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "chromatic": "^11.3.0",
+    "copyfiles": "^2.4.1",
+    "css-loader": "^7.1.2",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "eslint-plugin-storybook": "^0.8.0",
+    "rimraf": "^5.0.7",
     "storybook": "^8.0.8",
     "tsup": "^8.0.2",
     "typescript": "^5.2.2"

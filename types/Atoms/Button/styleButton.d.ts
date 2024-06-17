@@ -34,4 +34,31 @@ export declare function styleButton(backgroundColor: string, shape: string, prim
         opacity: number;
         transition: string;
     };
+    '.kariu-button:active:after': {
+        transform: string;
+        opacity: string;
+        transition: string;
+    };
+    'button.ripple': {
+        position: string;
+        borderRadius: string;
+        transform: string;
+        animation: string;
+        backgroundColor: string;
+    };
+    '@keyframes ripple': {
+        to: {
+            transform: string;
+            opacity: number;
+        };
+    };
+    '.kariu-button--primary': {
+        color: string;
+        backgroundColor: string;
+    };
+    '.kariu-button--secondary': {
+        color: string;
+        backgroundColor: string;
+        boxShadow: string;
+    };
 };

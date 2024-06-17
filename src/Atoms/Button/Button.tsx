@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { styleButton } from './styleButton';
-import '../../reset.css';
-import './button.css';
 import Ripple from '../Ripple/Ripple';
 
 /**
@@ -49,7 +47,7 @@ interface ButtonProps {
    * Optional click handler
    */
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  children?: React.ReactNode;
+  children?: React.ReactElement;
   /**
    * If the button has a ripple effect on click.
    */
@@ -97,7 +95,7 @@ const Button: React.FC<ButtonProps> = ({
       }}
       {...buttonProps}
     >
-      {label}
+      {label && <span className='kariu-button--label'>{label}</span>}
       {ripple && <Ripple duration={rippleDuration} color={color} />}
       {children}
     </button>

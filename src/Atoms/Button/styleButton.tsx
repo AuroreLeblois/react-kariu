@@ -60,6 +60,33 @@ export function styleButton(backgroundColor : string, shape: string, primary: bo
         transform: 'scale(0,0)',
         opacity: .2,
         transition: '0s',
+      },
+      '.kariu-button:active:after': {
+        transform: 'scale(0,0)',
+        opacity: '0.2',
+        transition: '0s'
+      },
+      'button.ripple': {
+        position: 'absolute', /* The absolute position we mentioned earlier */
+        borderRadius: '50%',
+        transform: 'scale(0)',
+        animation: 'ripple 600ms linear',
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
+      },
+      '@keyframes ripple' : {
+        'to' : {
+          transform: 'scale(4)',
+          opacity: 0
+        }
+      },
+      '.kariu-button--primary': {
+        color: 'white',
+        backgroundColor: '#1ea7fd'
+      },
+      '.kariu-button--secondary': {
+        color: '#333',
+        backgroundColor: 'transparent',
+        boxShadow: 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset',
       }
     };
   
