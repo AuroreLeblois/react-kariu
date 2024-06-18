@@ -20,6 +20,9 @@
     "components",
     "effects"
   ],
+  "publishConfig": {
+    "@auroreleblois:react-kariu": "https://npm.pkg.github.com"
+  },
   "copyright": "Copyright © year ${author}",
   "scripts": {
     "build_tsc": "tsc",
