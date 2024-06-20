@@ -9,7 +9,7 @@
     "declarationDir": "./types",
     "rootDir": "src",
     "outDir": "./dist",
-    "strict": true,
+    "strict": false,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
