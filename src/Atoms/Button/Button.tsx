@@ -60,6 +60,10 @@ interface ButtonProps {
    * Color of the ripple effect. Default color is the color of the button's background.
    */
    rippleColor?: string;
+    /**
+   * If the button is disabled.
+   */
+   disabled?: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -75,18 +79,21 @@ const Button: React.FC<ButtonProps> = ({
   rippleDuration = 500, 
   rippleColor,
   sx = {},
+  disabled = false,
   ...buttonProps
 }) => {
   const mode = primary ? 'kariu-button--primary' : 'kariu-button--secondary';
-  const buttonCustom = styleButton(backgroundColor || '', shape, primary, size) as unknown as React.CSSProperties;
+  const buttonCustom = styleButton(backgroundColor || '', shape, primary, size, disabled) as unknown as React.CSSProperties;
   const completeStyle: React.CSSProperties = { ...buttonCustom, ...sx };
+  console.log(completeStyle);
+  
   let color =  backgroundColor ? backgroundColor : primary ? '#1ea7fd' : 'lightgray';
   if (rippleColor) color = rippleColor;
   
   return (
     <button
       type={type}
-      className={['kariu-button', `kariu-button--${size}`, shape, mode, className].join(' ')}
+      className={['kariu-button', `kariu-button--${size}`, shape, mode, className, `${disabled ? 'disabled' : ''}`].join(' ')}
       style={completeStyle}
       onClick={(event) => {
         if (buttonProps.onClick) {
@@ -94,6 +101,7 @@ const Button: React.FC<ButtonProps> = ({
         }
       }}
       {...buttonProps}
+      disabled={disabled}
     >
       {label && <span className='kariu-button--label'>{label}</span>}
       {ripple && <Ripple duration={rippleDuration} color={color} />}

@@ -43,5 +43,13 @@ export const Custom: Story = {
     shape: 'square',
     backgroundColor: 'green',
     sx: { color: 'tomato' }
-  }
+  } 
+};
+
+export const Disabled: Story = {
+  args: {
+    label: 'Disabled',
+    disabled: true,
+    ripple: false
+  } 
 };
