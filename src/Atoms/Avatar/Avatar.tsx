@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import {styleAvatar} from './styleAvatar' 
 /**
  * Primary UI component for user interaction

@@ -19,3 +19,4 @@ logs/
 *.7z
 *.zip
 *.tgz
+storybook-static
