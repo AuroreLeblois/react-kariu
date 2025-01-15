@@ -85,7 +85,6 @@ const Button: React.FC<ButtonProps> = ({
   const mode = primary ? 'kariu-button--primary' : 'kariu-button--secondary';
   const buttonCustom = styleButton(backgroundColor || '', shape, primary, size, disabled) as unknown as React.CSSProperties;
   const completeStyle: React.CSSProperties = { ...buttonCustom, ...sx };
-  console.log(completeStyle);
   
   let color =  backgroundColor ? backgroundColor : primary ? '#1ea7fd' : 'lightgray';
   if (rippleColor) color = rippleColor;
