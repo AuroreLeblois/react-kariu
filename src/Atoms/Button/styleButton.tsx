@@ -61,7 +61,7 @@ export function styleButton(backgroundColor : string, shape: string, primary: bo
       opacity: 1,
       transition: '0s',
     },
-    '.kariu-button:active:after': {
+    '.kariuButton:active:after': {
       transform: 'scale(0,0)',
       opacity: '0.2',
       transition: '0s'
@@ -78,11 +78,11 @@ export function styleButton(backgroundColor : string, shape: string, primary: bo
         opacity: 0
       }
     },
-    '.kariu-button--primary': {
+    '.kariuButton--primary': {
       color: disabled ? 'red' : 'white',
       backgroundColor: '#1ea7fd'
     },
-    '.kariu-button--secondary': {
+    '.kariuButton--secondary': {
       color:  disabled ? 'blue' : '#333',
       backgroundColor: 'transparent',
       boxShadow: 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset',

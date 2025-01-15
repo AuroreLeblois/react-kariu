@@ -24,10 +24,19 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     name: 'TEST NAME',
-    backgroundColor: 'tomato'
+    backgroundColor: 'tomato',
+    size: "large"
   },
 };
 
+export const url: Story = {
+  args: {
+    name: 'TEST NAME',
+    backgroundColor: 'tomato',
+    size: "large",
+    url: "https://imgs.search.brave.com/OXO2hNxtSfBrF6crw3ZQm1krkt_hidFc5PDlPtdH3EQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aXN0b2NrcGhvdG8u/Y29tL3Jlc291cmNl/cy9pbWFnZXMvUGhv/dG9GVExQL1AyLXJl/Z2lvbmFsLWlTdG9j/ay0xNDAxOTI3Mjgx/LmpwZw"
+  },
+};

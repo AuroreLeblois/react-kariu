@@ -45,7 +45,7 @@ interface AvatarProps {
      /**
    * Optional Font for avatar
    */
-  fontFamily?: String;
+  fontFamily?: string;
        /**
    * Optional size in pixels for avatar
    */
@@ -78,8 +78,12 @@ const Avatar: React.FC<AvatarProps> = ({
     content = (
       <img
         src={url}
-        className={`avatar-kariu--img ` + " " + className}
+        className={`avatar-kariu--img`}
         alt={'avatar-kariu-url'}
+        style={{ width: '100%', height: '100%', 
+          objectFit: 'cover',
+          borderRadius: shape === 'round' ? '50%' : '10%'
+          }} 
       />
     );
   } else {
@@ -89,7 +93,7 @@ const Avatar: React.FC<AvatarProps> = ({
   }
 
   return (
-    <div className={`avatar-kariu ` + " " + className} 
+    <div className={`avatar-kariu ${className}`} 
       style={{...styleAvatar(backgroundColor, shape, size, url,customWidthAndHeight, fontFamily)}}
     >
       {content}
