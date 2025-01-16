@@ -33,7 +33,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token process.env.CHROMATIC_PROJECT_TOKEN"
+    "chromatic": "npx chromatic --project-token %CHROMATIC_PROJECT_TOKEN%"
   },
   "exports": {
     ".": {
@@ -75,7 +75,7 @@
     "@types/react-dom": "*18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
-    "chromatic": "^11.3.0",
+    "chromatic": "^11.24.0",
     "copyfiles": "^2.4.1",
     "css-loader": "^7.1.2",
     "dotenv": "^16.4.5",

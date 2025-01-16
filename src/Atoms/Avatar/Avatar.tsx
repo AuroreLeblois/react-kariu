@@ -17,10 +17,7 @@ interface AvatarProps {
    * How large should the button be?
    */
   size?: 'small' | 'medium' | 'large';
-  /**
-   * Button contents
-   */
-  label: string;
+
   /**
    * Avatar shape
    */
