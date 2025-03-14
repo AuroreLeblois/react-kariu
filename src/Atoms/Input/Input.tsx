@@ -49,6 +49,7 @@ interface InputProps {
   children?: React.ReactElement;
   onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }
 
 const Button: React.FC<InputProps> = ({

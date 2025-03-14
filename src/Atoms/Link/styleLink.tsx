@@ -2,7 +2,9 @@ export function styleLink(size: string, disabled: boolean) {
   let fontSize = '1rem';
 
   const style = {
-    display: 'inline-block',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     fontFamily: 'inherit',
     fontWeight: '700',
     border: 0,
