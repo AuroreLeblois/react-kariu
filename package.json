@@ -33,7 +33,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token %CHROMATIC_PROJECT_TOKEN%"
+    "chromatic": "npx chromatic --project-token=chpt_24ae7ee253e1c4d"
   },
   "exports": {
     ".": {

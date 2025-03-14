@@ -20,5 +20,5 @@
       "react-kariu": ["node_modules/react-kariu/package/dist/index.js"] // Chemin d'accès vers le module react-kariu
     }
   },
-  "include": ["src", "types"]
+  "include": ["src", "types", "stories/Text.stories.tsx"]
 }
