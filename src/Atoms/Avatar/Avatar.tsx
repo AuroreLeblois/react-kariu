@@ -91,7 +91,7 @@ const Avatar: React.FC<AvatarProps> = ({
 
   return (
     <div className={`avatar-kariu ${className}`} 
-      style={{...styleAvatar(backgroundColor, shape, size, url,customWidthAndHeight, fontFamily)}}
+      style={{...styleAvatar(backgroundColor, shape, size, url,customWidthAndHeight, fontFamily), ...sx}}
     >
       {content}
       {!!children && children}
