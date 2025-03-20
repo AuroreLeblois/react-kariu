@@ -1,94 +1,65 @@
 import React from 'react';
 
-// Définition des types pour les props
+// Definition of types for props
 interface TitleProps {
+	/** The text to display in the title */
 	text: string;
-	priority?: number;
-	align?: string;
+	/** The priority of the title, from 1 to 6 */
+	priority?: 1|2|3|4|5|6;
+	/** The text alignment: 'left', 'center', or 'right' */
+	align?: 'left' | 'center' | 'right';
+	/** The text color, can be a string */
 	textColor?: string;
+	/** The font family to use for the text */
 	fontFamily?: string;
+	/** The cursor to display on hover */
 	cursor?: string;
+	/** Additional CSS classes to apply */
+	className?: string;
 }
 
-const Title: React.FC<TitleProps> = (props) => {
-	// Renderers ----------------------------------------------------------------
+const Title: React.FC<TitleProps> = ({text, priority = 1, align = 'center', textColor='inherit', fontFamily= 'inherit', cursor = 'text', className}) => {
+	
+	if (!text) {
+		 throw new Error('Text is required');
+	}
 
 	let style: React.CSSProperties = {
 		display: 'block',
-		color: (props.textColor ? props.textColor : 'tomato'),
-		fontFamily: (props.fontFamily ? props.fontFamily : 'inherit'),
+		color: (textColor ? textColor : 'inherit'),
+		fontFamily: (fontFamily ? fontFamily : 'inherit'),
 		wordBreak: 'break-word',
 		fontWeight: 'regular',
-		textAlign: props.align,
+		textAlign: align,
 		letterSpacing: '-0.025rem',
-		wordBreak: 'break-word',
 		whiteSpace: 'pre-wrap',
 		marginBottom: '0.55rem',
 		marginTop: '0.25rem',
-		cursor: props.cursor
+		cursor: cursor
 	}
 
-	switch (props.priority) {
+	const renderTitle = (tag: keyof JSX.IntrinsicElements, size: string, lineHeight: string, weight: string = 'regular') => {
+		style.fontSize = size;
+		style.lineHeight = lineHeight;
+		style.fontWeight = weight;
+		return React.createElement(tag, { style, className: `title-kariu-priority-${priority} ${className}` }, text);
+	}
+
+	switch (priority) {
 		case 1:
-			style.fontSize = '2.75rem'
-			style.lineHeight = '3.5rem'
-			return (
-				<h1 className={css(style) + ' ' + props.className}>
-					{props.text}
-				</h1>
-			)
+			return renderTitle('h1', '2.75rem', '3.5rem');
 		case 2:
-			style.fontSize = '2rem'
-			style.lineHeight = '2.75rem'
-			return (
-				<h2 className={css(style) + ' ' + props.className}>
-					{props.text}
-				</h2>
-			)
+			return renderTitle('h2', '2rem', '2.75rem');
 		case 3:
-			style.fontSize = '1.75rem'
-			style.lineHeight = '2.5rem'
-			return (
-				<h3 className={css(style) + ' ' + props.className}>
-					{props.text}
-				</h3>
-			)
+			return renderTitle('h3', '1.75rem', '2.5rem');
 		case 4:
-			style.fontSize = '1.5rem'
-			style.lineHeight = '2rem'
-			style.fontWeight = 'semibold'
-			return (
-				<h4 className={css(style) + ' ' + props.className}>
-					{props.text}
-				</h4>
-			)
+			return renderTitle('h4', '1.5rem', '2rem', 'semibold');
 		case 5:
-			style.fontSize = '1.25rem'
-			style.lineHeight = '1.95rem'
-			style.fontWeight = 'bold'
-			return (
-				<h5 className={css(style) + ' ' + props.className}>
-					{props.text}
-				</h5>
-			)
+			return renderTitle('h5', '1.25rem', '1.95rem', 'bold');
 		case 6:
-			style.fontSize = '1.15rem'
-			style.lineHeight = '1.95rem'
-			style.fontWeight = 'bold'
-			style.letterSpacing = 'normal'
-			return (
-				<h6 className={css(style) + ' ' + props.className}>
-					{props.text}
-				</h6>
-			)
-		default: // m
-			style.fontSize = '3.75rem'
-			style.lineHeight = '4.5rem'
-			return (
-				<h1 className={css(style) + ' ' + props.className}>
-					{props.text}
-				</h1>
-			)
+			return renderTitle('h6', '1.15rem', '1.95rem', 'bold');
+		default:
+			return renderTitle('h1', '3.75rem', '4.5rem');
 	}
 }
 

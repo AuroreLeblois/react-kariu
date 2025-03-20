@@ -1,10 +1,17 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "types": ["node", "react", "react-dom"],
+    "types": [
+      "node",
+      "react",
+      "react-dom"
+    ],
     "target": "es5",
     "module": "commonjs",
-    "lib": ["dom", "esnext"],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "declaration": true,
     "declarationDir": "./types",
     "rootDir": "src",
@@ -17,8 +24,15 @@
     "jsx": "react-jsx",
     "baseUrl": "./", // Chemin de base pour la résolution des modules
     "paths": {
-      "react-kariu": ["node_modules/react-kariu/package/dist/index.js"] // Chemin d'accès vers le module react-kariu
+      "react-kariu": [
+        "node_modules/react-kariu/package/dist/index.js"
+      ] // Chemin d'accès vers le module react-kariu
     }
   },
-  "include": ["src", "types", "stories/Text.stories.tsx"]
+  "include": [
+    "src",
+    "types",
+    "stories/Text.stories.tsx",
+    "stories/Title.stories.tsx"
+  ]
 }
