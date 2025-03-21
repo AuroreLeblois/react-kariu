@@ -44,23 +44,49 @@ const Title: React.FC<TitleProps> = ({text, priority = 1, align = 'center', text
 		style.fontWeight = weight;
 		return React.createElement(tag, { style, className: `title-kariu-priority-${priority} ${className}` }, text);
 	}
+	let element = null;
+	let size = null;
+	let lineHeight = null;
+	let weight = 'regular';
 
 	switch (priority) {
-		case 1:
-			return renderTitle('h1', '2.75rem', '3.5rem');
 		case 2:
-			return renderTitle('h2', '2rem', '2.75rem');
+			element = 'h2';
+			size = '2rem';
+			lineHeight = '2.75rem';
+			break;
 		case 3:
-			return renderTitle('h3', '1.75rem', '2.5rem');
+			element = 'h3';
+			size = '1.75rem';
+			lineHeight = '2.5rem';
+			break;
 		case 4:
-			return renderTitle('h4', '1.5rem', '2rem', 'semibold');
+			element = 'h4';
+			size = '1.5rem';
+			lineHeight = '2rem';
+			weight = 'semibold';
+			break;
 		case 5:
-			return renderTitle('h5', '1.25rem', '1.95rem', 'bold');
+			element = 'h5';
+			size = '1.25rem';
+			lineHeight = '1.95rem';
+			weight = 'bold';
+			break;
 		case 6:
-			return renderTitle('h6', '1.15rem', '1.95rem', 'bold');
+			element = 'h6';
+			size = '1.15rem';
+			lineHeight = '1.95rem';
+			weight = 'bold';
+			break;
+		case 1:
 		default:
-			return renderTitle('h1', '3.75rem', '4.5rem');
+			element = 'h1'
+			size = '2.75rem';
+			lineHeight = '3.5rem';
+		break;
 	}
+
+	return renderTitle(element, size, lineHeight, weight);
 }
 
 export default Title 
