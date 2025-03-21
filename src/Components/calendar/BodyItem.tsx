@@ -1,5 +1,4 @@
 import React from "react";
-import { css } from "@emotion/css";
 import Dot from "../../Atoms/Assets/Dot";
 
 interface Item {
@@ -21,6 +20,7 @@ interface BodyItemProps {
   loading?: boolean;
   onClick?: () => void;
   fontFamily?: string;
+  className?: string;
 }
 
 interface CustomCSSProperties extends React.CSSProperties {
@@ -45,13 +45,13 @@ const BodyItem: React.FC<BodyItemProps> = (props) => {
       fontSize: "0.85rem",
       lineHeight: "1rem",
     };
-    return <span className={css(styleCode)}>{props.item?.activity_code}</span>;
+    return <span style={styleCode} className={`bodyItem-kariu-activityCode ${props.className}`}>{props.item?.activity_code}</span>;
   };
 
   const renderUnavailability = (styleText: CustomCSSProperties) => {
     return (
       <React.Fragment>
-        <span className={css(styleText)}>{props.item?.unavailability_code}</span>
+        <span style={styleText} className={`bodyItem-kariu-unavailability ${props.className}`}>{props.item?.unavailability_code}</span>
         {renderDots()}
         {renderTimes(styleText)}
       </React.Fragment>
@@ -72,8 +72,8 @@ const BodyItem: React.FC<BodyItemProps> = (props) => {
 
     return (
       <React.Fragment>
-        <span className={css(styleText)}>{timeStart}</span>
-        <span className={css(styleText)}>{timeEnd}</span>
+        <span style={styleText}>{timeStart}</span>
+        <span style={styleText}>{timeEnd}</span>
       </React.Fragment>
     );
   };
@@ -94,10 +94,10 @@ const BodyItem: React.FC<BodyItemProps> = (props) => {
     // Unavailability on a part of a item
     if (props.item?.special) content.push(<Dot key="special" special={true} />);
 
-    // Bonus or marked (a specific type of bonus)
+    // Marked (a specific type of bonus)
     if (props.item?.marked) content.push(<Dot key="marked" marked={true} />);
 
-    return <span className={css(styleStickers)}>{content}</span>;
+    return <span style={styleStickers} className={`bodyItem-kariu-stickers ${props.className}`}>{content}</span>;
   };
 
   const handleBackgroundColor = (isEmpty: boolean): string | null => {
@@ -209,11 +209,11 @@ const BodyItem: React.FC<BodyItemProps> = (props) => {
       content = renderUnavailability(styleText);
     }
 
-    return <div className={css(styleDiv)}>{content}</div>;
+    return <div style={styleDiv} className='bodyItem-kariu-cell'>{content}</div>;
   };
 
   return (
-    <td className={css(styleTd)} onClick={props.onClick}>
+    <td style={styleTd} className='bodyItem-kariu-cell-td' onClick={props.onClick}>
       {renderCell(isEmpty, bgColor)}
     </td>
   );
