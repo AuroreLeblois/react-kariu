@@ -33,11 +33,20 @@ export const Default: Story = {
   },
 };
 
-export const url: Story = {
+export const Url: Story = {
   args: {
     name: 'TEST NAME',
     backgroundColor: 'tomato',
     size: "large",
     url: "https://imgs.search.brave.com/OXO2hNxtSfBrF6crw3ZQm1krkt_hidFc5PDlPtdH3EQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aXN0b2NrcGhvdG8u/Y29tL3Jlc291cmNl/cy9pbWFnZXMvUGhv/dG9GVExQL1AyLXJl/Z2lvbmFsLWlTdG9j/ay0xNDAxOTI3Mjgx/LmpwZw"
   },
+};
+
+export const Square: Story = {
+  args: {
+    shape: "square",
+    name: 'TEST NAME',
+    backgroundColor: 'tomato',
+    size: "large",
+  }
 };
