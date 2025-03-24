@@ -229,8 +229,8 @@ const BodyItem: React.FC<BodyItemProps> = ({item, isWeekEnd, isHoliday, number, 
     verticalAlign: "middle",
     cursor: isEmpty ? "default" : "pointer",
     backgroundColor:
-      isHoliday ? "grey" : isWeekEnd ? "lightgrey" : "inherit",
-    overflow: "hidden"
+      isHoliday ? "tomato" : isWeekEnd ? "lightgrey" : "inherit",
+    overflow: "hidden",
   } as const;
 
   const renderCell = (isEmpty: boolean, bgColor: string | null) => {
@@ -260,7 +260,7 @@ const BodyItem: React.FC<BodyItemProps> = ({item, isWeekEnd, isHoliday, number, 
       ":hover": { filter: "brightness(90%)" },
       ":active": { backgroundColor: bgColor },
       ":focus": { backgroundColor: bgColor },
-      zIndex: -1
+      zIndex: -5
     } as const;
 
     let content = null;
