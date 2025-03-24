@@ -33,6 +33,7 @@
     "src",
     "types",
     "stories/Text.stories.tsx",
-    "stories/Title.stories.tsx"
+    "stories/Title.stories.tsx",
+    "stories/HeadItem.stories.tsx"
   ]
 }
