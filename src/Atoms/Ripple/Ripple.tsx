@@ -42,7 +42,7 @@ const Ripple: React.FC<RippleProps> = ({ duration, color }) => {
             width: ripple.size,
             height: ripple.size,
             backgroundColor: color,
-            animationDuration: `${duration}ms`,
+            animationDuration: `${duration}ms`
           }}
           className="ripple"
         />

@@ -16,8 +16,7 @@ const Dot: React.FC<DotProps> = ({marked = false, special = false, className = n
 	}
 
 	const styleDot = {
-		display: 'inline-block', // Needed for inline component and height behavior
-		marginRight: '0.15rem',
+		display: 'inline-block',
 		padding: '3px',
 		borderRadius: '50%',
 		backgroundColor: color
