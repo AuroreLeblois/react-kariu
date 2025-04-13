@@ -1,4 +1,4 @@
-export declare function styleButton(backgroundColor: string, shape: string, primary: boolean, size: string): {
+export declare function styleButton(backgroundColor: string, shape: string, primary: boolean, size: string, disabled: boolean): {
     color: string;
     boxShadow: string;
     backgroundColor: string;
@@ -14,7 +14,7 @@ export declare function styleButton(backgroundColor: string, shape: string, prim
     fontSize: string;
     padding: string;
     lineHeight: number;
-    '*:after': {
+    '&:': {
         display: string;
         position: string;
         width: string;
@@ -34,7 +34,7 @@ export declare function styleButton(backgroundColor: string, shape: string, prim
         opacity: number;
         transition: string;
     };
-    '.kariu-button:active:after': {
+    '.kariuButton:active:after': {
         transform: string;
         opacity: string;
         transition: string;
@@ -44,7 +44,6 @@ export declare function styleButton(backgroundColor: string, shape: string, prim
         borderRadius: string;
         transform: string;
         animation: string;
-        backgroundColor: string;
     };
     '@keyframes ripple': {
         to: {
@@ -52,11 +51,11 @@ export declare function styleButton(backgroundColor: string, shape: string, prim
             opacity: number;
         };
     };
-    '.kariu-button--primary': {
+    '.kariuButton--primary': {
         color: string;
         backgroundColor: string;
     };
-    '.kariu-button--secondary': {
+    '.kariuButton--secondary': {
         color: string;
         backgroundColor: string;
         boxShadow: string;

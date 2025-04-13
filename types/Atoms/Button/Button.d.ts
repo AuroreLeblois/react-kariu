@@ -56,6 +56,10 @@ interface ButtonProps {
     * Color of the ripple effect. Default color is the color of the button's background.
     */
     rippleColor?: string;
+    /**
+   * If the button is disabled.
+   */
+    disabled?: boolean;
 }
 declare const Button: React.FC<ButtonProps>;
 export default Button;

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import moment from 'moment'
-import { Avatar, HeadCols, HeadNav, BodyItem } from './../../index.js'
+import { Avatar, HeadCols, HeadNav, BodyItem } from '../../index.js'
 
 const Calendar = (props) => {
 	// Renderers

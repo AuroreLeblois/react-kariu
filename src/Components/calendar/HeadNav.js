@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/css'
 import moment from 'moment'
-import { Button, Icon } from './../../index.js'
+import { Button, Icon } from '../../index.js'
 
 class HeadNav extends React.Component {
 
