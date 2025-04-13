@@ -1,30 +1,46 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import HeadItem from "./HeadItem";
 import moment from "moment";
-//for later see if can use full moment
-const weekdayshort = {
+
+
+// Types
+interface HeadColsProps {
+  language: string;
+  yearSelected?: number;
+  monthSelected?: number;
+  fontFamily?: string;
+}
+
+interface DayInfo {
+  day: string;
+  number?: string;
+  isToday?: boolean;
+}
+
+// Constantes
+const weekdayshort: Record<string, string[]> = {
   fr: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
   en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
 };
-const currentDay = parseInt(moment().format("DD"));
-const currentMonth = parseInt(moment().format("MM"));
-const currentYear = parseInt(moment().format("YYYY"));
 
-const HeadCols = (props) => {
+const currentDay: number = parseInt(moment().format("DD"));
+const currentMonth: number = parseInt(moment().format("MM"));
+const currentYear: number = parseInt(moment().format("YYYY"));
+
+const HeadCols: React.FC<HeadColsProps> = (props) => {
   // Renderers ----------------------------------------------------------------
-  let days = [];
+  let days: Array<string | DayInfo> = [];
 
-  const dateIsToday = (day, month, year) => {
-    if (day === currentDay && month == currentMonth && year === currentYear) {
+  const dateIsToday = (day: number, month: number, year: number): boolean => {
+    if (day === currentDay && month === currentMonth && year === currentYear) {
       return true;
     }
     return false;
   };
 
-  const getDayShort = (day) => {
+  const getDayShort = (day: string | number): string => {
     const date = new Date(
-      Date.UTC(props.yearSelected, props.monthSelected - 1, day)
+      Date.UTC(props.yearSelected!, props.monthSelected! - 1, Number(day))
     );
     let dayShort = "";
     if (props.language === "en") {
@@ -46,7 +62,7 @@ const HeadCols = (props) => {
     ).daysInMonth();
 
     for (let index = 1; index <= daysInMonth; index++) {
-      let day = index;
+      let day: string | number = index;
       if (day < 10) day = "0" + day;
       const date = moment(
         `${props.yearSelected}-${props.monthSelected}-${day}`
@@ -54,35 +70,29 @@ const HeadCols = (props) => {
 
       days.push({
         day: getDayShort(day),
-        number: day,
+        number: day.toString(),
         isToday: dateIsToday(index, props.monthSelected, props.yearSelected),
       });
     }
   }
-  const array = [];
+  
+  const array: JSX.Element[] = [];
 
-  days.map((day, index) =>
+  days.forEach((day, index) => 
     array.push(
       <HeadItem
         fontFamily={props.fontFamily ? props.fontFamily : "inherit"}
         key={index + "Week"}
         date={{
-          day: day.day ? day.day : day,
-          number: day.number ? day.number : null,
-          isToday: day.isToday ? day.isToday : null,
+          day: typeof day === "string" ? day : day.day,
+          number: typeof day === "string" ? null : day.number,
+          isToday: typeof day === "string" ? null : day.isToday,
         }}
       />
     )
   );
+  
   return array;
-};
-
-HeadCols.propTypes = {
-  language: PropTypes.string.isRequired,
-};
-
-HeadCols.defaultProps = {
-  language: "en",
 };
 
 export default HeadCols;
