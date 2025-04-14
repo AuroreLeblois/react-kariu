@@ -42,6 +42,7 @@ const Ripple: React.FC<RippleProps> = ({ duration, color }) => {
             width: ripple.size,
             height: ripple.size,
             backgroundColor: color,
+            overflow: 'hidden !important',
             animationDuration: `${duration}ms`,
             zIndex: 9999
           }}
