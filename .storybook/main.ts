@@ -17,8 +17,9 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
-  docs: {
-    autodocs: "tag",
+  docs: {},
+  viteFinal: async (config) => {
+    return config;
   },
 };
 export default config;

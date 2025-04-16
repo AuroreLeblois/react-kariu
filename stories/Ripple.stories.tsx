@@ -18,6 +18,11 @@ const meta: Meta<typeof Ripple> = {
       control: { type: 'color' },
       description: 'Color of the ripple effect',
     },
+    animationType: {
+      control: { type: 'select' },
+      description: 'Type of animation',
+      options: ['circle', 'square', 'fade', 'expand'],
+    },
   },
 };
 
@@ -75,6 +80,45 @@ export const Colored: Story = {
   args: {
     duration: 800,
     color: 'rgba(238, 125, 19, 0.3)',
+  },
+  render: (args) => (
+    <RippleContainer>
+      <Ripple {...args} />
+    </RippleContainer>
+  ),
+};
+
+export const SquareAnimation: Story = {
+  args: {
+    duration: 800,
+    color: 'rgba(63, 81, 181, 0.3)',
+    animationType: 'square',
+  },
+  render: (args) => (
+    <RippleContainer>
+      <Ripple {...args} />
+    </RippleContainer>
+  ),
+};
+
+export const FadeAnimation: Story = {
+  args: {
+    duration: 800,
+    color: 'rgba(76, 175, 80, 0.3)',
+    animationType: 'fade',
+  },
+  render: (args) => (
+    <RippleContainer>
+      <Ripple {...args} />
+    </RippleContainer>
+  ),
+};
+
+export const ExpandAnimation: Story = {
+  args: {
+    duration: 800,
+    color: 'rgba(233, 30, 99, 0.3)',
+    animationType: 'expand',
   },
   render: (args) => (
     <RippleContainer>

@@ -11,14 +11,60 @@
   position: absolute;
   border-radius: 50%;
   transform: scale(0);
-  animation: ripple 1000ms linear;
+  animation-name: ripple-circle;
+  animation-timing-function: linear;
   pointer-events: none;
 }
 
-@keyframes ripple {
+/* Animation cercle (par défaut) */
+@keyframes ripple-circle {
   to {
-    transform: scale(2);
+    transform: scale(4);
     opacity: 0;
-    background-color: rgba(255, 255, 255, 0); /* Couleur de fond du ripple avec une opacité */
+  }
+}
+
+/* Animation carrée */
+.ripple-square {
+  border-radius: 0;
+  animation-name: ripple-square;
+}
+
+@keyframes ripple-square {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Animation de fondu */
+.ripple-fade {
+  animation-name: ripple-fade;
+}
+
+@keyframes ripple-fade {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* Animation d'expansion */
+.ripple-expand {
+  animation-name: ripple-expand;
+}
+
+@keyframes ripple-expand {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
   }
 }

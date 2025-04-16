@@ -34,10 +34,3 @@ import { Button } from 'react-kariu'
 />
 
 ```
-
-### Components available for now
-- Button
-- Input
-- Text
-- Title
-- Calendar (in progress)

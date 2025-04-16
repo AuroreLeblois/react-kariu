@@ -4,9 +4,12 @@ import './ripple.css';
 interface RippleProps {
   duration: number;
   color: string;
+  animationType?: 'circle' | 'square' | 'fade' | 'expand';
+  className?: string;
+  sx?: React.CSSProperties;
 }
 
-const Ripple: React.FC<RippleProps> = ({ duration, color }) => {
+const Ripple: React.FC<RippleProps> = ({ duration, color, animationType = 'circle', className, sx }) => {
   const [rippleArray, setRippleArray] = useState<Array<{ top: number; left: number; size: number }>>([]);
 
   useEffect(() => {
@@ -44,9 +47,10 @@ const Ripple: React.FC<RippleProps> = ({ duration, color }) => {
             backgroundColor: color,
             overflow: 'hidden !important',
             animationDuration: `${duration}ms`,
-            zIndex: 9999
+            zIndex: 9999,
+            ...sx
           }}
-          className="ripple"
+          className={`ripple ripple-${animationType}${className ? ` ${className}` : ''}`}
         />
       ))}
     </div>
