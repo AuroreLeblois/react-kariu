@@ -2,7 +2,7 @@ import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import HeadCols from '../src/Components/calendar/HeadCols';
 
-const meta: Meta<typeof HeadCols> = {
+const meta = {
   title: 'Components/Calendar/HeadCols',
   component: HeadCols,
   tags: ['autodocs'],
@@ -39,28 +39,15 @@ type Story = StoryObj<typeof HeadCols>;
 export const DefaultFrench: Story = {
   args: {
     language: 'fr',
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}>
-        <Story />
-      </div>
-    ),
-  ],
+  }
 };
+
 
 // Story en anglais
 export const DefaultEnglish: Story = {
   args: {
     language: 'en',
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}>
-        <Story />
-      </div>
-    ),
-  ],
+  }
 };
 
 // Mois actuel en français
@@ -69,14 +56,7 @@ export const CurrentMonthFrench: Story = {
     language: 'fr',
     yearSelected: new Date().getFullYear(),
     monthSelected: new Date().getMonth() + 1,
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '5px', maxWidth: '700px' }}>
-        <Story />
-      </div>
-    ),
-  ],
+  }
 };
 
 // Mois actuel en anglais
@@ -85,14 +65,7 @@ export const CurrentMonthEnglish: Story = {
     language: 'en',
     yearSelected: new Date().getFullYear(),
     monthSelected: new Date().getMonth() + 1,
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '5px', maxWidth: '700px' }}>
-        <Story />
-      </div>
-    ),
-  ],
+  }
 };
 
 // Mois spécifique (décembre 2023)
@@ -102,14 +75,7 @@ export const SpecificMonth: Story = {
     yearSelected: 2023,
     monthSelected: 12,
     fontFamily: 'Arial',
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '5px', maxWidth: '700px' }}>
-        <Story />
-      </div>
-    ),
-  ],
+  }
 };
 
 // Police personnalisée
@@ -119,12 +85,5 @@ export const CustomFont: Story = {
     yearSelected: new Date().getFullYear(),
     monthSelected: new Date().getMonth() + 1,
     fontFamily: 'Courier New',
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '5px', maxWidth: '700px' }}>
-        <Story />
-      </div>
-    ),
-  ],
+  }
 };

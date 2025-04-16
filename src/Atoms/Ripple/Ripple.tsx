@@ -4,7 +4,7 @@ import './ripple.css';
 interface RippleProps {
   duration: number;
   color: string;
-  animationType?: 'circle' | 'square' | 'fade' | 'expand';
+  animationType?: 'circle' | 'square' | 'fade' | 'expand' | 'wave';
   className?: string;
   sx?: React.CSSProperties;
 }
@@ -35,7 +35,7 @@ const Ripple: React.FC<RippleProps> = ({ duration, color, animationType = 'circl
   };
 
   return (
-    <div className="ripple-container" onMouseDown={addRipple}>
+    <div className="ripple-container" onMouseDown={addRipple} style={{ ...sx }}>
       {rippleArray.map((ripple, index) => (
         <span
           key={index}
@@ -45,10 +45,8 @@ const Ripple: React.FC<RippleProps> = ({ duration, color, animationType = 'circl
             width: ripple.size,
             height: ripple.size,
             backgroundColor: color,
-            overflow: 'hidden !important',
             animationDuration: `${duration}ms`,
-            zIndex: 9999,
-            ...sx
+            zIndex: 9999
           }}
           className={`ripple ripple-${animationType}${className ? ` ${className}` : ''}`}
         />
