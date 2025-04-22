@@ -1,18 +1,29 @@
 import React from 'react';
-import type { Preview, Decorator } from '@storybook/react';
+import { Preview, Decorator } from '@storybook/react';
 import { ThemeProvider, defaultThemes } from '../src/Theme/ThemeProvider';
 
 // Décorateur global qui applique le ThemeProvider à toutes les stories
 const withThemeProvider: Decorator = (Story, context) => {
   // Obtenir le thème à partir des paramètres de Storybook
-  const { theme = 'light' } = context.globals;
+  const theme = context.parameters.theme || context.globals.theme;
   
-  // Utiliser le thème actuel de la barre d'outils au lieu de seulement initialTheme
-  return React.createElement(ThemeProvider, {
-    initialTheme: theme,
-    customThemes: defaultThemes,
-    children: React.createElement(Story)
-  });
+  // Créer un composant intermédiaire avec un état local
+  const ThemedStory = () => {
+    const [currentTheme, setCurrentTheme] = React.useState(theme);
+    
+    // Mettre à jour l'état local lorsque le thème global change
+    React.useEffect(() => {
+      setCurrentTheme(theme);
+    }, [theme]);
+    
+    return React.createElement(ThemeProvider, {
+      initialTheme: currentTheme,
+      customThemes: defaultThemes,
+      children: React.createElement(Story)
+    });
+  };
+  
+  return React.createElement(ThemedStory);
 };
 
 const preview: Preview = {

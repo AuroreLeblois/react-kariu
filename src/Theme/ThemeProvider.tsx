@@ -182,6 +182,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       };
     });
   };
+  useEffect(() => {
+    setThemeState(initialTheme);
+  }, [initialTheme]);
 
   // Sauvegarder le thème dans localStorage
   useEffect(() => {
