@@ -84,6 +84,7 @@ const Button: React.FC<ButtonProps> = ({
   ...buttonProps
 }) => {
   const { colors } = useTheme();
+  console.log('colors', colors);
   
   const mode = primary ? 'kariuButton--primary' : 'kariuButton--secondary';
   const buttonCustom = styleButton(

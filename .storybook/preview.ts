@@ -1,18 +1,14 @@
 import React from 'react';
 import type { Preview, Decorator } from '@storybook/react';
-import { ThemeProvider } from '../src/ThemeProvider';
-
+import { ThemeProvider, defaultThemes } from '../src/ThemeProvider';
 
 // Décorateur global qui applique le ThemeProvider à toutes les stories
 const withThemeProvider: Decorator = (Story, context) => {
   // Obtenir le thème à partir des paramètres de Storybook
   const { theme = 'light' } = context.globals;
   return React.createElement(ThemeProvider, {
-    initialTheme: theme as 'light' | 'dark',
-    customThemes: {
-      light: theme.light,
-      dark: theme.dark,
-    },
+    initialTheme: theme,
+    customThemes: defaultThemes,
     children: React.createElement(Story)
   });
 };
@@ -21,14 +17,14 @@ const preview: Preview = {
   decorators: [withThemeProvider],
   globalTypes: {
     theme: {
-      name: 'Thème',
-      description: 'Thème global pour les composants',
+      name: 'Theme',
+      description: 'Theme global for components',
       defaultValue: 'light',
       toolbar: {
         icon: 'circlehollow',
         items: [
-          { value: 'light', icon: 'sun', title: 'Clair' },
-          { value: 'dark', icon: 'moon', title: 'Sombre' },
+          { value: 'light', icon: 'sun', title: 'light' },
+          { value: 'dark', icon: 'moon', title: 'dark' },
         ],
       },
     },

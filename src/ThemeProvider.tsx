@@ -56,7 +56,7 @@ export const calculateShades = (hexColor: string): Shades => {
 };
 
 // Vous pouvez personnaliser ces thèmes par défaut
-const defaultThemes = {
+export const defaultThemes = {
   light: {
     primary: calculateShades("#3C1B43"),
     secondary: calculateShades("#501537"),
@@ -213,7 +213,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
 export const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
   if (context === undefined) {
-    throw new Error('useTheme doit être utilisé à l\'intérieur d\'un ThemeProvider');
+    throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;
 };
