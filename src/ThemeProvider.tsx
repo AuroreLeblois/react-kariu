@@ -1,7 +1,7 @@
 // src/ThemeProvider.tsx
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 
-export type Nuances = {
+export type Shades = {
   main: string;
   light: string; 
   lighter: string;
@@ -10,16 +10,19 @@ export type Nuances = {
 }
 // Types pour les thèmes
 export type ThemeColors = {
-  primary: Nuances;
-  secondary: Nuances;
+  primary: Shades;
+  secondary: Shades;
   background: string;
   text: string;
   fontFamily: string;
   headingFont: string;
 };
-
-// Fonction pour calculer les nuances de couleur
-const calculateShades = (hexColor: string): Nuances => {
+/**
+ * Fonction to calculate shades of a color
+ * @param hexColor - The hexadecimal color to convert
+ * @returns An object Shades containing the shades of the color
+ */
+export const calculateShades = (hexColor: string): Shades => {
   // Convertir la couleur hex en RGB
   const r = parseInt(hexColor.slice(1, 3), 16);
   const g = parseInt(hexColor.slice(3, 5), 16);
@@ -42,7 +45,7 @@ const calculateShades = (hexColor: string): Nuances => {
   const lighter = `#${toHex(lighten(lighten(r)))}${toHex(lighten(lighten(g)))}${toHex(lighten(lighten(b)))}`;
   const dark = `#${toHex(darken(r))}${toHex(darken(g))}${toHex(darken(b))}`;
   const darker = `#${toHex(darken(darken(r)))}${toHex(darken(darken(g)))}${toHex(darken(darken(b)))}`;
-  
+
   return {
     main: hexColor,
     light,
@@ -86,12 +89,24 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 // Props pour le provider
 interface ThemeProviderProps {
+  /**
+   * The children of the ThemeProvider
+   */
   children: ReactNode;
+  /**
+   * The initial theme to use
+   */
   initialTheme?: ThemeType;
+  /**
+   * The custom themes to use
+   */
   customThemes?: {
     light?: Partial<ThemeColors>;
     dark?: Partial<ThemeColors>;
   };
+  /**
+   * The storage key to use for the theme
+   */
   storageKey?: string;
 }
 

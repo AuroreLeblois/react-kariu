@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
-import { ThemeProvider, useTheme } from '../src/ThemeProvider';
+import { ThemeProvider, useTheme, calculateShades } from '../src/ThemeProvider';
 
 const meta: Meta<typeof ThemeProvider> = {
   title: 'Theming/ThemeProvider',
@@ -31,7 +31,7 @@ const ThemeDemo = () => {
   }, [
     React.createElement('h1', {
       style: {
-        color: colors.primary,
+        color: colors.primary.main,
         fontFamily: colors.headingFont
       }
     }, 'ThemeProvider Demo'),
@@ -44,7 +44,7 @@ const ThemeDemo = () => {
     },
       React.createElement('h2', {
         style: {
-          color: colors.secondary,
+          color: colors.secondary.main,
           fontFamily: colors.headingFont 
         }
       }, 'Theme Colors'),
@@ -65,7 +65,7 @@ const ThemeDemo = () => {
     React.createElement('button', {
       onClick: toggleTheme,
       style: {
-        backgroundColor: colors.primary,
+        backgroundColor: colors.primary.main,
         color: 'white',
         border: 'none',
         padding: '8px 16px',
@@ -78,8 +78,8 @@ const ThemeDemo = () => {
     
     React.createElement('button', {
       onClick: () => customizeTheme(theme, { 
-        primary: theme === 'light' ? '#FF5733' : '#33FF57',
-        secondary: theme === 'light' ? '#C70039' : '#039C73'
+        primary: calculateShades(theme === 'light' ? '#FF5733' : '#33FF57'),
+        secondary: calculateShades(theme === 'light' ? '#C70039' : '#039C73')
       }),
       style: {
         backgroundColor: colors.secondary.main,
@@ -115,19 +115,19 @@ export const ThemesPersonnalises: Story = {
   render: () => React.createElement(ThemeProvider, {
     customThemes: {
       light: {
-        primary: '#e74c3c',
-        secondary: '#e67e22',
+        primary: calculateShades('#e74c3c'),
+        secondary: calculateShades('#e67e22'),
         background: '#ecf0f1',
         text: '#2c3e50',
-        fontFamily: "'Lato', sans-serif",
+        fontFamily: "'cursive', sans-serif",
         headingFont: "'Playfair Display', serif"
       },
       dark: {
-        primary: '#9b59b6',
-        secondary: '#2ecc71',
+        primary: calculateShades('#9b59b6'),
+        secondary: calculateShades('#2ecc71'),
         background: '#2c3e50',
         text: '#ecf0f1',
-        fontFamily: "'Lato', sans-serif",
+        fontFamily: "'cursive', sans-serif",
         headingFont: "cursive"
       }
     },
