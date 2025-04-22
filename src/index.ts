@@ -1,3 +1,5 @@
+export * from './ThemeProvider';
+
 // Basic Elements
 export * from './Atoms';
 
