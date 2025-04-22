@@ -1,8 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { css } from '@emotion/css'
-import moment from 'moment'
-import { Button, Icon } from '../../index.js'
+import React from 'react';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+import { Button, Icon } from '../../index.js';
 
 class HeadNav extends React.Component {
 
@@ -110,13 +109,5 @@ class HeadNav extends React.Component {
 	}
 }
 
-
-HeadNav.propTypes = {
-	language: PropTypes.string.isRequired,
-	disabledLeft: PropTypes.bool,
-	disabledMain: PropTypes.bool,
-	disabledRight: PropTypes.bool,
-	onClick: PropTypes.func.isRequired
-}
 
 export default HeadNav

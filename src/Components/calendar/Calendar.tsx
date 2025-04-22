@@ -1,8 +1,6 @@
-import { useState } from 'react'
-import PropTypes from 'prop-types'
-import { css } from '@emotion/css'
-import moment from 'moment'
-import { Avatar, HeadCols, HeadNav, BodyItem } from '../../index.js'
+import { useState } from 'react';
+import moment from 'moment';
+import { Avatar, HeadCols, BodyItem } from '../../index.js';
 
 const Calendar = (props) => {
 	// Renderers
@@ -181,6 +179,7 @@ const renderHeadCols = () => {
 const renderHeadNav = () => {
   return (
     <th style={{ verticalAlign: 'middle' }}>
+     {/* TODO: Add HeadNav component
       <div>
         <HeadNav
           fontFamily={(props.fontFamily ? props.fontFamily : 'inherit')}
@@ -197,7 +196,7 @@ const renderHeadNav = () => {
             )
           }}
         />
-      </div>
+      </div> */}
     </th>
   )
 }
@@ -231,21 +230,6 @@ const renderThead = () => {
 		)
 	}
 
-
-Calendar.propTypes = {
-	fontFamily: PropTypes.string,
-	infos: PropTypes.array,
-	vhead: PropTypes.array,
-	monthSelected: PropTypes.number,
-	yearSelected: PropTypes.number,
-	showAvatar: PropTypes.bool,
-	language: PropTypes.string.isRequired,
-	noNameText: PropTypes.string.isRequired,
-	onClickItem: PropTypes.func,
-	onClickName: PropTypes.func,
-	infosUnavailable: PropTypes.string,
-	textLoading: PropTypes.string
-}
 
 Calendar.defaultProps = {
 	loading: false,

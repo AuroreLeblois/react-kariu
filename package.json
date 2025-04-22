@@ -38,18 +38,7 @@
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "types": "./dist/types/index.d.ts"
-    },
-    "./Ripple": {
-      "import": "./dist/esm/Atoms/Ripple/Ripple.js",
-      "require": "./dist/cjs/Atoms/Ripple/Ripple.js",
-      "types": "./dist/types/Atoms/Ripple/Ripple.d.ts"
-    },
-    "./Button": {
-      "import": "./dist/esm/Atoms/Button/Button.js",
-      "require": "./dist/cjs/Atoms/Button/Button.js",
-      "types": "./dist/types/Atoms/Button/Button.d.ts"
+      "require": "./dist/cjs/index.js"
     }
   },
   "dependencies": {
