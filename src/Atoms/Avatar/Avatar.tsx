@@ -1,5 +1,6 @@
 import React from "react";
 import {styleAvatar} from './styleAvatar' 
+import { useTheme } from "../../ThemeProvider";
 /**
  * Primary UI component for user interaction
  */
@@ -66,6 +67,12 @@ const Avatar: React.FC<AvatarProps> = ({
   url = null,
   name = 'Aurore Leblois'
 }) => {
+  // Utiliser le hook de thème
+  const { colors } = useTheme();
+  
+  // Utiliser la couleur du thème si aucune couleur n'est spécifiée
+  const bgColor = backgroundColor || colors.primary;
+  
   // Renderers ----------------------------------------------------------------
   let content = null;
 
@@ -91,7 +98,7 @@ const Avatar: React.FC<AvatarProps> = ({
 
   return (
     <div className={`avatar-kariu ${className}`} 
-      style={{...styleAvatar(backgroundColor, shape, size, url,customWidthAndHeight, fontFamily), ...sx}}
+      style={{...styleAvatar(bgColor, shape, size, url,customWidthAndHeight, fontFamily), ...sx}}
     >
       {content}
       {!!children && children}
