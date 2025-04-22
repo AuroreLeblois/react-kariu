@@ -7,21 +7,27 @@ export type ThemeColors = {
   secondary: string;
   background: string;
   text: string;
+  fontFamily: string;
+  headingFont: string;
 };
 
 // Vous pouvez personnaliser ces thèmes par défaut
 const defaultThemes = {
-  light: {
-    primary: '#0070f3',
-    secondary: '#1a73e8',
-    background: '#ffffff',
-    text: '#000000',
+  light:  {
+    primary: '#8e44ad',
+    secondary: '#3498db',
+    background: '#f5f5f5',
+    text: '#333333',
+    fontFamily: "'Roboto', sans-serif",
+    headingFont: "'Montserrat', sans-serif",
   },
   dark: {
     primary: '#0070f3',
     secondary: '#79b8ff',
     background: '#1a1a1a',
     text: '#ffffff',
+    fontFamily: "'Roboto', sans-serif",
+    headingFont: "'Montserrat', sans-serif",
   },
 };
 

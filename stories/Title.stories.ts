@@ -24,42 +24,42 @@ type Story = StoryObj<typeof Title>;
 
 export const H1: Story = {
   args: {
-    text: 'This is a default text.',
+    text: 'This is a default heading.',
     priority: 1,
   },
 };
 
 export const H2: Story = {
   args: {
-    text: 'This is a default text.',
+    text: 'This is a default heading.',
     priority: 2,
   },
 };
 
 export const H3: Story = {
   args: {
-    text: 'This is a default text.',
+    text: 'This is a default heading.',
     priority: 3,
   },
 };
 
 export const H4: Story = {
   args: {
-    text: 'This is a default text.',
+    text: 'This is a default heading.',
     priority: 4,
   },
 };
 
 export const H5: Story = {
   args: {
-    text: 'This is a default text.',
+    text: 'This is a default heading.',
     priority: 5,
   },
 };
 
 export const H6: Story = {
   args: {
-    text: 'This is a default text.',
+    text: 'This is a default heading.',
     priority: 6,
   },
 };

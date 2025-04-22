@@ -2,31 +2,16 @@ import React from 'react';
 import type { Preview, Decorator } from '@storybook/react';
 import { ThemeProvider } from '../src/ThemeProvider';
 
-// Définir les thèmes personnalisés disponibles dans Storybook
-const customThemes = {
-  light:  {
-    primary: '#8e44ad',
-    secondary: '#3498db',
-    background: '#f5f5f5',
-    text: '#333333',
-  },
-  dark: {
-    primary: '#0070f3',
-    secondary: '#79b8ff',
-    background: '#1a1a1a',
-    text: '#ffffff',
-  }
-};
 
 // Décorateur global qui applique le ThemeProvider à toutes les stories
 const withThemeProvider: Decorator = (Story, context) => {
   // Obtenir le thème à partir des paramètres de Storybook
-  const { theme = 'brand' } = context.globals;
+  const { theme = 'light' } = context.globals;
   return React.createElement(ThemeProvider, {
     initialTheme: theme as 'light' | 'dark',
     customThemes: {
-      light: customThemes.light,
-      dark: customThemes.dark,
+      light: theme.light,
+      dark: theme.dark,
     },
     children: React.createElement(Story)
   });
