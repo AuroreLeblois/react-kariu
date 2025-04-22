@@ -111,7 +111,7 @@ interface ThemeProviderProps {
 }
 
 /**
- * The ThemeProvider component
+ * The ThemeProvider component will help you to manage the theme of your application.
  * 
  * How to use:
  * 
