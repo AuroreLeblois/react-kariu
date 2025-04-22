@@ -55,8 +55,8 @@ const calculateShades = (hexColor: string): Nuances => {
 // Vous pouvez personnaliser ces thèmes par défaut
 const defaultThemes = {
   light: {
-    primary: calculateShades('#8e44ad'),
-    secondary: '#3498db',
+    primary: calculateShades("#3C1B43"),
+    secondary: calculateShades("#501537"),
     background: '#f5f5f5',
     text: '#333311',
     fontFamily: "'Roboto', sans-serif",
@@ -64,7 +64,7 @@ const defaultThemes = {
   },
   dark: {
     primary: calculateShades('#0070f3'),
-    secondary: '#79b8ff',
+    secondary: calculateShades('#79b8ff'),
     background: '#1a1a1a',
     text: '#ffffff',
     fontFamily: "'Roboto', sans-serif",

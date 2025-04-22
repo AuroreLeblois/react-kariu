@@ -50,11 +50,11 @@ const ThemeDemo = () => {
       }, 'Theme Colors'),
       React.createElement('ul', null,
         React.createElement('li', null, 'Primary: ', React.createElement('span', {
-          style: { color: colors.primary }
-        }, colors.primary)),
+          style: { color: colors.primary.main }
+        }, colors.primary.main)),
         React.createElement('li', null, 'Secondary: ', React.createElement('span', {
-          style: { color: colors.secondary }
-        }, colors.secondary)),
+          style: { color: colors.secondary.main }
+        }, colors.secondary.main)),
         React.createElement('li', null, 'Background: ', colors.background),
         React.createElement('li', null, 'Text: ', colors.text),
         React.createElement('li', null, 'Font Family: ', colors.fontFamily),
@@ -82,7 +82,7 @@ const ThemeDemo = () => {
         secondary: theme === 'light' ? '#C70039' : '#039C73'
       }),
       style: {
-        backgroundColor: colors.secondary,
+        backgroundColor: colors.secondary.main,
         color: 'white',
         border: 'none',
         padding: '8px 16px',
