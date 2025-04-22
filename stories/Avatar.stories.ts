@@ -28,7 +28,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     name: 'TEST NAME',
-    backgroundColor: 'tomato',
     size: "large"
   },
 };
@@ -46,7 +45,6 @@ export const Square: Story = {
   args: {
     shape: "square",
     name: 'TEST NAME',
-    backgroundColor: 'tomato',
     size: "large",
   }
 };

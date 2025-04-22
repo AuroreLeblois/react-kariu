@@ -11,7 +11,7 @@ interface AvatarProps {
    */
   primary?: boolean;
   /**
-   * What background color to use
+   * What background color to use, if none is provided, the theme color will be used
    */
   backgroundColor?: string;
   /**
