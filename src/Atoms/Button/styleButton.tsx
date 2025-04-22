@@ -9,7 +9,7 @@ export function styleButton(
   colors?: ThemeColors
 ) {
   const themeTextColor = colors ? colors.text : '#333';
-  const themePrimaryColor = colors ? colors.primary : '#1ea7fd';
+  const themePrimaryColor = colors ? colors.primary.main : '#1ea7fd';
   
   const color = primary ? 'white' : themeTextColor;
   let backgroundColorStyle = primary ? themePrimaryColor : 'transparent';

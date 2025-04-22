@@ -97,7 +97,7 @@ const Button: React.FC<ButtonProps> = ({
   
   const completeStyle: React.CSSProperties = { ...buttonCustom, ...sx };
   
-  let color = rippleColor || (backgroundColor ? backgroundColor : primary ? colors.primary : 'lightgray');
+  let color = rippleColor || (backgroundColor ? backgroundColor : primary ? colors.primary.lighter : 'lightgray');
   
   return (
     <button
