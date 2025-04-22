@@ -61,7 +61,7 @@ export const defaultThemes = {
     primary: calculateShades("#3C1B43"),
     secondary: calculateShades("#501537"),
     background: '#f5f5f5',
-    text: '#333311',
+    text: '#333333',
     fontFamily: "'Roboto', sans-serif",
     headingFont: "'Montserrat', sans-serif",
   },

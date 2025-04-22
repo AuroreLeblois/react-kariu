@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styleButton } from './styleButton';
 import Ripple from '../Ripple/Ripple';
-import { useTheme } from '../../ThemeProvider';
+import { useTheme } from '../../Theme/ThemeProvider';
 
 /**
  * Primary UI component for user interaction
@@ -98,7 +98,7 @@ const Button: React.FC<ButtonProps> = ({
   
   const completeStyle: React.CSSProperties = { ...buttonCustom, ...sx };
   
-  let color = rippleColor || (backgroundColor ? backgroundColor : primary ? colors.primary.lighter : 'lightgray');
+  let color = rippleColor || (backgroundColor ? backgroundColor : primary ? colors.primary.lighter : colors.secondary.lighter);
   
   return (
     <button

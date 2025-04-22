@@ -1,4 +1,4 @@
-export * from './ThemeProvider';
+export * from './Theme/ThemeProvider';
 
 // Basic Elements
 export * from './Atoms';

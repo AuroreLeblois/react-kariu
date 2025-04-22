@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
-import { ThemeProvider, useTheme, calculateShades } from '../src/ThemeProvider';
+import { ThemeProvider, useTheme, calculateShades } from '../src/Theme/ThemeProvider';
 
 const meta: Meta<typeof ThemeProvider> = {
   title: 'Theming/ThemeProvider',

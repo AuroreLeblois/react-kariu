@@ -1,6 +1,6 @@
 import React from "react";
 import {styleAvatar} from './styleAvatar' 
-import { useTheme } from "../../ThemeProvider";
+import { useTheme } from "../../Theme/ThemeProvider";
 /**
  * Primary UI component for user interaction
  */

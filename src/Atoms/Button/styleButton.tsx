@@ -1,4 +1,5 @@
-import { ThemeColors } from '../../ThemeProvider';
+import { ThemeColors } from '../../Theme/ThemeProvider';
+import { getContrastTextColor } from '../../Theme/colorContrast';
 
 export function styleButton(
   backgroundColor: string, 
@@ -8,11 +9,13 @@ export function styleButton(
   disabled: boolean,
   colors?: ThemeColors
 ) {
-  const themeTextColor = colors ? colors.text : '#333';
+
   const themePrimaryColor = colors ? colors.primary.main : '#1ea7fd';
-  
+  const themeSecondaryColor = colors ? colors.secondary.main : '#1ea7fd';
+
+  let backgroundColorStyle = primary ? themePrimaryColor : themeSecondaryColor;
+  const themeTextColor = getContrastTextColor(backgroundColorStyle);
   const color = primary ? 'white' : themeTextColor;
-  let backgroundColorStyle = primary ? themePrimaryColor : 'transparent';
   let fontSize = '14px';
   let padding = '11px 20px';
 
@@ -96,7 +99,7 @@ export function styleButton(
     },
     '.kariuButton--secondary': {
       color: disabled ? 'blue' : themeTextColor,
-      backgroundColor: 'transparent',
+      backgroundColor: disabled ? "#c9c7c9" : themeSecondaryColor,
       boxShadow: 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset',
     }
   };

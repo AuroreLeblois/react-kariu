@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Preview, Decorator } from '@storybook/react';
-import { ThemeProvider, defaultThemes } from '../src/ThemeProvider';
+import { ThemeProvider, defaultThemes } from '../src/Theme/ThemeProvider';
 
 // Décorateur global qui applique le ThemeProvider à toutes les stories
 const withThemeProvider: Decorator = (Story, context) => {
@@ -26,6 +26,7 @@ const preview: Preview = {
           { value: 'light', icon: 'sun', title: 'light' },
           { value: 'dark', icon: 'moon', title: 'dark' },
         ],
+        dynamicTitle: true,
       },
     },
   },
