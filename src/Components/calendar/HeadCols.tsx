@@ -1,7 +1,7 @@
 import React from "react";
 import HeadItem from "./HeadItem";
 import moment from "moment";
-
+import { useTheme } from "../../Theme/ThemeProvider";
 
 // Types
 interface HeadColsProps {
@@ -28,6 +28,7 @@ const currentMonth: number = parseInt(moment().format("MM"));
 const currentYear: number = parseInt(moment().format("YYYY"));
 
 const HeadCols: React.FC<HeadColsProps> = (props) => {
+  const { colors } = useTheme();
   // Renderers ----------------------------------------------------------------
   let days: Array<string | DayInfo> = [];
 
@@ -81,7 +82,7 @@ const HeadCols: React.FC<HeadColsProps> = (props) => {
   days.forEach((day, index) => 
     array.push(
       <HeadItem
-        fontFamily={props.fontFamily ? props.fontFamily : "inherit"}
+        fontFamily={props.fontFamily ?? colors.fontFamily}
         key={index + "Week"}
         date={{
           day: typeof day === "string" ? day : day.day,

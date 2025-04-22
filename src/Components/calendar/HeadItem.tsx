@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "../../Theme/ThemeProvider";
 
 interface HeadColsProps {
   /**
@@ -36,6 +37,8 @@ interface HeadColsProps {
   };
 }
 const HeadItem: React.FC<HeadColsProps> = ({ date, fontFamily, className }) => {
+  const {colors} = useTheme();
+
   // Renderers ----------------------------------------------------------------
 
   if (!date) return null;
@@ -54,14 +57,14 @@ const HeadItem: React.FC<HeadColsProps> = ({ date, fontFamily, className }) => {
     fontSize: "1rem",
     lineHeight: "1.2rem",
     fontWeight: date.isToday ? "regular" : "semibold",
-    color: date.isToday ? "hsl(194, 66%, 52%)" : "grey",
+    color: date.isToday ? colors.primary.main : colors.secondary.main,
   };
 
   const styleCurrentDay = {
     margin: "0.125rem" + " " + 0,
     padding: "0.125rem" + " " + 0,
     borderBottom: date.isToday
-      ? `${"0.125rem"} solid ${"hsl(194, 66%, 52%)"}`
+      ? `${"0.125rem"} solid ${colors.primary.main}`
       : "none",
   };
 

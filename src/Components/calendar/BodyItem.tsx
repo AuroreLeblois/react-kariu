@@ -1,6 +1,7 @@
 import React from "react";
 import Dot from "../../Atoms/Assets/Dot";
 import Ripple from "../../Atoms/Ripple/Ripple";
+import { useTheme } from "../../Theme/ThemeProvider";
 
 interface Item {
   /**
@@ -89,6 +90,8 @@ interface CustomCSSProperties extends React.CSSProperties {
 }
 
 const BodyItem: React.FC<BodyItemProps> = ({item, isWeekEnd, isHoliday, number, loading, onClick, fontFamily, className, ripple = false, rippleDuration = 500,  rippleColor = 'rgba(0, 0, 0, 0.3)'}) => {
+  const { colors } = useTheme();
+
   // Functions ----------------------------------------------------------------
   const renderInfo = (styleText: CustomCSSProperties) => {
     return (
@@ -196,21 +199,21 @@ const BodyItem: React.FC<BodyItemProps> = ({item, isWeekEnd, isHoliday, number, 
       // Unavailability
       item?.unavailability_code
     ) {
-      return "rgb(66, 41, 102)";
+      return colors.secondary.darker;
     } else if (
       // Day
       item?.time_end &&
       item?.time_start &&
       item.time_end > item.time_start
     ) {
-      return "rgb(119, 130, 30)";
+      return colors.primary.dark;
     } else if (
       // Night
       item?.time_end &&
       item?.time_start &&
       item.time_end < item.time_start
     ) {
-      return "rgb(18, 34, 119)";
+      return colors.secondary.darker;
     }
     return null;
   };
@@ -229,7 +232,7 @@ const BodyItem: React.FC<BodyItemProps> = ({item, isWeekEnd, isHoliday, number, 
     verticalAlign: "middle",
     cursor: isEmpty ? "default" : "pointer",
     backgroundColor:
-      isHoliday ? "tomato" : isWeekEnd ? "lightgrey" : "inherit",
+      isHoliday ? colors.primary.light : isWeekEnd ? colors.background : "inherit",
     overflow: "hidden",
   } as const;
 
@@ -237,7 +240,7 @@ const BodyItem: React.FC<BodyItemProps> = ({item, isWeekEnd, isHoliday, number, 
     if (isEmpty) return null;
 
     const styleText: CustomCSSProperties = {
-      fontFamily: fontFamily ? fontFamily : "inherit",
+      fontFamily: fontFamily ?? colors.fontFamily,
       fontSize: "0.75rem",
       lineHeight: "1rem",
       color: handleForegroundColor(isEmpty),
