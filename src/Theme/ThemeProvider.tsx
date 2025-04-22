@@ -59,7 +59,7 @@ export const calculateShades = (hexColor: string): Shades => {
 export const defaultThemes = {
   light: {
     primary: calculateShades("#3C1B43"),
-    secondary: calculateShades("#501537"),
+    secondary: calculateShades("#4B6F8A"),
     background: '#f5f5f5',
     text: '#1e1e1e',
     fontFamily: "Nunito Sans, sans-serif",
@@ -67,7 +67,7 @@ export const defaultThemes = {
   },
   dark: {
     primary: calculateShades('#0070f3'),
-    secondary: calculateShades('#79b8ff'),
+    secondary: calculateShades('#A855F7'),
     background: '#1a1a1a',
     text: '#ffffff',
     fontFamily: "Nunito Sans, sans-serif",
