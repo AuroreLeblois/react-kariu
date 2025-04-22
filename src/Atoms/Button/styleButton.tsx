@@ -1,6 +1,18 @@
-export function styleButton(backgroundColor : string, shape: string, primary: boolean, size: string, disabled: boolean) {
-  const color = primary ? 'white': '#333';
-  let backgroundColorStyle = primary ? '#1ea7fd' : 'transparent';
+import { ThemeColors } from '../../ThemeProvider';
+
+export function styleButton(
+  backgroundColor: string, 
+  shape: string, 
+  primary: boolean, 
+  size: string, 
+  disabled: boolean,
+  colors?: ThemeColors
+) {
+  const themeTextColor = colors ? colors.text : '#333';
+  const themePrimaryColor = colors ? colors.primary : '#1ea7fd';
+  
+  const color = primary ? 'white' : themeTextColor;
+  let backgroundColorStyle = primary ? themePrimaryColor : 'transparent';
   let fontSize = '14px';
   let padding = '11px 20px';
 
@@ -28,7 +40,7 @@ export function styleButton(backgroundColor : string, shape: string, primary: bo
   const style = {
     color,
     boxShadow: !primary ? 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset': 'none',
-    backgroundColor: disabled ?  "#c9c7c9" : backgroundColorStyle,
+    backgroundColor: disabled ? "#c9c7c9" : backgroundColorStyle,
     fontFamily: ['Nunito Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
     fontWeight: '700',
     border: 0,
@@ -80,10 +92,10 @@ export function styleButton(backgroundColor : string, shape: string, primary: bo
     },
     '.kariuButton--primary': {
       color: disabled ? 'red' : 'white',
-      backgroundColor: '#1ea7fd'
+      backgroundColor: disabled ? "#c9c7c9" : themePrimaryColor
     },
     '.kariuButton--secondary': {
-      color:  disabled ? 'blue' : '#333',
+      color: disabled ? 'blue' : themeTextColor,
       backgroundColor: 'transparent',
       boxShadow: 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset',
     }

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styleButton } from './styleButton';
 import Ripple from '../Ripple/Ripple';
+import { useTheme } from '../../ThemeProvider';
 
 /**
  * Primary UI component for user interaction
@@ -82,12 +83,21 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   ...buttonProps
 }) => {
+  const { colors } = useTheme();
+  
   const mode = primary ? 'kariuButton--primary' : 'kariuButton--secondary';
-  const buttonCustom = styleButton(backgroundColor || '', shape, primary, size, disabled) as unknown as React.CSSProperties;
+  const buttonCustom = styleButton(
+    backgroundColor || '', 
+    shape, 
+    primary, 
+    size, 
+    disabled, 
+    colors
+  ) as unknown as React.CSSProperties;
+  
   const completeStyle: React.CSSProperties = { ...buttonCustom, ...sx };
   
-  let color =  backgroundColor ? backgroundColor : primary ? '#1ea7fd' : 'lightgray';
-  if (rippleColor) color = rippleColor;
+  let color = rippleColor || (backgroundColor ? backgroundColor : primary ? colors.primary : 'lightgray');
   
   return (
     <button
