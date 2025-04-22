@@ -71,7 +71,7 @@ const Avatar: React.FC<AvatarProps> = ({
   const { colors } = useTheme();
   
   // Utiliser la couleur du thème si aucune couleur n'est spécifiée
-  const bgColor = backgroundColor || colors.primary;
+  const bgColor = backgroundColor || colors.primary.main;
   
   // Renderers ----------------------------------------------------------------
   let content = null;
