@@ -110,6 +110,25 @@ interface ThemeProviderProps {
   storageKey?: string;
 }
 
+/**
+ * The ThemeProvider component
+ * 
+ * How to use:
+ * 
+ * ```tsx
+ * import { ThemeProvider, useTheme, calculateShades } from 'react-kariu';
+ *  <ThemeProvider initialTheme="light" 
+ *    customThemes={{ 
+ *       primary: calculateShades('#e74c3c'),
+ *       secondary: calculateShades('#e67e22')
+ *    }}>
+ *   <App />
+ * </ThemeProvider>
+ * ```
+ * 
+ * @param props - The props of the ThemeProvider
+ * @returns The ThemeProvider component
+ */
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
   initialTheme = 'light',

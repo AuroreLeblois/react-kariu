@@ -128,7 +128,7 @@ export const ThemesPersonnalises: Story = {
         background: '#2c3e50',
         text: '#ecf0f1',
         fontFamily: "'cursive', sans-serif",
-        headingFont: "cursive"
+        headingFont: "'cursive', sans-serif"
       }
     },
     children: React.createElement(ThemeDemo, null)
