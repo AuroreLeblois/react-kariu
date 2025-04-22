@@ -20,13 +20,13 @@ interface DatePickerProps {
 
 // Renderers ----------------------------------------------------------------
 function DatePicker({id, value, name, label, icon, required, disabled, onChange, minValue, maxValue, className}: DatePickerProps)  {
-  const [value, setValue] = useState < string > (value||"");
+  const [value2, setValue] = useState < string > (value||"");
 
   if (!id) return null;
   return (
     <div className={"input-kariu--wrapper " + className}>
       <Input
-      inputProps={{disabled, required, id, name, value}}
+      inputProps={{disabled, required, id, name, value: value2}}
         disabled={disabled}
         className={[
           "input-kariu " + "datePicker-kariu " + className,
@@ -43,7 +43,7 @@ function DatePicker({id, value, name, label, icon, required, disabled, onChange,
 // Listeners ----------------------------------------------------------------
 const handleDelete = () => {
   setValue("");
-  onChange && onChange(value);
+  onChange && onChange(value2);
 };
 
 const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

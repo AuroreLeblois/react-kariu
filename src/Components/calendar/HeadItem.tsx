@@ -12,7 +12,7 @@ interface HeadColsProps {
   /**
    * Number to display (for datepicker mode)
    */
-  number?: number;
+  number?: string| number;
   /**
    * If the cell is in loading state
    */
@@ -31,7 +31,7 @@ interface HeadColsProps {
   className?: string;
   date: {
     day: string;
-    number: number;
+    number: string| number;
     isToday: boolean;
   };
 }
