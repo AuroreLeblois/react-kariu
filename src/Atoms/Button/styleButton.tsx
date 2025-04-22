@@ -44,7 +44,7 @@ export function styleButton(
     color,
     boxShadow: !primary ? 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset': 'none',
     backgroundColor: disabled ? "#c9c7c9" : backgroundColorStyle,
-    fontFamily: ['Nunito Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+    fontFamily: colors ? colors.fontFamily : ['Nunito Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
     fontWeight: '700',
     border: 0,
     borderRadius:  shape === 'square' ? '10px': '3em',

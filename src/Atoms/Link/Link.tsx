@@ -1,6 +1,7 @@
 import {FC,useState, MouseEvent , CSSProperties} from 'react';
 import { styleLink } from './styleLink';
 import ExternalIcon from "../Icon/ExternalIcon";
+import { useTheme } from '../../Theme/ThemeProvider';
 /**
  * Primary UI component for navigation links
  */
@@ -53,6 +54,7 @@ const Link: FC<LinkProps> = ({
   sx = {},
  ...linkProps 
 }) => {
+  const { colors } = useTheme();
   const [visited, setVisited] = useState(false);
   
   const handleClick = (event: MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -61,7 +63,7 @@ const Link: FC<LinkProps> = ({
   };
 
   const linkCustom = styleLink( size, disabled) as unknown as CSSProperties;
-  const completeStyle: CSSProperties = { ...linkCustom, ...sx };
+  const completeStyle: CSSProperties = { ...linkCustom, ...sx, fontFamily: colors.fontFamily ?? 'inherit' };
 
   return (
     <span className={`kariuLink ${className}`}>

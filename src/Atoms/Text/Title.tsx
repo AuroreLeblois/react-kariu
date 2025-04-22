@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from '../../Theme/ThemeProvider';
 
 // Definition of types for props
 interface TitleProps {
@@ -18,16 +19,17 @@ interface TitleProps {
 	className?: string;
 }
 
-const Title: React.FC<TitleProps> = ({text, priority = 1, align = 'center', textColor='inherit', fontFamily= 'inherit', cursor = 'text', className}) => {
+const Title: React.FC<TitleProps> = ({text, priority = 1, align = 'center', textColor = null, fontFamily = null, cursor = 'text', className}) => {
 	
 	if (!text) {
 		 throw new Error('Text is required');
 	}
+	const { colors } = useTheme();
 
 	let style: React.CSSProperties = {
 		display: 'block',
-		color: (textColor ? textColor : 'inherit'),
-		fontFamily: (fontFamily ? fontFamily : 'inherit'),
+		color: textColor ?? colors.headingFont ?? 'inherit' ,
+		fontFamily: fontFamily ?? colors.headingFont ?? 'inherit',
 		wordBreak: 'break-word',
 		fontWeight: 'regular',
 		textAlign: align,

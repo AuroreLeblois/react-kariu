@@ -1,5 +1,6 @@
-import React from 'react'
-import textStyles from './TextStyles'; // Importation des styles
+import React, { useContext } from 'react'
+import textStyles from './TextStyles';
+import { useTheme } from '../../Theme/ThemeProvider';
 
 // Définition des types pour les props
 interface TextProps {
@@ -52,10 +53,12 @@ const Text: React.FC<TextProps> = ({
 	align = 'center',
 	...textProps
   }) => {
+	const { colors } = useTheme();
+	
 	let style: React.CSSProperties = {
-		...textStyles.default, // Utilisation des styles par défaut
-		color: textColor ? textColor : textStyles.default.color,
-		fontFamily: fontFamily ? fontFamily : textStyles.default.fontFamily,
+		...textStyles.default,
+		color: textColor ? textColor : colors.text,
+		fontFamily: fontFamily ? fontFamily : colors.fontFamily,
 		cursor
 	}
 

@@ -61,17 +61,17 @@ export const defaultThemes = {
     primary: calculateShades("#3C1B43"),
     secondary: calculateShades("#501537"),
     background: '#f5f5f5',
-    text: '#333333',
-    fontFamily: "'Roboto', sans-serif",
-    headingFont: "'Montserrat', sans-serif",
+    text: '#1e1e1e',
+    fontFamily: "Nunito Sans, sans-serif",
+    headingFont: "cursive, sans-serif",
   },
   dark: {
     primary: calculateShades('#0070f3'),
     secondary: calculateShades('#79b8ff'),
     background: '#1a1a1a',
     text: '#ffffff',
-    fontFamily: "'Roboto', sans-serif",
-    headingFont: "'Montserrat', sans-serif",
+    fontFamily: "Nunito Sans, sans-serif",
+    headingFont: "cursive, sans-serif",
   },
 };
 

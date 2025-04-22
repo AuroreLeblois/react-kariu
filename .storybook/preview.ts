@@ -6,6 +6,8 @@ import { ThemeProvider, defaultThemes } from '../src/Theme/ThemeProvider';
 const withThemeProvider: Decorator = (Story, context) => {
   // Obtenir le thème à partir des paramètres de Storybook
   const { theme = 'light' } = context.globals;
+  
+  // Utiliser le thème actuel de la barre d'outils au lieu de seulement initialTheme
   return React.createElement(ThemeProvider, {
     initialTheme: theme,
     customThemes: defaultThemes,
@@ -36,6 +38,7 @@ const preview: Preview = {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/,
+        text: /Text$/,
       },
     },
   },
