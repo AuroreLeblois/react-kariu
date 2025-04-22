@@ -44,7 +44,6 @@ interface ThemeProviderProps {
   customThemes?: {
     light?: Partial<ThemeColors>;
     dark?: Partial<ThemeColors>;
-    brand?: Partial<ThemeColors>;
   };
   storageKey?: string;
 }
