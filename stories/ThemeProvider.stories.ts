@@ -1,5 +1,6 @@
 import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
+import { Title, Text } from '../src/Atoms';
 import { ThemeProvider, useTheme, calculateShades } from '../src/Theme/ThemeProvider';
 
 const meta: Meta<typeof ThemeProvider> = {
@@ -29,16 +30,14 @@ const ThemeDemo = () => {
       transition: 'all 0.3s ease'
     }
   }, [
-    React.createElement('h1', {
-      style: {
-        color: colors.primary.main,
-        fontFamily: colors.headingFont
-      }
-    }, 'ThemeProvider Demo'),
-    React.createElement('p', null, [
-      'Current theme: ',
-      React.createElement('strong', null, theme)
-    ]),
+    React.createElement(Title, {
+      priority: 2,
+      text: 'ThemeProvider Demo'
+    }),
+    React.createElement(Text, {
+      variant: 'description',
+      text: `Current theme: ${theme}`
+    }),
     React.createElement('div', {
       style: { marginTop: '20px' }
     },

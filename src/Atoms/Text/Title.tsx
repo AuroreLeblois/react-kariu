@@ -28,7 +28,7 @@ const Title: React.FC<TitleProps> = ({text, priority = 1, align = 'center', text
 
 	let style: React.CSSProperties = {
 		display: 'block',
-		color: textColor ?? colors.headingFont ?? 'inherit' ,
+		color: textColor ?? colors.primary.main ?? 'inherit' ,
 		fontFamily: fontFamily ?? colors.headingFont ?? 'inherit',
 		wordBreak: 'break-word',
 		fontWeight: 'regular',
