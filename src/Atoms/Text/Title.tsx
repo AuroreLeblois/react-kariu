@@ -17,9 +17,11 @@ interface TitleProps {
 	cursor?: string;
 	/** Additional CSS classes to apply */
 	className?: string;
+	/** The click event of the title */
+	onClick?: () => void;
 }
 
-const Title: React.FC<TitleProps> = ({text, priority = 1, align = 'center', textColor = null, fontFamily = null, cursor = 'text', className}) => {
+const Title: React.FC<TitleProps> = ({text, priority = 1, align = 'center', textColor = null, fontFamily = null, cursor = 'text', className, onClick}) => {
 	
 	if (!text) {
 		 throw new Error('Text is required');

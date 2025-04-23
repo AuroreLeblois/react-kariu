@@ -11,6 +11,16 @@ const meta: Meta<typeof ThemeProvider> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    initialTheme: {
+      control: 'select',
+      options: ['light', 'dark'],
+      defaultValue: 'light'
+    },
+    customThemes: {
+      control: 'object'
+    }
+  }
 };
 
 export default meta;
@@ -171,76 +181,3 @@ export const CustomizedThemes: Story = {
   })
 };
 
-// Story montrant le composant Card avec différentes variantes
-export const CardsWithTheming: Story = {
-  render: () => React.createElement(ThemeProvider, null,
-    React.createElement('div', {
-      style: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '20px',
-        width: '600px',
-        padding: '20px'
-      }
-    }, [
-      React.createElement(Title, {
-        priority: 2,
-        text: 'Card with different variants'
-      }),
-      
-      // Carte par défaut
-      React.createElement(Card, {
-        title: 'Carte standard',
-        width: '100%'
-      }, 
-        React.createElement(Text, {
-          text: 'Here is a default card with the current theme.'
-        })
-      ),
-      
-      // Carte élevée
-      React.createElement(Card, {
-        title: 'Elevated card',
-        variant: 'elevated',
-        width: '100%'
-      },
-        React.createElement(Text, {
-          text: 'This card uses the "elevated" variant which adds a shadow.'
-        })
-      ),
-      
-      // Carte accordéon
-      React.createElement(Card, {
-        title: 'Accordion card',
-        variant: 'accordion',
-        width: '100%'
-      },
-        React.createElement(Text, {
-          text: 'Click on the title to open/close this accordion card.'
-        })
-      ),
-      
-      // Carte avec couleurs personnalisées
-      React.createElement(Card, {
-        title: 'Customized card',
-        backgroundColor: '#f0e6ff',
-        textColor: '#4b0082',
-        width: '100%'
-      },
-        React.createElement(Text, {
-          text: 'This card uses custom colors independent of the theme.'
-        })
-      ),
-      
-      // Bouton pour changer de thème
-      React.createElement(Button, {
-        onClick: () => {
-          const { toggleTheme } = useTheme();
-          toggleTheme();
-        },
-        label: 'Change theme',
-        size: 'medium'
-      })
-    ])
-  )
-};

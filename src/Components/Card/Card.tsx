@@ -141,9 +141,16 @@ function renderTitle({
         flexGrow: 1,
         userSelect: "none",
       }}>
-    
-        <Title align="left" textColor={textColor} text={title} priority={4} />
-        <Arrow
+        <div onClick={onClickAccordion} style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexGrow: 1,
+          userSelect: "none",
+          cursor: "pointer",
+        }}>
+          <Title align="left" textColor={textColor} text={title} priority={4} />
+          <Arrow
           size={24}
           color={textColor}
           style={{
@@ -153,6 +160,8 @@ function renderTitle({
           direction={showContent ? "up" : "down"}
           onClick={onClickAccordion}
         />
+        </div>
+        
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Card, Text } from '../src';
+import { Button, Card, Text, Title } from '../src';
 
 // Configuration de base pour le composant Card
 const meta: Meta<typeof Card> = {
@@ -102,4 +102,68 @@ export const HiddenContent: Story = {
     showContent: false,
     children: React.createElement(Text, { text: "Hidden content" }),
   },
+};
+
+// Story montrant le composant Card avec différentes variantes
+export const CardsWithTheming: Story = {
+  render: () => React.createElement( "div", null,
+    React.createElement('div', {
+      style: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        width: '600px',
+        padding: '20px'
+      }
+    }, [
+      React.createElement(Title, {
+        priority: 2,
+        text: 'Card with different variants'
+      }),
+      
+      // Carte par défaut
+      React.createElement(Card, {
+        title: 'Carte standard',
+        width: '100%'
+      }, 
+        React.createElement(Text, {
+          text: 'Here is a default card with the current theme.'
+        })
+      ),
+      
+      // Carte élevée
+      React.createElement(Card, {
+        title: 'Elevated card',
+        variant: 'elevated',
+        width: '100%'
+      },
+        React.createElement(Text, {
+          text: 'This card uses the "elevated" variant which adds a shadow.'
+        })
+      ),
+      
+      // Carte accordéon
+      React.createElement(Card, {
+        title: 'Accordion card',
+        variant: 'accordion',
+        width: '100%'
+      },
+        React.createElement(Text, {
+          text: 'Click on the title to open/close this accordion card.'
+        })
+      ),
+      
+      // Carte avec couleurs personnalisées
+      React.createElement(Card, {
+        title: 'Customized card',
+        backgroundColor: '#f0e6ff',
+        textColor: '#4b0082',
+        width: '100%'
+      },
+        React.createElement(Text, {
+          text: 'This card uses custom colors independent of the theme.'
+        })
+      )
+    ])
+  )
 };
