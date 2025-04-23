@@ -77,7 +77,7 @@ const Link: FC<LinkProps> = ({
           {...linkProps}
         >
           {label}
-          {external && (<ExternalIcon size="24" color={visited ? 'purple' : 'blue'} />)}
+          {external && (<ExternalIcon size={24} color={visited ? 'purple' : 'blue'} />)}
         </a>
     </span>
    

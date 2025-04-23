@@ -1,15 +1,15 @@
 {
   "name": "react-kariu",
   "private": false,
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "react library for devs",
   "author": "Aurore Leblois",
   "type": "commonjs",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "types",
+    "src",
     "*.js",
     "*.d.ts",
     "*.md"
@@ -21,7 +21,8 @@
     "effects"
   ],
   "publishConfig": {
-    "@auroreleblois:react-kariu": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
   },
   "copyright": "Copyright © year ${author}",
   "scripts": {

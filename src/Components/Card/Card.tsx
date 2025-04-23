@@ -74,6 +74,7 @@ const Card: React.FC<CardProps> = ({
       borderWidth: showCard ? "0.5px" : 0,
       transition: "all 0.2s ease-in-out",
       cursor: onClick || variant === "accordion" ? "pointer" : "default",
+      boxShadow: variant === "elevated" ? defaultShadow : "none",
     };
     
     // Appliquer les styles spécifiques selon la variante

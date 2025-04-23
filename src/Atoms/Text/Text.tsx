@@ -57,7 +57,7 @@ const Text: React.FC<TextProps> = ({
 	
 	let style: React.CSSProperties = {
 		...textStyles.default,
-		color:  textColor ?? colors.text,
+		color: textColor ?? colors.text.main,
 		fontFamily: fontFamily ?? colors.fontFamily,
 		cursor
 	}
