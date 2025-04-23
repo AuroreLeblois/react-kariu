@@ -1,4 +1,4 @@
-export * from './Theme/ThemeProvider';
+export * from './Theme';
 
 // Basic Elements
 export * from './Atoms';
@@ -19,4 +19,9 @@ export { default as Calendar } from './Components/calendar/Calendar';
 export { default as HeadCols } from './Components/calendar/HeadCols';
 export { default as BodyItem } from './Components/calendar/BodyItem';
 export { default as HeadItem } from './Components/calendar/HeadItem';
+
+export { defaultThemes } from './Theme/ThemeProvider';
+export { useTheme } from './Theme/ThemeProvider';
+export { calculateShades } from './Theme/ThemeProvider';
+export { ThemeProvider } from './Theme/ThemeProvider';
 
