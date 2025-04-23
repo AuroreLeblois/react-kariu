@@ -49,7 +49,7 @@ const HeadItem: React.FC<HeadColsProps> = ({ date, fontFamily, className }) => {
       date.number ? "2.5rem" : "auto",
     cursor: "default",
     span: {
-      fontFamily: fontFamily ? fontFamily : "inherit",
+      fontFamily: fontFamily ?? colors.fontFamily ?? "inherit",
     },
   };
 
