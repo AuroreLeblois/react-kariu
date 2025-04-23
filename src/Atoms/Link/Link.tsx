@@ -57,9 +57,9 @@ const Link: FC<LinkProps> = ({
   const { colors } = useTheme();
   const [visited, setVisited] = useState(false);
   
-  const handleClick = (event: MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleClick = (event) => {
       setVisited(true);
-      if (onclick) onClick(event);
+      if (onClick) onClick(event);
   };
 
   const linkCustom = styleLink( size, disabled) as unknown as CSSProperties;
@@ -68,7 +68,6 @@ const Link: FC<LinkProps> = ({
   return (
     <span className={`kariuLink ${className}`}>
       <a
-        disabled={disabled}
           href={href}
           onClick={handleClick}
           target={external ? '_blank' : '_self'}
@@ -80,7 +79,6 @@ const Link: FC<LinkProps> = ({
           {external && (<ExternalIcon size={24} color={visited ? 'purple' : 'blue'} />)}
         </a>
     </span>
-   
   );
 };
 
