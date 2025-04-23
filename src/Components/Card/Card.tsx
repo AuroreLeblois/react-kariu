@@ -43,7 +43,7 @@ const Card: React.FC<CardProps> = ({
   children,
   className = "",
 }) => {
-  const { colors } = useTheme();
+  const { theme,colors } = useTheme();
   const [show, setShowContent] = useState(showContent);
   
   // Définir des valeurs par défaut pour spacing, borderRadius et shadows
@@ -58,6 +58,7 @@ const Card: React.FC<CardProps> = ({
   };
 
   const getCardStyles = () => {
+    let color = theme === "light" ? colors.text.lighter : colors.text.darker;
     let styles = {
       display: "flex",
       width: width,
@@ -65,8 +66,8 @@ const Card: React.FC<CardProps> = ({
       flexWrap: "nowrap" as const,
       flexGrow: grow,
       padding: showCard ? defaultSpacing : 0,
-      color: textColor ?? colors.text.dark,
-      backgroundColor: backgroundColor ?? colors.background,
+      color: textColor ?? color,
+      backgroundColor: backgroundColor ?? colors.background.light,
       borderRadius: showCard ? defaultBorderRadius : 0,
       borderStyle: "solid",
       borderColor: showCard ? colors.border : "transparent",

@@ -10,12 +10,33 @@ export type Shades = {
 }
 // Types pour les thèmes
 export type ThemeColors = {
+  /**
+   * The primary color of the theme
+   */
   primary: Shades;
+  /**
+   * The secondary color of the theme
+   */
   secondary: Shades;
-  background: string;
+  /**
+   * The background color of the theme
+   */
+  background: Shades;
+  /**
+   * The text color of the theme
+   */
   text: Shades;
+  /**
+   * The font family of the theme
+   */
   fontFamily: string;
+  /**
+   * The heading font of the theme
+   */
   headingFont: string;
+  /**
+   * The border color of the theme
+   */
   border: string;
 };
 /**
@@ -61,8 +82,8 @@ export const defaultThemes = {
   light: {
     primary: calculateShades("#3C1B43"),
     secondary: calculateShades("#4B6F8A"),
-    background: '#f5f5f5',
-    text: calculateShades("#1e1e1e"),
+    background: calculateShades("#f5f5f5"),
+    text: calculateShades("#1e1e1f"),
     fontFamily: "Nunito Sans, sans-serif",
     headingFont: "cursive, sans-serif",
     border: '#e0e0e0',
@@ -70,7 +91,7 @@ export const defaultThemes = {
   dark: {
     primary: calculateShades('#0070f3'),
     secondary: calculateShades('#A855F7'),
-    background: '#1a1a1a',
+    background: calculateShades('#1a1a1a'),
     text: calculateShades('#ffffff'),
     fontFamily: "Nunito Sans, sans-serif",
     headingFont: "cursive, sans-serif",
@@ -127,6 +148,21 @@ interface ThemeProviderProps {
  *    }}>
  *   <App />
  * </ThemeProvider>
+ * 
+ * // OR
+ *  * import { ThemeProvider, useTheme, calculateShades } from 'react-kariu';
+ *  <ThemeProvider initialTheme="light" 
+ *    customThemes={{ 
+ *       primary: {main: '#e74c3c', light: '#c0392b', dark: '#a13223', darker: '#892c1e'},
+ *       secondary: {main: '#e67e22', light: '#d3701e', dark: '#c2621b', darker: '#a14d16'},
+ *       text: {main: '#1e1e1f', light: '#333333', dark: '#000000', darker: '#000000'},
+ *       background: {main: '#f5f5f5', light: '#ffffff', dark: '#e0e0e0', darker: '#d0d0d0'},
+ *       border: '#e0e0e0'
+ *    }}>
+ *   <App />
+ * </ThemeProvider>
+ * 
+ * 
  * ```
  * 
  * @param props - The props of the ThemeProvider

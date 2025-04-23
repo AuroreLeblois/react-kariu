@@ -232,7 +232,7 @@ const BodyItem: React.FC<BodyItemProps> = ({item, isWeekEnd, isHoliday, number, 
     verticalAlign: "middle",
     cursor: isEmpty ? "default" : "pointer",
     backgroundColor:
-      isHoliday ? colors.primary.light : isWeekEnd ? colors.background : "inherit",
+      isHoliday ? colors.primary.light : isWeekEnd ? colors.background.light : "inherit",
     overflow: "hidden",
   } as const;
 

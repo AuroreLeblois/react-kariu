@@ -1,9 +1,10 @@
 import { create } from "@storybook/theming";
 import logo from "./favicon.svg";
+import { useTheme } from "../src/Theme/ThemeProvider";
 
-
+const { theme, colors } = useTheme();
 export default create({
-  base: "light",
+  base: theme,
   title: "React-kariu",
   brandTitle: "react-kariu",
   brandImage: logo,

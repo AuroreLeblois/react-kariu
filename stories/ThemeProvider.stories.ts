@@ -22,8 +22,8 @@ const ThemeDemo = () => {
   return React.createElement('div', {
     style: {
       padding: '20px',
-      backgroundColor: colors.background,
-      color: colors.text, 
+      backgroundColor: colors.background.main,
+      color: colors.text.main, 
       fontFamily: colors.fontFamily,
       borderRadius: '8px',
       width: '400px',
@@ -85,8 +85,26 @@ const ThemeDemo = () => {
           text: colors.secondary.darker,
           textColor: colors.secondary.darker
         })),
-        React.createElement('li', null, 'Background: ', colors.background),
-        React.createElement('li', null, 'Text: ', colors.text),
+        React.createElement('li', null, 'Background main: ', colors.background.main),
+        React.createElement('li', null, 'Background light: ', colors.background.light),
+        React.createElement('li', null, 'Background dark: ', colors.background.dark),
+        React.createElement('li', null, 'Background darker: ', colors.background.darker),
+        React.createElement('li', null, 'Text main: ',  React.createElement(Text, {
+          component: 'span',
+          text: colors.text.main,
+          textColor: colors.text.main
+        })),
+        React.createElement('li', null, 'Text light: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.text.light,  
+          textColor: colors.text.light
+        })),
+        React.createElement('li', null, 'Text dark: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.text.dark,
+          textColor: colors.text.dark
+        })),
+
         React.createElement('li', null, 'Font Family: ', colors.fontFamily),
         React.createElement('li', null, 'Heading Font: ', colors.headingFont)
       )
@@ -102,7 +120,9 @@ const ThemeDemo = () => {
     React.createElement(Button, {
       onClick: () => customizeTheme(theme, { 
         primary: calculateShades(theme === 'light' ? '#FF5733' : '#33FF57'),
-        secondary: calculateShades(theme === 'light' ? '#C70039' : '#039C73')
+        secondary: calculateShades(theme === 'light' ? '#C70039' : '#039C73'),
+        background: calculateShades(theme === 'light' ? '#f5f5f5' : '#1a1a1a'),
+        text: calculateShades(theme === 'light' ? '#1a1a1a' : '#f5f5f5')
       }),
       label: 'Customize Colors',
       backgroundColor: colors.secondary.main,
@@ -132,16 +152,16 @@ export const CustomizedThemes: Story = {
       light: {
         primary: calculateShades('#e74c3c'),
         secondary: calculateShades('#e67e22'),
-        background: '#ecf0f1',
-        text: '#2c3e50',
+        background: calculateShades('#ecf0f1'),
+        text: calculateShades('#2c3e50'),
         fontFamily: "'cursive', sans-serif",
         headingFont: "Playfair Display, serif"
       },
       dark: {
         primary: calculateShades('#9b59b6'),
         secondary: calculateShades('#2ecc71'),
-        background: '#2c3e50',
-        text: '#ecf0f1',
+        background: calculateShades('#2c3e50'),
+        text: calculateShades('#ecf0f1'),
         fontFamily: "cursive, sans-serif",
         headingFont: "cursive, sans-serif"
       }
