@@ -4,17 +4,29 @@ import { useTheme } from "../../Theme/ThemeProvider.js";
 import Arrow from "../../Atoms/Icon/ArrowDown.js";
 
 interface CardProps {
+  /** Color of the card background (default: null) */
   backgroundColor?: string;
-  textColor?: string;
+  /** Color of the card text (default: null) */
+  textColor?: string; 
+  /** Loading state of the card (default: false) */
   loading?: boolean;
+  /** Title of the card (default: null) */
   title?: string;
+  /** Variant of the card (default: "default") */
   variant?: "default" | "accordion" | "outlined" | "elevated";
+  /** Grow of the card (default: 0) */
   grow?: number;
+  /** Show content of the card (default: true) */
   showContent?: boolean;
+  /** Show card (default: true) */
   showCard?: boolean;
+  /** Width of the card (default: "auto") */
   width?: string | number;
+  /** Children of the card */
   children?: React.ReactNode;
+  /** Click event of the card */  
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  /** Class name of the card */
   className?: string;
 }
 
@@ -83,8 +95,8 @@ const Card: React.FC<CardProps> = ({
     >
       {title && renderTitle({
         title,
-        variant,
         textColor: textColor ?? colors.text,
+        variant,
         showContent: show,
         onClickAccordion
       })}
@@ -117,7 +129,7 @@ function renderTitle({
 }: {
   title: string;
   variant?: string;
-  textColor: string;
+  textColor?: string;
   showContent?: boolean;
   onClickAccordion?: () => void;
 }) {
@@ -131,9 +143,9 @@ function renderTitle({
         flexGrow: 1,
         userSelect: "none",
       }}>
-        <Title align="left" textColor={textColor} text={title} priority={4} />
-        <Arrow
+         <Arrow
           size={24}
+          color={textColor}
           style={{
             transform: showContent ? "rotate(0deg)" : "rotate(-180deg)",
             transition: "transform 0.3s ease"
@@ -141,6 +153,8 @@ function renderTitle({
           direction={showContent ? "up" : "down"}
           onClick={onClickAccordion}
         />
+        <Title align="left" textColor={textColor} text={title} priority={4} />
+       
       </div>
     );
   }
