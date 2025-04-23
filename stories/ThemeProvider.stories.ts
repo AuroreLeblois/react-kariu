@@ -126,7 +126,7 @@ export const DefaultDarkTheme: Story = {
 };
 
 // Story with custom themes
-export const ThemesPersonnalises: Story = {
+export const CustomizedThemes: Story = {
   render: () => React.createElement(ThemeProvider, {
     customThemes: {
       light: {

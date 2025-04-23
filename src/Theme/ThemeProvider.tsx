@@ -16,6 +16,7 @@ export type ThemeColors = {
   text: string;
   fontFamily: string;
   headingFont: string;
+  border: string;
 };
 /**
  * Fonction to calculate shades of a color
@@ -64,6 +65,7 @@ export const defaultThemes = {
     text: '#1e1e1e',
     fontFamily: "Nunito Sans, sans-serif",
     headingFont: "cursive, sans-serif",
+    border: '#e0e0e0',
   },
   dark: {
     primary: calculateShades('#0070f3'),
@@ -72,6 +74,7 @@ export const defaultThemes = {
     text: '#ffffff',
     fontFamily: "Nunito Sans, sans-serif",
     headingFont: "cursive, sans-serif",
+    border: '#e0e0e0',
   },
 };
 

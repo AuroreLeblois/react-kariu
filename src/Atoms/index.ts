@@ -6,4 +6,6 @@ export { default as Title } from './Text/Title';
 export { default as Text } from './Text/Text';
 export { default as Link } from './Link/Link';
 export { default as Icon } from './Icon/Icon';
-
+export { default as Dot } from './Assets/Dot';
+export { default as ExternalIcon } from './Icon/ExternalIcon';
+export { default as ArrowDown } from './Icon/ArrowDown';
