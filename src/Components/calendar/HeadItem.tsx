@@ -13,7 +13,7 @@ interface HeadColsProps {
   /**
    * Number to display (for datepicker mode)
    */
-  number?: string| number;
+  number?: number;
   /**
    * If the cell is in loading state
    */
@@ -36,7 +36,7 @@ interface HeadColsProps {
     isToday: boolean;
   };
 }
-const HeadItem: React.FC<HeadColsProps> = ({ date, fontFamily, className }) => {
+const HeadItem: React.FC<HeadColsProps> = ({ date, fontFamily, className = '' }) => {
   const {colors} = useTheme();
 
   // Renderers ----------------------------------------------------------------

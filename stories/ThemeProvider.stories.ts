@@ -135,15 +135,15 @@ export const ThemesPersonnalises: Story = {
         background: '#ecf0f1',
         text: '#2c3e50',
         fontFamily: "'cursive', sans-serif",
-        headingFont: "'Playfair Display', serif"
+        headingFont: "Playfair Display, serif"
       },
       dark: {
         primary: calculateShades('#9b59b6'),
         secondary: calculateShades('#2ecc71'),
         background: '#2c3e50',
         text: '#ecf0f1',
-        fontFamily: "'cursive', sans-serif",
-        headingFont: "'cursive', sans-serif"
+        fontFamily: "cursive, sans-serif",
+        headingFont: "cursive, sans-serif"
       }
     },
     children: React.createElement(ThemeDemo, null)
