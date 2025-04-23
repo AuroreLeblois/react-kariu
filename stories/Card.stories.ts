@@ -123,7 +123,7 @@ export const CardsWithTheming: Story = {
       
       // Carte par défaut
       React.createElement(Card, {
-        title: 'Carte standard',
+        title: 'Default card',
         width: '100%'
       }, 
         React.createElement(Text, {
