@@ -17,7 +17,7 @@ const meta: Meta<typeof Card> = {
     grow: { control: 'number' },
     variant: {
       control: { type: 'select' },
-      options: ['default', 'accordion', 'outlined', 'elevated'],
+      options: ['default', 'accordion', 'elevated'],
     },
     showCard: { control: 'boolean' },
     showContent: { control: 'boolean' },
@@ -44,15 +44,6 @@ export const Accordion: Story = {
     showCard: true,
     variant: 'accordion',
     children: React.createElement(Text, { text: "Accordion content" }),
-  },
-};
-
-// Story pour la variante outlined
-export const Outlined: Story = {
-  args: {
-    title: 'Outlined',
-    variant: 'outlined',
-    children: React.createElement(Text, { text: "Outlined card" }),
   },
 };
 

@@ -13,7 +13,7 @@ export type ThemeColors = {
   primary: Shades;
   secondary: Shades;
   background: string;
-  text: string;
+  text: Shades;
   fontFamily: string;
   headingFont: string;
   border: string;
@@ -62,7 +62,7 @@ export const defaultThemes = {
     primary: calculateShades("#3C1B43"),
     secondary: calculateShades("#4B6F8A"),
     background: '#f5f5f5',
-    text: '#1e1e1e',
+    text: calculateShades("#1e1e1e"),
     fontFamily: "Nunito Sans, sans-serif",
     headingFont: "cursive, sans-serif",
     border: '#e0e0e0',
@@ -71,7 +71,7 @@ export const defaultThemes = {
     primary: calculateShades('#0070f3'),
     secondary: calculateShades('#A855F7'),
     background: '#1a1a1a',
-    text: '#ffffff',
+    text: calculateShades('#ffffff'),
     fontFamily: "Nunito Sans, sans-serif",
     headingFont: "cursive, sans-serif",
     border: '#e0e0e0',

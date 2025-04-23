@@ -13,7 +13,7 @@ interface CardProps {
   /** Title of the card (default: null) */
   title?: string;
   /** Variant of the card (default: "default") */
-  variant?: "default" | "accordion" | "outlined" | "elevated";
+  variant?: "default" | "accordion" | "elevated";
   /** Grow of the card (default: 0) */
   grow?: number;
   /** Show content of the card (default: true) */
@@ -65,7 +65,7 @@ const Card: React.FC<CardProps> = ({
       flexWrap: "nowrap" as const,
       flexGrow: grow,
       padding: showCard ? defaultSpacing : 0,
-      color: textColor ?? colors.text,
+      color: textColor ?? colors.text.dark,
       backgroundColor: backgroundColor ?? colors.background,
       borderRadius: showCard ? defaultBorderRadius : 0,
       borderStyle: "solid",
@@ -76,10 +76,7 @@ const Card: React.FC<CardProps> = ({
     };
     
     // Appliquer les styles spécifiques selon la variante
-    if (variant === "outlined") {
-      styles.backgroundColor = "transparent";
-      styles.borderWidth = "1px";
-    } else if (variant === "elevated") {
+    if (variant === "elevated") {
       styles.boxShadow = defaultShadow;
       styles.borderWidth = "0px";
     }
@@ -95,7 +92,7 @@ const Card: React.FC<CardProps> = ({
     >
       {title && renderTitle({
         title,
-        textColor: textColor ?? colors.text,
+        textColor: textColor ?? colors.text.main,
         variant,
         showContent: show,
         onClickAccordion
@@ -147,7 +144,7 @@ function renderTitle({
           size={24}
           color={textColor}
           style={{
-            transform: showContent ? "rotate(0deg)" : "rotate(-180deg)",
+            transform: showContent ? "rotate(-180deg)" : "rotate(0deg)",
             transition: "transform 0.3s ease"
           }}
           direction={showContent ? "up" : "down"}
