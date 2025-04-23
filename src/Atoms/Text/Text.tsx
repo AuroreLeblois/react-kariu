@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import textStyles from './TextStyles';
 import { useTheme } from '../../Theme/ThemeProvider';
 
@@ -11,7 +11,7 @@ interface TextProps {
 	/**
    * The variant of the text
    */
-	variant?: 'default' | 'label' | 'description' | 'disabled' | 'danger' | 'italic';
+	variant?: 'default' | 'label' | 'description' | 'disabled' | 'danger' | 'italic' | 'strong';
 	/**
    * The alignment of the text
    */
@@ -57,8 +57,8 @@ const Text: React.FC<TextProps> = ({
 	
 	let style: React.CSSProperties = {
 		...textStyles.default,
-		color: textColor ? textColor : colors.text,
-		fontFamily: fontFamily ? fontFamily : colors.fontFamily,
+		color:  textColor ?? colors.text,
+		fontFamily: fontFamily ?? colors.fontFamily,
 		cursor
 	}
 
@@ -77,6 +77,9 @@ const Text: React.FC<TextProps> = ({
 			break;
 		case 'danger':
 			style = { ...style, ...textStyles.danger };
+			break;
+		case 'strong':
+			style = { ...style, ...textStyles.strong };
 			break;
 		default: // Normal text
 			break;

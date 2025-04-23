@@ -56,6 +56,7 @@ export function styleButton(
     fontSize,
     padding,
     lineHeight: 1,
+    margin: '0.25rem',
     '&:': {
       display: 'block',
       position: 'absolute',

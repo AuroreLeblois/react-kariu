@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
-import { Title, Text } from '../src/Atoms';
+import { Button, Title, Text } from '../src/Atoms';
 import { ThemeProvider, useTheme, calculateShades } from '../src/Theme/ThemeProvider';
 
 const meta: Meta<typeof ThemeProvider> = {
@@ -31,47 +31,60 @@ const ThemeDemo = () => {
     }
   }, [
     React.createElement(Title, {
-      priority: 2,
+      priority: 1,
       text: 'ThemeProvider Demo'
     }),
     React.createElement(Text, {
-      variant: 'description',
       text: `Current theme: ${theme}`
     }),
     React.createElement('div', {
       style: { marginTop: '20px' }
     },
-      React.createElement('h2', {
-        style: {
-          color: colors.secondary.main,
-          fontFamily: colors.headingFont 
-        }
-      }, 'Theme Colors'),
+      React.createElement(Title, {
+        priority: 2,
+        text: 'Theme Colors'
+      }),
       React.createElement('ul', null,
-        React.createElement('li', null, 'Primary: ', React.createElement('span', {
-          style: { color: colors.primary.main }
-        }, colors.primary.main)),
-        React.createElement('li', null, 'Primary light: ', React.createElement('span', {
-          style: { color: colors.primary.light }
-        }, colors.primary.light)),
-        React.createElement('li', null, 'Primary dark: ', React.createElement('span', {
-          style: { color: colors.primary.dark }
-        }, colors.primary.dark)),
-        React.createElement('li', null, 'Primary darker: ', React.createElement('span', {
-          style: { color: colors.primary.darker }
-        }, colors.primary.darker)),
-        React.createElement('li', null, 'Secondary: ', React.createElement('span', {
-          style: { color: colors.secondary.main }
-        }, colors.secondary.main)),
-        React.createElement('li', null, 'Secondary light: ', React.createElement('span', {
-          style: { color: colors.secondary.light }
-        }, colors.secondary.light)),
-        React.createElement('li', null, 'Secondary dark: ', React.createElement('span', {
-          style: { color: colors.secondary.dark }
-        }, colors.secondary.dark)),
-        React.createElement('li', null, 'Secondary darker: ', React.createElement('span', {
-          style: { color: colors.secondary.darker }
-        }, colors.secondary.darker)),
+        React.createElement('li', null, 'Primary: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.primary.main,
+          textColor: colors.primary.main
+        })),
+        React.createElement('li', null, 'Primary light: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.primary.light,
+          textColor: colors.primary.light
+        })),
+        React.createElement('li', null, 'Primary dark: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.primary.dark,
+          textColor: colors.primary.dark
+        })),
+        React.createElement('li', null, 'Primary darker: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.primary.darker,
+          textColor: colors.primary.darker
+        })),
+        React.createElement('li', null, 'Secondary: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.secondary.main,
+          textColor: colors.secondary.main
+        })),
+        React.createElement('li', null, 'Secondary light: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.secondary.light,
+          textColor: colors.secondary.light
+        })),
+        React.createElement('li', null, 'Secondary dark: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.secondary.dark,
+          textColor: colors.secondary.dark
+        })),
+        React.createElement('li', null, 'Secondary darker: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.secondary.darker,
+          textColor: colors.secondary.darker
+        })),
         React.createElement('li', null, 'Background: ', colors.background),
         React.createElement('li', null, 'Text: ', colors.text),
         React.createElement('li', null, 'Font Family: ', colors.fontFamily),
@@ -79,37 +92,22 @@ const ThemeDemo = () => {
       )
     ),
     
-    React.createElement('button', {
+    React.createElement(Button, {
       onClick: toggleTheme,
-      style: {
-        backgroundColor: colors.primary.main,
-        color: 'white',
-        border: 'none',
-        padding: '8px 16px',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        fontFamily: colors.fontFamily,
-        marginTop: '20px'
-      }
-    }, 'Switch to ', theme === 'light' ? 'dark' : 'light', ' theme'),
+      label: 'Switch to ' + (theme === 'light' ? 'dark' : 'light') + ' theme',
+      size: 'medium',
+      shape: 'square'
+    }),
     
-    React.createElement('button', {
+    React.createElement(Button, {
       onClick: () => customizeTheme(theme, { 
         primary: calculateShades(theme === 'light' ? '#FF5733' : '#33FF57'),
         secondary: calculateShades(theme === 'light' ? '#C70039' : '#039C73')
       }),
-      style: {
-        backgroundColor: colors.secondary.main,
-        color: 'white',
-        border: 'none',
-        padding: '8px 16px',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        fontFamily: colors.fontFamily,
-        marginTop: '20px',
-        marginLeft: '10px'
-      }
-    }, 'Customize Colors')
+      label: 'Customize Colors',
+      backgroundColor: colors.secondary.main,
+      shape: 'square'
+    })
   ]);
 };
 

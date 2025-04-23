@@ -84,7 +84,6 @@ const Button: React.FC<ButtonProps> = ({
   ...buttonProps
 }) => {
   const { colors } = useTheme();
-  console.log('colors', colors);
   
   const mode = primary ? 'kariuButton--primary' : 'kariuButton--secondary';
   const buttonCustom = styleButton(
@@ -106,6 +105,11 @@ const Button: React.FC<ButtonProps> = ({
       className={['kariuButton', `kariuButton--${size}`, shape, mode, className, `${disabled ? 'disabled' : ''}`].join(' ')}
       style={completeStyle}
       onClick={(event) => {
+        if (!event?.target) {
+         return;
+        }
+        event.preventDefault();
+        event.stopPropagation();
         if (buttonProps.onClick) {
           buttonProps.onClick(event);
         }

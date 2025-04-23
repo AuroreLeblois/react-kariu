@@ -28,6 +28,9 @@ const textStyles: { [key: string]: CSSProperties } = {
     italic: {
         fontStyle: 'italic',
     },
+    strong: {
+        fontWeight: 'bold',
+    },
     danger: {
         color: 'rgb(236, 39, 39)',
     },
