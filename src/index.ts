@@ -18,7 +18,7 @@ export { default as Link } from './Atoms/Link/Link';
 export { default as Text } from './Atoms/Text/Text';
 export { default as Title } from './Atoms/Text/Title';
 
-export { default as Calendar } from './Components/calendar/Calendar';
+// export { default as Calendar } from './Components/calendar/Calendar';
 export { default as HeadCols } from './Components/calendar/HeadCols';
 export { default as BodyItem } from './Components/calendar/BodyItem';
 export { default as HeadItem } from './Components/calendar/HeadItem';

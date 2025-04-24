@@ -69,7 +69,7 @@ const HeadItem: React.FC<HeadColsProps> = ({ date, fontFamily, className = '' })
   };
 
   let number = date.number ? date.number : null;
-  if (number && date.day && number < 10 && number.length < 2)
+  if (number && date.day && parseInt(number.toString()) < 10 && number.toString().length < 2)
     number = "0" + number;
 
   if (number && date.day) {

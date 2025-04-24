@@ -28,8 +28,8 @@
   "scripts": {
     "build_tsc": "tsc",
     "clean": "rimraf dist/",
-    "copy": "copyfiles -u 1 src/**/*.css dist/",
-    "build": "npm run clean && tsc && npm run copy",
+    "copy": "copyfiles -u 1 \"src/**/*.css\" dist/cjs/ && copyfiles -u 1 \"src/**/*.css\" dist/esm/ && copyfiles -u 1 src/index.css dist/",
+    "build": "npm run clean && tsc && npm run copy && tsc -p tsconfig.esm.json",
     "start": "start http://localhost:9999 && storybook dev --quiet --ci --port 9999",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "storybook": "storybook dev -p 6006",
@@ -38,8 +38,10 @@
   },
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/cjs/index.js"
     }
   },
   "dependencies": {
