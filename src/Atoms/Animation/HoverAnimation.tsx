@@ -3,27 +3,27 @@ import "./hoverAnimation.css";
 
 interface HoverAnimationProps {
   /**
-   * Éléments enfants à animer
+   * Children elements to animate
    */
   children: React.ReactNode;
   /**
-   * Type d'animation
+   * Type of animation
    */
   type?: "scale" | "rotate" | "translate" | "opacity" | "elevate" | "shake";
   /**
-   * Intensité de l'animation
+   * Intensity of the animation
    */
   intensity?: number;
   /**
-   * Durée de l'animation en millisecondes
+   * Duration of the animation in milliseconds
    */
   duration?: number;
   /**
-   * Classe CSS personnalisée
+   * Custom CSS class
    */
   className?: string;
   /**
-   * Styles personnalisés
+   * Custom styles
    */
   sx?: React.CSSProperties;
 }
@@ -40,18 +40,18 @@ const HoverAnimation: React.FC<HoverAnimationProps> = ({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Calcule la position relative de la souris
+  // Calculate the relative position of the mouse
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
-      // Calculer la position relative (de -1 à 1) par rapport au centre
+      // Calculate the relative position (from -1 to 1) relative to the center
       const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
       setMousePosition({ x, y });
     }
   };
 
-  // Détermine les styles d'animation en fonction du type et de l'intensité
+  // Determine the animation styles based on the type and intensity
   const getAnimationStyles = () => {
     const animationStyles = {
       scale: { 
