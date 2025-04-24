@@ -1,3 +1,4 @@
 @import './reset.css';
 @import './Atoms/Ripple/ripple.css';
-@import './Atoms/Animation/slideAnimation.css';
+@import './Animation/slideAnimation.css';
+@import './Animation/hoverAnimation.css';

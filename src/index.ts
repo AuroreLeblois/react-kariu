@@ -1,7 +1,7 @@
 export * from './Theme';
-
 // Basic Elements
 export * from './Atoms';
+export * from './Animation';
 
 // Exporter chaque composant individuellement
 export { default as Ripple } from './Atoms/Ripple/Ripple';
@@ -13,6 +13,9 @@ export { default as Dot } from './Atoms/Assets/Dot';
 export { default as ExternalIcon } from './Atoms/Icon/ExternalIcon';
 export { default as ArrowDown } from './Atoms/Icon/ArrowDown';
 export { default as Icon } from './Atoms/Icon/Icon';
+
+export { default as HoverAnimation } from './Animation/HoverAnimation';
+export { default as SlideAnimation } from './Animation/SlideAnimation';
 
 export { default as Link } from './Atoms/Link/Link';
 export { default as Text } from './Atoms/Text/Text';
