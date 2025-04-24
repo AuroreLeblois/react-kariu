@@ -24,11 +24,8 @@
     "jsx": "react-jsx",
     "baseUrl": "./", // Chemin de base pour la résolution des modules
     "paths": {
-      "@react-kariu/react-kariu": [
-        "./src"
-      ],
-      "@react-kariu/react-kariu/*": [
-        "./src/*"
+      "react-kariu": [
+        "node_modules/react-kariu/package/dist/index.js"
       ]
     }
   },

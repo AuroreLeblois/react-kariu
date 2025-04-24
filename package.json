@@ -21,8 +21,7 @@
     "effects"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "public"
+    "@auroreleblois:react-kariu": "https://npm.pkg.github.com"
   },
   "copyright": "Copyright © year ${author}",
   "scripts": {
