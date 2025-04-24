@@ -1,9 +1,9 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import SlideAnimation from '../src/Atoms/Animation/SlideAnimation';
+import { SlideAnimation } from '../src/Animation';
 
 const meta: Meta<typeof SlideAnimation> = {
-  title: 'Atoms/Animation/SlideAnimation',
+  title: 'Animation/SlideAnimation',
   component: SlideAnimation,
   parameters: {
     layout: 'centered',

@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { HoverAnimation } from '../src/Animation';
 
 const meta: Meta<typeof HoverAnimation> = {
-  title: 'Atoms/Animation/HoverAnimation',
+  title: 'Animation/HoverAnimation',
   component: HoverAnimation,
   parameters: {
     layout: 'centered',
