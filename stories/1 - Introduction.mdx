@@ -7,6 +7,9 @@ This library will contain several useful components for your React projects.
 - Avatar
 - Button
 - Input (beta + work-in-progress)
+- Card
+- Animations : hover + slide
+- Calendar (beta + work-in-progress)
 
 ## How to use "@react-kariu"
 
@@ -14,6 +17,7 @@ This library will contain several useful components for your React projects.
 
 ```
 npm i @react-kariu
+
 ```
 
 ### Usage
@@ -26,8 +30,20 @@ import { Button } from 'react-kariu'
   onClick={() => {}}
   shape="square"
 />
-
 ```
+
+OR 
+```
+import Button from 'react-kariu/Atoms/Button'
+import ThemeProvider from 'react-kariu/Theme/ThemeProvider'
+
+<Button
+  label="Button"
+  onClick={() => {}}
+  shape="square"
+/>
+```
+
 
 ### Documentation Usage
 

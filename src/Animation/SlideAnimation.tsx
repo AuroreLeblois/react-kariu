@@ -84,7 +84,7 @@ const SlideAnimation: React.FC<SlideAnimationProps> = ({
   }, [onScroll]);
 
   // Determine the animation styles based on the direction
-  const getAnimationStyles = () => {
+  const getAnimationStyles = (): React.CSSProperties => {
     const directionStyles = {
       left: { transform: isVisible ? "translateX(0)" : "translateX(-100%)" },
       right: { transform: isVisible ? "translateX(0)" : "translateX(100%)" },
@@ -96,7 +96,7 @@ const SlideAnimation: React.FC<SlideAnimationProps> = ({
       ...directionStyles[direction],
       transition: `transform ${duration}ms ease-out ${delay}ms, opacity ${duration}ms ease-out ${delay}ms`,
       opacity: isVisible ? 1 : 0,
-      visibility: isVisible ? 'visible' : 'hidden'
+      visibility: isVisible ? 'visible' as const : 'hidden' as const
     };
   };
 
