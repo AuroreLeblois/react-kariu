@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./hoverAnimation.css";
 
 interface HoverAnimationProps {
@@ -37,6 +37,19 @@ const HoverAnimation: React.FC<HoverAnimationProps> = ({
   sx = {}
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Calcule la position relative de la souris
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      // Calculer la position relative (de -1 à 1) par rapport au centre
+      const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+      setMousePosition({ x, y });
+    }
+  };
 
   // Détermine les styles d'animation en fonction du type et de l'intensité
   const getAnimationStyles = () => {
@@ -45,7 +58,9 @@ const HoverAnimation: React.FC<HoverAnimationProps> = ({
         transform: isHovered ? `scale(${1 + 0.05 * intensity})` : "scale(1)" 
       },
       rotate: { 
-        transform: isHovered ? `rotate(${5 * intensity}deg)` : "rotate(0)" 
+        transform: isHovered 
+          ? `rotate(${mousePosition.x * 5 * intensity}deg)` 
+          : "rotate(0)" 
       },
       translate: { 
         transform: isHovered ? `translateY(${-5 * intensity}px)` : "translateY(0)" 
@@ -71,6 +86,7 @@ const HoverAnimation: React.FC<HoverAnimationProps> = ({
 
   return (
     <div
+      ref={containerRef}
       className={`hover-animation-container ${className}`}
       style={{
         ...getAnimationStyles(),
@@ -78,6 +94,7 @@ const HoverAnimation: React.FC<HoverAnimationProps> = ({
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onMouseMove={type === "rotate" ? handleMouseMove : undefined}
     >
       {children}
     </div>
