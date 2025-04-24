@@ -95,7 +95,8 @@ const SlideAnimation: React.FC<SlideAnimationProps> = ({
     return {
       ...directionStyles[direction],
       transition: `transform ${duration}ms ease-out ${delay}ms, opacity ${duration}ms ease-out ${delay}ms`,
-      opacity: isVisible ? 1 : 0
+      opacity: isVisible ? 1 : 0,
+      visibility: isVisible ? 'visible' : 'hidden'
     };
   };
 
