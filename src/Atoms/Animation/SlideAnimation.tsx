@@ -3,35 +3,35 @@ import "./slideAnimation.css";
 
 interface SlideAnimationProps {
   /**
-   * Éléments enfants à animer
+   * Children elements to animate
    */
   children: React.ReactNode;
   /**
-   * Direction de l'animation
+   * Direction of the animation
    */
   direction?: "left" | "right" | "top" | "bottom";
   /**
-   * Durée de l'animation en millisecondes
+   * Duration of the animation in milliseconds
    */
   duration?: number;
   /**
-   * Délai avant le début de l'animation en millisecondes
+   * Delay before the animation starts in milliseconds
    */
   delay?: number;
   /**
-   * Si l'animation doit se déclencher au défilement
+   * If the animation should be triggered on scroll
    */
   onScroll?: boolean;
   /**
-   * Déclencher manuellement l'animation (true = visible)
+   * Trigger the animation manually (true = visible)
    */
   trigger?: boolean;
   /**
-   * Classe CSS personnalisée
+   * Custom CSS class
    */
   className?: string;
   /**
-   * Styles personnalisés
+   * Custom styles
    */
   sx?: React.CSSProperties;
 }
@@ -42,13 +42,13 @@ const SlideAnimation: React.FC<SlideAnimationProps> = ({
   duration = 500,
   delay = 0,
   onScroll = false,
-  trigger,
+  trigger = true,
   className = "",
   sx = {}
 }) => {
-  // L'animation est visible si:
-  // - trigger est défini et true
-  // - trigger n'est pas défini et onScroll est false (animation automatique)
+  // The animation is visible if:
+  // - trigger is defined and true
+  // - trigger is not defined and onScroll is false (automatic animation)
   const [isVisible, setIsVisible] = useState(trigger !== undefined ? trigger : !onScroll);
 
   // Mise à jour lorsque trigger change
@@ -83,7 +83,7 @@ const SlideAnimation: React.FC<SlideAnimationProps> = ({
     };
   }, [onScroll]);
 
-  // Déterminer les styles d'animation en fonction de la direction
+  // Determine the animation styles based on the direction
   const getAnimationStyles = () => {
     const directionStyles = {
       left: { transform: isVisible ? "translateX(0)" : "translateX(-100%)" },
