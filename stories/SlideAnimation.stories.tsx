@@ -173,10 +173,10 @@ export const WithCustomStyles: Story = {
           borderRadius: '12px',
         }}
       >
-        <div style={{...boxStyle, backgroundColor: '#e74c3c'}}>Animation avec styles personnalisés</div>
+        <div style={{...boxStyle, backgroundColor: '#e74c3c'}}>Animation with custom styles</div>
       </SlideAnimation>
     ),
-    "l'animation stylisée"
+    "the styled animation"
   ),
 };
 
