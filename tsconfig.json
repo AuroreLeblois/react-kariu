@@ -13,7 +13,7 @@
       "esnext"
     ],
     "declaration": true,
-    "declarationDir": "./types",
+    "declarationDir": "./dist",
     "rootDir": "src",
     "outDir": "./dist",
     "strict": false,
