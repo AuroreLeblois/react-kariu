@@ -9,3 +9,4 @@ export { default as Icon } from './Icon/Icon';
 export { default as Dot } from './Assets/Dot';
 export { default as ExternalIcon } from './Icon/ExternalIcon';
 export { default as ArrowDown } from './Icon/ArrowDown';
+export { default as SlideAnimation } from './Animation/SlideAnimation';

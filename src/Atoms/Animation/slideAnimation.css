@@ -1,0 +1,6 @@
+.slide-animation-container {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  will-change: transform, opacity;
+} 
