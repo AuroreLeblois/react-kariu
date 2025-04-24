@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import HoverAnimation from '../src/Atoms/Animation/HoverAnimation';
+import { HoverAnimation } from '../src/Animation';
 
 const meta: Meta<typeof HoverAnimation> = {
   title: 'Atoms/Animation/HoverAnimation',
