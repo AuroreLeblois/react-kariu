@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { HoverAnimation } from '../src/Animation';
+import { Button } from '../src/Atoms';
 
 const meta: Meta<typeof HoverAnimation> = {
   title: 'Animation/HoverAnimation',
@@ -142,5 +143,41 @@ export const HighIntensity: Story = {
     intensity: 3,
     duration: 300,
     children: <div style={boxStyle}>High Intensity</div>
+  }
+};
+
+// Button component example
+export const KariuButton: Story = {
+  args: {
+    type: 'scale',
+    intensity: 1.2,
+    duration: 300,
+    children: (
+      <Button 
+        primary={true}
+        size="medium"
+        label="Hover Effect"
+        shape="round"
+        ripple={true}
+      />
+    )
+  }
+};
+
+// Button component with different animation
+export const KariuButtonShake: Story = {
+  args: {
+    type: 'shake',
+    intensity: 0.8,
+    duration: 400,
+    children: (
+      <Button 
+        primary={false}
+        size="large"
+        label="Shake Effect"
+        shape="square"
+        ripple={true}
+      />
+    )
   }
 }; 
