@@ -25,7 +25,7 @@ jobs:
       - name: 📦 Build package
         run: npm run build --if-present
 
-      - name: 📦 Publish package
+      - name: 🎉 Publish package
         run: npm pack && npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_SECRET_PUBLISH_TOKEN }}
