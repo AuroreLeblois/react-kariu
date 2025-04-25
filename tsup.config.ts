@@ -1,15 +1,15 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/**/*.ts', 'src/**/*.tsx'],
-  format: ['cjs', 'esm'], // Vous pouvez garder les deux formats si vous le souhaitez
+  entry: ['src/index.ts'],
+  format: ['cjs', 'esm'],
   dts: true,
   splitting: false,
   sourcemap: false,
   clean: true,
   minify: true,
   treeshake: true,
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom', 'moment'],
   outDir: 'dist',
   bundle: true,
   outExtension({ format }) {
@@ -18,6 +18,12 @@ export default defineConfig({
     };
   },
   esbuildOptions(options) {
+    options.logLevel = 'error';
+    
+    options.logOverride = {
+      'unused-import': 'silent'
+    };
+    
     options.banner = {
       js: `/* 
  * React-Kariu

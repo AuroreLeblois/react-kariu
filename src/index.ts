@@ -1,10 +1,4 @@
-export * from './Theme';
-// Basic Elements
-export * from './Atoms';
-export * from './Animation';
-export * from './Components';
-
-// Exporter chaque composant individuellement
+// Exporter les composants individuellement est une meilleure pratique
 export { default as Ripple } from './Atoms/Ripple/Ripple';
 export { default as Button } from './Atoms/Button/Button';
 export { default as Input } from './Atoms/Input/Input';
@@ -29,8 +23,8 @@ export { default as HeadItem } from './Components/calendar/HeadItem';
 
 export { default as Card } from './Components/Card/Card';
 
+// N'exporter que ce qui est réellement nécessaire des modules plus grands
+export { ThemeProvider, useTheme } from './Theme/ThemeProvider';
 export { defaultThemes } from './Theme/defaultTheme';
-export { useTheme } from './Theme/ThemeProvider';
-export { calculateShades } from './Theme/colorContrast';
-export { ThemeProvider } from './Theme/ThemeProvider';
+export { calculateShades, getContrastTextColor } from './Theme/colorContrast';
 
