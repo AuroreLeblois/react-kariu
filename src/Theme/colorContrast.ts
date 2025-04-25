@@ -1,3 +1,5 @@
+import { Shades } from "./types";
+
 /**
  * Fonction to determine if the text should be black or white depending on the background color
  * @param backgroundColor - The background color to evaluate
@@ -42,3 +44,41 @@ export function getContrastTextColor(backgroundColor: string): string {
     // Si la luminance est supérieure à 0.5, utiliser du texte noir, sinon du texte blanc
     return luminance > 0.5 ? 'black' : 'white';
   }
+
+  /**
+ * Fonction to calculate shades of a color
+ * @param hexColor - The hexadecimal color to convert
+ * @returns An object Shades containing the shades of the color
+ */
+export const calculateShades = (hexColor: string): Shades => {
+  // Convertir la couleur hex en RGB
+  const r = parseInt(hexColor.slice(1, 3), 16);
+  const g = parseInt(hexColor.slice(3, 5), 16);
+  const b = parseInt(hexColor.slice(5, 7), 16);
+  
+  // Éclaircir: ajouter 15% de blanc
+  const lighten = (color: number) => Math.min(255, Math.floor(color + (255 - color) * 0.15));
+  
+  // Assombrir: réduire de 15%
+  const darken = (color: number) => Math.floor(color * 0.85);
+  
+  // Convertir RGB en hex
+  const toHex = (value: number) => {
+    const hex = value.toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+  };
+  
+  // Créer les nuances
+  const light = `#${toHex(lighten(r))}${toHex(lighten(g))}${toHex(lighten(b))}`;
+  const lighter = `#${toHex(lighten(lighten(r)))}${toHex(lighten(lighten(g)))}${toHex(lighten(lighten(b)))}`;
+  const dark = `#${toHex(darken(r))}${toHex(darken(g))}${toHex(darken(b))}`;
+  const darker = `#${toHex(darken(darken(r)))}${toHex(darken(darken(g)))}${toHex(darken(darken(b)))}`;
+
+  return {
+    main: hexColor,
+    light,
+    lighter,
+    dark,
+    darker
+  };
+};

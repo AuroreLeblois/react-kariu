@@ -1,4 +1,4 @@
-import { ThemeColors } from '../../Theme/ThemeProvider';
+import { ThemeColors } from '../../Theme/types';
 import { getContrastTextColor } from '../../Theme/colorContrast';
 
 export function styleButton(
@@ -7,7 +7,7 @@ export function styleButton(
   primary: boolean, 
   size: string, 
   disabled: boolean,
-  colors?: ThemeColors
+  colors?: ThemeColors | null
 ) {
 
   const themePrimaryColor = colors ? colors.primary.main : '#1ea7fd';

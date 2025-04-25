@@ -29,8 +29,8 @@ export { default as HeadItem } from './Components/calendar/HeadItem';
 
 export { default as Card } from './Components/Card/Card';
 
-export { defaultThemes } from './Theme/ThemeProvider';
+export { defaultThemes } from './Theme/defaultTheme';
 export { useTheme } from './Theme/ThemeProvider';
-export { calculateShades } from './Theme/ThemeProvider';
+export { calculateShades } from './Theme/colorContrast';
 export { ThemeProvider } from './Theme/ThemeProvider';
 

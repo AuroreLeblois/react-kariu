@@ -1,8 +1,9 @@
 import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 import { Button, Title, Text } from '../src/Atoms';
-import { ThemeProvider, useTheme, calculateShades } from '../src/Theme/ThemeProvider';
+import { ThemeProvider, useTheme } from '../src/Theme/ThemeProvider';
 import Card from '../src/Components/Card/Card';
+import { calculateShades } from '../src/Theme/colorContrast';
 
 const meta: Meta<typeof ThemeProvider> = {
   title: 'Theming/ThemeProvider',
