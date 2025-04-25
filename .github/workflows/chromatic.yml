@@ -1,4 +1,4 @@
-name: 🚀 CI on push
+name: 🚀 Build and publish Chromatic
 
 # Controls when the workflow will run
 on:
