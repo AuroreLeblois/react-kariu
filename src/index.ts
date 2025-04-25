@@ -2,6 +2,7 @@ export * from './Theme';
 // Basic Elements
 export * from './Atoms';
 export * from './Animation';
+export * from './Components';
 
 // Exporter chaque composant individuellement
 export { default as Ripple } from './Atoms/Ripple/Ripple';
