@@ -1,18 +1,16 @@
 {
   "name": "react-kariu",
   "private": false,
-  "version": "0.3.1",
+  "version": "0.3.3",
   "description": "react library for devs",
   "author": "Aurore Leblois",
   "type": "commonjs",
-  "main": "dist/cjs/index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "src",
-    "*.js",
     "*.d.ts",
-    "*.md"
+    "LICENSE"
   ],
   "keywords": [
     "react",
@@ -25,10 +23,9 @@
   },
   "copyright": "Copyright © year ${author}",
   "scripts": {
-    "build_tsc": "tsc",
     "clean": "rimraf dist/",
-    "copy": "copyfiles -u 1 \"src/**/*.css\" dist/cjs/ && copyfiles -u 1 \"src/**/*.css\" dist/esm/ && copyfiles -u 1 src/index.css dist/",
-    "build": "npm run clean && tsc && npm run copy && tsc -p tsconfig.esm.json",
+    "copy-css": "copyfiles -u 1 \"src/**/*.css\" dist/ && copyfiles -u 1 src/index.css dist/",
+    "build": "npm run clean && tsup && npm run copy-css",
     "start": "start http://localhost:9999 && storybook dev --quiet --ci --port 9999",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "storybook": "storybook dev -p 6006",
@@ -38,9 +35,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/cjs/index.js"
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
   "dependencies": {
@@ -71,6 +67,7 @@
     "@storybook/react-vite": "^8.6.12",
     "@storybook/test": "^8.6.12",
     "@storybook/theming": "^8.6.12",
+    "@swc/core": "^1.11.22",
     "@types/react": "*18.2.66",
     "@types/react-dom": "*18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
@@ -91,5 +88,5 @@
   },
   "license": "ISC",
   "sideEffects": false,
-  "module": "dist/esm/index.js"
+  "module": "dist/index.mjs"
 }
