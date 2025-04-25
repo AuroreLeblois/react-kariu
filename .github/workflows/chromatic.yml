@@ -41,4 +41,4 @@ jobs:
       - name: 📂 Deploy stage
         id: deployStage
         run: |
-          npx chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          npx chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --exit-once-uploaded
