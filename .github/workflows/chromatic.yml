@@ -5,6 +5,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the branch
   push:
     branches: [master]
+    paths:
+      - "stories/2 - Changelog.mdx"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
