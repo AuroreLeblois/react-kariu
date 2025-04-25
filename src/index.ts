@@ -15,6 +15,7 @@ export { default as SlideAnimation } from './Animation/SlideAnimation';
 export { default as Link } from './Atoms/Link/Link';
 export { default as Text } from './Atoms/Text/Text';
 export { default as Title } from './Atoms/Text/Title';
+export { default as CheckBox } from './Atoms/Input/CheckBox';
 
 // export { default as Calendar } from './Components/calendar/Calendar';
 export { default as HeadCols } from './Components/calendar/HeadCols';
