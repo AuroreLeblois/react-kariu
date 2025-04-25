@@ -24,9 +24,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks-outs your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: 🚚 Get latest code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Récupère tout l'historique pour permettre à Chromatic de comparer les commits
 
       - name: 🔨 Setup Node.js
         uses: actions/setup-node@v3
