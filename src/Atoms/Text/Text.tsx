@@ -40,6 +40,10 @@ interface TextProps {
    * Any additional properties
    */
 	textProps?:  React.HTMLAttributes<HTMLElement>;
+	/**
+   * The style of the text
+   */
+	sx?: React.CSSProperties;
 }
 
 const Text: React.FC<TextProps> = ({
@@ -51,6 +55,7 @@ const Text: React.FC<TextProps> = ({
 	className,
 	cursor = 'auto',
 	align = 'center',
+	sx,
 	...textProps
   }) => {
 	const { colors } = useTheme();
@@ -84,6 +89,7 @@ const Text: React.FC<TextProps> = ({
 		default: // Normal text
 			break;
 	}
+	style = { ...style, ...sx };
 
 	switch (component) {
 		case 'span':

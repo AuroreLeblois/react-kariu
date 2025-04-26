@@ -3,7 +3,7 @@ import { StoryFn, Meta } from '@storybook/react';
 import CheckBox from '../src/Atoms/Input/CheckBox';
 
 export default {
-  title: 'Atoms/CheckBox',
+  title: 'Atoms/Input/CheckBox',
   component: CheckBox,
   tags: ['autodocs'],
   argTypes: {

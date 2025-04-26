@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useTheme } from '../../Theme/ThemeProvider';
+import Text from '../Text/Text';
 import Ripple from '../Ripple/Ripple';
 
 interface CheckBoxProps {
@@ -109,7 +110,9 @@ const CheckBox: React.FC<CheckBoxProps> = ({
   
   // Styles pour le texte du label
   const labelStyle: React.CSSProperties = {
-    marginLeft: '10px',
+    marginLeft: '0.55rem',
+    marginBottom: '0px',
+    marginTop: '0px',
     fontSize: '14px',
     color: colors.text.main
   };
@@ -157,7 +160,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
         {ripple && <Ripple duration={rippleDuration} color={rippleActualColor} />}
       </div>
       
-      {label && <span style={labelStyle}>{label}</span>}
+      {label && <Text text={label} component="span" sx={labelStyle} />}
     </label>
   );
 };
