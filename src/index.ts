@@ -11,6 +11,7 @@ export { default as Icon } from './Atoms/Icon/Icon';
 
 export { default as HoverAnimation } from './Animation/HoverAnimation';
 export { default as SlideAnimation } from './Animation/SlideAnimation';
+export { default as Carousel } from './Animation/Carousel/Carousel';
 
 export { default as Link } from './Atoms/Link/Link';
 export { default as Text } from './Atoms/Text/Text';

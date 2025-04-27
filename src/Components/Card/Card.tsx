@@ -104,6 +104,8 @@ const Card: React.FC<CardProps> = ({
         <div 
           className="card-kariu--content" 
           style={{
+            display: "flex",
+            justifyContent: "center",
             color: "inherit",
             backgroundColor: "inherit",
             flexDirection: "column" as const,

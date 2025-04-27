@@ -2,3 +2,7 @@
 @import './Atoms/Ripple/ripple.css';
 @import './Animation/slideAnimation.css';
 @import './Animation/hoverAnimation.css';
+@import "swiper/css";
+@import "swiper/css/pagination";
+@import "swiper/css/effect-fade";
+@import "swiper/css/autoplay";
