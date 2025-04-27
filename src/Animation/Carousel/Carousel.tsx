@@ -8,9 +8,11 @@ import { useTheme } from "../../Theme/ThemeProvider";
  * 
  * to Use :
  * 
+ * ```tsx
  * import { Carousel } from "react-kariu";
  * 
- * <Carousel items={items} renderItem={renderItem} />
+ * <Carousel items={items} renderItem={(item) => <div>{item}</div>} />
+ * ```
  * 
  * 
  */
@@ -35,7 +37,7 @@ function Carousel<T>(props: CarouselProps<T>) {
       style={{
         // @ts-ignore
         "--swiper-pagination-bullet-active": colors.primary.light,
-        "--swiper-pagination-bullet-inactive-color": colors.text.lighter,
+        "--swiper-pagination-bullet-inactive-color": colors.text.lighter ,
         "--swiper-pagination-bullet-inactive-opacity": "0.6",
         "--swiper-pagination-bullet-opacity": "1",
         "--swiper-pagination-bullet-size": "0.55rem",
