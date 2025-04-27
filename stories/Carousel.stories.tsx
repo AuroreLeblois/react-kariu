@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Carousel } from "../src/Animation";
 import { Card } from "../src/Components";
+import React from "react";
 
 const meta = {
   title: "Animation/Carrousel",
