@@ -38,6 +38,7 @@ export const getAnimationStyles = (isHovered: boolean, intensity: number, mouseP
     const styleBase = {
       ".hover-animation-container": {
           display: "inline-block",
+          width: "auto",
           cursor: "pointer",
       }
     };
