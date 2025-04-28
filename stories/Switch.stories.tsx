@@ -52,22 +52,9 @@ const meta: Meta<typeof Switch> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Switch>;
-
-// Basic switch story
-export const Default: Story = {
-  args: {
-    label: 'Dark Mode',
-    checked: false,
-    size: 'medium',
-    disabled: false,
-    ripple: true,
-    rippleDuration: 500,
-  },
-};
 
 // Interactive story with state
-export const Interactive = () => {
+export const Default = () => {
   const [checked, setChecked] = useState(false);
   
   return (
@@ -82,38 +69,63 @@ export const Interactive = () => {
 };
 
 // Story showing different sizes
-export const Sizes = () => (
+export const Sizes = () => {
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(false);
+  const [checked3, setChecked3] = useState(false);
+
+  return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <Switch label="Small size" size="small" />
-      <Switch label="Medium size (default)" size="medium" />
-      <Switch label="Large size" size="large" />
+      <Switch label="Small size" size="small" checked={checked1} onChange={(e) => setChecked1(e.target.checked)} />
+      <Switch label="Medium size (default)" size="medium" checked={checked2} onChange={(e) => setChecked2(e.target.checked)} />
+      <Switch label="Large size" size="large" checked={checked3} onChange={(e) => setChecked3(e.target.checked)} />
     </div>
-);
+  );
+};
 
 // Story showing different states
-export const States = () => (
+export const States = () => {
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(true);
+  const [checked3, setChecked3] = useState(false);
+  const [checked4, setChecked4] = useState(true);
+
+  return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <Switch label="Default state" />
-      <Switch label="Checked state" checked={true} />
-      <Switch label="Disabled state" disabled={true} />
-      <Switch label="Checked and disabled" checked={true} disabled={true} />
+      <Switch label="Default state" checked={checked1} onChange={(e) => setChecked1(e.target.checked)} />
+      <Switch label="Checked state" checked={checked2} onChange={(e) => setChecked2(e.target.checked)} />
+      <Switch label="Disabled state" disabled={true} checked={checked3} onChange={(e) => setChecked3(e.target.checked)} />
+      <Switch label="Checked and disabled" checked={checked4} disabled={true} />
     </div>
-);
+  );
+};
 
 // Story with custom colors
-export const CustomColors = () => (
+export const CustomColors = () => {
+  const [checked1, setChecked1] = useState(true);
+  const [checked2, setChecked2] = useState(true);
+  const [checked3, setChecked3] = useState(true);
+  const [checked4, setChecked4] = useState(true);
+
+  return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <Switch label="Primary color (default)" checked={true} />
-      <Switch label="Custom blue" checked={true} color="#2196F3" />
-      <Switch label="Custom green" checked={true} color="#4CAF50" />
-      <Switch label="Custom purple" checked={true} color="#9C27B0" />
+      <Switch label="Primary color (default)" checked={checked1} onChange={(e) => setChecked1(e.target.checked)} />
+      <Switch label="Custom blue" checked={checked2} onChange={(e) => setChecked2(e.target.checked)} color="#2196F3" />
+      <Switch label="Custom green" checked={checked3} onChange={(e) => setChecked3(e.target.checked)} color="#4CAF50" />
+      <Switch label="Custom purple" checked={checked4} onChange={(e) => setChecked4(e.target.checked)} color="#9C27B0" />
     </div>
-);
+  );
+};
 
 // Story without ripple effect
-export const NoRipple = () => (
+export const NoRipple = () => {
+  const [checked1, setChecked1] = useState(true);
+  const [checked2, setChecked2] = useState(true);
+
+  return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <Switch label="Switch with ripple (default)" />
-      <Switch label="Switch without ripple" ripple={false} />
+      <Switch label="Switch with ripple (default)" checked={checked1} onChange={(e) => setChecked1(e.target.checked)} />
+      <Switch label="Switch without ripple" checked={checked2} onChange={(e) => setChecked2(e.target.checked)} ripple={false} />
     </div>
-); 
+  );
+}; 

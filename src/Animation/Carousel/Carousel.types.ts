@@ -20,4 +20,12 @@ export interface CarouselProps<T> {
    * Fonction for each item
    */
   renderItem: (item: T) => React.ReactNode;
+  /**
+   * If true, the carousel will loop
+   */
+  loop?: boolean;
+  /**
+   * Delay between slides if you loop
+   */
+  delay?: number;
 }

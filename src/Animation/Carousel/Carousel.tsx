@@ -18,7 +18,7 @@ import { useTheme } from "../../Theme/ThemeProvider";
  */
 function Carousel<T>(props: CarouselProps<T>) {
   const { colors } = useTheme();
-  const { id, items, renderItem, spaceBetween = 0 } = props;
+  const { id, items, renderItem, spaceBetween = 0, loop = true, delay = 3000 } = props;
 
   if (!items.length) return null;
 
@@ -49,9 +49,9 @@ function Carousel<T>(props: CarouselProps<T>) {
       className="swiper-react-kariu"
       slidesPerView={1}
       spaceBetween={spaceBetween}
-      loop={false}
+      loop={loop}
       autoplay={{
-        delay: 15000,
+        delay,
         disableOnInteraction: false,
       }}
       pagination={{ clickable: true }}
