@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import HeadItem from '../src/Components/calendar/HeadItem';
+import HeadItem from '../src/Container/calendar/HeadItem';
 
 const meta = {
-  title: 'Components/Calendar/HeadItem',
+  title: 'Beta/Calendar/HeadItem',
   component: HeadItem,
   parameters: {
     layout: 'centered',

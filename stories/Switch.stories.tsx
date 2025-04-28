@@ -102,17 +102,13 @@ export const States = () => {
 
 // Story with custom colors
 export const CustomColors = () => {
-  const [checked1, setChecked1] = useState(true);
-  const [checked2, setChecked2] = useState(true);
-  const [checked3, setChecked3] = useState(true);
-  const [checked4, setChecked4] = useState(true);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <Switch label="Primary color (default)" checked={checked1} onChange={(e) => setChecked1(e.target.checked)} />
-      <Switch label="Custom blue" checked={checked2} onChange={(e) => setChecked2(e.target.checked)} color="#2196F3" />
-      <Switch label="Custom green" checked={checked3} onChange={(e) => setChecked3(e.target.checked)} color="#4CAF50" />
-      <Switch label="Custom purple" checked={checked4} onChange={(e) => setChecked4(e.target.checked)} color="#9C27B0" />
+      <Switch label="Primary color (default)"/>
+      <Switch label="Custom blue"  color="#2196F3" />
+      <Switch label="Custom green" color="#4CAF50" />
+      <Switch label="Custom purple" color="#9C27B0" />
     </div>
   );
 };

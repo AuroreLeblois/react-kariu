@@ -1,6 +1,6 @@
 import React from "react";
 import Dot from "../../Atoms/Assets/Dot";
-import Ripple from "../../Atoms/Ripple/Ripple";
+import Ripple from "../../Animation/Ripple/Ripple";
 import { useTheme } from "../../Theme/ThemeProvider";
 
 interface Item {

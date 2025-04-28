@@ -1,9 +1,9 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { Ripple } from '../src/Atoms';
+import { Ripple } from '../src/Animation';
 
 const meta: Meta<typeof Ripple> = {
-  title: 'Atoms/Ripple',
+  title: 'Animation/Ripple',
   component: Ripple,
   parameters: {
     layout: 'centered',

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Carousel } from "../src/Animation";
-import { Card } from "../src/Components";
+import { Card } from "../src/Container";
 import React from "react";
 
 const meta = {

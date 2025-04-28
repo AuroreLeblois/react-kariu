@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import BodyItem from '../src/Components/calendar/BodyItem';
+import BodyItem from '../src/Container/calendar/BodyItem';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: 'Components/Calendar/BodyItem',
+  title: 'Beta/Calendar/BodyItem',
   component: BodyItem,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

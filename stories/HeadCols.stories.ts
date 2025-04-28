@@ -1,9 +1,8 @@
-import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import HeadCols from '../src/Components/calendar/HeadCols';
+import HeadCols from '../src/Container/calendar/HeadCols';
 
 const meta = {
-  title: 'Components/Calendar/HeadCols',
+  title: 'Beta/Calendar/HeadCols',
   component: HeadCols,
   tags: ['autodocs'],
   parameters: {

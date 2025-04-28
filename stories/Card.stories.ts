@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, Card, Text, Title } from '../src';
+import { Card, Text, Title } from '../src';
 
 // Configuration de base pour le composant Card
 const meta: Meta<typeof Card> = {
-  title: 'Components/Card',
+  title: 'Container/Card',
   component: Card,
   parameters: {
     layout: 'centered',

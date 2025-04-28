@@ -13,6 +13,7 @@ export default defineConfig({
   outDir: 'dist',
   bundle: true,
   outExtension({ format }) {
+    console.log(format);
     return {
       js: format === 'cjs' ? '.js' : '.mjs',
     };

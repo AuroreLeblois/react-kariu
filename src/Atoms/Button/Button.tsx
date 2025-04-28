@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styleButton } from './styleButton';
-import Ripple from '../Ripple/Ripple';
+import Ripple from '../../Animation/Ripple/Ripple';
 import { useTheme } from '../../Theme/ThemeProvider';
 
 /**
@@ -106,7 +106,7 @@ const Button: React.FC<ButtonProps> = ({
       style={completeStyle}
       onClick={(event) => {
         if (!event?.target) {
-         return;
+          return;
         }
         event.preventDefault();
         event.stopPropagation();

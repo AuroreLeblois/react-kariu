@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useTheme } from '../../Theme/ThemeProvider';
-import Ripple from '../Ripple/Ripple';
+import Ripple from '../../Animation/Ripple/Ripple';
 
 interface SwitchProps {
   /**
@@ -114,7 +114,7 @@ const Switch: React.FC<SwitchProps> = ({
     borderRadius: '50%',
     position: 'absolute',
     top: `${(height - thumbSize) / 2}px`,
-    left: checked ? `${width - thumbSize - ((height - thumbSize) / 2)}px` : `${(height - thumbSize) / 2}px`,
+    left: checkedState ? `${width - thumbSize - ((height - thumbSize) / 2)}px` : `${(height - thumbSize) / 2}px`,
     transition: 'left 0.3s ease, background-color 0.3s ease',
     zIndex: 1
   };
@@ -137,10 +137,12 @@ const Switch: React.FC<SwitchProps> = ({
       <input
         type="checkbox"
         checked={checkedState}
+        onClick={() => {
+            setCheckedState(!checkedState);
+        }}
         onChange={(e) => {
-            setCheckedState(e.target.checked);
           if (onChange) {
-            onChange(e);
+              onChange(e);
           }
         }}
         disabled={disabled}

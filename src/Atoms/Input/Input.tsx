@@ -52,7 +52,7 @@ interface InputProps {
   disabled?: boolean;
 }
 
-const Button: React.FC<InputProps> = ({
+const Input: React.FC<InputProps> = ({
   type,
   primary = true,
   size = 'medium',
@@ -79,4 +79,4 @@ const Button: React.FC<InputProps> = ({
   );
 };
 
-export default Button;
+export default Input;
