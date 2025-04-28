@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { HoverAnimationProps } from "./HoverAniamtion.type";
+import { HoverAnimationProps } from "./HoverAnimation.type";
 import { getAnimationStyles } from "./HoverAnimationStyle";
 /**
  * HoverAnimation component
@@ -18,7 +18,7 @@ const HoverAnimation: React.FC<HoverAnimationProps> = ({
   intensity = 1,
   duration = 300,
   className = "",
-  sx = {}
+  sx = null
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -41,6 +41,9 @@ const HoverAnimation: React.FC<HoverAnimationProps> = ({
       className={`hover-animation-container ${className}`}
       style={{
         ...getAnimationStyles(isHovered, intensity, mousePosition, duration, type),
+          width: "fit-content",
+          cursor: "pointer",
+          overflow: "hidden",
         ...sx
       }}
       onMouseEnter={() => setIsHovered(true)}

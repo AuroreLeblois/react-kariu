@@ -34,14 +34,6 @@ export const getAnimationStyles = (isHovered: boolean, intensity: number, mouseP
         document.head.appendChild(styleElement);
       }
     }
-
-    const styleBase = {
-      ".hover-animation-container": {
-          display: "inline-block",
-          width: "auto",
-          cursor: "pointer",
-      }
-    };
     
     const animationStyles = {
       scale: { 
@@ -70,7 +62,6 @@ export const getAnimationStyles = (isHovered: boolean, intensity: number, mouseP
     
     // Styles de base pour tous les types d'animation
     const baseStyle = {
-      ...styleBase,
       transition: type === "shake" ? "none" : `all ${duration}ms ease-out`
     };
     
