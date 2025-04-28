@@ -6,15 +6,15 @@ import { useTheme } from "../../Theme/ThemeProvider";
 /**
  * Carrousel using custom element
  * 
- * to Use :
+ * How to use :
  * 
  * ```tsx
  * import { Carousel } from "react-kariu";
  * 
- * <Carousel items={items} renderItem={(item) => <div>{item}</div>} />
+ * <Carousel items={items} renderItem={(item) => 
+ *  <Card title={typedItem.title}> <img src={typedItem.image} alt={typedItem.title} /></Card>
+ *  />
  * ```
- * 
- * 
  */
 function Carousel<T>(props: CarouselProps<T>) {
   const { colors } = useTheme();

@@ -39,6 +39,11 @@ const preview: Preview = {
     },
   },
   parameters: {
+    docs: {
+      canvas: {
+        sourceState: "shown",
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

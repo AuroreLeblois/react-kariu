@@ -73,19 +73,3 @@ export const SingleItem: Story = {
     renderItem: Default.args?.renderItem,
   },
 };
-
-export const MultipleItems: Story = {
-  args: {
-    items: newsItems,
-    renderItem: (item: unknown) => {
-      const typedItem = item as { image: string; title: string };
-      return (
-        <img
-          src={typedItem.image}
-          alt={typedItem.title}
-          style={{ width: 200 }}
-        />
-      );
-    },
-  },
-};
