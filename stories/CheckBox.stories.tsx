@@ -21,13 +21,10 @@ export default {
 
 // Template de base
 const Template: StoryFn<typeof CheckBox> = (args) => {
-  const [isChecked, setIsChecked] = useState(args.checked || false);
   
   return (
       <CheckBox 
-        {...args} 
-        checked={isChecked}
-        onChange={(e) => setIsChecked(e.target.checked)}
+        {...args}
       />
   );
 };

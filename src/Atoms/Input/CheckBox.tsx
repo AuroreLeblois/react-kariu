@@ -102,8 +102,8 @@ const CheckBox: React.FC<CheckBoxProps> = ({
     alignItems: 'center',
     width: `${checkboxSize}px`,
     height: `${checkboxSize}px`,
-    backgroundColor: checked ? actualColor : colors.background.light,
-    border: `2px solid ${checked ? actualColor : colors.border}`,
+    backgroundColor: checkedState ? actualColor : colors.background.light,
+    border: `2px solid ${checkedState ? actualColor : colors.border}`,
     borderRadius: '4px',
     transition: 'all 0.2s ease',
     position: 'relative',
@@ -120,11 +120,11 @@ const CheckBox: React.FC<CheckBoxProps> = ({
   };
   
   // Couleur du ripple
-  const rippleActualColor = rippleColor || (checked ? colors.primary.lighter : colors.background.darker);
+  const rippleActualColor = rippleColor || (checkedState ? colors.primary.lighter : colors.background.darker);
   
   return (
     <label 
-      className={`kariuCheckbox ${size} ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''} ${className}`}
+      className={`kariuCheckbox ${size} ${checkedState ? 'checked' : ''} ${disabled ? 'disabled' : ''} ${className}`}
       style={containerStyle}
     >
       <input
@@ -152,7 +152,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
         className="kariuCheckbox--box"
         style={checkboxStyle}
       >
-        {checked && (
+        {checkedState && (
           <svg 
             viewBox="0 0 24 24"
             width={checkboxSize * 0.7}
