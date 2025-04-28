@@ -4,7 +4,6 @@ import { ThemeColors, ThemeType, ThemeContextType } from './types';
 import { calculateShades } from './colorContrast';
 import { defaultThemes } from './defaultTheme';
 
-
 // Création du contexte
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 

@@ -18,7 +18,7 @@ import { useTheme } from "../../Theme/ThemeProvider";
  */
 function Carousel<T>(props: CarouselProps<T>) {
   const { colors } = useTheme();
-  const { id, items, renderItem, spaceBetween = 0, loop = true, delay = 3000 } = props;
+  const { id, items, renderItem, spaceBetween = 10, loop = true, delay = 3000 } = props;
 
   if (!items.length) return null;
 

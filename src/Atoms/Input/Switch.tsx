@@ -2,59 +2,9 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useTheme } from '../../Theme/ThemeProvider';
 import Ripple from '../../Animation/Ripple/Ripple';
+import { SwitchProps } from './Switch.type';
 
-interface SwitchProps {
-  /**
-   * Label to display next to the switch
-   */
-  label?: string;
-  /**
-   * If the switch is activated
-   */
-  checked?: boolean;
-  /**
-   * Function called when the state changes
-   */
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  /**
-   * Taille du switch
-   */
-  size?: 'small' | 'medium' | 'large';
-  /**
-   * Custom color
-   */
-  color?: string;
-  /**
-   * Custom classname
-   */
-  className?: string;
-  /**
-   * Custom styles
-   */
-  sx?: React.CSSProperties;
-  /**
-   * If the switch is disabled
-   */
-  disabled?: boolean;
-  /**
-   * If the switch has a ripple effect when clicked
-   */
-  ripple?: boolean;
-  /**
-   * Durée de l'effet ripple
-   */
-  rippleDuration?: number;
-  /**
-   * Ripple color
-   */
-  rippleColor?: string;
-  /**
-   * Additional props for the input
-   */
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
-}
-
-const Switch: React.FC<SwitchProps> = ({
+export const Switch: React.FC<SwitchProps> = ({
   label,
   checked = false,
   onChange,
@@ -130,8 +80,7 @@ const Switch: React.FC<SwitchProps> = ({
   const rippleActualColor = rippleColor || (checked ? colors.primary.lighter : colors.background.darker);
   
   return (
-    <label 
-      className={`kariuSwitch ${size} ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''} ${className}`}
+    <label className={`kariuSwitch ${size} ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''} ${className}`}
       style={containerStyle}
     >
       <input
@@ -155,14 +104,8 @@ const Switch: React.FC<SwitchProps> = ({
         {...inputProps}
       />
       
-      <div 
-        className="kariuSwitch--track"
-        style={trackStyle}
-      >
-        <div 
-          className="kariuSwitch--thumb"
-          style={thumbStyle}
-        >
+      <div className="kariuSwitch--track" style={trackStyle}>
+        <div className="kariuSwitch--thumb" style={thumbStyle}>
           {ripple && <Ripple duration={rippleDuration} color={rippleActualColor} />}
         </div>
       </div>

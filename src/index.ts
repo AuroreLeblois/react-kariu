@@ -16,8 +16,9 @@ export { default as ExternalIcon } from './Atoms/Icon/ExternalIcon';
 export { default as ArrowDown } from './Atoms/Icon/ArrowDown';
 export { default as Icon } from './Atoms/Icon/Icon';
 
-export { default as HoverAnimation } from './Animation/HoverAnimation';
-export { default as SlideAnimation } from './Animation/SlideAnimation';
+// Animation Components
+export { default as HoverAnimation } from './Animation/HoverAnimation/HoverAnimation';
+export { default as SlideAnimation } from './Animation/SlideAnimation/SlideAnimation';
 export { default as Carousel } from './Animation/Carousel/Carousel';
 
 // Text Components
@@ -28,7 +29,7 @@ export { default as Title } from './Atoms/Text/Title';
 // Input Components
 export { default as Input } from './Atoms/Input/Input';
 export { default as CheckBox } from './Atoms/Input/CheckBox';
-export { default as Switch } from './Atoms/Input/Switch';
+export { Switch } from './Atoms/Input/Switch';
 
 // Calendar Components
 export { default as HeadCols } from './Container/calendar/HeadCols';
@@ -41,3 +42,4 @@ export { default as Card } from './Container/Card/Card';
 export { ThemeProvider, useTheme } from './Theme/ThemeProvider';
 export { defaultThemes } from './Theme/defaultTheme';
 export { calculateShades, getContrastTextColor } from './Theme/colorContrast';
+

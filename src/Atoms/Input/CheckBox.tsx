@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { useTheme } from '../../Theme/ThemeProvider';
 import Text from '../Text/Text';
 import Ripple from '../../Animation/Ripple/Ripple';
@@ -69,6 +70,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
   inputProps = {},
 }) => {
   const { colors } = useTheme();
+  const [checkedState, setCheckedState] = useState(checked);
   
   // Déterminer les dimensions selon la taille
   const getSize = () => {
@@ -127,8 +129,15 @@ const CheckBox: React.FC<CheckBoxProps> = ({
     >
       <input
         type="checkbox"
-        checked={checked}
-        onChange={onChange}
+        checked={checkedState}
+        onClick={() => {
+            setCheckedState(!checkedState);
+        }}
+        onChange={(e) => {
+          if (onChange) {
+              onChange(e);
+          }
+        }}
         disabled={disabled}
         style={{
           position: 'absolute',

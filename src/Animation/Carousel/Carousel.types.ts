@@ -7,7 +7,7 @@ export interface CarouselProps<T> {
   id?: string;
 
   /**
-   * Space between slides
+   * Space between slides (in pixels)
    */
   spaceBetween?: number;
 

@@ -1,40 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./slideAnimation.css";
-
-interface SlideAnimationProps {
-  /**
-   * Children elements to animate
-   */
-  children: React.ReactNode;
-  /**
-   * Direction of the animation
-   */
-  direction?: "left" | "right" | "top" | "bottom";
-  /**
-   * Duration of the animation in milliseconds
-   */
-  duration?: number;
-  /**
-   * Delay before the animation starts in milliseconds
-   */
-  delay?: number;
-  /**
-   * If the animation should be triggered on scroll
-   */
-  onScroll?: boolean;
-  /**
-   * Trigger the animation manually (true = visible)
-   */
-  trigger?: boolean;
-  /**
-   * Custom CSS class
-   */
-  className?: string;
-  /**
-   * Custom styles
-   */
-  sx?: React.CSSProperties;
-}
+import { SlideAnimationProps } from "./SlideAnimation.types";
 
 const SlideAnimation: React.FC<SlideAnimationProps> = ({
   children,
@@ -51,7 +16,7 @@ const SlideAnimation: React.FC<SlideAnimationProps> = ({
   // - trigger is not defined and onScroll is false (automatic animation)
   const [isVisible, setIsVisible] = useState(trigger !== undefined ? trigger : !onScroll);
 
-  // Mise à jour lorsque trigger change
+  // Update when trigger changes
   useEffect(() => {
     if (trigger !== undefined) {
       setIsVisible(trigger);
@@ -85,6 +50,12 @@ const SlideAnimation: React.FC<SlideAnimationProps> = ({
 
   // Determine the animation styles based on the direction
   const getAnimationStyles = (): React.CSSProperties => {
+    const baseStyle = {
+      display: "block",
+      width: "100%",
+      overflow: "hidden",
+      willChange: "transform, opacity"
+    };
     const directionStyles = {
       left: { transform: isVisible ? "translateX(0)" : "translateX(-100%)" },
       right: { transform: isVisible ? "translateX(0)" : "translateX(100%)" },
@@ -93,6 +64,7 @@ const SlideAnimation: React.FC<SlideAnimationProps> = ({
     };
 
     return {
+      ...baseStyle,
       ...directionStyles[direction],
       transition: `transform ${duration}ms ease-out ${delay}ms, opacity ${duration}ms ease-out ${delay}ms`,
       opacity: isVisible ? 1 : 0,
