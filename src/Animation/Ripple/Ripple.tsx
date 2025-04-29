@@ -1,5 +1,5 @@
 import React, { useState, MouseEvent, useEffect } from 'react';
-import './ripple.css';
+import { rippleStyleContainer, getStyleRipple } from './RippleStyle';
 
 interface RippleProps {
   duration: number;
@@ -33,13 +33,21 @@ const Ripple: React.FC<RippleProps> = ({ duration, color, animationType = 'circl
     };
     setRippleArray([...rippleArray, newRipple]);
   };
-
   return (
-    <div className="ripple-container" onMouseDown={addRipple} style={{ ...sx }}>
+    <div 
+      className={`ripple-container${className ? ` ${className}` : ''}`}
+      onMouseDown={addRipple} 
+      style={{ 
+        ...rippleStyleContainer,
+        ...sx,
+        overflow: 'hidden'
+      }}
+    >
       {rippleArray.map((ripple, index) => (
         <span
           key={index}
           style={{
+            ...getStyleRipple(animationType),
             top: ripple.top,
             left: ripple.left,
             width: ripple.size,
@@ -48,7 +56,7 @@ const Ripple: React.FC<RippleProps> = ({ duration, color, animationType = 'circl
             animationDuration: `${duration}ms`,
             zIndex: 9999
           }}
-          className={`ripple ripple-${animationType}${className ? ` ${className}` : ''}`}
+          className={`ripple ripple-${animationType}`}
         />
       ))}
     </div>

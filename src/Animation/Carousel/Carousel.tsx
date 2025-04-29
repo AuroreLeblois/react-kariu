@@ -11,10 +11,18 @@ import { useTheme } from "../../Theme/ThemeProvider";
  * ```tsx
  * import { Carousel } from "react-kariu";
  * // We advise to import the css files for the carousel in the root file of your project to avoid unusual behavior:
+ * 
+ * import "swiper/css";
  * import "swiper/css/pagination";
  * import "swiper/css/effect-fade";
  * import "swiper/css/autoplay";
-
+ * 
+ * OR in a index.css file :
+ * 
+ * @import "swiper/css";
+ * @import "swiper/css/pagination";
+ * @import "swiper/css/effect-fade";
+ * @import "swiper/css/autoplay";
  * 
  * <Carousel items={items} renderItem={(item) => 
  *  <Card title={typedItem.title}> <img src={typedItem.image} alt={typedItem.title} /></Card>

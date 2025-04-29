@@ -31,12 +31,21 @@ type Story = StoryObj<typeof Ripple>;
 
 // Conteneur pour montrer l'effet de façon plus visible
 const RippleContainer: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <div className='ripple-container' 
-  style={{ width: '100%', height: '100%', backgroundColor: '#f0f0f0', 
-  display: 'flex', justifyContent: 'center', 
-  alignItems: 'center', borderRadius: '4px', cursor: 'pointer' }}>
-    <span>Click me! the ripple is here</span>
-   {children}
+  <div className='ripple-container-test' 
+    style={{ 
+      width: '300px',      // Taille fixe pour plus de contrôle
+      height: '200px', 
+      backgroundColor: '#f0f0f0', 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      borderRadius: '4px', 
+      cursor: 'pointer',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+    <span style={{ position: 'relative', zIndex: 2 }}>Click me! the ripple is here</span>
+    {children}
   </div>
 );
 
@@ -44,6 +53,7 @@ export const Default: Story = {
   args: {
     duration: 800,
     color: 'rgba(0, 0, 0, 0.1)',
+    sx: { zIndex: 1 }  // Assurez-vous que le ripple est sous le texte
   },
   render: (args) => (
     <RippleContainer>
