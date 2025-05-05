@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import CheckBox from '../src/Atoms/Input/CheckBox';
+import { CheckBox } from '../src/Input';
 
 export default {
   title: 'Atoms/Input/CheckBox',
