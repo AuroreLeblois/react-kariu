@@ -29,6 +29,8 @@ export { default as Title } from './Atoms/Text/Title';
 // Input Components
 export { default as Input } from './Input/Input';
 export { default as CheckBox } from './Input/CheckBox';
+export { default as Radio } from './Input/Radio';
+export { default as RadioGroup } from './Form/RadioGroup';
 export { Switch } from './Input/Switch';
 
 // Calendar Components
