@@ -27,9 +27,9 @@ export { default as Text } from './Atoms/Text/Text';
 export { default as Title } from './Atoms/Text/Title';
 
 // Input Components
-export { default as Input } from './Atoms/Input/Input';
-export { default as CheckBox } from './Atoms/Input/CheckBox';
-export { Switch } from './Atoms/Input/Switch';
+export { default as Input } from './Input/Input';
+export { default as CheckBox } from './Input/CheckBox';
+export { Switch } from './Input/Switch';
 
 // Calendar Components
 export { default as HeadCols } from './Container/calendar/HeadCols';

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useTheme } from '../../Theme/ThemeProvider';
-import Text from '../Text/Text';
-import Ripple from '../../Animation/Ripple/Ripple';
+import { useTheme } from '../Theme/ThemeProvider';
+import Text from '../Atoms/Text/Text';
+import Ripple from '../Animation/Ripple/Ripple';
 
 interface CheckBoxProps {
   /**

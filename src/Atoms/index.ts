@@ -1,8 +1,8 @@
 export { default as Avatar } from './Avatar/Avatar';
 export { default as Button } from './Button/Button';
-export { default as Input } from './Input/Input';
-export { default as CheckBox } from './Input/CheckBox';
-export { default as Switch } from './Input/Switch';
+export { default as Input } from '../Input/Input';
+export { default as CheckBox } from '../Input/CheckBox';
+export { default as Switch } from '../Input/Switch';
 export { default as Title } from './Text/Title';
 export { default as Text } from './Text/Text';
 export { default as Link } from './Link/Link';

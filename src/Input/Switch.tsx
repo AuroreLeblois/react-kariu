@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useTheme } from '../../Theme/ThemeProvider';
-import Ripple from '../../Animation/Ripple/Ripple';
-import { SwitchProps } from './Switch.type';
+import { useTheme } from '../Theme/ThemeProvider';
+import Ripple from '../Animation/Ripple/Ripple';
+import { SwitchProps } from './Input.type';
 
 export const Switch: React.FC<SwitchProps> = ({
   label,
