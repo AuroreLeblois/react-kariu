@@ -2,6 +2,8 @@ export * from './Animation';
 export * from './Container';
 export * from './Theme';
 export * from './Atoms';
+export * from './Input';
+export * from './Form';
 
 // Ripple Component
 export { default as Ripple } from './Animation/Ripple/Ripple';
