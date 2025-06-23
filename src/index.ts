@@ -34,6 +34,7 @@ export { default as CheckBox } from './Input/CheckBox';
 export { default as Radio } from './Input/Radio';
 export { default as RadioGroup } from './Form/RadioGroup';
 export { Switch } from './Input/Switch';
+export { default as TextArea } from './Input/TextArea';
 
 // Calendar Components
 export { default as HeadCols } from './Container/calendar/HeadCols';
