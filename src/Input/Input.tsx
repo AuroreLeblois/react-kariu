@@ -50,6 +50,7 @@ interface InputProps {
   onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
+  InputProps?: InputProps
 }
 
 const Input: React.FC<InputProps> = ({
@@ -74,6 +75,7 @@ const Input: React.FC<InputProps> = ({
       type={type}
       style={completeStyle}
       className={['kariu-input', `kariu-input--${size}`, shape, mode, className].join(' ')}
+      aria-multiline
       {...inputProps}
     />
   );
