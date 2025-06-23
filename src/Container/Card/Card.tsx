@@ -28,6 +28,8 @@ interface CardProps {
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   /** Class name of the card */
   className?: string;
+  /** sx */
+  sx?: object;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -42,6 +44,7 @@ const Card: React.FC<CardProps> = ({
   width = "auto",
   children,
   className = "",
+  sx
 }) => {
   const { theme,colors } = useTheme();
   const [show, setShowContent] = useState(showContent);
@@ -105,6 +108,7 @@ const Card: React.FC<CardProps> = ({
           className="card-kariu--content" 
           style={{
             display: "flex",
+            width: '100%',
             justifyContent: "center",
             color: "inherit",
             backgroundColor: "inherit",
