@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import HeadItem from '../src/Container/calendar/HeadItem';
 
 const meta = {

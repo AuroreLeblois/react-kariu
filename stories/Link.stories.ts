@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Link from '../src/Atoms/Link/Link';
 
 // Plus d'informations sur la configuration des histoires : https://storybook.js.org/docs/writing-stories#default-export

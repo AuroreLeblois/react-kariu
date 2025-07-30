@@ -43,7 +43,7 @@ const Layout: React.FC<LayoutProps> = ({
 }) => {
   return (
     <div
-      className={`kariu-layout ${className}`}
+      className={`kariu-layout ${className ?? null}`}
       style={{
         display,
         flexFlow: 'wrap',

@@ -22,6 +22,7 @@ export { default as Icon } from './Atoms/Icon/Icon';
 export { default as HoverAnimation } from './Animation/HoverAnimation/HoverAnimation';
 export { default as SlideAnimation } from './Animation/SlideAnimation/SlideAnimation';
 export { default as Carousel } from './Animation/Carousel/Carousel';
+export { default as ProgressBar} from './Animation/ProgressBar/ProgressBar';
 
 // Text Components
 export { default as Link } from './Atoms/Link/Link';

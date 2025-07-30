@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { HoverAnimation } from '../src/Animation';
 import { Button } from '../src/Atoms';
 

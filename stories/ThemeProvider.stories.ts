@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react-vite';
 import { Button, Title, Text } from '../src/Atoms';
 import { ThemeProvider, useTheme } from '../src/Theme/ThemeProvider';
 import Card from '../src/Components/Card/Card';

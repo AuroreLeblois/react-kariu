@@ -1,5 +1,5 @@
 import React from 'react';
-import { Preview, Decorator } from '@storybook/react';
+import { Preview, Decorator } from '@storybook/react-vite';
 import { ThemeProvider } from '../src/Theme/ThemeProvider';
 import { defaultThemes } from '../src/Theme/defaultTheme';
 import "swiper/css";
