@@ -32,7 +32,6 @@ const Alert: React.FC<AlertProps> = ({
   children,
 }) => {
   const { colors, theme } = useTheme();
-  console.log(theme);
 
   const getVariantPalette = () => {
     switch (variant) {
@@ -51,13 +50,14 @@ const Alert: React.FC<AlertProps> = ({
   const baseStyle: React.CSSProperties = {
     display: 'flex',
     width: '100%',
-    alignItems: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'center',
     gap: 8,
     padding: '12px 14px',
     borderRadius: 8,
     borderStyle: 'solid',
     borderWidth: 1,
-    backgroundColor: colors[variant][theme],
+    backgroundColor: theme === 'light' ? colors[variant].lighter : colors[variant].darker,
     borderColor: colors[variant][theme],
     color: theme === 'light' ? colors[variant].darker : colors[variant].lighter,
   };
