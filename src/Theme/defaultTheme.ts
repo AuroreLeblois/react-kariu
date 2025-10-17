@@ -23,5 +23,9 @@ export const defaultThemes = {
     fontFamily: "Nunito Sans, sans-serif",
     headingFont: "cursive, sans-serif",
     border: '#e0e0e0',
+    success: calculateShades("#00C853"),
+    warning: calculateShades("#FF9500"),
+    info: calculateShades("#0070f3"),
+    error: calculateShades("#E53935"),
   },
 };
