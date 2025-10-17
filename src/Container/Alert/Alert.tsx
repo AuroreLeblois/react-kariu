@@ -57,8 +57,8 @@ const Alert: React.FC<AlertProps> = ({
     borderRadius: 8,
     borderStyle: 'solid',
     borderWidth: 1,
-    backgroundColor: colors[variant].light,
-    borderColor: colors[variant].dark,
+    backgroundColor: colors[variant][theme],
+    borderColor: colors[variant][theme],
     color: theme === 'light' ? colors[variant].darker : colors[variant].lighter,
   };
 
@@ -85,7 +85,6 @@ const Alert: React.FC<AlertProps> = ({
       style={{ ...baseStyle, ...sx }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-        {title && <h4>{title}</h4>}
         {message && <p>{message}</p>}
         {children}
       </div>

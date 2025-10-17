@@ -50,7 +50,7 @@ export const Warning: Story = {
 
 export const Danger: Story = {
   args: {
-    variant: 'danger',
+    variant: 'error',
     title: 'Error',
     message: 'A critical error occurred.',
   },
