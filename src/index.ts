@@ -44,6 +44,7 @@ export { default as HeadItem } from './Container/calendar/HeadItem';
 
 // Container Components
 export { default as Card } from './Container/Card/Card';
+export { default as Alert } from './Container/Alert/Alert';
 // Theme
 export { ThemeProvider, useTheme } from './Theme/ThemeProvider';
 export { defaultThemes } from './Theme/defaultTheme';

@@ -24,6 +24,22 @@ export type ThemeColors = {
    */
   text: Shades;
   /**
+   * The success color of the theme
+   */
+  success: Shades;
+  /**
+   * The warning color of the theme
+   */
+  warning: Shades;
+  /**
+   * The error color of the theme
+   */
+  error: Shades;
+  /**
+   * The info color of the theme
+   */
+  info: Shades;
+  /**
    * The font family of the theme
    */
   fontFamily: string;
