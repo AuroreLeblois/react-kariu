@@ -23,7 +23,6 @@ interface AlertProps {
 
 const Alert: React.FC<AlertProps> = ({
   variant = 'info',
-  title,
   message,
   closable = false,
   onClose,
@@ -52,13 +51,9 @@ const Alert: React.FC<AlertProps> = ({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 8,
-    padding: '12px 14px',
+    margin: '0.75rem',
     borderRadius: 8,
-    borderStyle: 'solid',
-    borderWidth: 1,
     backgroundColor: theme === 'light' ? colors[variant].lighter : colors[variant].darker,
-    borderColor: colors[variant][theme],
     color: theme === 'light' ? colors[variant].darker : colors[variant].lighter,
   };
 
@@ -68,9 +63,8 @@ const Alert: React.FC<AlertProps> = ({
     border: 'none',
     color: 'inherit',
     cursor: 'pointer',
-    padding: 4,
-    fontSize: 16,
-    lineHeight: 1,
+    padding: '0.5rem',
+    fontSize: '1rem'
   };
 
   const composedClassName = ['kariu-alert', `kariu-alert--${variant}`, className]
