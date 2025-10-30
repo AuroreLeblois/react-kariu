@@ -86,7 +86,7 @@ const colorText: string = backgroundColor !== 'transparent' ? getContrastTextCol
             ? React.cloneElement(customIcon as React.ReactElement, {
                   fill: colorText,
                   stroke: iconColor,
-                strokeWidth: 1.5,
+                strokeWidth: outlined ? 0.5: undefined,
               })
             : React.cloneElement(customIcon as React.ReactElement, { fill: iconColor })
         )}
