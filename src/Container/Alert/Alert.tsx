@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useTheme } from '../../Theme/ThemeProvider';
 import Text from '../../Atoms/Text/Text';
 import Layout from '../Layout';
+import { getContrastTextColor } from '../../Theme/colorContrast';
 
 interface AlertProps {
   /** Visual alert type */
@@ -42,7 +43,8 @@ const Alert: React.FC<AlertProps> = ({
   if (!message && !children) {
     return null;
   }
-
+  const backgroundColor: string = outlined ? 'transparent' : (theme === 'light' ? colors[variant].darkest : colors[variant].lightest);
+const colorText: string = backgroundColor !== 'transparent' ? getContrastTextColor(backgroundColor) : (theme === 'light' ? colors[variant].darkest : colors[variant].lightest);
 
   const baseStyle: React.CSSProperties = {
     display: 'flex',
@@ -52,14 +54,14 @@ const Alert: React.FC<AlertProps> = ({
     justifyContent: justifyContent,
     margin: '0.75rem', 
     borderRadius: 6,
-    backgroundColor: outlined ? 'transparent' : (theme === 'light' ? colors[variant].lightest : colors[variant].darkest),
-    color: theme === 'light' ? colors[variant].darkest : colors[variant].lightest,
+    backgroundColor: backgroundColor,
+    color: getContrastTextColor(backgroundColor),
     opacity: outlined ? 1 : 0.75,
     border: outlined ? `1px solid ${theme === 'light' ? colors[variant].darkest : colors[variant].lightest}` : undefined,
     gap: '1rem',
   };
 
-  const iconColor: string = theme === 'light' ? colors[variant].darkest : colors[variant].lightest;
+  const iconColor: string = theme === 'light' ? getContrastTextColor(colors[variant].darkest) : getContrastTextColor(colors[variant].lightest);
 
   const composedClassName = ['kariu-alert', `kariu-alert--${variant}`, className]
     .filter(Boolean)
@@ -92,7 +94,7 @@ const Alert: React.FC<AlertProps> = ({
         <Text text={message} 
           className="kariu-alert--message"
           sx={{ opacity: 1, margin: '0' }} 
-          textColor={theme === 'light' ? colors[variant].darkest : colors[variant].lightest}/>
+          textColor={colorText}/>
           <div className="kariu-alert--children">{children}</div>
           </Layout>
       </Layout>
