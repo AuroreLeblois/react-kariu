@@ -41,6 +41,10 @@ interface ThemeProviderProps {
  *    customThemes={{ 
  *       primary: calculateShades('#e74c3c'),
  *       secondary: calculateShades('#e67e22')
+ *       success: calculateShades('#00C853'),
+ *       warning: calculateShades('#FF9500'),
+ *       info: calculateShades('#0070f3'),
+ *       error: calculateShades('#E53935'),
  *    }}>
  *   <App />
  * </ThemeProvider>
@@ -53,6 +57,10 @@ interface ThemeProviderProps {
  *       secondary: {main: '#e67e22', light: '#d3701e', dark: '#c2621b', darker: '#a14d16'},
  *       text: {main: '#1e1e1f', light: '#333333', dark: '#000000', darker: '#000000'},
  *       background: {main: '#f5f5f5', light: '#ffffff', dark: '#e0e0e0', darker: '#d0d0d0'},
+ *       success: {main: '#00C853', light: '#00b248', dark: '#009e40', darker: '#008a38'},
+ *       warning: {main: '#FF9500', light: '#e68a00', dark: '#d67e00', darker: '#c67300'},
+ *       info: {main: '#0070f3', light: '#0063d1', dark: '#0056b0', darker: '#004990'},
+ *       error: {main: '#E53935', light: '#d3312f', dark: '#c12b2a', darker: '#af2625'},
  *       border: '#e0e0e0'
  *    }}>
  *   <App />

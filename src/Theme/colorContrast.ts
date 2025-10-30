@@ -71,14 +71,18 @@ export const calculateShades = (hexColor: string): Shades => {
   // Créer les nuances
   const light = `#${toHex(lighten(r))}${toHex(lighten(g))}${toHex(lighten(b))}`;
   const lighter = `#${toHex(lighten(lighten(r)))}${toHex(lighten(lighten(g)))}${toHex(lighten(lighten(b)))}`;
+  const lightest = `#${toHex(lighten(lighten(lighten(r))))}${toHex(lighten(lighten(lighten(g))))}${toHex(lighten(lighten(lighten(b))))}`;
   const dark = `#${toHex(darken(r))}${toHex(darken(g))}${toHex(darken(b))}`;
   const darker = `#${toHex(darken(darken(r)))}${toHex(darken(darken(g)))}${toHex(darken(darken(b)))}`;
+  const darkest = `#${toHex(darken(darken(darken(r))))}${toHex(darken(darken(darken(g))))}${toHex(darken(darken(darken(b))))}`;
 
   return {
     main: hexColor,
     light,
     lighter,
     dark,
-    darker
+    darker,
+    darkest,
+    lightest
   };
 };
