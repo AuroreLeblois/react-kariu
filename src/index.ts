@@ -38,6 +38,7 @@ export { Switch } from './Input/Switch';
 export { default as TextArea } from './Input/TextArea';
 
 // Calendar Components
+export { default as Calendar } from './Container/calendar/Calendar';
 export { default as HeadCols } from './Container/calendar/HeadCols';
 export { default as BodyItem } from './Container/calendar/BodyItem';
 export { default as HeadItem } from './Container/calendar/HeadItem';

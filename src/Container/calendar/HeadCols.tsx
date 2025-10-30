@@ -2,13 +2,22 @@ import React from "react";
 import HeadItem from "./HeadItem";
 import moment from "moment";
 import { useTheme } from "../../Theme/ThemeProvider";
+import Layout from "../Layout";
 
 // Types
 interface HeadColsProps {
-  language: string;
+  /** Optional language for calendar */
+  language?: "en" | "fr" | "es" | "de" | "it" | "pt" | "nl" | "pl" | "ro" | "ru";
+  /** Optional year selected for calendar */
   yearSelected?: number;
+  /** Optional month selected for calendar */
   monthSelected?: number;
+  /** Optional font family for calendar */
   fontFamily?: string;
+  /** Optional font size for calendar */
+  fontSize?: number;
+  /** Optional font weight for calendar */
+  fontWeight?: number;
 }
 
 interface DayInfo {
@@ -21,6 +30,14 @@ interface DayInfo {
 const weekdayshort: Record<string, string[]> = {
   fr: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
   en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  es: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+  de: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+  it: ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"],
+  pt: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+  nl: ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"],
+  pl: ["Nd", "Pn", "Wt", "Śr", "Czw", "Pt", "Sob"],
+  ro: ["Dum", "Lun", "Mar", "Mie", "Joi", "Vin", "Sam"],
+  ru: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
 };
 
 const currentDay: number = parseInt(moment().format("DD"));
@@ -65,9 +82,6 @@ const HeadCols: React.FC<HeadColsProps> = (props) => {
     for (let index = 1; index <= daysInMonth; index++) {
       let day: string | number = index;
       if (day < 10) day = "0" + day;
-      const date = moment(
-        `${props.yearSelected}-${props.monthSelected}-${day}`
-      ).format("YYYY-MM-DD");
 
       days.push({
         day: getDayShort(day),
@@ -93,7 +107,7 @@ const HeadCols: React.FC<HeadColsProps> = (props) => {
     )
   );
   
-  return array;
+  return <Layout display="flex" flexDirection="row" fullWidth>{array}</Layout>;
 };
 
 export default HeadCols;

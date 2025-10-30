@@ -2,137 +2,51 @@ import React from "react";
 import Dot from "../../Atoms/Assets/Dot";
 import Ripple from "../../Animation/Ripple/Ripple";
 import { useTheme } from "../../Theme/ThemeProvider";
+import { BodyItemProps } from "./calendar.types";
 
-interface Item {
-  /**
-   * Activity code to display
-   */
-  activity_code?: string;
-  /**
-   * Unavailability code to display
-   */
-  unavailability_code?: string;
-  /**
-   * Start time of the activity
-   */
-  time_start?: string;
-  /**
-   * End time of the activity
-   */
-  time_end?: string;
-  /**
-   * Start time of the unavailability
-   */
-  unavailability_time_start?: string;
-  /**
-   * End time of the unavailability
-   */
-  unavailability_time_end?: string;
-  /**
-   * If the item is marked with a special dot
-   */
-  marked?: boolean;
-  /**
-   * If the item has a special status
-   */
-  special?: boolean;
-}
-
-interface BodyItemProps {
-  /**
-   * Item data to display in the cell
-   */
-  item?: Item;
-  /**
-   * If the cell represents a weekend day
-   */
-  isWeekEnd?: boolean;
-  /**
-   * If the cell represents a holiday
-   */
-  isHoliday?: boolean;
-  /**
-   * Number to display (for datepicker mode)
-   */
-  number?: number;
-  /**
-   * If the cell is in loading state
-   */
-  loading?: boolean;
-  /**
-   * Optional click handler
-   */
-  onClick?: () => void;
-  /**
-   * Font family to use for the cell content
-   */
-  fontFamily?: string;
-  /**
-   * Additional class name for styling
-   */
-  className?: string;
-  /**
-   * If the cell has a ripple effect on click
-   */
-  ripple?: boolean;
-  /**
-   * Duration of the ripple effect
-   */
-  rippleDuration?: number;
-  /**
-   * Color of the ripple effect
-   */
-  rippleColor?: string;
-}
 
 interface CustomCSSProperties extends React.CSSProperties {
   textAlign?: "left" | "center" | "right" | "justify" | "inherit";
 }
 
-const BodyItem: React.FC<BodyItemProps> = ({item, isWeekEnd, isHoliday, number, loading, onClick, fontFamily, className, ripple = false, rippleDuration = 500,  rippleColor = 'rgba(0, 0, 0, 0.3)'}) => {
+const BodyItem: React.FC<BodyItemProps> = ({event, isWeekEnd, isHoliday, number, onClick, fontFamily, className, ripple = false, rippleDuration = 500,  rippleColor = 'rgba(0, 0, 0, 0.3)'}) => {
   const { colors } = useTheme();
+if (!event) return null;
 
-  // Functions ----------------------------------------------------------------
   const renderInfo = (styleText: CustomCSSProperties) => {
     return (
       <React.Fragment>
         {renderDots()}
-        {renderActivityCode(styleText)}
+        {renderLabel(styleText)}
         {renderTimes(styleText)}
       </React.Fragment>
     );
   };
 
-  const renderActivityCode = (styleText: CustomCSSProperties) => {
+  const renderLabel = (styleText: CustomCSSProperties) => {
     const styleCode = {
       ...styleText,
       fontSize: "0.85rem",
       lineHeight: "1rem",
     };
-    return <span style={styleCode} className={`bodyItem-kariu-activityCode ${className}`}>{item?.activity_code}</span>;
+    return <span style={styleCode} className={`bodyItem-kariu-activityCode ${className}`}>{event?.label}</span>;
   };
 
   const renderUnavailability = (styleText: CustomCSSProperties) => {
     return (
       <React.Fragment>
       {renderDots()}
-        <span style={styleText} className={`bodyItem-kariu-unavailability ${className}`}>{item?.unavailability_code}</span>
+        <span style={styleText} className={`bodyItem-kariu-unavailability ${className}`}>{event?.label}</span>
         {renderTimes(styleText)}
       </React.Fragment>
     );
   };
 
   const renderTimes = (styleText: CustomCSSProperties) => {
-    if (!item?.time_start && !item?.unavailability_time_start)
+    if (!event || !event?.startTime)
       return null;
-
-    const timeStart = item?.unavailability_code
-      ? item?.unavailability_time_start
-      : item?.time_start;
-
-    const timeEnd = item?.unavailability_code
-      ? item?.unavailability_time_end
-      : item?.time_end;
+    const timeStart = event.startTime;
+    const timeEnd = event.endTime;
 
     return (
       <React.Fragment>
@@ -143,7 +57,7 @@ const BodyItem: React.FC<BodyItemProps> = ({item, isWeekEnd, isHoliday, number, 
   };
 
   const renderDots = () => {
-    if (!item?.marked && !item?.special) return null;
+    if (!event?.marked && !event?.special) return null;
 
     const styleStickers: CustomCSSProperties = {
       display: "flex",
@@ -158,10 +72,10 @@ const BodyItem: React.FC<BodyItemProps> = ({item, isWeekEnd, isHoliday, number, 
     let content: JSX.Element[] = [];
 
     // Unavailability on a part of a item
-    if (item?.special) content.push(<Dot key="special" special={true} />);
+    if (event?.special) content.push(<Dot key="special" special={true} />);
 
     // Marked (a specific type of bonus)
-    if (item?.marked) content.push(<Dot key="marked" marked={true} />);
+    if (event?.marked) content.push(<Dot key="marked" marked={true} />);
 
     return <span style={styleStickers} className={`bodyItem-kariu-stickers ${className}`}>{content}</span>;
   };
@@ -169,57 +83,34 @@ const BodyItem: React.FC<BodyItemProps> = ({item, isWeekEnd, isHoliday, number, 
   const handleBackgroundColor = (isEmpty: boolean): string | null => {
     // Empty cell with no data
     if (isEmpty) return null;
-
-    if (item?.unavailability_code) {
-      // Unavailability
-      return "#ab88ab";
-    } else if (
-      // Day
-      item?.time_end &&
-      item?.time_start &&
-      item.time_end > item.time_start
-    ) {
-      return "rgb(238, 229, 2)";
-    } else if (
-      // Night
-      item?.time_end &&
-      item?.time_start &&
-      item.time_end < item.time_start
-    ) {
-      return "rgb(103, 127, 233)";
-    }
+    if (event?.variant === 'unavailability') return colors.secondary.light;
+    if (event?.variant === 'success') return colors.success.light;
+    if (event?.variant === 'warning') return colors.warning.light;
+    if (event?.variant === 'error') return colors.error.light;
+    if (event?.variant === 'info') return colors.info.light;
+    // default: try inferring by time
+    if (event?.endTime && event?.startTime && event.endTime > event.startTime) return colors.primary.light;
+    if (event?.endTime && event?.startTime && event.endTime < event.startTime) return colors.secondary.light;
+    // fallback: any labeled default event gets a primary background
+    if (event && event.label) return colors.primary.light;
     return null;
   };
 
   const handleForegroundColor = (isEmpty: boolean): string | null => {
     if (number) return null; // Datepicker item
-    if (isEmpty) return "inherit";
-
-    if (
-      // Unavailability
-      item?.unavailability_code
-    ) {
-      return colors.secondary.darker;
-    } else if (
-      // Day
-      item?.time_end &&
-      item?.time_start &&
-      item.time_end > item.time_start
-    ) {
-      return colors.primary.dark;
-    } else if (
-      // Night
-      item?.time_end &&
-      item?.time_start &&
-      item.time_end < item.time_start
-    ) {
-      return colors.secondary.darker;
-    }
+    if (event?.variant === 'unavailability') return colors.text.main;
+    if (event?.variant === 'success') return colors.success.dark;
+    if (event?.variant === 'warning') return colors.warning.dark;
+    if (event?.variant === 'error') return colors.error.dark;
+    if (event?.variant === 'info') return colors.info.dark;
+    if (event?.endTime && event?.startTime && event.endTime > event.startTime) return colors.primary.dark;
+    if (event?.endTime && event?.startTime && event.endTime < event.startTime) return colors.secondary.darker;
+    if (event && event.label) return colors.primary.main;
     return null;
   };
 
   const isEmpty: boolean =
-    !item && // Vacation or unavailability
+    !event && // no content
     !number; // Datepicker
 
   // Cell background color
@@ -245,7 +136,7 @@ const BodyItem: React.FC<BodyItemProps> = ({item, isWeekEnd, isHoliday, number, 
       lineHeight: "1rem",
       color: handleForegroundColor(isEmpty),
       textAlign: "center",
-      cursor: "pointer",
+      cursor: isEmpty ? "default" : "pointer",
     };
 
     const styleDiv = {
@@ -267,12 +158,10 @@ const BodyItem: React.FC<BodyItemProps> = ({item, isWeekEnd, isHoliday, number, 
     } as const;
 
     let content = null;
-    if (!item?.unavailability_code) {
-      // infos
-      content = renderInfo(styleText);
-    } else {
-      // Unavailability
+    if (event?.variant === 'unavailability') {
       content = renderUnavailability(styleText);
+    } else {
+      content = renderInfo(styleText);
     }
 
     return <div style={styleDiv} className='bodyItem-kariu-cell'>{content}</div>;

@@ -21,94 +21,101 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const itemDay= {
-  activity_code: 'WORK',
-  time_start: '12:00',
-  time_end: '19:00',
+const eventDay = {
+  date: '2025-05-01',
+  label: 'WORK',
+  startTime: '12:00',
+  endTime: '19:00',
+  variant: 'default' as const,
+  marked: false,
+  special: false,
 }
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
   args: {
-    item: itemDay,
+    event: eventDay,
     ripple: true,
     rippleDuration: 500,
     rippleColor: 'rgba(0, 0, 0, 0.3)'
   },
 };
 
-const itemNight= {
-  activity_code: 'WORK',
-  time_start: '19:00',
-  time_end: '08:00',
+const eventNight = {
+  date: '2025-05-02',
+  label: 'WORK',
+  startTime: '19:00',
+  endTime: '08:00',
 }
 
 export const Night: Story = {
   args: {
-    item: itemNight
+    event: eventNight
   },
 };
 
-const itemAway= {
-  unavailability_code: 'AWAY',
-  time_start: '19:00',
-  time_end: '08:00',
+const eventAway = {
+  date: '2025-05-03',
+  label: 'AWAY',
+  variant: 'unavailability' as const,
 }
 export const Away: Story = {
   args: {
-    item: itemAway
+    event: eventAway
   }
 };
 
-const itemMarked= {
-  activity_code: 'WORK',
-  time_start: '19:00',
-  time_end: '08:00',
+const eventMarked = {
+  date: '2025-05-04',
+  label: 'WORK',
+  startTime: '19:00',
+  endTime: '08:00',
   marked: true,
 };
 export const Marked: Story = {
   args: {
-    item: itemMarked
+    event: eventMarked
   }
 };
 
-const itemSpecial= {
-  activity_code: 'WORK',
-  time_start: '19:00',
-  time_end: '08:00',
+const eventSpecial = {
+  date: '2025-05-05',
+  label: 'WORK',
+  startTime: '19:00',
+  endTime: '08:00',
   special: true,
 };
 
 export const Special: Story = {
   args: {
-    item: itemSpecial
+    event: eventSpecial
   }
 };
 
-const itemHoliday= {
-  unavailability_code : 'AWAY',
-  time_start: '19:00',
-  time_end: '08:00',
-  holiday: true,
+const eventHoliday = {
+  date: '2025-05-06',
+  label : 'AWAY',
+  variant: 'unavailability' as const,
 };
 
 export const Holiday: Story = {
   args: {
-    item: itemHoliday
+    event: eventHoliday,
+    isHoliday: true,
   }
 };
 
-const itemMarkedAndSpecial= {
-  unavailability_code : 'AWAY',
-  time_start: '19:00',
-  time_end: '08:00',
+const eventMarkedAndSpecial = {
+  date: '2025-05-07',
+  label : 'AWAY',
+  variant: 'unavailability' as const,
   marked: true,
   special: true,
 };
 
 export const MarkedAndSpecial: Story = {
   args: {
-    item: itemMarkedAndSpecial
+    event: eventMarkedAndSpecial
   }
 };
 
