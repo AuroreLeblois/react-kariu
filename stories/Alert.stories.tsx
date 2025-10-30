@@ -14,7 +14,6 @@ const meta = {
       control: { type: 'select' },
       options: ['info', 'success', 'warning', 'danger'],
     },
-    title: { control: 'text' },
     message: { control: 'text' },
     className: { control: 'text' },
   },
@@ -26,7 +25,6 @@ type Story = StoryObj<typeof meta>;
 export const Info: Story = {
   args: {
     variant: 'info',
-    title: 'Information',
     message: 'This is an information alert.',
   },
 };
