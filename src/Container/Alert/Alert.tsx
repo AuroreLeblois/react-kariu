@@ -55,7 +55,7 @@ const colorText: string = backgroundColor !== 'transparent' ? getContrastTextCol
     margin: '0.75rem', 
     borderRadius: 6,
     backgroundColor: backgroundColor,
-    color: getContrastTextColor(backgroundColor),
+    color: colorText,
     opacity: outlined ? 1 : 0.75,
     border: outlined ? `1px solid ${theme === 'light' ? colors[variant].darkest : colors[variant].lightest}` : undefined,
     gap: '1rem',
@@ -84,8 +84,8 @@ const colorText: string = backgroundColor !== 'transparent' ? getContrastTextCol
         {customIcon && (
           outlined
             ? React.cloneElement(customIcon as React.ReactElement, {
-                fill: 'transparent',
-                stroke: iconColor,
+                  fill: colorText,
+                  stroke: iconColor,
                 strokeWidth: 1.5,
               })
             : React.cloneElement(customIcon as React.ReactElement, { fill: iconColor })
