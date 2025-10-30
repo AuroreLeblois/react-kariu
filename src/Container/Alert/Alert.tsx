@@ -43,10 +43,6 @@ const Alert: React.FC<AlertProps> = ({
     return null;
   }
 
-  const getVariantPalette = () => {
-    const variantPalette = theme === 'light' ? 'darkest' : 'lightest';
-    return colors[variant][variantPalette];
-  };
 
   const baseStyle: React.CSSProperties = {
     display: 'flex',
@@ -55,14 +51,15 @@ const Alert: React.FC<AlertProps> = ({
     minWidth: fullWidth ? '-webkit-fill-available' : '300px',
     justifyContent: justifyContent,
     margin: '0.75rem', 
-    borderRadius: 8,
-    backgroundColor: theme === 'light' ? colors[variant].lightest : colors[variant].darkest,
+    borderRadius: 6,
+    backgroundColor: outlined ? 'transparent' : (theme === 'light' ? colors[variant].lightest : colors[variant].darkest),
     color: theme === 'light' ? colors[variant].darkest : colors[variant].lightest,
-    opacity: 0.75,
+    opacity: outlined ? 1 : 0.75,
+    border: outlined ? `1px solid ${theme === 'light' ? colors[variant].darkest : colors[variant].lightest}` : undefined,
     gap: '1rem',
   };
 
-  const computedIconSvgFill: string = outlined ? 'none' : theme === 'light' ? colors[variant].darkest : colors[variant].lightest;
+  const iconColor: string = theme === 'light' ? colors[variant].darkest : colors[variant].lightest;
 
   const composedClassName = ['kariu-alert', `kariu-alert--${variant}`, className]
     .filter(Boolean)
@@ -81,13 +78,25 @@ const Alert: React.FC<AlertProps> = ({
       aria-live={variant === 'error' ? 'assertive' : 'polite'}
     >
       <Layout flexDirection='row' justifyContent='center' alignItems='center' gap='1rem'>
-        {customIcon && React.cloneElement(customIcon as React.ReactElement, { fill : computedIconSvgFill })}
+      
+        {customIcon && (
+          outlined
+            ? React.cloneElement(customIcon as React.ReactElement, {
+                fill: 'transparent',
+                stroke: iconColor,
+                strokeWidth: 1.5,
+              })
+            : React.cloneElement(customIcon as React.ReactElement, { fill: iconColor })
+        )}
+        <Layout flexDirection='column' justifyContent='center' alignItems='start'>
         <Text text={message} 
           className="kariu-alert--message"
           sx={{ opacity: 1, margin: '0' }} 
           textColor={theme === 'light' ? colors[variant].darkest : colors[variant].lightest}/>
+          <div className="kariu-alert--children">{children}</div>
+          </Layout>
       </Layout>
-      <div className="kariu-alert--children">{children}</div>
+      
       
     </Layout>
   );

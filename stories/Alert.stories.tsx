@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Alert } from '../src';
-import ArrowDown from '../src/Atoms/Icon/ArrowDown';
 import React from 'react';
 
 const meta = {
@@ -111,9 +110,16 @@ export const WithCustomIconAndChildren: Story = {
 9.32016 5.70711 9.71069Z"/>
     </svg>,
      children: (
-      <React.Fragment>
-        <p style={{ margin: 0 }}>With custom icon and children.</p>
-      </React.Fragment>
+        <p style={{ margin: 0 }}>And a child text.</p>
     ),
+  },
+};
+
+export const Outlined: Story = {
+  args: {
+    variant: 'warning',
+    title: 'Outlined',
+    message: 'This alert renders an outlined alert.',
+    outlined: true,
   },
 };
