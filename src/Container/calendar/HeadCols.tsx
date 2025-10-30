@@ -107,7 +107,10 @@ const HeadCols: React.FC<HeadColsProps> = (props) => {
     )
   );
   
-  return <Layout display="flex" flexDirection="row" fullWidth>{array}</Layout>;
+  return <Layout display="table-row" flexWrap="nowrap" 
+  gap="0.25rem"
+  fullWidth
+  >{array}</Layout>;
 };
 
 export default HeadCols;

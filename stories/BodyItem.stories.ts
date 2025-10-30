@@ -26,7 +26,7 @@ const eventDay = {
   label: 'WORK',
   startTime: '12:00',
   endTime: '19:00',
-  variant: 'default' as const,
+  variant: 'info' as const,
   marked: false,
   special: false,
 }

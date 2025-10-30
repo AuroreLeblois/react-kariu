@@ -44,16 +44,12 @@ const HeadItem: React.FC<HeadColsProps> = ({ date, fontFamily, className = '' })
   if (!date) return null;
 
   const styleTh = {
-    minWidth:
-      //for future custom datePicker
-      date.number ? "2.5rem" : "auto",
-    cursor: "default",
-    span: {
-      fontFamily: fontFamily ?? colors.fontFamily ?? "inherit",
-    },
+    minWidth: date.number ? "1.5rem" : "auto",
+    cursor: "default"
   };
 
   const styleText = {
+    fontFamily: fontFamily ?? "inherit",
     fontSize: "1rem",
     lineHeight: "1.2rem",
     fontWeight: date.isToday ? "regular" : "semibold",

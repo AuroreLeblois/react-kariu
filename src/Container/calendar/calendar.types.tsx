@@ -141,3 +141,28 @@ export interface CalendarProps {
  fontFamily?: string;
   onClickItem?: (event: CalendarEvent) => void;
 }
+
+export interface CustomCSSProperties extends React.CSSProperties {
+  textAlign?: "left" | "center" | "right" | "justify" | "inherit";
+  padding?: string;
+  borderRadius?: string;
+  backgroundColor?: string;
+  cursor?: string;
+  border?: string;
+  zIndex?: number;
+  filter?: string;
+  backgroundColorHover?: string;
+  backgroundColorActive?: string;
+  backgroundColorFocus?: string;
+  backgroundColorDisabled?: string;
+  backgroundColorSelected?: string;
+  backgroundColorSelectedHover?: string;
+  backgroundColorSelectedActive?: string;
+  backgroundColorSelectedFocus?: string;
+  backgroundColorSelectedDisabled?: string;
+  backgroundColorSelectedSelected?: string;
+  backgroundColorSelectedSelectedHover?: string;
+  backgroundColorSelectedSelectedActive?: string;
+  backgroundColorSelectedSelectedFocus?: string;
+  backgroundColorSelectedSelectedDisabled?: string;
+}

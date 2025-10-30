@@ -2,14 +2,12 @@ import React from "react";
 import Dot from "../../Atoms/Assets/Dot";
 import Ripple from "../../Animation/Ripple/Ripple";
 import { useTheme } from "../../Theme/ThemeProvider";
-import { BodyItemProps } from "./calendar.types";
+import { BodyItemProps, CustomCSSProperties } from "./calendar.types";
+import { getContrastTextColor } from "../../Theme/colorContrast";
 
-
-interface CustomCSSProperties extends React.CSSProperties {
-  textAlign?: "left" | "center" | "right" | "justify" | "inherit";
-}
-
-const BodyItem: React.FC<BodyItemProps> = ({event, isWeekEnd, isHoliday, number, onClick, fontFamily, className, ripple = false, rippleDuration = 500,  rippleColor = 'rgba(0, 0, 0, 0.3)'}) => {
+const BodyItem: React.FC<BodyItemProps> = ({event, isWeekEnd, 
+  isHoliday, number, onClick, fontFamily, className, 
+  ripple = false, rippleDuration = 500,  rippleColor = 'rgba(0, 0, 0, 0.3)'}) => {
   const { colors } = useTheme();
 if (!event) return null;
 
@@ -27,7 +25,7 @@ if (!event) return null;
     const styleCode = {
       ...styleText,
       fontSize: "0.85rem",
-      lineHeight: "1rem",
+      lineHeight: "0.85rem",
     };
     return <span style={styleCode} className={`bodyItem-kariu-activityCode ${className}`}>{event?.label}</span>;
   };
@@ -99,14 +97,13 @@ if (!event) return null;
   const handleForegroundColor = (isEmpty: boolean): string | null => {
     if (number) return null; // Datepicker item
     if (event?.variant === 'unavailability') return colors.text.main;
-    if (event?.variant === 'success') return colors.success.dark;
-    if (event?.variant === 'warning') return colors.warning.dark;
-    if (event?.variant === 'error') return colors.error.dark;
-    if (event?.variant === 'info') return colors.info.dark;
-    if (event?.endTime && event?.startTime && event.endTime > event.startTime) return colors.primary.dark;
-    if (event?.endTime && event?.startTime && event.endTime < event.startTime) return colors.secondary.darker;
-    if (event && event.label) return colors.primary.main;
-    return null;
+    if (event?.variant === 'success') return colors.success.main;
+    if (event?.variant === 'warning') return colors.warning.main;
+    if (event?.variant === 'error') return colors.error.main;
+    if (event?.variant === 'info') return colors.info.main;
+    if (event?.endTime && event?.startTime && event.endTime > event.startTime) return colors.info.dark;
+    if (event?.endTime && event?.startTime && event.endTime < event.startTime) return colors.info.light;
+    return colors.text.main;
   };
 
   const isEmpty: boolean =
@@ -118,8 +115,6 @@ if (!event) return null;
 
   const styleTd = {
     position: "relative" as "relative",
-    height: "2.95rem",
-    padding: "0.125rem",
     verticalAlign: "middle",
     cursor: isEmpty ? "default" : "pointer",
     backgroundColor:
@@ -134,7 +129,7 @@ if (!event) return null;
       fontFamily: fontFamily ?? colors.fontFamily,
       fontSize: "0.75rem",
       lineHeight: "1rem",
-      color: handleForegroundColor(isEmpty),
+      color: getContrastTextColor(bgColor),
       textAlign: "center",
       cursor: isEmpty ? "default" : "pointer",
     };
@@ -146,7 +141,6 @@ if (!event) return null;
       flexWrap: "nowrap",
       alignItems: "center",
       justifyContent: "center",
-      height: "99%",
       border: bgColor ? `0.125rem solid ${bgColor}` : undefined,
       borderRadius: "4px",
       backgroundColor: bgColor,
