@@ -33,14 +33,12 @@ export const InfoNotFullWidth: Story = {
   args: {
     fullWidth: false,
     variant: 'info',
-    title: 'Information',
     message: 'This is an information alert.',
   },
 };
 export const Success: Story = {
   args: {
     variant: 'success',
-    title: 'Success',
     message: 'Your operation completed successfully.',
   },
 };
@@ -49,7 +47,6 @@ export const Warning: Story = {
   args: {
     fullWidth: true,
     variant: 'warning',
-    title: 'Warning',
     message: 'Please verify the provided information.',
   },
 };
@@ -57,7 +54,6 @@ export const Warning: Story = {
 export const Error: Story = {
   args: {
     variant: 'error',
-    title: 'Error',
     message: 'A critical error occurred.',
   },
 };
@@ -66,7 +62,6 @@ export const Error: Story = {
 export const WithChildren: Story = {
   args: {
     variant: 'info',
-    title: 'With custom content',
     children: (
       <React.Fragment>
         <p style={{ margin: 0 }}>Main text.</p>
@@ -97,7 +92,6 @@ export const WithCustomIcon: Story = {
 export const WithCustomIconAndChildren: Story = {
   args: {
     variant: 'info',
-    title: 'With custom icon',
     message: 'This alert renders a custom icon.',
     customIcon:  <svg width={`${24}px`} height={`${24}px`} 
     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +110,6 @@ export const WithCustomIconAndChildren: Story = {
 export const Outlined: Story = {
   args: {
     variant: 'warning',
-    title: 'Outlined',
     message: 'This alert renders an outlined alert.',
     outlined: true,
   },
