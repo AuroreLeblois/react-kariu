@@ -7,8 +7,6 @@ import { getContrastTextColor } from '../../Theme/colorContrast';
 interface AlertProps {
   /** Visual alert type */
   variant?: 'info' | 'success' | 'warning' | 'error';
-  /** Optional title */
-  title?: string;
   /** Main message (you can also use children) */
   message?: string;
   /** Additional inline styles */
