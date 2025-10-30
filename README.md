@@ -35,7 +35,6 @@ import { Button } from 'react-kariu'
 
 ```
 
-
 ### Available components
 
 - Button: primary action button with variants.
