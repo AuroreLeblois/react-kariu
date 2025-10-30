@@ -2,7 +2,7 @@ import { create } from "storybook/theming";
 import logo from "./favicon.svg";
 
 export default create({
-  base: 'light',
+  base: "light",
   title: "React-kariu",
   brandTitle: "react-kariu",
   brandImage: logo,

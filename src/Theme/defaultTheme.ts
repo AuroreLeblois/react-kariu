@@ -13,7 +13,7 @@ export const defaultThemes = {
     success: calculateShades("#00C853"),
     warning: calculateShades("#FF9500"),
     info: calculateShades("#0070f3"),
-    error: calculateShades("#E53935"),
+    error: calculateShades("#d32f2f"),
   },
   dark: {
     primary: calculateShades('#0070f3'),

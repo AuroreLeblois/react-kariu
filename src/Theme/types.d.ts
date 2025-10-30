@@ -4,6 +4,8 @@ export type Shades = {
   lighter: string;
   dark: string;
   darker: string;
+  darkest: string;
+  lightest: string;
 }
 // Types pour les thèmes
 export type ThemeColors = {

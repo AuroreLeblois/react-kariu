@@ -116,7 +116,66 @@ const ThemeDemo = () => {
           text: colors.text.dark,
           textColor: colors.text.dark
         })),
-
+        React.createElement('li', null, 'Success: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.success.main,
+          textColor: colors.success.main
+        })),
+        React.createElement('li', null, 'Success light: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.success.light,
+          textColor: colors.success.light
+        })),
+        React.createElement('li', null, 'Success dark: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.success.dark,
+          textColor: colors.success.dark
+        })),
+        React.createElement('li', null, 'Success darker: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.success.darker,
+          textColor: colors.success.darker
+        })),
+        React.createElement('li', null, 'Warning: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.warning.main,
+          textColor: colors.warning.main
+        })),
+        React.createElement('li', null, 'Warning light: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.warning.light,
+          textColor: colors.warning.light
+        })),
+        React.createElement('li', null, 'Warning dark: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.warning.dark,
+          textColor: colors.warning.dark
+        })),
+        React.createElement('li', null, 'Warning darker: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.warning.darker,
+          textColor: colors.warning.darker
+        })),
+        React.createElement('li', null, 'Error: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.error.main,
+          textColor: colors.error.main
+        })),
+        React.createElement('li', null, 'Error light: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.error.light,
+          textColor: colors.error.light
+        })),
+        React.createElement('li', null, 'Error dark: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.error.dark,
+          textColor: colors.error.dark
+        })),
+        React.createElement('li', null, 'Error darker: ', React.createElement(Text, {
+          component: 'span',
+          text: colors.error.darker,
+          textColor: colors.error.darker
+        })),
         React.createElement('li', null, 'Font Family: ', colors.fontFamily),
         React.createElement('li', null, 'Heading Font: ', colors.headingFont)
       )

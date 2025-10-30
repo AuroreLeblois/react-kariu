@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useTheme } from '../../Theme/ThemeProvider';
-import { Button } from '../../Atoms';
+import Text from '../../Atoms/Text/Text';
+import Layout from '../Layout';
 
 interface AlertProps {
   /** Visual alert type */
@@ -9,90 +10,86 @@ interface AlertProps {
   title?: string;
   /** Main message (you can also use children) */
   message?: string;
-  /** Show a close button */
-  closable?: boolean;
-  /** Close callback */
-  onClose?: () => void;
   /** Additional inline styles */
   sx?: React.CSSProperties;
   /** Additional CSS class name */
   className?: string;
   /** Optional child content */
   children?: React.ReactNode;
+  /** Optional full width */
+  fullWidth?: boolean;
+  /** Optional justify content */
+  justifyContent?: React.CSSProperties['justifyContent'];
+  /** Optional icon */
+  customIcon?: React.ReactNode;
+  /** Optional outlined */
+  outlined?: boolean;
 }
 
 const Alert: React.FC<AlertProps> = ({
   variant = 'info',
   message,
-  closable = false,
-  onClose,
-  className = '',
+  className = undefined,
   sx = {},
   children,
+  fullWidth = true,
+  justifyContent = 'start',
+  customIcon,
+  outlined = false,
 }) => {
   const { colors, theme } = useTheme();
+  
+  if (!message && !children) {
+    return null;
+  }
 
   const getVariantPalette = () => {
-    switch (variant) {
-      case 'success':
-        return colors.success.main;
-      case 'warning':
-        return colors.warning.main; // nuance plus chaude côté secondary
-      case 'error':
-        return colors.error.main; // on utilisera des nuances plus foncées
-      case 'info':
-      default:
-        return colors.info.main;
-    }
+    const variantPalette = theme === 'light' ? 'darkest' : 'lightest';
+    return colors[variant][variantPalette];
   };
 
   const baseStyle: React.CSSProperties = {
     display: 'flex',
-    width: '100%',
+    flexGrow: fullWidth ? 1 : 0,
     alignItems: 'center',
-    justifyContent: 'center',
-    margin: '0.75rem',
+    minWidth: fullWidth ? '-webkit-fill-available' : '300px',
+    justifyContent: justifyContent,
+    margin: '0.75rem', 
     borderRadius: 8,
-    backgroundColor: theme === 'light' ? colors[variant].lighter : colors[variant].darker,
-    color: theme === 'light' ? colors[variant].darker : colors[variant].lighter,
+    backgroundColor: theme === 'light' ? colors[variant].lightest : colors[variant].darkest,
+    color: theme === 'light' ? colors[variant].darkest : colors[variant].lightest,
+    opacity: 0.75,
+    gap: '1rem',
   };
 
-  const closeBtnStyle: React.CSSProperties = {
-    marginLeft: 'auto',
-    background: 'transparent',
-    border: 'none',
-    color: 'inherit',
-    cursor: 'pointer',
-    padding: '0.5rem',
-    fontSize: '1rem'
-  };
+  const computedIconSvgFill: string = outlined ? 'none' : theme === 'light' ? colors[variant].darkest : colors[variant].lightest;
 
   const composedClassName = ['kariu-alert', `kariu-alert--${variant}`, className]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <div
+    <Layout
+      display='flex'
+      flexDirection='row'
+      justifyContent='space-between'
+      alignItems='center'
+      padding='0.55rem'
+      style={{ ...baseStyle, ...sx }}
+      className={composedClassName} 
       role="alert"
       aria-live={variant === 'error' ? 'assertive' : 'polite'}
-      className={composedClassName}
-      style={{ ...baseStyle, ...sx }}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-        {message && <p>{message}</p>}
-        {children}
-      </div>
-      {closable && (
-        <Button
-          label="×"
-          aria-label="Fermer l’alerte"
-          onClick={onClose}
-          sx={{ ...closeBtnStyle }}
-          className="kariu-alert--close"
-          shape="square"
-        />
-      )}
-    </div>
+      <Layout flexDirection='row' justifyContent='center' alignItems='center' gap='1rem'>
+        {customIcon && React.cloneElement(customIcon as React.ReactElement, { fill : computedIconSvgFill })}
+        <Text text={message} 
+          className="kariu-alert--message"
+          sx={{ opacity: 1, margin: '0' }} 
+          textColor={theme === 'light' ? colors[variant].darkest : colors[variant].lightest}/>
+      </Layout>
+      <div className="kariu-alert--children">{children}</div>
+      
+    </Layout>
   );
 };
 

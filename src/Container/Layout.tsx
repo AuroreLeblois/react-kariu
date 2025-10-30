@@ -15,9 +15,13 @@ export interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   minWidth?: React.CSSProperties["minWidth"];
   minHeight?: React.CSSProperties["minHeight"];
   flexWrap?: React.CSSProperties["flexWrap"];
+  flexGrow?: React.CSSProperties["flexGrow"];
+  flexShrink?: React.CSSProperties["flexShrink"];
+  flexBasis?: React.CSSProperties["flexBasis"];
+  flex?: React.CSSProperties["flex"];
+  flexFlow?: React.CSSProperties["flexFlow"];
   className?: string;
   fullWidth?: boolean;
-  // Ajoutez d'autres props de layout si besoin
 }
 
 const Layout: React.FC<LayoutProps> = ({

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Alert } from '../src';
+import ArrowDown from '../src/Atoms/Icon/ArrowDown';
 import React from 'react';
 
 const meta = {
@@ -16,7 +17,6 @@ const meta = {
     },
     title: { control: 'text' },
     message: { control: 'text' },
-    closable: { control: 'boolean' },
     className: { control: 'text' },
   },
 } satisfies Meta<typeof Alert>;
@@ -32,6 +32,14 @@ export const Info: Story = {
   },
 };
 
+export const InfoNotFullWidth: Story = {
+  args: {
+    fullWidth: false,
+    variant: 'info',
+    title: 'Information',
+    message: 'This is an information alert.',
+  },
+};
 export const Success: Story = {
   args: {
     variant: 'success',
@@ -42,13 +50,14 @@ export const Success: Story = {
 
 export const Warning: Story = {
   args: {
+    fullWidth: true,
     variant: 'warning',
     title: 'Warning',
     message: 'Please verify the provided information.',
   },
 };
 
-export const Danger: Story = {
+export const Error: Story = {
   args: {
     variant: 'error',
     title: 'Error',
@@ -56,15 +65,6 @@ export const Danger: Story = {
   },
 };
 
-export const Closable: Story = {
-  args: {
-    variant: 'info',
-    title: 'Closable',
-    message: 'You can close this alert.',
-    closable: true,
-    onClose: () => console.log('Alert closed'),
-  },
-};
 
 export const WithChildren: Story = {
   args: {
@@ -80,3 +80,40 @@ export const WithChildren: Story = {
 };
 
 
+export const WithCustomIcon: Story = {
+  args: {
+    variant: 'info',
+    title: 'With custom icon',
+    message: 'This alert renders a custom icon.',
+    customIcon:  <svg width={`${24}px`} height={`${24}px`} 
+    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.70711 9.71069C5.31658 10.1012 5.31658 10.7344 5.70711 11.1249L10.5993 16.0123C11.3805 
+16.7927 12.6463 16.7924 13.4271 16.0117L18.3174 11.1213C18.708 10.7308 18.708 10.0976 18.3174 9.70708C17.9269 
+9.31655 17.2937 9.31655 16.9032 9.70708L12.7176 13.8927C12.3271 14.2833 11.6939 14.2832 11.3034 13.8927L7.12132 9.71069C6.7308 9.32016
+6.09763
+9.32016 5.70711 9.71069Z"/>
+    </svg>,
+  },
+};
+
+
+export const WithCustomIconAndChildren: Story = {
+  args: {
+    variant: 'info',
+    title: 'With custom icon',
+    message: 'This alert renders a custom icon.',
+    customIcon:  <svg width={`${24}px`} height={`${24}px`} 
+    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.70711 9.71069C5.31658 10.1012 5.31658 10.7344 5.70711 11.1249L10.5993 16.0123C11.3805 
+16.7927 12.6463 16.7924 13.4271 16.0117L18.3174 11.1213C18.708 10.7308 18.708 10.0976 18.3174 9.70708C17.9269 
+9.31655 17.2937 9.31655 16.9032 9.70708L12.7176 13.8927C12.3271 14.2833 11.6939 14.2832 11.3034 13.8927L7.12132 9.71069C6.7308 9.32016
+6.09763
+9.32016 5.70711 9.71069Z"/>
+    </svg>,
+     children: (
+      <React.Fragment>
+        <p style={{ margin: 0 }}>With custom icon and children.</p>
+      </React.Fragment>
+    ),
+  },
+};
