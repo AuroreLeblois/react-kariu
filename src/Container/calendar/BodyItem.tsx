@@ -5,11 +5,13 @@ import { useTheme } from "../../Theme/ThemeProvider";
 import { BodyItemProps, CustomCSSProperties } from "./calendar.types";
 import { getContrastTextColor } from "../../Theme/colorContrast";
 
-const BodyItem: React.FC<BodyItemProps> = ({event, isWeekEnd, 
+const BodyItem: React.FC<BodyItemProps> = ({
+  event, isWeekEnd, 
   isHoliday, number, onClick, fontFamily, className, 
-  ripple = false, rippleDuration = 500,  rippleColor = 'rgba(0, 0, 0, 0.3)'}) => {
+  ripple = false, rippleDuration = 500,  rippleColor = 'rgba(0, 0, 0, 0.3)',
+  wrapWithTd = true,
+}) => {
   const { colors } = useTheme();
-if (!event) return null;
 
   const renderInfo = (styleText: CustomCSSProperties) => {
     return (
@@ -161,10 +163,20 @@ if (!event) return null;
     return <div style={styleDiv} className='bodyItem-kariu-cell'>{content}</div>;
   };
 
+  const inner = (
+    <React.Fragment>
+      {ripple && !isEmpty && wrapWithTd && (
+        <Ripple duration={rippleDuration} color={rippleColor} />
+      )}
+      {renderCell(isEmpty, bgColor)}
+    </React.Fragment>
+  );
+
+  if (!wrapWithTd) return inner;
+
   return (
     <td style={styleTd} className='bodyItem-kariu-cell-td' onClick={onClick}>
-      {ripple && <Ripple duration={rippleDuration} color={rippleColor} />}
-      {renderCell(isEmpty, bgColor)}
+      {inner}
     </td>
   );
 };

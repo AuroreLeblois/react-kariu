@@ -18,6 +18,10 @@ interface HeadColsProps {
   fontSize?: number;
   /** Optional font weight for calendar */
   fontWeight?: number;
+  /**
+   * Optional style
+   */
+  sx?: object;
 }
 
 interface DayInfo {
@@ -107,10 +111,7 @@ const HeadCols: React.FC<HeadColsProps> = (props) => {
     )
   );
   
-  return <Layout display="table-row" flexWrap="nowrap" 
-  gap="0.25rem"
-  fullWidth
-  >{array}</Layout>;
+  return <Layout display="table-row" flexWrap="nowrap" style={{...props.sx, width: '100%'}}>{array}</Layout>;
 };
 
 export default HeadCols;

@@ -35,23 +35,28 @@ interface HeadColsProps {
     number: string| number;
     isToday: boolean;
   };
+  /** 
+   * Optional style
+   */
+  sx?: object;
 }
-const HeadItem: React.FC<HeadColsProps> = ({ date, fontFamily, className = '' }) => {
+const HeadItem: React.FC<HeadColsProps> = ({ date, fontFamily, className = '', sx }) => {
   const {colors} = useTheme();
 
   // Renderers ----------------------------------------------------------------
 
   if (!date) return null;
-
   const styleTh = {
-    minWidth: date.number ? "1.5rem" : "auto",
-    cursor: "default"
+    minWidth: date.number ? "2rem" : "auto",
+    cursor: "default",
+    border: `${colors.border} solid 0.5px`,
+    ...sx
   };
 
   const styleText = {
     fontFamily: fontFamily ?? "inherit",
-    fontSize: "1rem",
-    lineHeight: "1.2rem",
+    fontSize: "0.65rem",
+    lineHeight: "0.75rem",
     fontWeight: date.isToday ? "regular" : "semibold",
     color: date.isToday ? colors.primary.main : colors.secondary.main,
   };

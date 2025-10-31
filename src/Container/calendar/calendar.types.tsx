@@ -53,6 +53,10 @@ export interface BodyItemProps {
    */
   className?: string;
   /**
+   * If true, component renders its own <td>. If false, only inner content
+   */
+  wrapWithTd?: boolean;
+  /**
    * If the cell has a ripple effect on click
    */
   ripple?: boolean;
@@ -86,7 +90,6 @@ export type InfoItem = {
   special?: boolean;
 };
 
-// Generic calendar event
 export type CalendarEvent = {
   /** Event ISO date: YYYY-MM-DD */
   date: string;

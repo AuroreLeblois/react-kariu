@@ -14,9 +14,8 @@ export default meta;
 type Story = StoryObj<typeof Calendar>;
 
 const sampleEvents = [
-  { person: 'Alice', date: '2025-05-03', label: 'Day', startTime: '08:00', endTime: '16:00', variant: 'default' as const },
-  { person: 'Alice', date: '2025-05-05', label: 'OFF', variant: 'unavailability' as const },
-  { person: 'Bob',   date: '2025-05-02', label: 'Night', startTime: '21:00', endTime: '06:00', special: true },
+  { person: 'Alice', events:[{ date: '2025-05-03', label: 'Day', startTime: '08:00', endTime: '16:00', variant: 'default' as const },{ date: '2025-05-05', label: 'OFF', variant: 'unavailability' as const }]},
+  { person: 'Bob',   events:[{ date: '2025-05-02', label: 'Night', startTime: '21:00', endTime: '06:00', special: true }] },
 ];
 
 const sampleVHead = [{ name: 'Alice' }, { name: 'Bob' }];

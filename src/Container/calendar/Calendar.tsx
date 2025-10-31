@@ -18,8 +18,6 @@ const Calendar: React.FC<CalendarProps> = ({
   loading = false,
   showAvatar = false,
   noNameText = "Unaffected infos",
-  infosUnavailable = "No data available",
-  textLoading = "Loading...",
   fontFamily = 'inherit',
   onClickItem,
 }) => {
@@ -28,18 +26,6 @@ const Calendar: React.FC<CalendarProps> = ({
     () => moment(`${yearSelected}-${monthSelected}`).daysInMonth(),
     [yearSelected, monthSelected]
   );
-
-  const renderEmptyOrLoadingRow = () => {
-    if (vhead.length) return null;
-    const colspan = daysInMonth + 1; // +1 for left header cell
-    return (
-      <tr className={`${className} kariu-calendar--row`}>
-        <td colSpan={colspan} style={{ padding: "2rem", textAlign: "center", backgroundColor: "lightgrey" }}>
-          {loading ? textLoading : infosUnavailable}
-        </td>
-      </tr>
-    );
-  };
 
   const renderRowHeaderCell = (name?: string) => {
     const displayName = name || noNameText;
@@ -83,21 +69,6 @@ const Calendar: React.FC<CalendarProps> = ({
     };
   };
 
-  const toBodyItemData = (ev: CalendarEvent) => {
-    if (ev.variant === 'unavailability') {
-      return {
-        unavailability_code: ev.label,
-      } as any;
-    }
-    return {
-      activity_code: ev.label,
-      time_start: ev.startTime,
-      time_end: ev.endTime,
-      marked: ev.marked,
-      special: ev.special,
-    } as any;
-  };
-
   const allEvents: CalendarEvent[] = useMemo(() => {
     if (events && events.length) return events;
     if (infos && infos.length) return infos.map(toEvent);
@@ -106,39 +77,45 @@ const Calendar: React.FC<CalendarProps> = ({
 
   const renderCellsForRow = (rowName?: string) => {
     const cells: React.ReactNode[] = [];
+    const monthFormatted = monthSelected < 10 ? `0${monthSelected}` : `${monthSelected}`;
     for (let index = 0; index < daysInMonth; index++) {
       let dayNum = index + 1;
       const day = dayNum < 10 ? `0${dayNum}` : `${dayNum}`;
-      const date = `${yearSelected}-${monthSelected}-${day}`;
-      const dateWithoutYear = `${monthSelected}-${day}`;
+      const date = `${yearSelected}-${monthFormatted}-${day}`;
+      const dateWithoutYear = `${monthFormatted}-${day}`;
       const indexOfDay = moment(date).isoWeekday();
       const isWeekEnd = indexOfDay === 6 || indexOfDay === 7;
       const isHoliday = holidays?.some((h) => h.month_day === dateWithoutYear) || false;
 
-      const matching: CalendarEvent[] = [];
-      for (let k = 0; k < allEvents.length; k++) {
-        const ev = allEvents[k];
-        if (
-          moment(ev.date).format("YYYY-MM-DD") === moment(date).format("YYYY-MM-DD") &&
-          (rowName === (ev as any).person)
-        ) {
-          matching.push(ev);
-        }
-      }
+      // Filtrer les événements qui correspondent à cette date et cette personne/ligne
+      // Les événements sont associés à une ligne via leur propriété person ou site
+      const matching: CalendarEvent[] = allEvents.filter((event) => {
+        if (event.date !== date) return false;
+        
+        // Si pas de nom de ligne, ne pas afficher d'événements
+        if (!rowName) return false;
+        
+        // L'événement correspond si son person ou site correspond au nom de la ligne
+        return event.person === rowName || event.site === rowName;
+      });
+
+      const outerTdStyle: React.CSSProperties = {
+        verticalAlign: "middle",
+        backgroundColor: isHoliday ? colors.primary.light : isWeekEnd ? colors.background.light : "inherit",
+      };
 
       cells.push(
-        <td key={`d-${index}`} style={{ verticalAlign: "middle" }}>
-          {matching.length
-            ? matching.map((element, i) => (
-                <BodyItem
-                  key={`task-${element.site || (element as any).person || ""}-${i}`}
-                  isWeekEnd={isWeekEnd}
-                  isHoliday={isHoliday}
-                  event={element}
-                  onClick={() => onClickItem && onClickItem(element)}
-                />
-              ))
-            : null}
+        <td key={`d-${index}`} style={outerTdStyle}>
+          {matching.map((element, i) => (
+            <BodyItem
+              key={`d-${index}-${i}-${element.site || element.person || ""}`}
+              isWeekEnd={isWeekEnd}
+              isHoliday={isHoliday}
+              event={element}
+              onClick={() => onClickItem && onClickItem(element)}
+              wrapWithTd={false}
+            />
+          ))}
         </td>
       );
     }
@@ -182,7 +159,6 @@ const Calendar: React.FC<CalendarProps> = ({
         </tr>
       </thead>
       <tbody>
-        {renderEmptyOrLoadingRow()}
         {renderRows()}
       </tbody>
     </table>
