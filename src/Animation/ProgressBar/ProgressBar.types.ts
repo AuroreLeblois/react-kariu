@@ -11,7 +11,7 @@ export interface ProgressBarProps {
   /**
    * The color of the progress bar.
    */
-  color: string;
+  color?: string | null;
   /**
    * Optional additional class name(s) for the progress bar.
    */
@@ -29,4 +29,24 @@ export interface ProgressBarProps {
    * If a color prop is given, will not change
    */
   primary: boolean;
+  /**
+   * The variant of the progress bar: 'linear' or 'circular'
+   * @default 'linear'
+   */
+  variant?: 'linear' | 'circular';
+  /**
+   * If true, the progress bar will be in continuous/indeterminate mode (animated loop)
+   * @default false
+   */
+  indeterminate?: boolean;
+  /**
+   * Size of the circular progress bar (only applies when variant='circular')
+   * @default 100
+   */
+  size?: number;
+  /**
+   * Thickness of the circular progress bar stroke (only applies when variant='circular')
+   * @default 8
+   */
+  thickness?: number;
 }
