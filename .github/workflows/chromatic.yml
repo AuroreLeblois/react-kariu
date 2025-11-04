@@ -42,5 +42,7 @@ jobs:
 
       - name: 📂 Deploy stage
         id: deployStage
+        env:
+          STORYBOOK_GA_ID: ${{ secrets.STORYBOOK_GA_ID }}
         run: |
           npx chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --exit-once-uploaded

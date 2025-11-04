@@ -17,6 +17,14 @@ const config: StorybookConfig = {
   },
   docs: {},
   viteFinal: async (config) => {
+    // Exposer les variables d'environnement pour Storybook
+    if (config.define) {
+      config.define['process.env.STORYBOOK_GA_ID'] = JSON.stringify(process.env.STORYBOOK_GA_ID || 'G-XXXXXXXXXX');
+    } else {
+      config.define = {
+        'process.env.STORYBOOK_GA_ID': JSON.stringify(process.env.STORYBOOK_GA_ID || 'G-XXXXXXXXXX'),
+      };
+    }
     return config;
   },
 };
