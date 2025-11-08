@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Preview, Decorator } from '@storybook/react-vite';
-import { ThemeProvider } from '../src/Theme/ThemeProvider';
+import { ThemeProvider, useTheme } from '../src/Theme/ThemeProvider';
 import { defaultThemes } from '../src/Theme/defaultTheme';
 import "swiper/css";
 import "swiper/css/pagination";
@@ -36,6 +36,98 @@ const withAnalytics: Decorator = (Story, context) => {
   return React.createElement(Story);
 };
 
+// Composant interne pour appliquer le style du canvas
+const CanvasBackground: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { colors } = useTheme();
+
+  useEffect(() => {
+    const backgroundColor = colors.background.main;
+
+    // Créer ou mettre à jour une variable CSS personnalisée
+    const styleId = 'storybook-theme-background';
+    let styleElement = document.getElementById(styleId) as HTMLStyleElement;
+    
+    if (!styleElement) {
+      styleElement = document.createElement('style');
+      styleElement.id = styleId;
+      document.head.appendChild(styleElement);
+    }
+
+    // Styles CSS pour cibler tous les éléments du canvas Storybook
+    styleElement.textContent = `
+      #storybook-root,
+      .sb-show-main,
+      .sb-main-padded,
+      .os-host,
+      .os-content,
+      [data-is-story="true"],
+      .docs-story,
+      .sb-story,
+      .sb-wrapper,
+      .sb-main,
+      .os-viewport {
+        background-color: ${backgroundColor} !important;
+      }
+      
+      /* Cibler aussi les iframes de preview si nécessaire */
+      iframe[id^="storybook-preview"] {
+        background-color: ${backgroundColor} !important;
+      }
+    `;
+
+    // Appliquer aussi directement sur les éléments existants
+    const applyCanvasBackground = () => {
+      const selectors = [
+        '#storybook-root',
+        '.sb-show-main',
+        '.sb-main-padded',
+        '[data-is-story="true"]',
+        '.docs-story',
+        '.sb-story',
+        '.sb-wrapper',
+      ];
+
+      selectors.forEach((selector) => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach((el) => {
+          (el as HTMLElement).style.backgroundColor = backgroundColor;
+        });
+      });
+    };
+
+    // Appliquer immédiatement
+    applyCanvasBackground();
+
+    // Réappliquer après un court délai
+    const timeoutId = setTimeout(applyCanvasBackground, 100);
+    const timeoutId2 = setTimeout(applyCanvasBackground, 500);
+
+    // Observer les changements DOM
+    const observer = new MutationObserver(() => {
+      applyCanvasBackground();
+    });
+
+    const rootElement = document.getElementById('storybook-root') || document.body;
+    if (rootElement) {
+      observer.observe(rootElement, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class', 'style'],
+      });
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+      clearTimeout(timeoutId2);
+      observer.disconnect();
+      // Ne pas supprimer le style car il sera mis à jour au prochain changement de thème
+    };
+  }, [colors.background.main]);
+
+  return React.createElement(React.Fragment, null, children);
+};
+
 // Décorateur global qui applique le ThemeProvider à toutes les stories
 const withThemeProvider: Decorator = (Story, context) => {
   // Obtenir le thème à partir des paramètres de Storybook
@@ -45,7 +137,9 @@ const withThemeProvider: Decorator = (Story, context) => {
   return React.createElement(ThemeProvider, {
     initialTheme: theme,
     customThemes: defaultThemes,
-    children: React.createElement(Story)
+    children: React.createElement(CanvasBackground, {
+      children: React.createElement(Story)
+    })
   });
 };
 
