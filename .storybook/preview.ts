@@ -42,6 +42,10 @@ const CanvasBackground: React.FC<{ children: React.ReactNode }> = ({ children })
 
   useEffect(() => {
     const backgroundColor = colors.background.main;
+    let isUpdating = false;
+    let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+    // Réinitialiser lastAppliedColor quand la couleur change
+    let lastAppliedColor: string | null = null;
 
     // Créer ou mettre à jour une variable CSS personnalisée
     const styleId = 'storybook-theme-background';
@@ -53,75 +57,101 @@ const CanvasBackground: React.FC<{ children: React.ReactNode }> = ({ children })
       document.head.appendChild(styleElement);
     }
 
-    // Styles CSS pour cibler tous les éléments du canvas Storybook
-    styleElement.textContent = `
-      #storybook-root,
-      .sb-show-main,
-      .sb-main-padded,
-      .os-host,
-      .os-content,
-      [data-is-story="true"],
-      .docs-story,
-      .sb-story,
-      .sb-wrapper,
-      .sb-main,
-      .os-viewport {
-        background-color: ${backgroundColor} !important;
-      }
+    // Fonction pour mettre à jour les styles CSS (sans modifier le DOM directement)
+    const updateStyles = () => {
+      // Éviter les mises à jour inutiles si la couleur est déjà appliquée
+      if (isUpdating || lastAppliedColor === backgroundColor) return;
       
-      /* Cibler aussi les iframes de preview si nécessaire */
-      iframe[id^="storybook-preview"] {
-        background-color: ${backgroundColor} !important;
+      isUpdating = true;
+
+      // Styles CSS pour cibler tous les éléments du canvas Storybook
+      // On utilise uniquement CSS pour éviter de déclencher le MutationObserver
+      const newStyleContent = `
+        #storybook-root,
+        .sb-show-main,
+        .sb-main-padded,
+        .os-host,
+        .os-content,
+        [data-is-story="true"],
+        .docs-story,
+        .sb-story,
+        .sb-wrapper,
+        .sb-main,
+        .os-viewport,
+        .sbdocs,
+        .sbdocs-wrapper,
+        .sbdocs-preview,
+        .sbdocs-content {
+          background-color: ${backgroundColor} !important;
+        }
+        
+        /* Cibler aussi les iframes de preview si nécessaire */
+        iframe[id^="storybook-preview"] {
+          background-color: ${backgroundColor} !important;
+        }
+      `;
+
+      // Ne mettre à jour que si le contenu a changé
+      if (styleElement.textContent !== newStyleContent) {
+        styleElement.textContent = newStyleContent;
+        lastAppliedColor = backgroundColor;
       }
-    `;
 
-    // Appliquer aussi directement sur les éléments existants
-    const applyCanvasBackground = () => {
-      const selectors = [
-        '#storybook-root',
-        '.sb-show-main',
-        '.sb-main-padded',
-        '[data-is-story="true"]',
-        '.docs-story',
-        '.sb-story',
-        '.sb-wrapper',
-      ];
-
-      selectors.forEach((selector) => {
-        const elements = document.querySelectorAll(selector);
-        elements.forEach((el) => {
-          (el as HTMLElement).style.backgroundColor = backgroundColor;
-        });
+      // Utiliser requestAnimationFrame pour s'assurer que le DOM est prêt
+      requestAnimationFrame(() => {
+        isUpdating = false;
       });
     };
 
-    // Appliquer immédiatement
-    applyCanvasBackground();
+    // Fonction debounced pour éviter les boucles infinies
+    const debouncedUpdate = () => {
+      if (debounceTimer) {
+        clearTimeout(debounceTimer);
+      }
+      debounceTimer = setTimeout(() => {
+        updateStyles();
+      }, 50);
+    };
 
-    // Réappliquer après un court délai
-    const timeoutId = setTimeout(applyCanvasBackground, 100);
-    const timeoutId2 = setTimeout(applyCanvasBackground, 500);
+    // Mettre à jour immédiatement
+    updateStyles();
 
-    // Observer les changements DOM
-    const observer = new MutationObserver(() => {
-      applyCanvasBackground();
+    // Mettre à jour après un court délai pour les éléments chargés plus tard
+    const timeoutId = setTimeout(updateStyles, 100);
+    const timeoutId2 = setTimeout(updateStyles, 300);
+
+    // Observer les changements DOM avec un debounce et seulement pour les ajouts d'éléments
+    // On évite d'observer les changements d'attributs style pour éviter les boucles
+    const observer = new MutationObserver((mutations) => {
+      // Ne réagir que si de nouveaux éléments sont ajoutés, pas si des styles changent
+      const hasNewNodes = mutations.some(mutation => 
+        mutation.addedNodes.length > 0 && 
+        !isUpdating
+      );
+
+      if (hasNewNodes) {
+        debouncedUpdate();
+      }
     });
 
+    // Observer uniquement les ajouts de nœuds, pas les changements d'attributs
     const rootElement = document.getElementById('storybook-root') || document.body;
     if (rootElement) {
       observer.observe(rootElement, {
         childList: true,
         subtree: true,
-        attributes: true,
-        attributeFilter: ['class', 'style'],
+        // Ne pas observer les attributs pour éviter les boucles
       });
     }
 
     return () => {
+      if (debounceTimer) {
+        clearTimeout(debounceTimer);
+      }
       clearTimeout(timeoutId);
       clearTimeout(timeoutId2);
       observer.disconnect();
-      // Ne pas supprimer le style car il sera mis à jour au prochain changement de thème
+      isUpdating = false;
     };
   }, [colors.background.main]);
 
