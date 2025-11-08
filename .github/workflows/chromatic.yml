@@ -32,13 +32,18 @@ jobs:
         with:
           fetch-depth: 0 # Récupère tout l'historique pour permettre à Chromatic de comparer les commits
 
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: 🔨 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-versions }}
 
       - name: 🔨 Install dependencies
-        run: npm i --no-package-lock
+        run: pnpm install
 
       - name: 📂 Deploy stage
         id: deployStage
