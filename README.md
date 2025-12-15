@@ -5,8 +5,7 @@ React Kariu is a lightweight collection of reusable and accessible UI components
 ## Documentation
 
 You can check the documentation here :
-https://master--6622bfba82614764e0013a14.chromatic.com
-
+https://auroreleblois.github.io/react-kariu
 ## Github
 
 https://github.com/AuroreLeblois/react-kariu.git
