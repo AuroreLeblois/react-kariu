@@ -28,7 +28,8 @@
     "start": "start http://localhost:9999 && storybook dev --quiet --ci --port 9999",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "build-storybook-static": "npm run build-storybook -o storybook-static"
   },
   "exports": {
     ".": {
