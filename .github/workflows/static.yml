@@ -37,12 +37,15 @@ jobs:
         uses: actions/checkout@v4
       - name: 🧩 Setup Pages
         uses: actions/configure-pages@v5
+      
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v2
 
       - name: 📦 Install dependencies
-        run: npm ci
+        run: pnpm i
 
       - name: 🏗️ Build Storybook
-        run: npm run build-storybook
+        run: pnpm build-storybook
         
       - name: 📤 Upload artifact
         uses: actions/upload-pages-artifact@v3
