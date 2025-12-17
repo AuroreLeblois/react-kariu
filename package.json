@@ -68,6 +68,7 @@
     "@storybook/addon-docs": "^10.1.9",
     "@storybook/addon-links": "^10.1.9",
     "@storybook/addon-themes": "^10.1.9",
+    "@storybook/addon-vitest": "^10.1.9",
     "@storybook/react-vite": "^10.1.9",
     "@swc/core": "^1.15.5",
     "@types/react": "18.2.66",
@@ -86,7 +87,11 @@
     "rimraf": "^5.0.10",
     "storybook": "^10.1.9",
     "tsup": "^8.5.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16",
+    "playwright": "^1.57.0",
+    "@vitest/browser-playwright": "^4.0.16",
+    "@vitest/coverage-v8": "^4.0.16"
   },
   "license": "ISC",
   "sideEffects": false,
