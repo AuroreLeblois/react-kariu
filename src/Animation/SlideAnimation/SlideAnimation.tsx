@@ -12,17 +12,23 @@ const SlideAnimation: React.FC<SlideAnimationProps> = ({
   className = "",
   sx = {}
 }) => {
-  // The animation is visible if:
-  // - trigger is defined and true
-  // - trigger is not defined and onScroll is false (automatic animation)
-  const [isVisible, setIsVisible] = useState(trigger !== undefined ? trigger : !onScroll);
+  // L'animation part toujours d'un état "caché" pour garantir
+  // une vraie transition à la première apparition.
+  const [isVisible, setIsVisible] = useState(false);
 
-  // Update when trigger changes
+  // Met à jour la visibilité en fonction de `trigger` ou du scroll
   useEffect(() => {
     if (trigger !== undefined) {
       setIsVisible(trigger);
+      return;
     }
-  }, [trigger]);
+
+    // Si aucun trigger n'est fourni et qu'on n'est pas en mode scroll,
+    // on joue automatiquement l'animation au montage.
+    if (!onScroll) {
+      setIsVisible(true);
+    }
+  }, [trigger, onScroll]);
 
   useEffect(() => {
     if (!onScroll) return;

@@ -14,6 +14,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   sx = {},
   className = '',
   disabled = false,
+  ...props
 }) => {
   const [selectedValue, setSelectedValue] = useState(defaultValue);
 
@@ -52,6 +53,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
           size={size}
           color={color}
           disabled={disabled || option.disabled}
+          {...props}
         />
       ))}
     </div>
