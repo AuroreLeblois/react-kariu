@@ -53,6 +53,9 @@ import { Button } from 'react-kariu'
 - RadioGroup: group of radio inputs.
 - Card: content card container.
 - Header: page header component.
+- HeaderNav: responsive header navigation with a compact mobile menu.
+- SideNav: collapsible side navigation with responsive visibility.
+- BottomNav: mobile-friendly bottom navigation.
 - Layout: page layout scaffold.
 - HeadCols / HeadItem / BodyItem: calendar UI elements.
 - Carousel: carousel/slider for items.

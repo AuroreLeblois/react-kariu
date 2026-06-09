@@ -70,7 +70,7 @@ export const rippleStyleKeyframes = {
     
 }
 
-export const getStyleRipple = (animation: string) => {
+export const getStyleRipple = (animation: string): React.CSSProperties => {
     const style = { ...rippleStyle };
     
     // Créer un nouvel élément de style
