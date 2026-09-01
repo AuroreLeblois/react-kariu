@@ -22,7 +22,9 @@ export { default as Icon } from './Atoms/Icon/Icon';
 export { default as HoverAnimation } from './Animation/HoverAnimation/HoverAnimation';
 export { default as SlideAnimation } from './Animation/SlideAnimation/SlideAnimation';
 export { default as Carousel } from './Animation/Carousel/Carousel';
+export { default as D20Roller } from './Animation/D20Roller/D20Roller';
 export { default as ProgressBar} from './Animation/ProgressBar/ProgressBar';
+export type { D20RollerFace, D20RollerProps } from './Animation/D20Roller/D20Roller.types';
 
 // Text Components
 export { default as Link } from './Atoms/Link/Link';
