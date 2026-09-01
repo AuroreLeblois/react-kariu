@@ -22,7 +22,7 @@
     "effects"
   ],
   "publishConfig": {
-    "@auroreleblois:react-kariu": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org"
   },
   "copyright": "Copyright © year ${author}",
   "scripts": {
